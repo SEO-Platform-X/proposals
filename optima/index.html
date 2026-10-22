@@ -569,6 +569,16 @@ section.alt .cmp tbody th{background:var(--paper2)}
 @media (max-width:700px){.toc5{grid-template-columns:1fr;gap:6px}.toc5 a{flex-direction:row;align-items:center;padding:10px 12px}}
 .fx{margin:-2px 0 4px;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:13.5px;color:var(--blue)}
 html{scroll-behavior:smooth}
+
+.pbig{font-family:'Cormorant',Georgia,serif;font-size:30px;line-height:1.15;font-weight:600;margin:6px 0 10px}
+.pbig b{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;color:var(--blue)}
+.ppl{display:flex;flex-wrap:wrap;gap:6px 5px;margin:18px 0 10px}
+.pp{width:20px;height:30px}
+.pp.pd{fill:var(--ink)}.pp.ret{fill:#1F4FE0}.pp.miss{fill:none;stroke:var(--bad);stroke-width:1.5;stroke-dasharray:3 2}
+.pkey{display:flex;gap:18px;font-size:14px;color:var(--ink2);margin-bottom:6px}
+.pkey i{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+.pkey .k1{background:var(--ink)}.pkey .k2{background:#1F4FE0}
+@media (max-width:600px){.pbig{font-size:26px}.pp{width:18px;height:27px}}
 </style>
 </head>
 <body>
@@ -1221,8 +1231,10 @@ speed and mobile 7, freshness and schema 5
       <li>These are estimates, not promises. We replace them with your real numbers and report actual patient requests every month.</li>
     </ul>
     <h3 style="margin-top:34px">Is it worth it?</h3>
-    <p class="vnote" style="margin:0">At $3,000 a month, a year is $36,000. Here’s that year, with the months your new patients pay for filled in.</p>
-    <div class="pay" id="pay"><div>Jan</div><div>Feb</div><div>Mar</div><div>Apr</div><div>May</div><div>Jun</div><div>Jul</div><div>Aug</div><div>Sep</div><div>Oct</div><div>Nov</div><div>Dec</div></div>
+    <p class="pbig" id="paybig"></p>
+    <p class="vnote" style="margin:0">Each figure is one new surgical patient in year one. The dark ones pay for the full year of work ($36,000). Every patient after that is return.</p>
+    <div class="ppl" id="pay" aria-live="polite"></div>
+    <div class="pkey"><span><i class="k1"></i>Pays for the year</span><span><i class="k2"></i>Return on top</span></div>
     <p class="small" id="paynote"></p>
 </div>
 </section>
@@ -1427,7 +1439,7 @@ let cr=0,ci=0;const R=[],I=[];arr.forEach(v=>{cr+=v*val;ci+=cost;R.push(cr);I.pu
 let g="";for(let k=0;k<=4;k++){const v=max*k/4;g+=`<line x1="${L}" x2="${W-Rr}" y1="${y(v)}" y2="${y(v)}" stroke="${LINE}"/>`+T(L-8,y(v)+4,"$"+Math.round(v/1000)+"k",{a:"end",fs:11,c:MUTE});}
 g+=`<polyline points="${I.map((v,i)=>x(i)+","+y(v)).join(" ")}" fill="none" stroke="${MUTE}" stroke-width="2.5" stroke-dasharray="6 5"/><polyline points="${R.map((v,i)=>x(i)+","+y(v)).join(" ")}" fill="none" stroke="${BLUE}" stroke-width="3"/>`;
 R.forEach((v,i)=>g+=T(x(i),H-10,i+1,{a:"middle",fs:11,c:MUTE}));$("chart").innerHTML=svg(W,H,g,"");
-const months=Math.min(12,Math.floor(pts*val/cost));document.querySelectorAll("#pay div").forEach((d,i)=>d.classList.toggle("on",i<months));const need=Math.ceil(cost*12/val);$("paynote").textContent=`${need} patients × $${fmt(val)} = $${fmt(need*val)}, which covers all 12 months ($36,000). Your expected year one: ${pts} patients.`;}
+const need=Math.ceil(cost*12/val);const fig=c=>`<svg viewBox="0 0 20 30" class="pp ${c}" aria-hidden="true"><circle cx="10" cy="7" r="6"/><path d="M1 30 Q1 15 10 15 Q19 15 19 30 Z"/></svg>`;let h="";for(let k=0;k<Math.max(pts,need);k++)h+=fig(k<need?(k<pts?"pd":"miss"):"ret");$("pay").innerHTML=h;$("paybig").innerHTML=`<b>${need} patients</b> pay for the whole year. We expect <b>${pts}</b>.`;$("paynote").textContent=`${need} × $${fmt(val)} = $${fmt(need*val)}, which covers $36,000. Return on top: $${fmt(Math.max(0,pts*val-cost*12))}.`;}
 cv.addEventListener("input",draw);document.querySelectorAll(".seg button").forEach(b=>b.addEventListener("click",()=>{sc=b.dataset.s;document.querySelectorAll(".seg button").forEach(x=>x.setAttribute("aria-pressed",x===b));draw();}));draw();})();
 
 </script>
