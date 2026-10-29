@@ -318,14 +318,36 @@ section.alt .tl .when{background:var(--paper2)}
 .adc{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px}
 .adc h3{font-size:17px}
 .adc p{margin:0;font-size:15px;color:var(--ink2)}
-.adc.no{border-color:var(--bad)}
-.adc.no h3{color:var(--bad)}
+.adc.best3{border:2px solid var(--blue)}
+.adc.best3 h3{color:var(--blue)}
 .steps4{list-style:none;padding:0;margin:20px 0 0;counter-reset:s}
 .steps4 li{counter-increment:s;padding:14px 0 14px 46px;border-bottom:1px solid var(--line);position:relative}
 .steps4 li::before{content:counter(s);position:absolute;left:0;top:14px;width:30px;height:30px;border-radius:50%;background:var(--blue);color:#fff;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;display:grid;place-items:center;font-size:15px}
 .steps4 b{display:block}
 .steps4 span{color:var(--ink2);font-size:15px}
 @media (max-width:640px){.tiers3,.adch{grid-template-columns:1fr}.cmp2 td:first-child{width:34%}}
+</style>
+<style>
+.g3{position:relative;background:#07101D;border-radius:20px;overflow:hidden;height:min(560px,78vh);min-height:400px;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.g3 canvas{display:block;width:100%!important;height:100%!important;cursor:grab}
+.g3 canvas:active{cursor:grabbing}
+.g3 .hud{position:absolute;left:16px;top:14px;right:16px;color:#DCE5FF;font-size:13px;pointer-events:none;display:flex;justify-content:space-between;gap:12px}
+.g3 .hud b{font-family:'Bricolage Grotesque',sans-serif;color:#fff;font-size:15px;display:block}
+.g3 .key{position:absolute;left:16px;bottom:14px;display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12.5px;color:#C3CBD8;pointer-events:none;max-width:calc(100% - 32px)}
+.g3 .key span{display:inline-flex;align-items:center;gap:6px}
+.g3 .key i{width:10px;height:10px;border-radius:50%;display:inline-block}
+.g3 .lab{position:absolute;transform:translate(-50%,-120%);font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:12px;color:#fff;background:rgba(11,26,46,.78);border:1px solid rgba(220,229,255,.25);padding:2px 8px;border-radius:6px;white-space:nowrap;pointer-events:none}
+.g3 .lab.bad{border-color:#FF7A5C;color:#FFD9CF}
+.g3 .lab.comp{color:#C3CBD8;font-weight:600}
+.g3 .lab.small{font-size:10.5px;font-weight:600;padding:1px 6px}
+.g3 .tip{position:absolute;pointer-events:none;background:#fff;color:#0B1A2E;border-radius:10px;padding:8px 11px;font-size:13px;max-width:240px;box-shadow:0 6px 24px rgba(0,0,0,.35);display:none;line-height:1.35}
+.g3 .tip b{font-family:'Bricolage Grotesque',sans-serif;display:block}
+.g3 .ctl{position:absolute;right:14px;bottom:12px;display:flex;gap:6px}
+.g3 .ctl button{font:600 12.5px 'Hanken Grotesk',sans-serif;background:rgba(220,229,255,.12);color:#DCE5FF;border:1px solid rgba(220,229,255,.25);border-radius:8px;padding:6px 10px;cursor:pointer}
+.g3 .ctl button[aria-pressed="true"]{background:#1F4FE0;color:#fff;border-color:#1F4FE0}
+.g3 .fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#C3CBD8;padding:30px;text-align:center}
+@media (max-width:600px){.g3 .key{bottom:52px}.g3 .hud{font-size:12px}.g3{height:440px;min-height:0;border-radius:16px}.g3 .lab.comp{display:none!important}.g3 .lab{font-size:11px}}
+.g3hint{font-size:13px;color:var(--mute);margin:8px 0 0}
 </style>
 </head>
 <body>
@@ -400,7 +422,7 @@ section.alt .tl .when{background:var(--paper2)}
     <p class="sub">Monthly dispensary searches by town, and where your website ranks today. Blue means you win it. Red means someone else does.</p>
     <figure class="vf an" style="margin:0 0 22px"><svg viewBox='0 0 640 250' role='img' aria-label='Monthly dispensary searches by town and where The Cannaisseur ranks'><text x='0' y='25' font-size='13.5' fill='#0B1A2E' font-family='Hanken Grotesk, sans-serif'>Collinsville</text><rect x='110' y='12' width='380' height='18' rx='9' fill='#EEF1F6'/><rect x='110' y='12' width='380.0' height='18' rx='9' fill='#9DB0D8'/><text x='498' y='25' font-size='12.5' fill='#0B1A2E' font-family='Hanken Grotesk, sans-serif'>1,150/mo</text><text x='640' y='25' text-anchor='end' font-size='12.5' font-weight='700' fill='#D63A1C' font-family='Hanken Grotesk, sans-serif'>Not ranked</text><text x='0' y='65' font-size='13.5' fill='#0B1A2E' font-family='Hanken Grotesk, sans-serif'>Alton</text><rect x='110' y='52' width='380' height='18' rx='9' fill='#EEF1F6'/><rect x='110' y='52' width='380.0' height='18' rx='9' fill='#9DB0D8'/><text x='498' y='65' font-size='12.5' fill='#0B1A2E' font-family='Hanken Grotesk, sans-serif'>1,150/mo</text><text x='640' y='65' text-anchor='end' font-size='12.5' font-weight='700' fill='#D63A1C' font-family='Hanken Grotesk, sans-serif'>#10 to #12</text><text x='0' y='105' font-size='13.5' fill='#0B1A2E' font-family='Hanken Grotesk, sans-serif'>Edwardsville</text><rect x='110' y='92' width='380' height='18' rx='9' fill='#EEF1F6'/><rect x='110' y='92' width='247.82608695652175' height='18' rx='9' fill='#9DB0D8'/><text x='498' y='105' font-size='12.5' fill='#0B1A2E' font-family='Hanken Grotesk, sans-serif'>750/mo</text><text x='640' y='105' text-anchor='end' font-size='12.5' font-weight='700' fill='#D63A1C' font-family='Hanken Grotesk, sans-serif'>Not ranked</text><text x='0' y='145' font-size='13.5' fill='#0B1A2E' font-family='Hanken Grotesk, sans-serif'>Belleville</text><rect x='110' y='132' width='380' height='18' rx='9' fill='#EEF1F6'/><rect x='110' y='132' width='132.17391304347825' height='18' rx='9' fill='#9DB0D8'/><text x='498' y='145' font-size='12.5' fill='#0B1A2E' font-family='Hanken Grotesk, sans-serif'>400/mo</text><text x='640' y='145' text-anchor='end' font-size='12.5' font-weight='700' fill='#D63A1C' font-family='Hanken Grotesk, sans-serif'>Not ranked</text><text x='0' y='185' font-size='13.5' fill='#0B1A2E' font-family='Hanken Grotesk, sans-serif'>Troy</text><rect x='110' y='172' width='380' height='18' rx='9' fill='#EEF1F6'/><rect x='110' y='172' width='72.69565217391305' height='18' rx='9' fill='#9DB0D8'/><text x='498' y='185' font-size='12.5' fill='#0B1A2E' font-family='Hanken Grotesk, sans-serif'>220/mo</text><text x='640' y='185' text-anchor='end' font-size='12.5' font-weight='700' fill='#D63A1C' font-family='Hanken Grotesk, sans-serif'>#6</text><text x='0' y='225' font-size='13.5' fill='#0B1A2E' font-family='Hanken Grotesk, sans-serif'>Wood River</text><rect x='110' y='212' width='380' height='18' rx='9' fill='#EEF1F6'/><rect x='110' y='212' width='214.78260869565216' height='18' rx='9' fill='#1F4FE0'/><text x='498' y='225' font-size='12.5' fill='#0B1A2E' font-family='Hanken Grotesk, sans-serif'>650/mo</text><text x='640' y='225' text-anchor='end' font-size='12.5' font-weight='700' fill='#1F4FE0' font-family='Hanken Grotesk, sans-serif'>#1 and #2</text></svg></figure>
     <p>You already have pages for Alton and Troy, but they’re thin. Alton sits at the bottom of page one and onto page two, and Troy at #6. In Alton, Google shows Terrace Cannabis and Codes in the map, and Village Dispensary, a site with a Domain Rating of 2, ranks #3. That tells us Alton is winnable with the right pages, reviews and local signals. Weedmaps ranks #5 there too, which matters for where your ad money goes.</p>
-    <p class="small">Searches from Ahrefs, October 2026. Collinsville and Alton each combine two common phrasings, like “alton dispensary” and “dispensary alton il.” St. Louis (2,200 a month) is left out because Missouri sells legally too.</p>
+    <p class="small">Searches from Ahrefs, October 2026. Collinsville and Alton each combine two common phrasings, like “alton dispensary” and “dispensary alton il.” St. Louis (2,200 a month) is left out because Missouri sells legally too.</p><h3 style="margin-top:34px">Explore it in 3D: the Metro East</h3><p class="small" style="margin:0 0 12px">Columns rise with monthly searches. Blue you win, red you don’t. The pulse is your store, the inner ring your reach today, the outer ring the reach we build.</p><div class="g3" id="g-map" role="img" aria-label="Interactive 3D map of Wood River, Alton, Edwardsville, Collinsville, Belleville and Troy with search demand and rankings"><div class="fallback">Loading the 3D model…</div></div><p class="g3hint">Drag to rotate. Pinch, or use + and −, to zoom. Tap anything to read it.</p><h3 style="margin-top:34px">Explore it in 3D: every search, by topic</h3><p class="small" style="margin:0 0 12px">Each cluster is a topic. Bright stars rank top 3. Red rings are searches someone else wins.</p><div class="g3" id="g-topic" role="img" aria-label="Interactive 3D galaxy of search terms grouped by topic"><div class="fallback">Loading the 3D model…</div></div><p class="g3hint">Drag to rotate. Pinch, or use + and −, to zoom. Tap anything to read it.</p>
   </div>
 </section>
 
@@ -416,7 +438,7 @@ section.alt .tl .when{background:var(--paper2)}
     <tr><td class="n">The footer reads “The Cannaiseseur.”</td><td>A small typo, but AI reads every word.</td></tr>
     <tr><td class="n">About 90 of the top 100 sites linking to you are flagged as spam link shops.</td><td>Most sites pick these up without asking for them. We disavow them so they can’t hurt you.</td></tr>
     <tr><td>Real local links from The Telegraph, RiverBender and the Wood River Business Alliance.</td><td>A strong start. We build on these.</td></tr>
-    </tbody></table></div>
+    </tbody></table></div><h3 style="margin-top:34px">Explore it in 3D: what AI knows about you</h3><p class="small" style="margin:0 0 12px">Spheres are facts, boxes are sources. Blue helps you. Red holds you back, and pulses.</p><div class="g3" id="g-ent" role="img" aria-label="Interactive 3D graph of facts and sources about The Cannaisseur"><div class="fallback">Loading the 3D model…</div></div><p class="g3hint">Drag to rotate. Pinch, or use + and −, to zoom. Tap anything to read it.</p>
   </div>
 </section>
 
@@ -442,16 +464,16 @@ section.alt .tl .when{background:var(--paper2)}
 
 <section aria-labelledby="s-ads">
   <div class="wrap">
-    <h2 id="s-ads">Where cannabis ad money actually works</h2>
-    <p class="sub">Google and Meta don’t allow dispensary ads, so the budget has to go where cannabis is allowed. Here’s where we’d point it.</p>
+    <h2 id="s-ads">Where your ad money goes</h2>
+    <p class="sub">Cannabis ads don’t run like ads for other businesses. Google and Meta block most of them by default, and most agencies stop there. We don’t.</p>
     <div class="adch">
-      <div class="adc no"><h3>Google Ads, Facebook, Instagram</h3><p>Not allowed for THC products. Trying can get your accounts and business page shut down. Any agency selling you Google Ads management for a dispensary is selling something you can’t use.</p></div>
+      <div class="adc best3"><h3>Meta: Facebook and Instagram</h3><p>Through our network of specialist cannabis ad agencies, partners who know how to get dispensary campaigns approved and running on Meta. We refer you to the right one and work alongside them, so the ads, the pages and the reporting line up.</p></div>
       <div class="adc"><h3>Weedmaps and Leafly</h3><p>Featured listings and deals where cannabis shoppers already look. Weedmaps ranks #5 for “alton dispensary,” so a featured spot there reaches Alton today.</p></div>
       <div class="adc"><h3>Cannabis-approved display ads</h3><p>Ad networks built for cannabis that follow state rules, targeted to adults near Alton, Edwardsville and Collinsville.</p></div>
       <div class="adc"><h3>Text and email to your list</h3><p>You already collect sign-ups through AIQ. Deals and drops sent to people who opted in are the cheapest repeat visits you can buy.</p></div>
     </div>
-    <p>Every ad points to a page on your site built for that town or deal, so the ads and the SEO work together. Illinois has its own cannabis advertising rules, so every ad gets checked against them before it runs.</p>
-    <p class="small">The ad budget is paid to the ad platforms directly.</p>
+    <p>We’ve worked alongside these agencies on client accounts, so we know how they operate and what good looks like. Every ad points to a page on your site built for that town or deal, so the ads and the SEO work together. Illinois has its own cannabis advertising rules, and every ad gets checked against them before it runs.</p>
+    <p class="small">The ad budget is paid to the ad platforms and partner agency directly.</p>
   </div>
 </section>
 
@@ -464,7 +486,7 @@ section.alt .tl .when{background:var(--paper2)}
     <tr><td>Dispensary experience</td><td class="us">We work with dispensaries today</td><td class="them">No cannabis work shown. Case studies are a swim school, a baby store and an education site</td></tr>
     <tr><td>Getting named by AI</td><td class="us">The core of the plan, with a verified Local AI Registry record AI can check</td><td class="them">A $240 a month add-on</td></tr>
     <tr><td>Google profile, reviews, local pages</td><td class="us">Included</td><td class="them">A $190 a month add-on</td></tr>
-    <tr><td>Ads</td><td class="us">Built around what cannabis can actually run: Weedmaps, Leafly, approved display, SMS</td><td class="them">Sells Google Ads management, <span class="bad">which dispensaries can’t use</span></td></tr>
+    <tr><td>Ads</td><td class="us">A network of specialist cannabis ad agencies that run dispensary campaigns on Meta, plus Weedmaps, Leafly, approved display and SMS</td><td class="them">Google Ads management, <span class="bad">which dispensaries can’t use</span>. No cannabis ad experience shown</td></tr>
     <tr><td>Guarantee</td><td class="us">Named in AI answers within 90 days, or we keep working for free</td><td class="them">None. Their FAQ says not to trust anyone who promises rankings</td></tr>
     <tr><td>Price, comparable scope</td><td class="us"><b>$2,000 a month</b> on 12 months, everything included</td><td class="them">Growth package with local and AI add-ons: $1,720 a month, about $1,460 on 12 months. Top package with add-ons: $3,330, about $2,830 on 12 months</td></tr>
     </tbody></table></div>
@@ -481,7 +503,7 @@ section.alt .tl .when{background:var(--paper2)}
       <li><b>Own your name (month 1)</b><span>Make sure every spelling, including “cannasseur,” leads to you, and that AI can tell you apart from other Cannaisseurs.</span></li>
       <li><b>Win the towns next door (months 1 to 3)</b><span>Real pages for Alton, Edwardsville, Collinsville, Belleville and Troy, with directions, deals and what makes your store different. Weedmaps, Leafly and every directory matched to your site.</span></li>
       <li><b>Reviews and content AI quotes (every month)</b><span>Review requests and replies, product and strain guides, Google posts, and press about Wood River’s first dispensary.</span></li>
-      <li><b>Ads that point to the right pages (from month 1)</b><span>The freed-up budget goes to Weedmaps, Leafly, approved display and SMS, each tied to a page and tracked in one monthly report.</span></li>
+      <li><b>Ads that point to the right pages (from month 1)</b><span>We connect you with a specialist cannabis ad partner for Meta, and point the rest of the freed-up budget at Weedmaps, Leafly, approved display and SMS, each tied to a page and tracked in one monthly report.</span></li>
     </ol>
   </div>
 </section>
@@ -564,6 +586,117 @@ section.alt .tl .when{background:var(--paper2)}
 if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.2});
 els.forEach(function(e){io.observe(e)});})();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+
+const fmt=n=>n.toLocaleString("en-US");
+function inPoly(p,poly){let c=false;for(let i=0,j=poly.length-1;i<poly.length;j=i++){const xi=poly[i][0],yi=poly[i][1],xj=poly[j][0],yj=poly[j][1];if(((yi>p[1])!=(yj>p[1]))&&(p[0]<(xj-xi)*(p[1]-yi)/(yj-yi)+xi))c=!c;}return c;}
+const BBOX={w:-90.36,e:-89.80,s:38.48,n:38.99};
+const RIV=[[-90.40,38.955],[-90.30,38.925],[-90.22,38.900],[-90.17,38.884],[-90.135,38.862],[-90.118,38.830],[-90.125,38.795],[-90.150,38.760],[-90.175,38.715],[-90.185,38.670],[-90.185,38.620],[-90.20,38.55],[-90.24,38.47]];
+const OCEAN=RIV.map(p=>[p[0]-.014,p[1]]).concat(RIV.slice().reverse().map(p=>[p[0]+.014,p[1]]));
+const CITIES=[{n:"Wood River",lo:-90.098,la:38.861,v:650,r:"#1 and #2",good:1},{n:"Alton",lo:-90.184,la:38.891,v:1150,r:"#10 to #12"},{n:"Edwardsville",lo:-89.953,la:38.811,v:750,r:"not ranked"},{n:"Collinsville",lo:-89.985,la:38.670,v:1150,r:"not ranked"},{n:"Belleville",lo:-89.984,la:38.520,v:400,r:"not ranked"},{n:"Troy",lo:-89.883,la:38.729,v:220,r:"#6"}];
+const COMP=[{n:"Alton map pack",lo:-90.20,la:38.915}];
+const GHOST=[{n:"10 E Ferguson?",lo:-90.088,la:38.851,why:"Your homepage description says 10 E Ferguson Ave. The page says 40 E Ferguson Ave."}];
+const KW=[["wood river dispensary",2,500,172,null,"W"],["dispensary wood river il",1,150,46,null,"W"],["cannaisseur",1,150,100,null,"N"],["cannaisseur dispensary",1,200,85,null,"N"],["the cannasseur",1,100,33,null,"N"],["cannasseur",4,450,7,null,"N"],["la cannaisseur",3,100,8,null,"N"],["cannaisseur lansing",7,40,2,null,"N"],["troy il dispensary",6,150,7,null,"T"],["weed dispensary alton il",12,40,0,null,"T"],["dispensary near alton il",10,10,0,null,"T"],["eddies gummies",10,300,6,152,"P"],["trippy stix",6,150,2,null,"P"],["daze off gummies",4,30,3,null,"P"],["verano motorbreath",3,10,1,null,"P"],["whats better hybrid or indica",1,20,8,null,"G"],["sativa vs indicia",10,80,2,null,"G"],["which makes you sleepy sativa or indica",6,20,1,null,"G"]];
+const GAP=[["alton dispensary",0,800,0,null,"T"],["dispensary alton il",0,350,0,null,"T"],["collinsville dispensary",0,900,0,80,"T"],["dispensary collinsville il",0,250,0,450,"T"],["edwardsville dispensary",0,450,0,null,"T"],["dispensary edwardsville il",0,300,0,250,"T"],["dispensary belleville il",0,400,0,700,"T"]];
+const CLN={W:"Wood River",N:"Your name",T:"Nearby towns",P:"Products and brands",G:"Strain guides"};
+const cluster=k=>CLN[k[5]];
+
+(function(){
+if(!window.THREE){document.querySelectorAll(".g3 .fallback").forEach(f=>f.textContent="The 3D view needs a newer browser. The 2D charts above show the same data.");return;}
+const RM=matchMedia("(prefers-reduced-motion: reduce)").matches;
+function stage(el,opt){
+  el.innerHTML="";const W=()=>el.clientWidth,H=()=>el.clientHeight;
+  const r=new THREE.WebGLRenderer({antialias:true,alpha:false});r.setPixelRatio(Math.min(devicePixelRatio,2));r.setSize(W(),H());r.setClearColor(0x07101D);el.appendChild(r.domElement);
+  const scene=new THREE.Scene();scene.fog=new THREE.Fog(0x07101D,opt.fogNear||40,opt.fogFar||120);
+  const cam=new THREE.PerspectiveCamera(45,W()/H(),.1,500);
+  const st={th:opt.th||.6,ph:opt.ph||1.0,rad:opt.rad||40,target:new THREE.Vector3(0,0,0),auto:!RM,minR:opt.minR||10,maxR:opt.maxR||90};
+  if(W()<600){st.rad*=(opt.mk||1.5);st.maxR*=1.4;}
+  function place(){cam.position.set(st.target.x+st.rad*Math.sin(st.ph)*Math.sin(st.th),st.target.y+st.rad*Math.cos(st.ph),st.target.z+st.rad*Math.sin(st.ph)*Math.cos(st.th));cam.lookAt(st.target);}place();
+  const hud=document.createElement("div");hud.className="hud";hud.innerHTML=opt.hud||"";el.appendChild(hud);
+  const key=document.createElement("div");key.className="key";key.innerHTML=opt.key||"";el.appendChild(key);
+  const tip=document.createElement("div");tip.className="tip";el.appendChild(tip);
+  const ctl=document.createElement("div");ctl.className="ctl";ctl.innerHTML=`<button type="button" data-z="-1" aria-label="Zoom in">+</button><button type="button" data-z="1" aria-label="Zoom out">−</button><button type="button" data-a aria-pressed="${st.auto}">Spin</button>`;el.appendChild(ctl);
+  ctl.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;if(b.dataset.z){st.rad=Math.max(st.minR,Math.min(st.maxR,st.rad*(b.dataset.z>0?1.2:.83)));place();}else{st.auto=!st.auto;b.setAttribute("aria-pressed",st.auto);}});
+  const ptrs=new Map();let lastPinch=0,moved=false;const cv=r.domElement;
+  cv.addEventListener("pointerdown",e=>{ptrs.set(e.pointerId,{x:e.clientX,y:e.clientY,t:e.pointerType});moved=false;if(e.pointerType==="mouse")cv.setPointerCapture(e.pointerId);});
+  cv.addEventListener("pointermove",e=>{const p=ptrs.get(e.pointerId);if(!p){hover(e);return;}
+    if(ptrs.size===2){const a=[...ptrs.values()];const d0=Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y);ptrs.set(e.pointerId,{x:e.clientX,y:e.clientY,t:p.t});const b=[...ptrs.values()];const d1=Math.hypot(b[0].x-b[1].x,b[0].y-b[1].y);if(d0>0){st.rad=Math.max(st.minR,Math.min(st.maxR,st.rad*d0/d1));place();}return;}
+    const dx=e.clientX-p.x,dy=e.clientY-p.y;if(Math.abs(dx)+Math.abs(dy)>3)moved=true;st.th-=dx*.008;if(p.t==="mouse")st.ph=Math.max(.25,Math.min(1.45,st.ph-dy*.006));ptrs.set(e.pointerId,{x:e.clientX,y:e.clientY,t:p.t});st.auto=false;ctl.querySelector("[data-a]").setAttribute("aria-pressed","false");place();});
+  const end=e=>{const p=ptrs.get(e.pointerId);ptrs.delete(e.pointerId);if(p&&!moved)hover(e,true);};cv.addEventListener("pointerup",end);cv.addEventListener("pointercancel",e=>ptrs.delete(e.pointerId));cv.addEventListener("pointerleave",()=>{if(!ptrs.size)tip.style.display="none";});
+  cv.addEventListener("wheel",e=>{if(!(e.ctrlKey||e.metaKey))return;e.preventDefault();st.rad=Math.max(st.minR,Math.min(st.maxR,st.rad*(e.deltaY>0?1.08:.93)));place();},{passive:false});
+  const ray=new THREE.Raycaster(),m2=new THREE.Vector2();const pick=[];
+  function hover(e,tap){const rc=cv.getBoundingClientRect();m2.x=(e.clientX-rc.left)/rc.width*2-1;m2.y=-(e.clientY-rc.top)/rc.height*2+1;ray.setFromCamera(m2,cam);const hit=ray.intersectObjects(pick,false)[0];
+    if(hit&&hit.object.userData.tip){tip.innerHTML=hit.object.userData.tip;tip.style.display="block";let x=e.clientX-rc.left+14,y=e.clientY-rc.top+14;x=Math.min(x,rc.width-250);y=Math.min(y,rc.height-90);tip.style.left=x+"px";tip.style.top=y+"px";cv.style.cursor="pointer";}else{if(tap||!ptrs.size){tip.style.display="none";}cv.style.cursor="";}}
+  const labels=[];function label(text,pos,cls,obj,off){const d=document.createElement("div");d.className="lab "+(cls||"");d.textContent=text;el.appendChild(d);labels.push({d,pos,obj,off});return d;}
+  const v=new THREE.Vector3();function drawLabels(){const w=W(),h=H();labels.forEach(L=>{if(L.obj){L.obj.getWorldPosition(v);v.add(L.off);}else v.copy(L.pos);v.project(cam);const vis=v.z<1&&v.x>-1.1&&v.x<1.1&&v.y>-1.1&&v.y<1.1;L.d.style.display=vis?"block":"none";if(vis){L.d.style.left=((v.x+1)/2*w)+"px";L.d.style.top=((1-v.y)/2*h)+"px";}});}
+  let visible=false,t0=performance.now(),tick=null;new IntersectionObserver(es=>{visible=es[0].isIntersecting;if(visible)loop();},{threshold:.05}).observe(el);
+  let raf=0;function loop(){cancelAnimationFrame(raf);if(!visible)return;raf=requestAnimationFrame(loop);const t=(performance.now()-t0)/1000;if(st.auto){st.th+=.0016;place();}if(tick)tick(t);r.render(scene,cam);drawLabels();}
+  new ResizeObserver(()=>{r.setSize(W(),H());cam.aspect=W()/H();cam.updateProjectionMatrix();}).observe(el);
+  return {scene,cam,pick,label,setTick:f=>tick=f,st,place};
+}
+const C=THREE.Color;
+
+/* ---------- MAP ---------- */
+(function(){const el=document.getElementById("g-map");if(!el)return;
+const S=stage(el,{th:-.3,ph:.8,rad:72,minR:22,maxR:115,fogNear:60,fogFar:170,hud:`<div><b>Dispensary demand and your reach</b>Metro East, October 2026</div>`,key:`<span><i style="background:#FF5A3C"></i>Your site not top 3</span><span><i style="background:#8D9AB0"></i>Alton map pack</span><span><i style="border:2px dashed #FF7A5C;background:none"></i>Conflicting listing</span>`});
+const sc=S.scene;sc.add(new THREE.HemisphereLight(0xDCE5FF,0x0B1A2E,.85));const dl=new THREE.DirectionalLight(0xffffff,.7);dl.position.set(-20,40,10);sc.add(dl);
+const kx=Math.cos(38.8*Math.PI/180),lonC=(BBOX.w+BBOX.e)/2,latC=(BBOX.s+BBOX.n)/2,SCL=130;
+const X=lo=>(lo-lonC)*kx*SCL,Z=la=>-(la-latC)*SCL;const width=(BBOX.e-BBOX.w)*kx*SCL,depth=(BBOX.n-BBOX.s)*SCL;
+const seg=120,geo=new THREE.PlaneGeometry(width,depth,seg,Math.round(seg*depth/width));geo.rotateX(-Math.PI/2);const pos=geo.attributes.position,cols=[];
+for(let i=0;i<pos.count;i++){const x=pos.getX(i),z=pos.getZ(i);const lo=x/(kx*SCL)+lonC,la=-z/SCL+latC;let h;if(inPoly([lo,la],OCEAN)){h=-.35;cols.push(.06,.13,.26);}else{h=.3+.35*Math.sin(lo*45)*Math.cos(la*38)+.2*Math.sin(lo*90+la*70);const c=.16+Math.min(h,3)*.07;cols.push(c*.8,c*.95,c*1.25);}pos.setY(i,h);}
+geo.setAttribute("color",new THREE.Float32BufferAttribute(cols,3));geo.computeVertexNormals();sc.add(new THREE.Mesh(geo,new THREE.MeshStandardMaterial({vertexColors:true,flatShading:true,roughness:.95})));
+const grid=new THREE.GridHelper(Math.max(width,depth)*1.3,36,0x1C2C55,0x13213A);grid.position.y=-.4;sc.add(grid);
+S.label("Mississippi River",new THREE.Vector3(X(-90.19),1.2,Z(38.74)),"small");S.label("Missouri",new THREE.Vector3(X(-90.30),1.2,Z(38.80)),"small");S.label("Illinois",new THREE.Vector3(X(-89.86),1.2,Z(38.95)),"small");
+CITIES.forEach(c=>{const x=X(c.lo),z=Z(c.la);const hgt=1+Math.sqrt(c.v)*.35;const col=c.good?0x3D6BFF:0xFF5A3C;
+ const m=new THREE.Mesh(new THREE.CylinderGeometry(.9,.9,hgt,24),new THREE.MeshStandardMaterial({color:col,emissive:col,emissiveIntensity:.35,transparent:true,opacity:.92}));m.position.set(x-1.4,hgt/2+.4,z);m.userData.tip=`<b>${c.n}</b>${fmt(c.v)} dispensary searches a month<br>Your site: ${c.r}`;sc.add(m);S.pick.push(m);
+ S.label(c.n+": "+c.r,new THREE.Vector3(x-4,hgt+1.6,z),c.good?"":"bad");});
+const hx=X(-90.098),hz=Z(38.861);const beacon=new THREE.Mesh(new THREE.ConeGeometry(.8,5,20),new THREE.MeshStandardMaterial({color:0xFF5A3C,emissive:0xFF5A3C,emissiveIntensity:.6}));beacon.rotation.x=Math.PI;beacon.position.set(hx+1.4,4.2,hz);beacon.userData.tip="<b>The Cannaisseur</b>40 E Ferguson Ave, Wood River";sc.add(beacon);S.pick.push(beacon);S.label("The Cannaisseur",new THREE.Vector3(hx+1.4,7.6,hz));
+const rings=[];for(let k=0;k<3;k++){const rg=new THREE.Mesh(new THREE.RingGeometry(.96,1,64),new THREE.MeshBasicMaterial({color:0xFF5A3C,transparent:true,side:THREE.DoubleSide}));rg.rotation.x=-Math.PI/2;rg.position.set(hx,.6,hz);sc.add(rg);rings.push(rg);}
+const reach=new THREE.Mesh(new THREE.RingGeometry(3,3.1,80),new THREE.MeshBasicMaterial({color:0x6F92FF,transparent:true,opacity:.7,side:THREE.DoubleSide}));reach.rotation.x=-Math.PI/2;reach.position.set(hx,.65,hz);sc.add(reach);S.label("your reach today",new THREE.Vector3(hx+4.5,.9,hz+1.5),"small");
+const fut=new THREE.Mesh(new THREE.RingGeometry(19,19.2,120),new THREE.MeshBasicMaterial({color:0x6F92FF,transparent:true,opacity:.28,side:THREE.DoubleSide}));fut.rotation.x=-Math.PI/2;fut.position.set(hx,.65,hz);sc.add(fut);S.label("reach we build",new THREE.Vector3(hx-11,.9,hz-12),"small");
+COMP.forEach(c=>{const x=X(c.lo),z=Z(c.la);const m=new THREE.Mesh(new THREE.BoxGeometry(1.1,8,1.1),new THREE.MeshStandardMaterial({color:0x8D9AB0,emissive:0x2A3A55}));m.position.set(x-1,4.4,z);m.userData.tip=`<b>${c.n}</b>Terrace Cannabis and Codes hold the map pack for “alton dispensary,” and Village Dispensary ranks #3`;sc.add(m);S.pick.push(m);S.label("Alton map pack",new THREE.Vector3(x-5,9.8,z),"comp small");});
+GHOST.forEach(g=>{const x=X(g.lo),z=Z(g.la);const m=new THREE.Mesh(new THREE.OctahedronGeometry(.75),new THREE.MeshBasicMaterial({color:0xFF7A5C,wireframe:true}));m.position.set(x,2.4,z);m.userData.tip=`<b>Conflicting listing: ${g.n}</b>${g.why}`;m.userData.ghost=1;sc.add(m);S.pick.push(m);S.label(g.n,new THREE.Vector3(x-3,4.2,z),"bad small");});
+S.setTick(t=>{rings.forEach((rg,k)=>{const p=((t*.45+k/3)%1);rg.scale.setScalar(1+p*4);rg.material.opacity=.7*(1-p);});S.pick.forEach(m=>{if(m.userData.ghost){m.rotation.y=t;m.position.y=2.4+Math.sin(t*2+m.position.x)*.25;}});});
+})();
+
+/* ---------- ENTITY GRAPH ---------- */
+(function(){const el=document.getElementById("g-ent");if(!el)return;
+const S=stage(el,{th:.4,ph:1.1,rad:52,mk:1.25,minR:16,maxR:120,fogNear:80,fogFar:190,hud:`<div><b>What AI knows about The Cannaisseur</b>Facts and sources, linked</div>`,key:`<span><i style="background:#F4F1EA"></i>The Cannaisseur</span><span><i style="background:#3D6BFF"></i>Matches your site</span><span><i style="background:#FF5A3C"></i>Conflicts</span><span><i style="background:#8D9AB0"></i>Source</span>`});
+const sc=S.scene;sc.add(new THREE.AmbientLight(0xffffff,.55));const pl=new THREE.PointLight(0xffffff,1.1);pl.position.set(20,30,20);sc.add(pl);
+const N=[["core","The Cannaisseur","truth","40 E Ferguson Ave, Wood River. Opened April 2026"],["f1","Wood River’s first dispensary","ok","The Telegraph"],["f2","#1 and #2 for “wood river dispensary”","ok","Google map and organic results"],["f3","Reviews that name your staff","ok","Jerry Love, Heavenly, Mark"],["f4","Recreational and medical menus","ok","Your website"],["f5","Wood River Business Alliance member","ok","wrbusinessalliance.org"],["b1","“10 E Ferguson Ave”","bad","Your own homepage description"],["b2","“Waiting on state approval”","bad","Old Instagram posts on your homepage"],["b3","“The Cannaiseseur”","bad","Footer typo"],["b4","Cannaisseur, Lansing","bad","Another business with your name"],["b5","“cannasseur” at #4","bad","450 searches a month, misspelled"],["b6","Spam links","bad","About 90 of top 100 linking sites"],["b7","Alton at #10 to #12","bad","Your Alton page is thin"],["s1","Your website","src",""],["s2","Google","src",""],["s3","Instagram","src",""],["s4","The Telegraph","src",""],["s5","RiverBender","src",""],["s6","Weedmaps","src",""]];
+const E=[["core","f1"],["core","f2"],["core","f3"],["core","f4"],["core","f5"],["s4","f1"],["s5","core"],["s2","f2"],["s2","f3"],["s1","f4"],["s1","b1"],["b1","core"],["s3","b2"],["s1","b2"],["b2","core"],["s1","b3"],["b3","core"],["b4","core"],["s2","b5"],["b5","core"],["b6","core"],["s2","b7"],["b7","core"],["s6","core"]];
+const idx={};N.forEach((n,i)=>{idx[n[0]]=i;n.p=new THREE.Vector3((Math.random()-.5)*20,(Math.random()-.5)*20,(Math.random()-.5)*20);n.v=new THREE.Vector3();});N[0].p.set(0,0,0);
+for(let it=0;it<500;it++){for(let i=0;i<N.length;i++)for(let j=i+1;j<N.length;j++){const d=new THREE.Vector3().subVectors(N[i].p,N[j].p);const l=Math.max(d.length(),.5);d.multiplyScalar(30/(l*l*l));N[i].v.add(d);N[j].v.sub(d);}
+ E.forEach(e=>{const a=N[idx[e[0]]],b=N[idx[e[1]]];const d=new THREE.Vector3().subVectors(b.p,a.p);const l=d.length();const rest=(a[2]==="bad"||b[2]==="bad")?13:8;d.multiplyScalar((l-rest)*.02);a.v.add(d);b.v.sub(d);});
+ N.forEach((n,i)=>{if(i===0){n.v.set(0,0,0);return;}n.v.add(n.p.clone().multiplyScalar(-.004));if(n[2]==="bad")n.v.add(n.p.clone().normalize().multiplyScalar(.03));n.p.add(n.v.multiplyScalar(.5));});}
+const colr={truth:0xF4F1EA,ok:0x3D6BFF,bad:0xFF5A3C,src:0x8D9AB0};const meshes=[];
+N.forEach(n=>{const r=n[2]==="truth"?2:n[2]==="src"?.75:1.05;const m=new THREE.Mesh(n[2]==="src"?new THREE.BoxGeometry(r*1.5,r*1.5,r*1.5):new THREE.SphereGeometry(r,28,20),new THREE.MeshStandardMaterial({color:colr[n[2]],emissive:colr[n[2]],emissiveIntensity:n[2]==="bad"?.5:.22,roughness:.4}));m.position.copy(n.p);m.userData.tip=`<b>${n[1]}</b>${n[3]||"Source"}`;m.userData.bad=n[2]==="bad";sc.add(m);S.pick.push(m);meshes.push(m);
+ if(el.clientWidth>=600||n[2]==="bad"||n[2]==="truth")S.label(n[1],n.p.clone().add(new THREE.Vector3(0,r+.6,0)),n[2]==="bad"?"bad small":n[2]==="src"?"comp small":"small");});
+E.forEach(e=>{const a=N[idx[e[0]]],b=N[idx[e[1]]];const bad=a[2]==="bad"||b[2]==="bad";const g=new THREE.BufferGeometry().setFromPoints([a.p,b.p]);sc.add(new THREE.Line(g,new THREE.LineBasicMaterial({color:bad?0xFF5A3C:0x4F74E8,transparent:true,opacity:bad?.65:.4})));});
+S.setTick(t=>{meshes.forEach(m=>{if(m.userData.bad){const s=1+.12*Math.sin(t*3+m.position.x);m.scale.setScalar(s);}});});
+})();
+
+/* ---------- TOPIC GALAXY ---------- */
+(function(){const el=document.getElementById("g-topic");if(!el)return;
+const S=stage(el,{th:.2,ph:.85,rad:104,minR:25,maxR:150,fogNear:90,fogFar:220,hud:`<div><b>Topical galaxy</b>${KW.length+GAP.length} search terms, 5 topics</div>`,key:`<span><i style="background:#6F92FF"></i>You rank top 3</span><span><i style="background:#2A3A75"></i>Rank 4 or lower</span><span><i style="border:2px solid #FF5A3C;background:none"></i>Search you don’t win</span>`});
+const sc=S.scene;sc.add(new THREE.AmbientLight(0xffffff,.6));const pl=new THREE.PointLight(0xffffff,1);pl.position.set(0,40,30);sc.add(pl);
+const sg=new THREE.BufferGeometry(),sp=[];for(let i=0;i<900;i++){const u=Math.random()*2-1,q=Math.random()*Math.PI*2,rr=Math.sqrt(1-u*u),v=new THREE.Vector3(rr*Math.cos(q),u,rr*Math.sin(q)).multiplyScalar(80+Math.random()*60);sp.push(v.x,v.y,v.z);}sg.setAttribute("position",new THREE.Float32BufferAttribute(sp,3));sc.add(new THREE.Points(sg,new THREE.PointsMaterial({color:0x8D9AB0,size:.35})));
+const CL=["Wood River","Your name","Nearby towns","Products and brands","Strain guides"];const centers={};
+CL.forEach((c,i)=>{const a=i/CL.length*Math.PI*2;centers[c]=new THREE.Vector3(Math.cos(a)*32,(i%2?3:-3),Math.sin(a)*32);});
+const groups={};CL.forEach(c=>{const g=new THREE.Group();g.position.copy(centers[c]);sc.add(g);groups[c]=g;
+ const traffic=KW.filter(k=>cluster(k)===c).reduce((s,k)=>s+k[3],0);const r=c==="Nearby towns"?1.2:1+Math.sqrt(traffic)*.17;const col=c==="Topic with nothing ranking"?0xFF5A3C:(c==="Nearby towns"?0x2A3A55:0x3D6BFF);
+ const core=new THREE.Mesh(new THREE.SphereGeometry(r,32,24),new THREE.MeshStandardMaterial({color:col,emissive:col,emissiveIntensity:c==="Cataract"?.1:.55,transparent:true,opacity:c==="Cataract"?.5:.85,wireframe:c==="Cataract"}));core.userData.tip=`<b>${c}</b>${c==="Cataract"?"The highest-value searches in Denver, with no rankings yet":fmt(traffic)+" visits a month from these terms"}`;g.add(core);S.pick.push(core);
+ S.label(c+(c==="Nearby towns"?": 3,670 searches":""),centers[c].clone().add(new THREE.Vector3(0,r+5.5,0)),c==="Nearby towns"?"bad":"");});
+KW.concat(GAP).forEach((k,i)=>{const c=cluster(k);const g=groups[c];const gap=k[1]===0;const orbit=gap?9.5:(k[1]<=3?4+Math.random()*1.6:6+Math.random()*2.5);const a=Math.random()*Math.PI*2,b=(Math.random()-.5)*1.4;
+ const p=new THREE.Vector3(Math.cos(a)*Math.cos(b)*orbit,Math.sin(b)*orbit*.6,Math.sin(a)*Math.cos(b)*orbit);const size=.18+Math.sqrt(k[2])*.022;let m;
+ if(gap){m=new THREE.Mesh(new THREE.TorusGeometry(size*1.1,.1,10,36),new THREE.MeshBasicMaterial({color:0xFF5A3C}));}else{const col=k[5]==="T"?0xFF5A3C:(k[1]<=3?0x6F92FF:0x2A3A75);m=new THREE.Mesh(new THREE.SphereGeometry(size,14,10),new THREE.MeshStandardMaterial({color:col,emissive:col,emissiveIntensity:k[1]<=3?.6:.2}));}
+ m.position.copy(p);m.userData.tip=`<b>${k[0]}</b>${fmt(k[2])} searches a month${k[4]!=null?", $"+(k[4]/100).toFixed(2)+" a click":""}<br>${gap?"<span style='color:#D63A1C;font-weight:700'>You don’t rank</span>":"You rank #"+k[1]}`;g.add(m);S.pick.push(m);
+ if(gap&&(k[2]>=400))S.label(k[0],null,"bad small",m,new THREE.Vector3(0,size*2+1,0));});
+const spin={};CL.forEach((c,i)=>spin[c]=.08+(i%3)*.04);S.setTick(t=>{CL.forEach(c=>{groups[c].rotation.y=t*spin[c];});});
+})();
+})();
 </script>
 </body>
 </html>
