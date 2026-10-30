@@ -1,0 +1,1159 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow">
+<title>Acorn Ecosystem</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: acorn.me system. White page, hairline slate rules, square corners, black primary actions,
+   pale-blue mono eyebrows. Top: logo + search + quick request, then "Viewing as" switcher. Left nav per role. */
+:root{
+  --sans:'Geist','Helvetica Neue',Arial,sans-serif;
+  --mono:'Geist Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --page:#ffffff;--wash:#f8fafc;--tint:#f1f5f9;--fog:#edeff2;
+  --ink:#111111;--ink-2:#334155;--muted:#64748b;--faint:#94a3b8;--line:#e2e8f0;--line-2:#cbd5e1;
+  --blue:#8eb6d6;--blue-ink:#2f5f86;--blue-soft:#e2eef7;
+  --good:#15803d;--good-soft:#eaf6ee;--warn:#a15c07;--warn-soft:#fdf3e1;--bad:#b42318;--bad-soft:#fdeceb;
+  --r1:#111111;--r2:#5b84a8;--r3:#94a3b8;--r4:#334155;
+  --scrim:rgba(17,17,17,.42);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--page);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--page)}
+button{font:inherit;color:inherit}
+h1,h2,h3{text-wrap:balance;margin:0}
+:focus-visible{outline:2px solid var(--blue-ink);outline-offset:2px}
+.mono{font-family:var(--mono);font-size:12px;font-variant-numeric:tabular-nums}
+.num{font-variant-numeric:tabular-nums}
+.muted{color:var(--muted)}
+.small{font-size:12.5px}
+
+/* ---------- top ---------- */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--page);border-bottom:1px solid var(--line)}
+.bar1,.bar2{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));max-width:1480px;margin:0 auto}
+.bar1{display:flex;align-items:center;gap:16px;padding-block:12px}
+.logo{display:flex;align-items:center;gap:14px;flex:0 0 auto}
+.logo svg{height:15px;width:auto;display:block}
+.logo span{font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;border-left:1px solid var(--line);padding-left:14px}
+.search{position:relative;flex:1 1 auto;max-width:520px;margin-left:auto}
+.search input{padding-left:34px}
+.search svg{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--faint)}
+.sres{position:absolute;top:calc(100% + 4px);left:0;right:0;background:var(--page);border:1px solid var(--line-2);box-shadow:0 12px 32px rgba(15,23,42,.12);max-height:60vh;overflow:auto;z-index:40}
+.sres .grp{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--blue-ink);padding:10px 12px 4px}
+.sres button{display:flex;justify-content:space-between;gap:12px;width:100%;text-align:left;border:0;background:transparent;padding:8px 12px;cursor:pointer}
+.sres button:hover,.sres button:focus-visible{background:var(--tint);outline:0}
+.sres small{color:var(--muted)}
+.barr{display:flex;gap:8px;flex:0 0 auto}
+.me{display:flex;align-items:center;gap:10px;flex:0 0 auto;padding-left:14px;border-left:1px solid var(--line)}
+.me .av{width:30px;height:30px;border-radius:50%;background:var(--fog);display:grid;place-items:center;font-size:11px;font-weight:600;color:var(--ink-2)}
+.me .who{display:grid;line-height:1.2}
+.me .who b{font-size:13px;font-weight:600;white-space:nowrap}
+.me .who span{font-size:11.5px;color:var(--muted);white-space:nowrap}
+@media (max-width:760px){.logo span,.me .who{display:none}.barr{display:none}}
+
+/* ---------- prototype controls (deliberately NOT Acorn-branded: sits outside the product) ---------- */
+.demo{background:#14171c;color:#e7e9ee;border-bottom:3px solid #f2c14e}
+.dwrap{max-width:1480px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:10px 12px;display:grid;gap:10px}
+.drow{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.dtag{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;background:#f2c14e;color:#14171c;padding:3px 8px;font-weight:500}
+.dnote{font-size:12.5px;color:#a9b0bd;flex:1 1 300px}
+.dbtn{background:transparent;border:1px solid #3a404b;color:#e7e9ee;padding:4px 10px;font-size:12px;cursor:pointer}
+.dbtn:hover{border-color:#a9b0bd}
+.dtypes{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.dtypes::-webkit-scrollbar{display:none}
+.dtype{flex:0 0 auto;display:grid;gap:1px;text-align:left;background:#1d2128;border:1px solid #2c313a;color:#e7e9ee;padding:7px 12px 8px;cursor:pointer;min-width:150px;line-height:1.25}
+.dtype:hover{border-color:#6b7280}
+.dtype .k{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:#f2c14e}
+.dtype b{font-size:13px;font-weight:600;white-space:nowrap}
+.dtype span:last-child{font-size:11.5px;color:#9aa1ad;white-space:nowrap}
+.dtype[aria-pressed="true"]{background:#f2c14e;border-color:#f2c14e;color:#14171c}
+.dtype[aria-pressed="true"] .k,.dtype[aria-pressed="true"] span:last-child{color:#4a3a10}
+.dexp{display:flex;flex-wrap:wrap;gap:6px 22px;font-size:12.5px;color:#c9ced8}
+.dexp .k{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:#f2c14e;margin-right:6px}
+.frame-lbl{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:#8b93a1;background:#14171c;text-align:center;padding:3px 0}
+
+/* ---------- shell ---------- */
+.shell{display:grid;grid-template-columns:212px minmax(0,1fr);gap:36px;max-width:1480px;margin:0 auto;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.nav{padding-block:28px;display:flex;flex-direction:column;gap:1px;align-self:start}
+.nav .lbl{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--blue-ink);margin:0 0 8px 10px}
+.nb{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 10px;border:0;background:transparent;color:var(--ink-2);cursor:pointer;text-align:left;white-space:nowrap;border-left:2px solid transparent}
+.nb:hover{background:var(--wash);color:var(--ink)}
+.nb[aria-current="page"]{color:var(--ink);font-weight:600;border-left-color:var(--ink);background:var(--wash)}
+.cnt{font-family:var(--mono);font-size:11px;min-width:20px;text-align:center;padding:0 5px;background:var(--fog);color:var(--ink-2)}
+.cnt.hot{background:var(--ink);color:#fff}
+.main{padding-block:30px 80px;min-width:0}
+@media (max-width:900px){
+  .shell{grid-template-columns:minmax(0,1fr);gap:0}
+  .nav{flex-direction:row;overflow-x:auto;padding-block:10px 0;scrollbar-width:none;border-bottom:1px solid var(--line)}
+  .nav::-webkit-scrollbar{display:none}
+  .nav .lbl,.access{display:none}
+  .nb{border-left:0;border-bottom:2px solid transparent}
+  .nb[aria-current="page"]{border-bottom-color:var(--ink);background:transparent}
+  .main{padding-top:20px}
+}
+
+/* ---------- type + page ---------- */
+.eyebrow{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--blue-ink)}
+.ph{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:14px 24px;margin-bottom:26px}
+.ph h1{font-size:clamp(28px,3.4vw,40px);font-weight:300;letter-spacing:-1px;line-height:1.08;margin-top:6px}
+.ph p{margin:8px 0 0;color:var(--ink-2);max-width:66ch;font-size:15px}
+.ph p b{font-weight:600;color:var(--ink)}
+.crumb{border:0;background:transparent;color:var(--muted);cursor:pointer;padding:0;font-size:13px;margin-bottom:10px}
+.crumb:hover{color:var(--ink)}
+h2.sec{font-size:13px;font-weight:600;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.sec .muted{font-weight:400}
+.stack{display:grid;gap:28px}
+.stack.tight{gap:14px}
+.cols{display:grid;gap:28px;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr)}
+.cols.even{grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr))}
+@media (max-width:1100px){.cols{grid-template-columns:minmax(0,1fr)}}
+.box{border:1px solid var(--line);background:var(--page);padding:18px;min-width:0}
+.box.wash{background:var(--wash)}
+.box>h2.sec{margin-bottom:12px}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.sp{justify-content:space-between}
+.end{justify-content:flex-end}
+
+/* stat strip */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));border:1px solid var(--line)}
+.stat{padding:16px 18px;border-right:1px solid var(--line);min-width:0}
+.stat:last-child{border-right:0}
+@media (max-width:820px){.stat{border-right:0;border-bottom:1px solid var(--line)}.stat:last-child{border-bottom:0}}
+.stat .l{font-size:12.5px;color:var(--muted)}
+.stat .v{font-size:30px;font-weight:300;letter-spacing:-1px;line-height:1.15;margin-top:4px;font-variant-numeric:tabular-nums}
+.stat .s{font-size:12.5px;color:var(--ink-2);margin-top:4px}
+.meter{position:relative;height:6px;background:var(--fog);margin-top:12px}
+.meter>i{position:absolute;inset:0 auto 0 0;background:var(--ink)}
+.meter>b{position:absolute;top:-4px;bottom:-4px;width:1px;background:var(--faint)}
+.meterlab{position:relative;height:16px;margin-top:4px;font-family:var(--mono);font-size:10.5px;color:var(--muted)}
+.meterlab span{position:absolute;transform:translateX(-50%);white-space:nowrap}
+
+/* tags */
+.tag{display:inline-flex;align-items:center;gap:6px;padding:1px 7px;font-size:11.5px;font-weight:500;background:var(--fog);color:var(--ink-2);white-space:nowrap;line-height:1.6}
+.tag.good{background:var(--good-soft);color:var(--good)}
+.tag.warn{background:var(--warn-soft);color:var(--warn)}
+.tag.bad{background:var(--bad-soft);color:var(--bad)}
+.tag.blue{background:var(--blue-soft);color:var(--blue-ink)}
+.tag.ink{background:var(--ink);color:#fff}
+.tag .d{width:6px;height:6px;border-radius:50%;background:currentColor}
+.lock{display:inline-flex;align-items:center;gap:5px;color:var(--muted);font-size:12.5px}
+
+/* buttons + fields */
+.btn{font-weight:600;font-size:13px;padding:7px 13px;border:1px solid var(--line-2);background:var(--page);color:var(--ink);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap;border-radius:0}
+.btn:hover{border-color:var(--ink)}
+.btn.pri{background:#111;color:#fff;border-color:#111}
+.btn.pri:hover{background:#2b2b2b}
+.btn.sec{background:var(--fog);border-color:var(--faint)}
+.btn.sm{padding:4px 10px;font-size:12px}
+.btn.link{border:0;background:transparent;padding:0;color:var(--ink);text-decoration:underline;text-underline-offset:3px;font-weight:500}
+.btn.link:hover{color:var(--blue-ink)}
+.btn.quiet{border-color:transparent;background:transparent;color:var(--muted)}
+.btn.quiet:hover{color:var(--ink);border-color:var(--line-2)}
+.btn.danger{color:var(--bad)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+input,select,textarea{font:inherit;font-size:13.5px;padding:8px 10px;border:1px solid var(--line-2);border-radius:0;background:var(--page);color:var(--ink);width:100%;min-width:0}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--ink);box-shadow:0 0 0 3px var(--blue-soft)}
+textarea{resize:vertical;min-height:72px}
+.f{display:grid;gap:5px;font-size:12.5px;font-weight:500;color:var(--ink-2)}
+.f small{font-weight:400;color:var(--muted)}
+.fg{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr))}
+.chk{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;cursor:pointer}
+.chk input{width:16px;height:16px;margin-top:2px;flex:0 0 auto;accent-color:#111}
+.seg{display:inline-flex;border:1px solid var(--line-2);overflow-x:auto;max-width:100%}
+.seg button{border:0;border-right:1px solid var(--line-2);background:var(--page);padding:6px 12px;font-size:12.5px;font-weight:500;color:var(--ink-2);cursor:pointer;white-space:nowrap}
+.seg button:last-child{border-right:0}
+.seg button[aria-pressed="true"]{background:var(--ink);color:#fff}
+
+/* action list (the core pattern: why + one clear next action) */
+.al{border:1px solid var(--line)}
+.ai{display:grid;grid-template-columns:4px minmax(0,1fr) auto;gap:0 16px;align-items:center;padding:14px 16px 14px 0;border-bottom:1px solid var(--line)}
+.ai:last-child{border-bottom:0}
+.ai .rail{align-self:stretch;margin:-14px 0;background:transparent}
+.ai.bad .rail{background:var(--bad)}.ai.warn .rail{background:#e0a33a}.ai.blue .rail{background:var(--blue)}
+.ai .t{font-weight:600;font-size:14px}
+.ai .why{font-size:12.5px;color:var(--ink-2);margin-top:2px;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center}
+.ai .acts{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+@media (max-width:640px){.ai{grid-template-columns:4px minmax(0,1fr)}.ai .acts{grid-column:2;justify-content:flex-start;margin-top:10px}}
+.empty{padding:26px 18px;text-align:center;color:var(--muted)}
+
+/* tables */
+.tw{overflow-x:auto;border:1px solid var(--line)}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{text-align:left;font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:400;padding:10px 14px;border-bottom:1px solid var(--line);background:var(--wash);white-space:nowrap}
+td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:middle}
+tr:last-child td{border-bottom:0}
+tr.click{cursor:pointer}
+tr.click:hover td{background:var(--wash)}
+td.r,th.r{text-align:right}
+.nm{font-weight:600}
+.nm small{display:block;font-weight:400;color:var(--muted);font-size:12.5px}
+
+/* progress tracker (plain-language order status) */
+.trk{display:grid;grid-template-columns:repeat(7,minmax(70px,1fr));overflow-x:auto;margin-top:10px}
+.trk .s{position:relative;padding-top:18px;font-size:11.5px;color:var(--faint);padding-right:6px}
+.trk .s::before{content:"";position:absolute;top:5px;left:0;right:0;height:2px;background:var(--line)}
+.trk .s::after{content:"";position:absolute;top:1px;left:0;width:10px;height:10px;background:var(--page);border:2px solid var(--line-2)}
+.trk .s.on{color:var(--ink-2)}
+.trk .s.on::before{background:var(--ink)}
+.trk .s.on::after{background:var(--ink);border-color:var(--ink)}
+.trk .s.cur{color:var(--ink);font-weight:600}
+.trk .s.cur::before{background:linear-gradient(90deg,var(--ink) 0 10px,var(--line) 10px)}
+.mini{display:flex;gap:2px;width:100px;margin-top:5px}
+.mini i{flex:1;height:4px;background:var(--line)}
+.mini i.on{background:var(--ink)}
+
+/* kanban */
+.kb{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(236px,1fr);gap:0;overflow-x:auto;border:1px solid var(--line)}
+.col{border-right:1px solid var(--line);padding:12px;display:flex;flex-direction:column;gap:10px;min-height:160px;background:var(--wash)}
+.col:last-child{border-right:0}
+.col h3{font-size:12.5px;font-weight:600;display:flex;justify-content:space-between;gap:6px}
+.col h3 span{font-family:var(--mono);font-weight:400;color:var(--muted);font-size:11px}
+.card{background:var(--page);border:1px solid var(--line);padding:11px;display:grid;gap:7px;cursor:pointer;text-align:left}
+.card:hover{border-color:var(--ink)}
+.card .t{font-weight:600;font-size:13.5px}
+.card .m{font-size:12px;color:var(--muted);display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+
+/* timeline */
+.tl .i{display:grid;grid-template-columns:76px minmax(0,1fr);gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.tl .i:last-child{border-bottom:0}
+.tl .k{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--blue-ink);padding-top:2px}
+.tl .m{font-size:12px;color:var(--muted)}
+.dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:7px 16px;margin:0;font-size:13.5px}
+.dl dt{color:var(--muted)}
+.dl dd{margin:0;overflow-wrap:anywhere}
+.quote{border-left:2px solid var(--blue);padding:4px 0 4px 12px;margin:8px 0;display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+
+/* map */
+.tm{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:3px;width:100%;max-width:600px;min-width:300px}
+.tile{aspect-ratio:1;display:grid;place-items:center;font:500 10.5px var(--mono);color:#fff;border:0;cursor:pointer;padding:0}
+.tile.light{color:var(--ink)}
+.tile.un{background:var(--page);box-shadow:inset 0 0 0 1.5px var(--bad);color:var(--bad)}
+.tile.sel{outline:2px solid var(--blue);outline-offset:1px}
+.leg{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px}
+.leg span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:10px;height:10px;display:inline-block}
+
+/* bars */
+.hb{display:grid;grid-template-columns:minmax(100px,150px) minmax(0,1fr) 70px;gap:12px;align-items:center;padding:6px 0;font-size:13px}
+.hb .tr{height:10px;background:var(--fog)}
+.hb .tr i{display:block;height:100%}
+.hb .n{text-align:right;font-variant-numeric:tabular-nums}
+
+/* banner, notes */
+.banner{border:1px solid var(--line);background:var(--blue-soft);padding:12px 16px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;font-size:13.5px}
+.note{font-size:12.5px;color:var(--ink-2);background:var(--wash);border:1px solid var(--line);padding:10px 12px;display:flex;gap:8px;align-items:flex-start}
+.mail{border:1px solid var(--line);background:var(--wash);padding:14px;font-size:13px;white-space:pre-wrap;line-height:1.55}
+.bigact{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:0;border:1px solid var(--line)}
+.bigact button{border:0;border-right:1px solid var(--line);background:var(--page);padding:18px;text-align:left;cursor:pointer;display:grid;gap:4px}
+.bigact button:last-child{border-right:0}
+.bigact button:hover{background:var(--wash)}
+.bigact b{font-size:15px;font-weight:600}
+.bigact span{font-size:13px;color:var(--muted)}
+@media (max-width:700px){.bigact button{border-right:0;border-bottom:1px solid var(--line)}}
+
+/* modal + toast */
+.ov{position:fixed;inset:0;background:var(--scrim);display:grid;place-items:center;z-index:50;
+  padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.md{background:var(--page);max-width:580px;width:100%;max-height:100%;overflow:auto;padding:24px;display:grid;gap:16px;border:1px solid var(--line-2)}
+.md h2{font-size:22px;font-weight:300;letter-spacing:-.5px}
+.toast{position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:#111;color:#fff;padding:11px 14px 11px 16px;z-index:60;font-size:13.5px;max-width:calc(100% - 32px);display:flex;gap:14px;align-items:center}
+.toast button{background:transparent;border:1px solid #555;color:#fff;padding:3px 10px;cursor:pointer;font-weight:600;font-size:12.5px}
+@media (prefers-reduced-motion:no-preference){.toast{animation:tin .18s ease-out}@keyframes tin{from{opacity:0;transform:translate(-50%,8px)}}}
+</style>
+</head><body>
+
+<aside class="demo" id="demo" aria-label="Prototype controls"></aside>
+<div class="frame-lbl">↓ The Acorn platform, as this user sees it ↓</div>
+<header class="top">
+  <div class="bar1" id="bar1"></div>
+</header>
+<div class="shell">
+  <nav class="nav" id="nav" aria-label="Sections"></nav>
+  <main class="main" id="main"></main>
+</div>
+<div id="modal"></div>
+<div id="toast" hidden class="toast" role="status"></div>
+
+<script>
+const LOGO='<svg viewBox="0 0 267 52" fill="none" aria-label="Acorn" role="img"><path fill="#111" d="M132.282 3.08363C131.698 1.86072 130.452 1.00391 129.003 1.00391C115.107 1.00391 103.805 12.306 103.805 26.202C103.805 40.0979 115.107 51.4001 129.003 51.4001C130.452 51.4001 131.698 50.5433 132.282 49.3203C143.615 47.7158 152.378 37.9793 152.378 26.202C152.378 14.4247 143.623 4.6882 132.282 3.08363ZM131.994 45.675C131.332 44.7247 130.241 44.1016 128.995 44.1016C119.126 44.1016 111.095 36.0709 111.095 26.202C111.095 16.3331 119.126 8.30239 128.995 8.30239C130.234 8.30239 131.332 7.67926 131.994 6.72897C141.45 8.17777 148.725 16.3486 148.725 26.202C148.725 36.0553 141.45 44.2262 131.994 45.675ZM89.8621 41.5234C86.9879 43.2136 83.7009 44.1094 80.3515 44.1094C69.9919 44.1094 61.5561 35.6814 61.5561 25.3218C61.5561 24.0755 60.933 22.9773 59.9749 22.323C61.4393 12.3761 69.9996 4.71157 80.3437 4.71157C84.581 4.71157 88.6548 5.989 92.121 8.40365C92.9544 8.98005 94.0839 8.77753 94.6603 7.95188C95.2367 7.12622 95.0342 5.989 94.2085 5.4126C90.1347 2.55396 85.3366 1.05064 80.3437 1.05064C68.0757 1.05064 57.9342 10.2107 56.3296 22.0348C55.1067 22.6267 54.2577 23.8652 54.2577 25.314C54.2577 39.7007 65.957 51.4001 80.3437 51.4001C84.9939 51.4001 89.5661 50.1616 93.7256 47.7158C95.4548 46.6876 95.9455 44.4988 94.9251 42.7696C93.8969 41.0404 91.5991 40.5108 89.8621 41.5311V41.5234ZM28.2183 3.0992C27.3615 1.27653 25.1883 0.48982 23.3657 1.34663C21.543 2.20344 20.7563 4.37663 21.6131 6.19931L21.8935 6.79908L2.18681 48.8608C1.75841 49.7721 2.14787 50.8626 3.067 51.2832C3.31625 51.4001 3.58108 51.4546 3.83813 51.4546C4.52358 51.4546 5.18566 51.0651 5.48944 50.403L11.9934 36.5227H35.844L41.8417 49.297C42.4648 50.6211 43.7812 51.4001 45.1443 51.4001C45.6662 51.4001 46.188 51.291 46.6943 51.0495C48.517 50.1927 49.3037 48.0196 48.4469 46.1969L28.2183 3.0992ZM13.6993 32.8773L23.9031 11.0987L34.1226 32.8773H13.6993ZM259.379 1.00391C257.361 1.00391 255.733 2.63964 255.733 4.64926V40.6198L226.547 6.13699V4.64926C226.539 2.63964 224.911 1.00391 222.894 1.00391C220.877 1.00391 219.249 2.63964 219.249 4.64926V47.7469C219.249 49.7643 220.884 51.3923 222.894 51.3923C224.904 51.3923 226.539 49.7565 226.539 47.7469V11.7842L255.725 46.267V47.7547C255.725 49.7721 257.361 51.4001 259.371 51.4001C261.38 51.4001 263.016 49.7643 263.016 47.7547V4.64926C263.024 2.63964 261.388 1.00391 259.379 1.00391ZM205.547 17.2989C205.547 8.33355 198.257 1.02727 189.284 1.00391H187.547C186.199 1.00391 185.038 1.74388 184.407 2.82658H172.373C171.734 1.74388 170.574 1.00391 169.226 1.00391C167.209 1.00391 165.581 2.63964 165.581 4.64926V47.7469C165.581 49.7643 167.217 51.3923 169.226 51.3923C171.236 51.3923 172.872 49.7565 172.872 47.7469V6.47972H184.4C185.031 7.56242 186.199 8.30239 187.539 8.30239H189.268C194.214 8.31797 198.249 12.3528 198.249 17.2989C198.249 22.2451 194.253 26.3032 189.338 26.3032H187.547C185.529 26.3032 183.901 27.939 183.901 29.9486C183.901 31.9582 185.537 33.5939 187.547 33.5939H188.489L200.547 50.6757C200.897 51.182 201.466 51.4468 202.034 51.4468C202.401 51.4468 202.767 51.3378 203.086 51.1119C203.904 50.5277 204.106 49.3905 203.522 48.5726L192.695 33.2356C200.025 31.6778 205.547 25.1193 205.547 17.2911V17.2989Z"/></svg>';
+const TODAY='2026-10-29';
+const P={six:{n:'6-Pack Secretome',p:1800},twelve:{n:'12-Pack Secretome',p:3200},bank:{n:'Biobanking (annual)',p:1500}};
+const REPS={
+  jill:{name:'Jill Gregory',region:'Northeast + Mid-Atlantic',c:'var(--r1)',light:false},
+  luv:{name:'Luv Robinson',region:'Midwest + Southeast',c:'var(--r2)',light:false},
+  faith:{name:'Faith',region:'West',c:'var(--r3)',light:true},
+  tay:{name:'Tay',region:'South Central',c:'var(--r4)',light:false}};
+const TERR0={jill:'NY NJ PA CT MA RI VT NH ME MD DE DC NC SC VA WV',luv:'IL IN OH MI WI MN IA MO KS NE SD ND FL TN GA AL',faith:'CA OR WA NV AZ UT ID MT WY HI AK NM',tay:'TX OK AR LA MS KY'};
+const TILES='AK 0 0,ME 11 0,WI 6 1,VT 10 1,NH 11 1,WA 1 2,ID 2 2,MT 3 2,ND 4 2,MN 5 2,IL 6 2,MI 7 2,NY 9 2,MA 10 2,OR 1 3,NV 2 3,WY 3 3,SD 4 3,IA 5 3,IN 6 3,OH 7 3,PA 8 3,NJ 9 3,CT 10 3,RI 11 3,CA 1 4,UT 2 4,CO 3 4,NE 4 4,MO 5 4,KY 6 4,WV 7 4,VA 8 4,MD 9 4,DE 10 4,AZ 2 5,NM 3 5,KS 4 5,AR 5 5,TN 6 5,NC 7 5,SC 8 5,DC 9 5,OK 4 6,LA 5 6,MS 6 6,AL 7 6,GA 8 6,HI 0 7,TX 4 7,FL 9 7'
+  .split(',').map(s=>{const[a,b,c]=s.split(' ');return{st:a,x:+b,y:+c}});
+const ZIP3=[[10,27,'MA'],[28,29,'RI'],[30,38,'NH'],[39,49,'ME'],[50,59,'VT'],[60,69,'CT'],[70,89,'NJ'],[100,149,'NY'],[150,196,'PA'],[197,199,'DE'],[200,205,'DC'],[206,219,'MD'],[220,246,'VA'],[247,268,'WV'],[270,289,'NC'],[290,299,'SC'],[300,319,'GA'],[320,349,'FL'],[350,369,'AL'],[370,385,'TN'],[386,397,'MS'],[398,399,'GA'],[400,427,'KY'],[430,459,'OH'],[460,479,'IN'],[480,499,'MI'],[500,528,'IA'],[530,549,'WI'],[550,567,'MN'],[570,577,'SD'],[580,588,'ND'],[590,599,'MT'],[600,629,'IL'],[630,658,'MO'],[660,679,'KS'],[680,693,'NE'],[700,714,'LA'],[716,729,'AR'],[730,749,'OK'],[750,799,'TX'],[800,816,'CO'],[820,831,'WY'],[832,838,'ID'],[840,847,'UT'],[850,865,'AZ'],[870,884,'NM'],[885,885,'TX'],[889,898,'NV'],[900,961,'CA'],[967,968,'HI'],[970,979,'OR'],[980,994,'WA'],[995,999,'AK']];
+const STAGES=[{n:'New inquiry',p:10},{n:'1st meeting',p:25},{n:'2nd meeting',p:40},{n:'Demo',p:55},{n:'Proposal sent',p:70},{n:'Won',p:100}];
+const OST=['Submitted','In review','In production','Packaged','Shipped','Delivered','Complete'];
+const OST_PLAIN=['We received your order','We are checking the order','Being made in our lab','Packed and labeled','On its way','Delivered','Complete'];
+const SLA=[1,2,21,1,3,3,999]; // days allowed in each stage
+const DISPO=['Long-term storage','Storage + Secretome','Secretome, then destroy'];
+const PSTAT=['Requested','FedEx booked','Picked up','At the lab'];
+const BONUS=[20,25,30];
+
+const USERS=[
+  {id:'sales',type:'Sales Rep',label:'Regional Sales Manager',person:'Jill Gregory',ini:'JG',rep:'jill',blurb:'Works a territory: leads, clinic accounts and follow-ups, mostly from a phone.',sees:'Own territory, own pipeline, own commission and bonus.',hides:'Patient identities, other reps\' numbers.'},
+  {id:'admin',type:'Admin',label:'VP, Commercial',person:'Mike Romo',ini:'MR',blurb:'Runs the commercial team and makes the calls that unblock it.',sees:'Everything across teams: revenue, forecast, territories, all commissions.',hides:'Full patient names (initials only).'},
+  {id:'cs',type:'Customer Service',label:'Partner Support Specialist',person:'Katie Anderson',ini:'KA',blurb:'Handles clinic requests, FedEx pickups, order approvals, shipping and onboarding.',sees:'All accounts, orders and pickups, with patient names for fulfillment.',hides:'Commissions and revenue reporting.'},
+  {id:'lab',type:'Scientist',label:'Lab Scientist',person:'Amatullah Fatehi',ini:'AF',blurb:'Receives samples, flags what happens to each one, and makes and packs Secretome.',sees:'Samples, production queue, deviation log, patient names for labeling.',hides:'Accounts, pricing, payments, commissions.'},
+  {id:'mkt',type:'Marketing',label:'Associate Director, Marketing',person:'Mariia Merzliakova',ini:'MM',blurb:'Runs campaigns and tracks which sources turn into paying clinics.',sees:'Campaigns, lead funnel, revenue by source.',hides:'Patient data, accounts, commissions.'},
+  {id:'fin',type:'Finance',label:'Director, Finance',person:'Bryce Martindale',ini:'BM',blurb:'Keeps cash coming in and Stripe, invoices and commissions in agreement.',sees:'Payments, invoices, receivables, all commissions and referral fees.',hides:'Patient identities.'},
+  {id:'clinic',type:'Customer',label:'Customer',person:'Dr. Tess Mauricio',ini:'TM',clinic:'c5',blurb:'A partner clinic using the customer portal at partners.acorn.me.',sees:'Only her own clinic: its patients, orders, pickups and invoices.',hides:'Everything internal to Acorn.'}];
+const NAV={
+  sales:[['home','Today'],['pipeline','Pipeline'],['accounts','My accounts'],['requests','Requests']],
+  admin:[['overview','Command center'],['team','Team'],['territories','Territories'],['accounts','Accounts'],['requests','Requests']],
+  cs:[['queue','My queue'],['pickups','Pickups'],['orders','Orders'],['onboarding','Onboarding'],['accounts','Accounts'],['requests','Requests']],
+  lab:[['samples','Incoming samples'],['production','Production'],['deviations','Deviations'],['requests','Requests']],
+  mkt:[['perf','Performance'],['campaigns','Campaigns'],['compose','New send'],['requests','Requests']],
+  fin:[['cash','Cash'],['ar','Receivables'],['commissions','Commissions'],['requests','Requests']],
+  clinic:[['phome','Home'],['porders','Orders'],['pickup','FedEx pickups'],['patients','Patients'],['billing','Billing']]};
+const INTERNAL=['Jill Gregory','Mike Romo','Katie Anderson','Amatullah Fatehi','Mariia Merzliakova','Bryce Martindale','Luv Robinson','Faith','Tay'];
+
+function seed(){
+  const terr={};Object.entries(TERR0).forEach(([r,s])=>s.split(' ').forEach(st=>terr[st]=r));
+  return {terr,
+  clinics:[
+    {id:'c1',name:'Bauman Medical',city:'Boca Raton',st:'FL',zip:'33431',status:'Active',key:true,contact:'Heather Coletta',crole:'Clinical department',email:'hcoletta@baumanmedical.example',phone:'(561) 555-0142',since:'2024-11-02',ytd:48600,last:'2026-10-20',pts:142,bg:'High-volume hair restoration practice. Collections several days a week. Invoices go to a separate billing inbox.',
+      act:[['2026-10-28','Email','Katie Anderson','FedEx Ground pickup confirmed, blue cooling packet.'],['2026-10-28','Note','Luv Robinson','Please process 2 x 12-pack Secretome for Bauman.']]},
+    {id:'c2',name:'Ziering Medical',city:'Beverly Hills',st:'CA',zip:'90210',status:'Active',key:true,contact:'Practice manager',crole:'Operations',email:'ops@ziering.example',phone:'(310) 555-0118',since:'2024-08-14',ytd:39200,last:'2026-10-14',pts:96,bg:'Multi-location hair clinic asking for volume pricing above 20 kits per quarter.',act:[['2026-10-24','Meeting','Faith','Pricing discussion, escalated.']]},
+    {id:'c3',name:'Dr. Christie Clinic',city:'Chicago',st:'IL',zip:'60611',status:'Active',key:false,contact:'Front desk lead',crole:'Operations',email:'office@drchristie.example',phone:'(312) 555-0170',since:'2025-01-20',ytd:22400,last:'2026-10-06',pts:61,bg:'Dermatology and regenerative practice, steady collector.',act:[]},
+    {id:'c4',name:'Ageless Skin & Laser Center',city:'Nashville',st:'TN',zip:'37203',status:'Active',key:false,contact:'Clinic coordinator',crole:'Operations',email:'hello@agelessskin.example',phone:'(615) 555-0133',since:'2025-06-02',ytd:9600,last:'2026-09-18',pts:22,bg:'Med spa adding Secretome to its hair-loss menu. Out of Nanocools.',act:[['2026-10-29','System','Portal','Pickup requested for today.']]},
+    {id:'c5',name:'Dr. Tess Mauricio, MD',city:'San Diego',st:'CA',zip:'92121',status:'Active',key:true,contact:'Dr. Tess Mauricio',crole:'Owner, physician',email:'office@drtess.example',phone:'(858) 555-0190',since:'2025-09-12',ytd:14400,last:'2026-10-28',pts:3,bg:'Physician-owned dermatology and aesthetics practice. Uses the partner portal for every request.',act:[['2026-10-27','System','Portal','FedEx pickup requested, 1 sample.']]},
+    {id:'c6',name:'Sadick Dermatology',city:'New York',st:'NY',zip:'10075',status:'Active',key:true,contact:'Clinical lead',crole:'Clinical',email:'clinical@sadickderm.example',phone:'(212) 555-0101',since:'2024-05-03',ytd:41800,last:'2026-10-24',pts:118,bg:'Large dermatology group and a strong referral source in the Northeast.',act:[['2026-10-24','Call','Jill Gregory','Reorder confirmed.']]},
+    {id:'c7',name:'Impact Health Medical',city:'Charlotte',st:'NC',zip:'28202',status:'Onboarding',key:false,contact:'Office manager',crole:'Operations',email:'admin@impacthealth.example',phone:'(704) 555-0164',since:'2026-10-15',ytd:0,last:null,pts:0,bg:'Signed Oct 15. Training on Nov 4.',act:[['2026-10-15','System','DocuSign','Partner agreement signed.']],
+      onb:[['Partner agreement signed','Jill Gregory','2026-10-15',true],['Portal accounts created','Katie Anderson','2026-10-20',true],['Billing contact added to portal','Katie Anderson','2026-10-28',false],['Stripe payment method on file','Bryce Martindale','2026-11-03',false],['Staff training: collection technique','Jill Gregory','2026-11-04',false],['First kit and Nanocools shipped','Katie Anderson','2026-11-06',false],['First FedEx pickup completed','Katie Anderson','2026-11-14',false]]},
+    {id:'c8',name:'Davis Cosmetic Plastic Surgery',city:'Houston',st:'TX',zip:'77030',status:'Active',key:false,contact:'Patient coordinator',crole:'Operations',email:'coord@davisplastics.example',phone:'(713) 555-0155',since:'2025-04-11',ytd:12800,last:'2026-10-02',pts:30,bg:'Uses Secretome after procedures.',act:[]},
+    {id:'c9',name:'Austin Plastic Surgery',city:'Austin',st:'TX',zip:'78705',status:'Inactive',key:false,contact:'Billing lead',crole:'Billing',email:'billing@austinps.example',phone:'(512) 555-0122',since:'2025-02-08',ytd:6400,last:'2026-07-21',pts:12,bg:'Disputing a duplicate charge. No order in 100 days.',act:[['2026-10-20','Email','Tay','Clinic upset about a duplicate charge.']]},
+    {id:'c10',name:'Skin Associates of South Florida',city:'Coral Gables',st:'FL',zip:'33146',status:'Active',key:false,contact:'Practice administrator',crole:'Operations',email:'admin@skinassociates.example',phone:'(305) 555-0177',since:'2025-03-19',ytd:17600,last:'2026-10-11',pts:44,bg:'Two providers collecting.',act:[]},
+    {id:'c11',name:'Modern Aesthetics',city:'Columbus',st:'OH',zip:'43215',status:'Inactive',key:false,contact:'Owner',crole:'Owner',email:'owner@modernaesthetics.example',phone:'(614) 555-0109',since:'2025-07-01',ytd:3200,last:'2026-06-30',pts:8,bg:'Went quiet after the trained injector left.',act:[]},
+    {id:'c12',name:'Haideh Hirmand MD',city:'New York',st:'NY',zip:'10065',status:'Active',key:false,contact:'Practice manager',crole:'Operations',email:'office@hirmandmd.example',phone:'(212) 555-0193',since:'2025-05-22',ytd:19200,last:'2026-10-21',pts:41,bg:'Facial plastics. Interested in biobanking bundles for existing patients.',act:[['2026-10-21','Call','Jill Gregory','Asked for bundle pricing sheet.']]},
+    {id:'c13',name:'Cherry Creek Aesthetics',city:'Denver',st:'CO',zip:'80206',status:'Active',key:false,contact:'Owner',crole:'Owner',email:'hello@cherrycreek.example',phone:'(303) 555-0148',since:'2025-10-02',ytd:4800,last:'2026-08-30',pts:9,bg:'Only active Colorado account. Colorado has no RSM.',act:[]},
+    {id:'c14',name:'Garden State Aesthetics',city:'Princeton',st:'NJ',zip:'08540',status:'Inactive',key:false,contact:'Owner',crole:'Owner',email:'owner@gardenstate.example',phone:'(609) 555-0114',since:'2025-08-18',ytd:4800,last:'2026-07-28',pts:11,bg:'Ordered twice, then stopped. Owner said patients balked at price.',act:[['2026-08-30','Email','Jill Gregory','Sent financing one-pager. No reply.']]},
+    {id:'c15',name:'Main Line Plastic Surgery',city:'Bryn Mawr',st:'PA',zip:'19010',status:'Active',key:false,contact:'Surgical coordinator',crole:'Operations',email:'coord@mainlineps.example',phone:'(610) 555-0181',since:'2025-12-03',ytd:15600,last:'2026-10-17',pts:27,bg:'Growing account. Adding a second collector in November.',act:[]}],
+  leads:[
+    {id:'l1',name:'AIREM NYC',st:'NY',zip:'10016',src:'Instagram',ref:'IG DM',stage:1,value:28000,created:'2026-10-08',last:'2026-10-20',contact:'Medical director',bg:'Regenerative studio that posts hair-loss content weekly.',open:['Saw your PRP results posts. Secretome pairs with that protocol, no second blood draw.','Two NYC practices near you already offer it, so patients will ask.']},
+    {id:'l2',name:'Sedgh Plastic Surgery',st:'NY',zip:'10022',src:'Referral',ref:'Kornstein via IG',stage:2,value:36000,created:'2026-10-08',last:'2026-10-22',contact:'Practice manager',bg:'Facial plastics practice with strong patient retention.',open:['Dr. Kornstein suggested we connect.','Sadick Dermatology has offered Secretome since 2024.']},
+    {id:'l3',name:'Honest Dermatology',st:'GA',zip:'30305',src:'Website form',ref:'Typeform',stage:0,value:18000,created:'2026-10-09',last:'2026-10-09',contact:'Office manager',bg:'Two Atlanta locations. Asked about pricing.',open:['You asked about pricing. Here is how clinics like yours price the 6-pack.']},
+    {id:'l4',name:'Amaira Med Spa, Fort Lauderdale',st:'FL',zip:'33301',src:'Referral',ref:'Kornstein via IG',stage:2,value:24000,created:'2026-10-15',last:'2026-10-25',contact:'Owner',bg:'Two South Florida locations, one owner.',open:['Bauman Medical in Boca is one of our busiest partners.']},
+    {id:'l5',name:'Amaira Med Spa, Delray Beach',st:'FL',zip:'33444',src:'Referral',ref:'Kornstein via IG',stage:4,value:24000,created:'2026-10-15',last:'2026-10-23',contact:'Owner',bg:'Proposal sent Oct 23.',open:['Happy to walk your team through collection day.']},
+    {id:'l6',name:'Hair Center of Nebraska',st:'NE',zip:'68114',src:'Instagram',ref:'IG lead',stage:1,value:20000,created:'2026-10-17',last:'2026-10-21',contact:'Lead physician',bg:'Dedicated hair-loss clinic in Omaha.',open:['Secretome gives your patients a non-surgical option you can bank for them.']},
+    {id:'l7',name:'Renegade Regenerative Health',st:'CO',zip:'80202',src:'Event',ref:'Colorado dinner',stage:0,value:22000,created:'2026-10-19',last:'2026-10-20',contact:'Founder',bg:'Met at the Colorado dinner. Waiting on an RSM.',open:['Great meeting you at the Colorado dinner.']},
+    {id:'l8',name:'Integrated Health NYC',st:'NY',zip:'10001',src:'Website form',ref:'Typeform',stage:4,value:30000,created:'2026-10-11',last:'2026-10-21',contact:'COO',bg:'Integrative clinic. Proposal sent Oct 21 by DocuSign, opened twice, not signed.',open:['Checking whether the proposal answered your billing questions.','Most clinics start with 6-packs and add 12-packs after the first month.']},
+    {id:'l9',name:'Fifth Avenue Aesthetics',st:'NY',zip:'10021',src:'Website form',ref:'Typeform',stage:3,value:26000,created:'2026-10-13',last:'2026-10-28',contact:'Lead injector',bg:'Upscale injectables practice. Demo went well on Oct 28; asked for pricing in writing.',open:['Your clients already pay for maintenance. Banking cells now protects that.']},
+    {id:'l10',name:'Dr. Dennis Lipton',st:'TX',zip:'75230',src:'Event',ref:'Disrupt 2025',stage:1,value:16000,created:'2026-10-24',last:'2026-10-24',contact:'Dr. Lipton',bg:'Solo practitioner met at Disrupt.',open:['You asked about turnaround: about 3 weeks to ship.']},
+    {id:'l11',name:'Restora Austin Plastic Surgery Centre',st:'TX',zip:'78746',src:'Referral',ref:'Trevor introduced',stage:2,value:30000,created:'2026-10-20',last:'2026-10-27',contact:'Surgical coordinator',bg:'Introduced by Trevor.',open:['Trevor mentioned you are adding recovery options.']},
+    {id:'l12',name:'Harmony Aesthetics Center',st:'CA',zip:'92660',src:'Event',ref:'Disrupt 2025',stage:1,value:22000,created:'2026-10-21',last:'2026-10-26',contact:'Owner',bg:'Newport Beach med spa.',open:['You stopped by our booth at Disrupt.']},
+    {id:'l13',name:'Pacific Coast Integrative Medical',st:'CA',zip:'92037',src:'Website form',ref:'Typeform',stage:0,value:18000,created:'2026-10-27',last:'2026-10-27',contact:'Office manager',bg:'Integrative practice in La Jolla.',open:['Thanks for reaching out through our site.']},
+    {id:'l14',name:'Cadella Aesthetics, Northbrook',st:'IL',zip:'60062',src:'Referral',ref:'Mike Romagnoli',stage:3,value:26000,created:'2026-10-22',last:'2026-10-27',contact:'Medical director',bg:'Demo done Oct 27.',open:['Dr. Christie in Chicago has been with us since early 2025.']}],
+  tasks:[
+    {id:'t1',rep:'jill',text:'Send DocuSign proposal to Fifth Avenue Aesthetics',due:'2026-10-29',ref:'l9',done:false},
+    {id:'t2',rep:'jill',text:'Reply to AIREM NYC Instagram DM',due:'2026-10-28',ref:'l1',done:false},
+    {id:'t3',rep:'jill',text:'Prep for 2nd meeting with Sedgh Plastic Surgery',due:'2026-10-30',ref:'l2',done:false},
+    {id:'t4',rep:'jill',text:'Run collection training at Impact Health Medical',due:'2026-11-04',ref:'c7',done:false},
+    {id:'t5',rep:'jill',text:'Send bundle pricing sheet to Haideh Hirmand MD',due:'2026-10-31',ref:'c12',done:false},
+    {id:'t6',rep:'luv',text:'Call Amaira Delray about the proposal',due:'2026-10-27',ref:'l5',done:false},
+    {id:'t7',rep:'luv',text:'Book demo with Hair Center of Nebraska',due:'2026-10-26',ref:'l6',done:false},
+    {id:'t8',rep:'tay',text:'Visit Austin Plastic Surgery about billing',due:'2026-10-25',ref:'c9',done:false}],
+  orders:[
+    {id:'SEC-2611',clinic:'c1',pt:'Elena Marsh',sku:'twelve',qty:1,paid:'Paid',stage:2,date:'2026-10-20',sd:'2026-10-21',track:'',foc:'',orig:''},
+    {id:'SEC-2614',clinic:'c1',pt:'Owen Pryce',sku:'six',qty:1,paid:'Paid',stage:1,date:'2026-10-26',sd:'2026-10-26',track:'',foc:'',orig:''},
+    {id:'SEC-2602',clinic:'c6',pt:'Dana Whitfield',sku:'twelve',qty:1,paid:'Paid',stage:4,date:'2026-10-05',sd:'2026-10-27',track:'797213060768',foc:'',orig:''},
+    {id:'SEC-2598',clinic:'c2',pt:'Marco Silva',sku:'six',qty:1,paid:'FOC',stage:3,date:'2026-10-15',sd:'2026-10-28',track:'',foc:'Replacement: vial label mismatch',orig:'SEC-2571'},
+    {id:'SEC-2620',clinic:'c5',pt:'Ava Lin',sku:'twelve',qty:1,paid:'Paid',stage:2,date:'2026-10-22',sd:'2026-10-23',track:'',foc:'',orig:''},
+    {id:'SEC-2621',clinic:'c5',pt:'Ben Carter',sku:'six',qty:1,paid:'Unpaid',stage:0,date:'2026-10-28',sd:'2026-10-28',track:'',foc:'',orig:''},
+    {id:'SEC-2590',clinic:'c5',pt:'Lila Moreno',sku:'six',qty:1,paid:'Paid',stage:6,date:'2026-09-02',sd:'2026-09-25',track:'797096618945',foc:'',orig:''},
+    {id:'SEC-2605',clinic:'c3',pt:'Priya Raman',sku:'six',qty:2,paid:'Paid',stage:5,date:'2026-09-15',sd:'2026-10-08',track:'797165247451',foc:'',orig:''},
+    {id:'SEC-2617',clinic:'c10',pt:'Grace Holloway',sku:'twelve',qty:1,paid:'Paid',stage:0,date:'2026-10-27',sd:'2026-10-27',track:'',foc:'',orig:''},
+    {id:'SEC-2609',clinic:'c8',pt:'Tom Becker',sku:'six',qty:1,paid:'FOC',stage:2,date:'2026-10-18',sd:'2026-10-19',track:'',foc:'Sales comp: launch promo',orig:''},
+    {id:'SEC-2612',clinic:'c12',pt:'Ruth Kim',sku:'twelve',qty:1,paid:'Paid',stage:3,date:'2026-10-06',sd:'2026-10-26',track:'',foc:'',orig:''},
+    {id:'SEC-2571',clinic:'c2',pt:'Marco Silva',sku:'six',qty:1,paid:'Paid',stage:6,date:'2026-09-08',sd:'2026-10-01',track:'797064980954',foc:'',orig:''},
+    {id:'SEC-2603',clinic:'c13',pt:'Noah Greer',sku:'six',qty:1,paid:'Paid',stage:4,date:'2026-10-01',sd:'2026-10-22',track:'797213060378',foc:'',orig:''},
+    {id:'SEC-2615',clinic:'c15',pt:'Clara Voss',sku:'twelve',qty:1,paid:'Paid',stage:2,date:'2026-10-17',sd:'2026-10-18',track:'',foc:'',orig:''}],
+  samples:[
+    {id:'4088192209',clinic:'c5',pt:'Ava Lin',plk:'May P.',col:'2026-10-27',rec:'2026-10-28',spec:38,lot:'2864132',act:'High',dispo:null},
+    {id:'4087775121',clinic:'c1',pt:'Owen Pryce',plk:'Daniel R.',col:'2026-10-26',rec:'2026-10-27',spec:42,lot:'2864132',act:'High',dispo:null},
+    {id:'4088190255',clinic:'c6',pt:'Mia Torres',plk:'Samantha L.',col:'2026-10-27',rec:'2026-10-28',spec:35,lot:'2864132',act:'Medium',dispo:null},
+    {id:'4087892202',clinic:'c3',pt:'Priya Raman',plk:'Daniel R.',col:'2026-10-22',rec:'2026-10-23',spec:40,lot:'2864132',act:'High',dispo:'Storage + Secretome'},
+    {id:'4087775516',clinic:'c2',pt:'Jonah Webb',plk:'Taide V.',col:'2026-10-21',rec:'2026-10-22',spec:31,lot:'2864132',act:'Low',dispo:'Long-term storage'},
+    {id:'4088192192',clinic:'c12',pt:'Ruth Kim',plk:'Jen R.',col:'2026-10-19',rec:'2026-10-20',spec:44,lot:'2864132',act:'High',dispo:'Storage + Secretome'},
+    {id:'4087776491',clinic:'c8',pt:'Iris Hale',plk:'Laura W.',col:'2026-10-16',rec:'2026-10-17',spec:28,lot:'2864132',act:'Medium',dispo:'Secretome, then destroy'}],
+  pickups:[
+    {id:'p1',clinic:'c4',appt:'Oct 29, 1:30 PM',date:'2026-10-29',win:'2:00 to 5:00 PM',n:1,nano:0,status:0,track:'',note:'',created:'2026-10-29 11:47'},
+    {id:'p6',clinic:'c15',appt:'Oct 30, 10:00 AM',date:'2026-10-30',win:'12:00 to 5:00 PM',n:2,nano:3,status:0,track:'',note:'',created:'2026-10-29 09:05'},
+    {id:'p2',clinic:'c1',appt:'Oct 28, 10:00 AM',date:'2026-10-28',win:'12:00 to 5:00 PM',n:2,nano:4,status:2,track:'797213060379',note:'Blue cooling packet, FedEx Ground',created:'2026-10-27 16:02'},
+    {id:'p3',clinic:'c2',appt:'Oct 27, 9:30 AM',date:'2026-10-27',win:'10:00 AM to 1:00 PM',n:1,nano:2,status:3,track:'Uber courier',note:'Same-day courier',created:'2026-10-27 08:41'},
+    {id:'p5',clinic:'c5',appt:'Oct 27, 1:00 PM',date:'2026-10-27',win:'2:00 to 5:00 PM',n:1,nano:1,status:3,track:'797096618946',note:'',created:'2026-10-26 10:22'}],
+  inbox:[
+    {id:'m1',type:'Where is my order?',from:'Heather Coletta, Bauman Medical',clinic:'c1',order:'SEC-2611',text:'The patient is asking when her 12-pack will arrive. Can you send an update?',at:'2026-10-29 09:12',hrs:3,open:true},
+    {id:'m2',type:'Rep question',from:'Luv Robinson',clinic:'c11',text:'Can we send Modern Aesthetics a free 6-pack to restart orders? They lost their trained injector.',at:'2026-10-28 17:40',hrs:19,open:true},
+    {id:'m3',type:'Account change',from:'Office manager, Impact Health Medical',clinic:'c7',text:'Please add our billing contact to the portal so invoices go to the right person.',at:'2026-10-28 14:05',hrs:22,open:true}],
+  requests:[
+    {id:'r1',title:'Q3 paid Secretome by PDM using current regions (exclude FOC and Colorado)',from:'Mike Romo',owner:'Katie Anderson',due:'2026-10-31',status:'Open',src:'Slack DM',urgent:true,notes:[['Mike Romo','Need this for Q4 goal setting. Use each rep\'s current region, not their Q3 one.']]},
+    {id:'r2',title:'Process Sadick reorder: 2 x 12-pack Secretome',from:'Jill Gregory',owner:'Katie Anderson',due:'2026-10-29',status:'In progress',src:'Copper note',urgent:false,notes:[['Katie Anderson','Waiting on patient names from the clinic.']]},
+    {id:'r3',title:'Updated hair-loss deck before the Nov 12 webinar',from:'Jill Gregory',owner:'Mariia Merzliakova',due:'2026-11-05',status:'Open',src:'Group chat',urgent:false,notes:[]},
+    {id:'r4',title:'Confirm lot 2864132 expiry for Ziering reorder',from:'Faith',owner:'Amatullah Fatehi',due:'2026-10-30',status:'Open',src:'Slack #lab',urgent:false,notes:[]},
+    {id:'r5',title:'Refund duplicate charge for Austin Plastic Surgery',from:'Tay',owner:'Bryce Martindale',due:'2026-10-28',status:'Open',src:'Email',urgent:true,notes:[]},
+    {id:'r6',title:'Assign an RSM for Colorado',from:'Luv Robinson',owner:'Mike Romo',due:'2026-11-01',status:'Open',src:'Group chat',urgent:false,notes:[]},
+    {id:'r7',title:'Biobanking bundle pricing sheet for Hirmand',from:'Jill Gregory',owner:'Bryce Martindale',due:'2026-10-30',status:'Done',src:'Slack DM',urgent:false,notes:[['Bryce Martindale','Attached to the account. 10% off when bundled with a 12-pack.']]}],
+  escal:[
+    {id:'e1',from:'Faith',clinic:'c2',kind:'Pricing',text:'Ziering wants volume pricing above 20 kits a quarter. $39k YTD account.',ask:'Approve a volume tier?',open:true},
+    {id:'e2',from:'Tay',clinic:'c9',kind:'Billing',text:'Austin Plastic Surgery disputes a duplicate charge and has stopped ordering.',ask:'Confirm refund and call the owner?',open:true}],
+  devs:[
+    {id:'DV-014',order:'SEC-2571',kind:'Labeling',text:'Box label initials did not match vial label. Caught by the clinic on arrival.',owner:'Amatullah Fatehi',action:'Replacement SEC-2598 created. Second-person label check added at packaging.',status:'Resolved',date:'2026-10-14'},
+    {id:'DV-015',order:'SEC-2603',kind:'Shipping',text:'FedEx delivery exception: clinic closed at first attempt.',owner:'Katie Anderson',action:'Redelivery requested.',status:'Investigating',date:'2026-10-27'}],
+  invoices:[
+    {id:'INV-1033',clinic:'c4',amt:1500,issued:'2026-07-15',due:'2026-08-14',status:'Open'},
+    {id:'INV-1038',clinic:'c9',amt:3200,issued:'2026-08-20',due:'2026-09-19',status:'Open'},
+    {id:'INV-1044',clinic:'c11',amt:1800,issued:'2026-09-01',due:'2026-10-01',status:'Open'},
+    {id:'INV-1049',clinic:'c13',amt:1800,issued:'2026-09-10',due:'2026-10-10',status:'Open'},
+    {id:'INV-1047',clinic:'c3',amt:3600,issued:'2026-10-08',due:'2026-11-07',status:'Open'},
+    {id:'INV-1053',clinic:'c14',amt:1800,issued:'2026-07-28',due:'2026-08-27',status:'Open'},
+    {id:'INV-1052',clinic:'c5',amt:1800,issued:'2026-10-28',due:'2026-11-27',status:'Open',order:'SEC-2621'},
+    {id:'INV-1051',clinic:'c5',amt:3200,issued:'2026-10-22',due:'2026-11-21',status:'Paid',order:'SEC-2620'},
+    {id:'INV-1046',clinic:'c1',amt:3200,issued:'2026-10-20',due:'2026-11-19',status:'Paid',order:'SEC-2611'},
+    {id:'INV-1048',clinic:'c6',amt:3200,issued:'2026-10-05',due:'2026-11-04',status:'Paid',order:'SEC-2602'}],
+  pays:[
+    {id:'pi_3QfA81Lk',clinic:'c1',amt:3200,status:'Succeeded',date:'2026-10-20',ref:'INV-1046'},
+    {id:'pi_3QeZ24Rm',clinic:'c6',amt:3200,status:'Succeeded',date:'2026-10-05',ref:'INV-1048'},
+    {id:'pi_3QeT90Xa',clinic:'c12',amt:3200,status:'Succeeded',date:'2026-10-06',ref:'INV-1045'},
+    {id:'pi_3QeQ10Dd',clinic:'c5',amt:3200,status:'Succeeded',date:'2026-10-22',ref:'INV-1051'},
+    {id:'pi_3QdW11Pc',clinic:'c9',amt:3200,status:'Refunded',date:'2026-10-19',ref:'Duplicate of INV-1038'},
+    {id:'pi_3QdQ77Hb',clinic:'c10',amt:3200,status:'Succeeded',date:'2026-10-27',ref:'INV-1050'},
+    {id:'pi_3QcK45Jy',clinic:'c11',amt:1800,status:'Failed',date:'2026-10-02',ref:'INV-1044'},
+    {id:'pi_3QbB18Vs',clinic:'c3',amt:3600,status:'Succeeded',date:'2026-10-08',ref:'INV-1043'},
+    {id:'pi_3QbA02Ce',clinic:'c15',amt:3200,status:'Succeeded',date:'2026-10-17',ref:''}],
+  refs:[
+    {who:'Dr. Kornstein',clinic:'Amaira Med Spa (2 locations)',terms:'5% of first-year paid orders',limit:'FL accounts only',status:'Pending'},
+    {who:'Trevor',clinic:'Restora Austin Plastic Surgery Centre',terms:'$500 after first paid order',limit:'One account',status:'Approved'},
+    {who:'Mike Romagnoli',clinic:'Cadella Aesthetics, Northbrook',terms:'$500 after first paid order',limit:'One account',status:'Approved'}],
+  campaigns:[
+    {id:'cp1',name:'Webinar invite: Secretome for hair loss',ch:'Email',aud:'Active clinics + open leads',status:'Sent',date:'2026-10-22',sent:1240,open:41,click:9,mql:38},
+    {id:'cp2',name:'Reorder reminder: 60 days since last order',ch:'SMS',aud:'Clinic staff (opted in)',status:'Always on',date:'2026-10-01',sent:186,open:0,click:22,mql:0},
+    {id:'cp3',name:'October partner newsletter',ch:'Newsletter',aud:'All partner clinics',status:'Sent',date:'2026-10-07',sent:612,open:48,click:12,mql:4},
+    {id:'cp4',name:'Post-Disrupt follow-up (3 emails)',ch:'Email',aud:'Disrupt booth scans',status:'Running',date:'2026-10-25',sent:310,open:37,click:7,mql:15}],
+  funnel:[{s:'Referral',mql:41,lead:36,meet:24,won:12,rev:186000,cost:6000},{s:'Website form',mql:148,lead:71,meet:30,won:11,rev:142000,cost:9000},{s:'Instagram',mql:212,lead:64,meet:22,won:7,rev:84000,cost:21000},{s:'Event',mql:96,lead:40,meet:15,won:5,rev:71000,cost:38000}],
+  q3:{FL:16,TN:5,GA:7,AL:2,IL:11,OH:4,MI:3,WI:2,MN:2,MO:3,IN:2,IA:1,KS:1,NE:1,NY:21,NJ:6,PA:5,MA:4,CT:2,MD:3,NC:5,SC:2,VA:4,WV:1,CA:19,WA:4,OR:2,AZ:5,NV:3,UT:2,TX:12,OK:2,LA:2,AR:1,KY:1,CO:3},
+  q4base:{jill:34400,luv:38600,faith:21600,tay:12400},
+  quarters:[["Q4 '25",182400],["Q1 '26",213900],["Q2 '26",241300],["Q3 '26",268700]],
+  q4qtd:104200,q4target:300000,
+  patients:[
+    {id:'ACR-5643',name:'Ava Lin',dob:'1991-04-11',sex:'Female',banked:38,first:'2025-10-02',lastCol:'2026-10-27',email:'ava.lin@example.com'},
+    {id:'ACR-5611',name:'Ben Carter',dob:'1984-08-19',sex:'Male',banked:40,first:'2026-09-02',lastCol:'2026-09-02',email:'ben.carter@example.com'},
+    {id:'ACR-5520',name:'Lila Moreno',dob:'1979-01-30',sex:'Female',banked:84,first:'2025-11-14',lastCol:'2026-06-14',email:'lila.moreno@example.com'}],
+  seq:{order:2622,pickup:7,req:8,dev:16,inv:1054,lead:15,task:9,camp:5}};
+}
+
+let db=seed();
+const S={role:'sales',view:'home',sel:null,f:{},modal:null,mapSel:null,q:''};
+let UNDO=null;
+
+/* ---------- helpers ---------- */
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const $m=n=>'$'+Math.round(n).toLocaleString('en-US');
+const $k=n=>Math.abs(n)>=1000?'$'+(n/1000).toFixed(Math.abs(n)>=100000?0:1).replace(/\.0$/,'')+'k':$m(n);
+const pd=s=>{const[y,m,d]=s.slice(0,10).split('-').map(Number);return new Date(y,m-1,d)};
+const iso=x=>`${x.getFullYear()}-${String(x.getMonth()+1).padStart(2,'0')}-${String(x.getDate()).padStart(2,'0')}`;
+const addD=(s,n)=>{const x=pd(s);x.setDate(x.getDate()+n);return iso(x)};
+const fd=s=>s?pd(s).toLocaleDateString('en-US',{month:'short',day:'numeric'}):'';
+const fdy=s=>s?pd(s).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}):'';
+const wk=s=>pd(s).toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});
+const ago=s=>Math.round((pd(TODAY)-pd(s))/864e5);
+const rel=s=>{const d=ago(s);return d===0?'today':d===1?'yesterday':d===-1?'tomorrow':d>0?`${d} days ago`:`in ${-d} days`};
+const me=()=>USERS.find(u=>u.id===S.role);
+const C=id=>db.clinics.find(c=>c.id===id);
+const L=id=>db.leads.find(l=>l.id===id);
+const O=id=>db.orders.find(o=>o.id===id);
+const repOf=st=>db.terr[st]||null;
+const repName=r=>r?REPS[r].name:'No RSM';
+const repTag=r=>r?`<span class="row" style="gap:7px;flex-wrap:nowrap"><span class="sw" style="background:${REPS[r].c}"></span>${esc(REPS[r].name)}</span>`:`<span class="tag bad">No RSM</span>`;
+const tag=(t,k='')=>`<span class="tag ${k}">${esc(t)}</span>`;
+const oval=o=>P[o.sku].p*o.qty;
+const zipState=z=>{const n=parseInt(String(z).slice(0,3),10);if(isNaN(n)||String(z).length<5)return null;const r=ZIP3.find(([a,b])=>n>=a&&n<=b);return r?r[2]:null};
+const plural=(n,w)=>`${n} ${w}${n===1?'':'s'}`;
+const lockI='<svg width="11" height="11" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M4 7V5a4 4 0 1 1 8 0v2h1v8H3V7h1zm2 0h4V5a2 2 0 1 0-4 0v2z"/></svg>';
+function ptLabel(name){const r=S.role;if(r==='cs'||r==='lab'||r==='clinic')return esc(name);if(r==='admin')return esc(name.split(' ').map(w=>w[0]+'.').join(' '));return `<span class="lock">${lockI}Hidden</span>`}
+function ptCan(){return ['cs','lab','clinic'].includes(S.role)}
+function stTag(c){return c.status==='Onboarding'?tag('Onboarding','blue'):c.status==='Inactive'?tag('Inactive','bad'):tag('Active','good')}
+function oTag(o){const late=orderLate(o);const k=o.stage>=5?'good':late?'bad':o.stage===0?'warn':'';return tag(late?OST[o.stage]+' · late':OST[o.stage],k)}
+function paidTag(p){return tag(p==='FOC'?'Free (FOC)':p,p==='Paid'?'good':p==='FOC'?'blue':'warn')}
+function mini(i){let s='';for(let k=0;k<7;k++)s+=`<i class="${k<=i?'on':''}"></i>`;return `<div class="mini" aria-hidden="true">${s}</div>`}
+function trk(i,plain){const L=plain?OST_PLAIN:OST;return `<div class="trk">${L.map((s,k)=>`<div class="s ${k<=i?'on':''} ${k===i?'cur':''}">${s}</div>`).join('')}</div>`}
+function stageAge(o){return ago(o.sd)}
+function orderLate(o){return o.stage<6&&stageAge(o)>SLA[o.stage]}
+function q4rev(r){return db.q4base[r]+db.orders.filter(o=>o.paid==='Paid'&&o.date>='2026-10-26'&&repOf(C(o.clinic).st)===r).reduce((a,o)=>a+oval(o),0)}
+function q4count(r){return Math.round(db.q4base[r]/2150)+db.orders.filter(o=>o.paid==='Paid'&&o.date>='2026-10-26'&&repOf(C(o.clinic).st)===r).length}
+function weighted(r){return db.leads.filter(l=>l.stage<5&&(!r||repOf(l.st)===r)).reduce((a,l)=>a+l.value*STAGES[l.stage].p/100,0)}
+function overdue(i){return i.status==='Open'&&i.due<TODAY}
+function estShip(o){return addD(o.date,21)}
+function estLine(o){
+  if(o.stage===0)return o.paid==='Unpaid'?'Waiting on payment. Production starts once it\'s paid.':'We review new orders within 1 business day.';
+  if(o.stage<4)return `Expected to ship ${wk(estShip(o))}, arriving about ${wk(addD(estShip(o),2))}.`;
+  if(o.stage===4)return `On its way with FedEx, tracking ${o.track}.`;
+  return 'Delivered.';
+}
+
+/* toast with undo */
+let tT;
+function toast(msg,undo){UNDO=undo||null;const t=document.getElementById('toast');t.innerHTML=`<span>${esc(msg)}</span>${undo?'<button data-a="undo">Undo</button>':''}`;t.hidden=false;clearTimeout(tT);tT=setTimeout(()=>{t.hidden=true;UNDO=null},undo?6000:3500)}
+
+/* ---------- chrome ---------- */
+function renderTop(){
+  const internal=S.role!=='clinic';const u=me();
+  document.getElementById('bar1').innerHTML=`
+    <div class="logo">${LOGO}<span>Partner OS</span></div>
+    ${internal?`<div class="search"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M7 1a6 6 0 1 0 3.7 10.7l3.3 3.3 1-1-3.3-3.3A6 6 0 0 0 7 1zm0 1.5a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9z"/></svg>
+      <input id="gsearch" type="search" placeholder="Find a clinic, order, tracking number or lead" autocomplete="off" aria-label="Search" value="${esc(S.q)}"><div id="sres"></div></div>`:'<div style="flex:1"></div>'}
+    <div class="barr">${internal?`<button class="btn sec" data-a="mReq">+ Ask someone</button>`:`<button class="btn sec" data-a="toastOnly" data-m="Partner Support will reply within 4 business hours.">Contact support</button>`}</div>
+    <div class="me" title="Signed in"><span class="av">${esc(u.ini)}</span><span class="who"><b>${esc(u.person)}</b><span>${esc(u.clinic?C(u.clinic).name:u.label)}</span></span></div>`;
+  document.getElementById('demo').innerHTML=`<div class="dwrap">
+    <div class="drow"><span class="dtag">Prototype controls</span><span class="dnote">Not part of the Acorn platform. Pick a user type to see the platform the way that person would.</span><button class="dbtn" data-a="reset">Reset sample data</button></div>
+    <div class="dtypes" role="group" aria-label="Switch user type">${USERS.map(x=>`<button class="dtype" data-a="role" data-id="${x.id}" aria-pressed="${S.role===x.id}"><span class="k">${esc(x.type)}</span><b>${esc(x.person)}</b><span>${esc(x.label)}</span></button>`).join('')}</div>
+    <div class="dexp"><span><span class="k">${esc(u.type)} user type</span> ${esc(u.blurb)}</span><span><span class="k">Can see</span> ${esc(u.sees)}</span><span><span class="k">Hidden</span> ${esc(u.hides)}</span></div>
+  </div>`;
+}
+function badge(v){
+  const u=me();let n=0,hot=false;
+  if(v==='requests'){n=db.requests.filter(r=>r.owner===u.person&&r.status!=='Done').length}
+  else if(v==='home'){const it=salesItems();n=it.length;hot=it.some(i=>i.lv==='bad')}
+  else if(v==='queue'){n=csItems().length;hot=true}
+  else if(v==='samples'){n=db.samples.filter(s=>!s.dispo).length;hot=n>0}
+  else if(v==='production'){n=db.orders.filter(o=>o.stage>=1&&o.stage<=2).length}
+  else if(v==='overview'){n=adminItems().length;hot=true}
+  else if(v==='cash'){n=db.invoices.filter(overdue).length;hot=n>0}
+  else if(v==='billing'){n=db.invoices.filter(i=>i.clinic==='c5'&&i.status==='Open').length;hot=n>0}
+  else if(v==='pickups'){n=db.pickups.filter(p=>p.status===0).length}
+  return n?`<span class="cnt ${hot?'hot':''}">${n}</span>`:'';
+}
+function renderNav(){
+  const u=me();const map={account:'accounts',lead:'pipeline',patient:'patients'};const cur=map[S.view]||S.view;
+  document.getElementById('nav').innerHTML=`<div class="lbl">${u.clinic?'Partner portal':'Menu'}</div>
+    ${NAV[S.role].map(([id,l])=>`<button class="nb" data-a="nav" data-v="${id}" ${cur===id?'aria-current="page"':''}><span>${l}</span>${badge(id)}</button>`).join('')}
+`;
+}
+function render(){
+  renderTop();renderNav();
+  document.getElementById('main').innerHTML=(V[S.view]||(()=>''))();
+  renderModal();
+}
+function ph(eb,title,sub,right=''){return `<div class="ph"><div style="min-width:0;flex:1 1 420px"><div class="eyebrow">${eb}</div><h1>${title}</h1>${sub?`<p>${sub}</p>`:''}</div>${right?`<div class="row">${right}</div>`:''}</div>`}
+function stat(l,v,s='',meter=null){return `<div class="stat"><div class="l">${l}</div><div class="v">${v}</div>${s?`<div class="s">${s}</div>`:''}${meter||''}</div>`}
+function aiRow(it){return `<div class="ai ${it.lv||''}"><span class="rail"></span><div style="min-width:0"><div class="t">${it.t}</div><div class="why">${it.why}</div></div><div class="acts">${it.acts}</div></div>`}
+function al(items,emptyMsg){return items.length?`<div class="al">${items.map(aiRow).join('')}</div>`:`<div class="al empty">${emptyMsg}</div>`}
+
+const V={};
+
+/* ========== SALES: Jill ========== */
+function salesItems(){
+  const r=me().rep||'jill';const items=[];const refs=new Set();
+  db.tasks.filter(t=>t.rep===r&&!t.done).forEach(t=>{const d=ago(t.due);if(d<-3)return;refs.add(t.ref);
+    const refN=t.ref?(t.ref[0]==='l'?L(t.ref)?.name:C(t.ref)?.name):'';
+    items.push({k:t.due,lv:d>0?'bad':d===0?'warn':'',t:esc(t.text),
+      why:`${d>0?tag(`Overdue ${d}d`,'bad'):d===0?tag('Due today','warn'):tag('Due '+wk(t.due))}${refN?`<button class="btn link" data-a="${t.ref[0]==='l'?'openLead':'openAcct'}" data-id="${t.ref}">${esc(refN)}</button>`:''}`,
+      acts:`${t.ref?`<button class="btn sm" data-a="mAct" data-id="${t.ref}">Log call</button>`:''}<button class="btn sm pri" data-a="taskDone" data-id="${t.id}">Done</button>`});});
+  db.leads.filter(l=>repOf(l.st)===r&&l.stage===4&&ago(l.last)>=5&&!refs.has(l.id)).forEach(l=>items.push({k:'0',lv:'warn',t:`Nudge ${esc(l.name)}`,why:`${tag('Proposal unsigned '+ago(l.last)+' days','warn')}<span>${$k(l.value)}/yr at 70% odds</span>`,acts:`<button class="btn sm" data-a="openLead" data-id="${l.id}">See openers</button><button class="btn sm pri" data-a="mAct" data-id="${l.id}">Log follow-up</button>`}));
+  db.clinics.filter(c=>repOf(c.st)===r&&c.last&&ago(c.last)>60&&!refs.has(c.id)).forEach(c=>items.push({k:'1',lv:'warn',t:`Win back ${esc(c.name)}`,why:`${tag('No order in '+ago(c.last)+' days','warn')}<span>${esc(c.bg)}</span>`,acts:`<button class="btn sm" data-a="openAcct" data-id="${c.id}">Open account</button><button class="btn sm pri" data-a="mTask" data-ref="${c.id}">Plan a visit</button>`}));
+  const ord={bad:0,warn:1,'':2};return items.sort((a,b)=>(ord[a.lv]-ord[b.lv])||a.k.localeCompare(b.k));
+}
+V.home=()=>{
+  const r=me().rep;const R=REPS[r];
+  const items=salesItems();
+  const cnt=q4count(r),rev=q4rev(r),com=rev*0.08;const next=BONUS.find(b=>b>cnt);const top=BONUS[BONUS.length-1]+5;
+  const waiting=db.requests.filter(x=>x.from===me().person&&x.status!=='Done');
+  const recent=db.requests.filter(x=>x.from===me().person&&x.status==='Done').slice(-1);
+  const pipe=db.leads.filter(l=>repOf(l.st)===r&&l.stage<5);
+  const meter=`<div class="meter"><i style="width:${cnt/top*100}%"></i>${BONUS.map(b=>`<b style="left:${b/top*100}%"></b>`).join('')}</div><div class="meterlab">${BONUS.map((b,i)=>`<span style="left:${b/top*100}%">Tier ${i+1}</span>`).join('')}</div>`;
+  return ph('Thursday, October 29',`Good afternoon, Jill`,
+    `<b>${plural(items.length,'thing')}</b> need you today${items.some(i=>i.lv==='bad')?`, ${items.filter(i=>i.lv==='bad').length} overdue`:''}. ${next?`You're <b>${next-cnt} paid orders</b> from Bonus Tier ${BONUS.indexOf(next)+1}.`:'Every bonus tier reached.'}`)+
+  `<div class="stack">
+    <div class="stats">
+      ${stat('Q4 commission so far',$m(com),`8% of ${$m(rev)} paid in ${R.region}`)}
+      ${stat('Paid orders toward bonus',`${cnt}<span class="muted" style="font-size:18px"> / ${next||BONUS[2]}</span>`,next?`Tier ${BONUS.indexOf(next)+1} pays a $1,500 bonus`:'All tiers reached',meter)}
+      ${stat('Open pipeline',$k(weighted(r)),`${plural(pipe.length,'lead')}, weighted by stage`)}
+    </div>
+    <div class="cols">
+      <section class="stack tight"><h2 class="sec">Do next <span class="muted small">Sorted by urgency</span></h2>
+        ${al(items,'You\'re all caught up.')}
+        <button class="btn" style="justify-self:start" data-a="mTask">+ Add follow-up</button>
+      </section>
+      <section class="stack">
+        <div class="stack tight"><h2 class="sec">Waiting on others <button class="btn link small" data-a="nav" data-v="requests">All requests</button></h2>
+          <div class="al">${waiting.map(x=>`<div class="ai"><span class="rail"></span><div style="min-width:0"><div class="t" style="font-weight:500">${esc(x.title)}</div><div class="why">${tag(x.status,x.status==='In progress'?'blue':'')}<span>${esc(x.owner)} · due ${fd(x.due)}</span>${x.notes.length?`<span class="muted">“${esc(x.notes[x.notes.length-1][1])}”</span>`:''}</div></div><div></div></div>`).join('')||'<div class="empty">Nothing pending.</div>'}
+          ${recent.map(x=>`<div class="ai"><span class="rail"></span><div><div class="t" style="font-weight:500">${esc(x.title)}</div><div class="why">${tag('Done','good')}<span>${esc(x.notes.at(-1)?.[1]||'')}</span></div></div><div></div></div>`).join('')}</div></div>
+        <div class="stack tight"><h2 class="sec">Coming up</h2>
+          <div class="al">
+            <div class="ai blue"><span class="rail"></span><div><div class="t">Webinar: Secretome for hair loss</div><div class="why">Thu, Nov 12 · invite your clinics' patients</div></div><div class="acts"><button class="btn sm" data-a="toastOnly" data-m="Invite link copied.">Copy invite link</button></div></div>
+            <div class="ai"><span class="rail"></span><div><div class="t">Impact Health training</div><div class="why">Wed, Nov 4 · Charlotte, NC</div></div><div></div></div>
+            <div class="ai"><span class="rail"></span><div><div class="t">Q4 bonus cutoff</div><div class="why">Dec 31 · paid orders count, free (FOC) orders don't</div></div><div></div></div>
+          </div></div>
+      </section>
+    </div></div>`;
+};
+
+V.pipeline=()=>{
+  const r=S.role==='sales'?me().rep:null;
+  const mode=S.f.pmode||'board';
+  const leads=db.leads.filter(l=>!r||repOf(l.st)===r);
+  const open=leads.filter(l=>l.stage<5);
+  const stale=l=>l.stage<5&&ago(l.last)>=7;
+  const card=l=>`<button class="card" data-a="openLead" data-id="${l.id}"><span class="t">${esc(l.name)}</span>
+     <span class="m"><span>${esc(l.src)}${l.ref&&l.src==='Referral'?' · '+esc(l.ref):''}</span><span class="num">${$k(l.value)}/yr</span></span>
+     <span class="m">${stale(l)?tag('No touch in '+ago(l.last)+'d','warn'):`<span>Last touch ${rel(l.last)}</span>`}${r?'':repTag(repOf(l.st))}</span></button>`;
+  const right=`<div class="seg"><button data-a="fset" data-k="pmode" data-v="board" aria-pressed="${mode==='board'}">Board</button><button data-a="fset" data-k="pmode" data-v="list" aria-pressed="${mode==='list'}">List</button></div><button class="btn pri" data-a="mLead">+ Add lead</button>`;
+  const head=ph(r?'My pipeline':'All reps','Pipeline',`${plural(open.length,'open lead')} worth <b>${$k(weighted(r))}</b> weighted. ${open.filter(stale).length?`<b>${open.filter(stale).length}</b> haven't been touched in a week.`:''}`,right);
+  if(mode==='list'){
+    const rows=open.slice().sort((a,b)=>b.stage-a.stage||b.value-a.value);
+    return head+`<div class="tw"><table><thead><tr><th>Practice</th><th>Stage</th><th class="r">Value / yr</th><th>Source</th><th>Last touch</th>${r?'':'<th>RSM</th>'}</tr></thead><tbody>
+    ${rows.map(l=>`<tr class="click" data-a="openLead" data-id="${l.id}"><td class="nm">${esc(l.name)}<small>${esc(l.contact)} · ${l.st}</small></td><td>${esc(STAGES[l.stage].n)} <span class="muted small">${STAGES[l.stage].p}%</span></td><td class="r num">${$m(l.value)}</td><td>${esc(l.src)}</td><td>${stale(l)?tag(ago(l.last)+' days','warn'):rel(l.last)}</td>${r?'':`<td>${repTag(repOf(l.st))}</td>`}</tr>`).join('')}</tbody></table></div>`;
+  }
+  return head+`<div class="kb">${STAGES.map((s,i)=>{const ls=leads.filter(l=>l.stage===i);return `<div class="col"><h3>${s.n}<span>${ls.length} · ${s.p}%</span></h3>${ls.map(card).join('')||'<div class="small muted" style="padding:6px 2px">None</div>'}</div>`}).join('')}</div>`;
+};
+
+V.lead=()=>{
+  const l=L(S.sel);if(!l)return '';const r=repOf(l.st);
+  const acts=(l.acts||[]).slice().reverse();
+  const nextStep=l.stage<3?'Book a demo':l.stage===3?'Send the proposal':l.stage===4?'Get it signed':'Hand off to onboarding';
+  return `<button class="crumb" data-a="nav" data-v="pipeline">← Pipeline</button>`+
+  ph(`${esc(l.src)}${l.ref?' · '+esc(l.ref):''}`,esc(l.name),`${esc(l.contact)} · ${l.st} ${l.zip} · ${$m(l.value)} a year at <b>${STAGES[l.stage].p}%</b> odds`)+
+  `<div class="stack">
+    <div class="box wash"><div class="row sp"><div><div class="eyebrow">Next step</div><div style="font-size:18px;font-weight:500;margin-top:4px">${nextStep}</div></div>
+      <div class="row">${l.stage<5?`<label class="f" style="min-width:200px"><span class="sr" hidden>Stage</span><select id="stg-${l.id}" data-ch="leadStage" data-id="${l.id}" aria-label="Stage">${STAGES.map((s,i)=>`<option value="${i}" ${i===l.stage?'selected':''}>${s.n} (${s.p}%)</option>`).join('')}</select></label>`:''}
+        ${l.stage<4?`<button class="btn" data-a="docusign" data-id="${l.id}">Send proposal via DocuSign</button>`:''}
+        ${l.stage<5?`<button class="btn pri" data-a="leadWon" data-id="${l.id}">Mark won</button>`:tag('Won','good')}</div></div></div>
+    <div class="cols">
+      <section class="stack tight"><h2 class="sec">Activity <span class="muted small">Calls, emails, texts and drip steps</span></h2>
+        <form data-f="logLead" data-id="${l.id}" class="fg" style="grid-template-columns:130px minmax(0,1fr) auto;align-items:end">
+          <label class="f">Type<select id="lt-${l.id}" name="type"><option>Call</option><option>Email</option><option>Text</option><option>Meeting</option><option>Note</option></select></label>
+          <label class="f">What happened<input id="ln-${l.id}" name="text" required placeholder="e.g. Spoke with the COO, wants pricing in writing"></label>
+          <button class="btn pri">Log</button></form>
+        <div class="tl">${acts.map(tli).join('')}${tli([l.last,'Email','Marketing','Opened drip email 2: how clinics price Secretome'])}${tli([l.created,'Created',l.src,`Lead came in via ${l.src}${l.ref?' ('+l.ref+')':''}`])}</div>
+      </section>
+      <section class="stack">
+        <div class="box"><h2 class="sec">Openers</h2>${l.open.map(o=>`<div class="quote"><span>${esc(o)}</span><button class="btn sm quiet" data-a="copy" data-t="${esc(o)}">Copy</button></div>`).join('')}<p class="small muted" style="margin:10px 0 0">Drafted from the practice website, Instagram and nearby Acorn clinics.</p></div>
+        <div class="box"><h2 class="sec">About</h2><p style="margin:0 0 12px">${esc(l.bg)}</p><dl class="dl"><dt>Owner</dt><dd>${repTag(r)}</dd><dt>Source</dt><dd>${esc(l.src)}</dd><dt>Referred by</dt><dd>${esc(l.ref||'None')}</dd><dt>Created</dt><dd>${fdy(l.created)}</dd></dl></div>
+      </section>
+    </div></div>`;
+};
+function tli(a){const[d,t,by,txt]=a;return `<div class="i"><div class="k">${esc(t)}</div><div><div>${esc(txt)}</div><div class="m">${esc(by)} · ${fdy(d)}</div></div></div>`}
+
+V.accounts=()=>{
+  const r=S.role==='sales'?me().rep:null;const sf=S.f.as||'All';
+  let cl=db.clinics.filter(c=>!r||repOf(c.st)===r);
+  const atRisk=c=>c.status==='Inactive'||(c.last&&ago(c.last)>60);
+  if(sf==='At risk')cl=cl.filter(atRisk);else if(sf==='Key')cl=cl.filter(c=>c.key);else if(sf==='Onboarding')cl=cl.filter(c=>c.status==='Onboarding');
+  cl.sort((a,b)=>b.ytd-a.ytd);
+  const opts=['All','At risk','Key','Onboarding'];
+  return ph(r?'My territory':'All clinics',r?'My accounts':'Accounts',`${plural(cl.length,'clinic')}. ${sf==='All'?`<b>${db.clinics.filter(c=>(!r||repOf(c.st)===r)&&atRisk(c)).length}</b> at risk of churning.`:''}`,
+    `<div class="seg">${opts.map(o=>`<button data-a="fset" data-k="as" data-v="${o}" aria-pressed="${o===sf}">${o}</button>`).join('')}</div>`)+
+  `<div class="tw"><table><thead><tr><th>Clinic</th><th>Status</th><th>Last order</th><th class="r">Revenue YTD</th>${r?'':'<th>RSM</th>'}</tr></thead><tbody>
+  ${cl.map(c=>`<tr class="click" data-a="openAcct" data-id="${c.id}"><td class="nm">${esc(c.name)}${c.key?' <span class="tag ink">Key</span>':''}<small>${esc(c.city)}, ${c.st}</small></td><td>${stTag(c)}</td><td>${c.last?(ago(c.last)>60?tag(ago(c.last)+' days ago','warn'):rel(c.last)):'<span class="muted">None yet</span>'}</td><td class="r num">${$m(c.ytd)}</td>${r?'':`<td>${repTag(repOf(c.st))}</td>`}</tr>`).join('')||'<tr><td colspan="5" class="empty">No clinics match.</td></tr>'}
+  </tbody></table></div>`;
+};
+
+V.account=()=>{
+  const c=C(S.sel);if(!c)return '';const r=repOf(c.st);
+  const ords=db.orders.filter(o=>o.clinic===c.id).sort((a,b)=>b.date.localeCompare(a.date));
+  const invs=db.invoices.filter(i=>i.clinic===c.id);const bal=invs.filter(i=>i.status==='Open').reduce((a,i)=>a+i.amt,0);const od=invs.filter(overdue);
+  const pks=db.pickups.filter(p=>p.clinic===c.id);
+  const hist=[...c.act,...ords.map(o=>[o.date,'Order','Portal',`${o.id} · ${P[o.sku].n} · ${OST[o.stage]}`]),...pks.filter(p=>p.track).map(p=>[p.date,'Pickup','FedEx',`${PSTAT[p.status]} · ${p.track}`])].sort((a,b)=>b[0].localeCompare(a[0]));
+  const flags=[];if(od.length)flags.push(`<b>${$m(od.reduce((a,i)=>a+i.amt,0))}</b> overdue`);if(c.last&&ago(c.last)>60)flags.push(`no order in <b>${ago(c.last)} days</b>`);if(ords.some(orderLate))flags.push(`<b>${ords.filter(orderLate).length}</b> order running late`);
+  return `<button class="crumb" data-a="nav" data-v="accounts">← Accounts</button>`+
+  ph(`${esc(c.city)}, ${c.st} · partner since ${fdy(c.since)}`,esc(c.name),flags.length?`Heads up: ${flags.join(', ')}.`:`In good standing. ${esc(c.bg)}`,
+    `${stTag(c)}<button class="btn" data-a="toggleKey" data-id="${c.id}">${c.key?'Unflag key account':'Flag as key account'}</button><button class="btn pri" data-a="mAct" data-id="${c.id}">Log activity</button>`)+
+  `<div class="stack">
+    <div class="stats">${stat('Revenue YTD',$m(c.ytd))}${stat('Open balance',$m(bal),od.length?`<span style="color:var(--bad)">${od.length} overdue</span>`:'Nothing overdue')}${stat('Orders in progress',ords.filter(o=>o.stage<6).length)}${stat('Patients',S.role==='sales'||S.role==='fin'?`<span class="lock" style="font-size:22px">${lockI} ${c.pts}</span>`:c.pts,S.role==='sales'||S.role==='fin'?'Details hidden for your role':'')}</div>
+    ${c.onb?onbBox(c):''}
+    <div class="cols">
+      <section class="stack tight"><h2 class="sec">Orders</h2>
+        ${ords.length?`<div class="tw"><table><thead><tr><th>Order</th><th>Patient</th><th>Product</th><th>Status</th></tr></thead><tbody>${ords.map(o=>`<tr class="click" data-a="orderView" data-id="${o.id}"><td class="mono">${o.id}</td><td>${ptLabel(o.pt)}</td><td>${P[o.sku].n}${o.qty>1?' ×'+o.qty:''}</td><td>${oTag(o)}${mini(o.stage)}</td></tr>`).join('')}</tbody></table></div>`:'<div class="al empty">No orders yet.</div>'}
+        <h2 class="sec" style="margin-top:14px">History <span class="muted small">${hist.length} events</span></h2><div class="tl">${hist.map(tli).join('')||'<div class="empty">No history yet.</div>'}</div>
+      </section>
+      <section class="stack"><div class="box"><h2 class="sec">Contact</h2><dl class="dl"><dt>Primary</dt><dd>${esc(c.contact)}<br><span class="muted small">${esc(c.crole)}</span></dd><dt>Email</dt><dd class="mono">${esc(c.email)}</dd><dt>Phone</dt><dd class="mono">${esc(c.phone)}</dd><dt>RSM</dt><dd>${repTag(r)}</dd><dt>Territory</dt><dd>${r?REPS[r].region:'Colorado, unassigned'} · <span class="mono">${c.zip}</span></dd></dl></div>
+        <div class="box"><h2 class="sec">About</h2><p style="margin:0">${esc(c.bg)}</p></div></section>
+    </div></div>`;
+};
+function onbBox(c){const done=c.onb.filter(x=>x[3]).length;const nxt=c.onb.find(x=>!x[3]);
+  return `<div class="box"><div class="row sp" style="margin-bottom:10px"><h2 class="sec">Onboarding · ${done} of ${c.onb.length} done</h2>${nxt?`<span class="small">Next: <b>${esc(nxt[0])}</b> (${esc(nxt[1])})</span>`:''}</div><div class="meter" style="margin:0 0 12px"><i style="width:${done/c.onb.length*100}%"></i></div>
+  <div class="cols even" style="gap:4px 28px">${c.onb.map((x,i)=>`<label class="chk" for="ob-${c.id}-${i}" style="padding:5px 0"><input type="checkbox" id="ob-${c.id}-${i}" data-a="onb" data-id="${c.id}" data-i="${i}" ${x[3]?'checked':''}><span><span style="${x[3]?'color:var(--muted);text-decoration:line-through':''}">${esc(x[0])}</span><br><span class="small muted">${esc(x[1])} · ${fd(x[2])}${!x[3]&&x[2]<TODAY?' · <span style="color:var(--bad)">overdue</span>':''}</span></span></label>`).join('')}</div></div>`}
+
+/* ========== ADMIN: Will ========== */
+function pace(){const elapsed=ago('2026-10-01')+1;const qtd=db.q4qtd+db.orders.filter(o=>o.paid==='Paid'&&o.date>='2026-10-26').reduce((a,o)=>a+oval(o),0);return {qtd,proj:qtd/elapsed*92,elapsed}}
+function adminItems(){
+  const it=[];
+  db.escal.filter(e=>e.open).forEach(e=>it.push({lv:e.kind==='Billing'?'bad':'warn',t:esc(e.ask),why:`${tag(e.kind)}<span>${esc(e.text)}</span><span class="muted">from ${esc(e.from)}</span>`,acts:`${e.clinic?`<button class="btn sm" data-a="openAcct" data-id="${e.clinic}">Account</button>`:''}<button class="btn sm" data-a="escDone" data-id="${e.id}" data-d="no">Decline</button><button class="btn sm pri" data-a="escDone" data-id="${e.id}" data-d="yes">Approve</button>`}));
+  const un=TILES.filter(t=>!repOf(t.st)).map(t=>t.st);const unL=db.leads.filter(l=>un.includes(l.st)&&l.stage<5);const unC=db.clinics.filter(c=>un.includes(c.st));
+  if(un.length&&(unL.length||unC.length))it.push({lv:'warn',t:`Assign an RSM for ${un.join(', ')}`,why:`<span>${plural(unL.length,'lead')} and ${plural(unC.length,'clinic')} have no owner. ${unL[0]?esc(unL[0].name)+' has waited '+ago(unL[0].created)+' days.':''}</span>`,acts:`<button class="btn sm pri" data-a="mapGo" data-st="${un[0]}">Assign</button>`});
+  const late=db.orders.filter(orderLate);if(late.length)it.push({lv:'bad',t:`${plural(late.length,'order')} past target time`,why:`<span>${late.map(o=>`${o.id} (${OST[o.stage].toLowerCase()} ${stageAge(o)}d)`).join(', ')}</span>`,acts:`<button class="btn sm" data-a="flowGo">See order flow</button>`});
+  const old=db.invoices.filter(i=>i.status==='Open'&&ago(i.due)>45);if(old.length)it.push({lv:'warn',t:`${$m(old.reduce((a,i)=>a+i.amt,0))} in receivables over 45 days late`,why:`<span>${old.map(i=>esc(C(i.clinic).name)).join(', ')}</span>`,acts:`<button class="btn sm" data-a="toastOnly" data-m="Bryce Martindale is chasing these. See Finance.">Ask Finance</button>`});
+  return it;
+}
+V.overview=()=>{
+  const p=pace();const vsQ3=(p.proj/db.quarters[3][1]-1)*100;const items=adminItems();
+  const q=[...db.quarters,["Q4 pace",p.proj]];const mx=350000;
+  const W=560,H=230,pl=46,pb=28,pt=18,bw=58;const gap=(W-pl-q.length*bw)/q.length;const y=v=>pt+(H-pt-pb)*(1-v/mx);
+  const svg=`<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Revenue by quarter with Q4 projection">
+    ${[0,100000,200000,300000].map(t=>`<line x1="${pl}" x2="${W}" y1="${y(t)}" y2="${y(t)}" stroke="#e2e8f0"/><text x="${pl-8}" y="${y(t)+4}" text-anchor="end" font-size="11" fill="#64748b" font-family="Geist Mono, monospace">${t?'$'+t/1000+'k':'0'}</text>`).join('')}
+    <line x1="${pl}" x2="${W}" y1="${y(db.q4target)}" y2="${y(db.q4target)}" stroke="#5b84a8" stroke-dasharray="4 4"/><text x="${W}" y="${y(db.q4target)-6}" text-anchor="end" font-size="11" fill="#2f5f86" font-family="Geist Mono, monospace">Q4 target $300k</text>
+    ${q.map(([l,v],i)=>{const x=pl+gap/2+i*(bw+gap);const last=i===q.length-1;return `${last?`<rect x="${x}" y="${y(v)}" width="${bw}" height="${y(0)-y(v)}" fill="#ffffff" stroke="#111111" stroke-dasharray="3 3"/><rect x="${x}" y="${y(p.qtd)}" width="${bw}" height="${y(0)-y(p.qtd)}" fill="#111111"/>`:`<rect x="${x}" y="${y(v)}" width="${bw}" height="${y(0)-y(v)}" fill="#cbd5e1"/>`}
+      <text x="${x+bw/2}" y="${y(v)-6}" text-anchor="middle" font-size="11.5" fill="#111111" font-family="Geist Mono, monospace">$${Math.round(v/1000)}k</text><text x="${x+bw/2}" y="${H-8}" text-anchor="middle" font-size="11.5" fill="#64748b" font-family="Geist, sans-serif">${l}</text>`}).join('')}
+  </svg>`;
+  const flow=OST.slice(0,6).map((s,i)=>{const os=db.orders.filter(o=>o.stage===i);const late=os.filter(orderLate).length;return {s,n:os.length,late,oldest:os.length?Math.max(...os.map(stageAge)):0,sla:SLA[i]}});
+  return ph('Command center',`Q4 is pacing to ${$k(p.proj)}`,`That's <b>${vsQ3>=0?'+':''}${vsQ3.toFixed(0)}% vs Q3</b> and ${p.proj>=db.q4target?'above':'below'} the $300k target, ${p.elapsed} days into the quarter. <b>${plural(items.length,'item')}</b> need${items.length===1?'s':''} your decision.`)+
+  `<div class="stack">
+    <section class="stack tight"><h2 class="sec">Needs your decision</h2>${al(items,'Nothing waiting on you.')}</section>
+    <div class="stats">${stat('Q4 revenue to date',$k(p.qtd),`${Math.round(p.qtd/db.q4target*100)}% of target`,`<div class="meter"><i style="width:${p.qtd/db.q4target*100}%"></i><b style="left:${p.elapsed/92*100}%"></b></div><div class="meterlab"><span style="left:${p.elapsed/92*100}%">today</span></div>`)}
+      ${stat('Weighted pipeline',$k(weighted()),`${db.leads.filter(l=>l.stage<5).length} open leads`)}
+      ${stat('Orders on time',Math.round((1-db.orders.filter(orderLate).length/db.orders.filter(o=>o.stage<6).length)*100)+'%',`${db.orders.filter(orderLate).length} late of ${db.orders.filter(o=>o.stage<6).length} in progress`)}
+      ${stat('Overdue receivables',$k(db.invoices.filter(overdue).reduce((a,i)=>a+i.amt,0)),`${db.invoices.filter(overdue).length} invoices`)}</div>
+    <div class="cols">
+      <section class="box"><h2 class="sec">Revenue by quarter <span class="muted small">Paid orders. Dashed bar is the Q4 projection.</span></h2><div style="overflow-x:auto">${svg}</div></section>
+      <section class="box" id="flow"><h2 class="sec">Order flow <span class="muted small">Where orders are piling up</span></h2>
+        ${flow.map(f=>`<div class="hb" style="grid-template-columns:110px minmax(0,1fr) 92px"><span class="small">${f.s}</span><div class="tr"><i style="width:${f.n/6*100}%;background:${f.late?'var(--bad)':'#111'}"></i></div><span class="small num" style="text-align:right">${f.n}${f.late?` <span style="color:var(--bad)">· ${f.late} late</span>`:''}</span></div>`).join('')}
+        <p class="small muted" style="margin:10px 0 0">Targets: review in 2 days, production in 21, ship within 1 day of packing.</p></section>
+    </div></div>`;
+};
+function q3ByRep(){const out={};Object.keys(REPS).forEach(r=>out[r]={n:0,states:[]});let excl=0,exS=[];
+  Object.entries(db.q3).forEach(([st,n])=>{const r=repOf(st);if(r){out[r].n+=n;out[r].states.push(st)}else{excl+=n;exS.push(st)}});return {out,excl,exS}}
+V.team=()=>{
+  const {out,excl,exS}=q3ByRep();const req=db.requests.find(r=>r.id==='r1');
+  return ph('Team','How each rep is doing','Live from the CRM and Stripe. Regions follow the current territory map, so Q4 goals start from the right baseline.')+
+  `<div class="stack">
+  <div class="tw"><table><thead><tr><th>RSM</th><th class="r">Q4 paid</th><th class="r">Orders / Tier 1</th><th class="r">Pipeline</th><th class="r">Stale leads</th><th class="r">Overdue tasks</th><th class="r">Commission</th></tr></thead><tbody>
+  ${Object.keys(REPS).map(r=>{const rv=q4rev(r);const n=q4count(r);const st=db.leads.filter(l=>repOf(l.st)===r&&l.stage<5&&ago(l.last)>=7).length;const od=db.tasks.filter(t=>t.rep===r&&!t.done&&t.due<TODAY).length;
+   return `<tr><td>${repTag(r)}<div class="small muted">${REPS[r].region}</div></td><td class="r num">${$m(rv)}</td><td class="r num">${n} / ${BONUS[0]}</td><td class="r num">${$m(weighted(r))}</td><td class="r">${st?tag(String(st),'warn'):'<span class="muted">0</span>'}</td><td class="r">${od?tag(String(od),'bad'):'<span class="muted">0</span>'}</td><td class="r num">${$m(rv*.08)}</td></tr>`}).join('')}</tbody></table></div>
+  <section class="box"><div class="row sp" style="margin-bottom:12px"><div><h2 class="sec">Q3 paid Secretome by PDM, current regions</h2><div class="small muted">Free (FOC) orders excluded. Recalculates when territories move.</div></div>${req&&req.status!=='Done'?`<button class="btn sm pri" data-a="answerQ3">Send to Katie's request and close it</button>`:tag('Shared','good')}</div>
+    <div class="tw"><table><thead><tr><th>PDM</th><th>States</th><th class="r">Q3 paid orders</th><th class="r">Suggested Q4 goal (+10%)</th></tr></thead><tbody>
+    ${Object.entries(out).map(([r,v])=>`<tr><td>${repTag(r)}</td><td class="mono muted" style="white-space:normal;max-width:340px">${v.states.join(' ')}</td><td class="r num"><b>${v.n}</b></td><td class="r num">${Math.ceil(v.n*1.1)}</td></tr>`).join('')}
+    ${exS.length?`<tr><td>${tag('Excluded','bad')}</td><td class="small muted">No PDM: ${exS.join(', ')}</td><td class="r num muted">${excl}</td><td></td></tr>`:''}</tbody></table></div></section></div>`;
+};
+V.territories=()=>{
+  const sel=S.mapSel;const cnt={};TILES.forEach(t=>{const r=repOf(t.st)||'none';cnt[r]=(cnt[r]||0)+1});
+  const un=TILES.filter(t=>!repOf(t.st)).map(t=>t.st);
+  let panel='<div class="empty">Pick a state on the map to see who owns it and move it.</div>';
+  if(sel){const r=repOf(sel);const cl=db.clinics.filter(c=>c.st===sel);const ls=db.leads.filter(l=>l.st===sel&&l.stage<5);
+    panel=`<div class="row sp"><h2 style="font-size:28px;font-weight:300;letter-spacing:-1px">${sel}</h2>${repTag(r)}</div><p class="small muted" style="margin:4px 0 14px">${plural(cl.length,'clinic')} · ${plural(ls.length,'open lead')} · ${db.q3[sel]||0} paid orders in Q3</p>
+    <div class="al">${cl.map(c=>`<div class="ai"><span class="rail"></span><div><div class="t" style="font-weight:500">${esc(c.name)}</div><div class="why">${esc(c.city)} · ${stTag(c)}</div></div><div></div></div>`).join('')}${ls.map(l=>`<div class="ai"><span class="rail"></span><div><div class="t" style="font-weight:500">${esc(l.name)}</div><div class="why">Lead · ${STAGES[l.stage].n}</div></div><div></div></div>`).join('')}${!cl.length&&!ls.length?'<div class="empty">No accounts yet.</div>':''}</div>
+    <form data-f="reassign" data-st="${sel}" class="stack tight" style="margin-top:16px"><label class="f">Move ${sel} to<select id="ra-${sel}" name="rep">${Object.entries(REPS).map(([k,v])=>`<option value="${k}" ${k===r?'selected':''}>${v.name} (${v.region})</option>`).join('')}<option value="" ${!r?'selected':''}>No RSM</option></select></label>
+    <button class="btn pri">Move ${sel} with its accounts and leads</button></form>`;}
+  return ph('Territories','Who covers where','New leads route to the right rep by ZIP code. Move a state and its clinics and open leads follow automatically.')+
+  `<div class="cols"><section class="stack tight">
+    <div class="leg">${Object.entries(REPS).map(([k,v])=>`<span><i class="sw" style="background:${v.c}"></i>${v.name} · ${cnt[k]||0}</span>`).join('')}<span><i class="sw" style="box-shadow:inset 0 0 0 1.5px var(--bad)"></i>No RSM · ${cnt.none||0}</span></div>
+    <div style="overflow-x:auto;padding:2px"><div class="tm">${TILES.map(t=>{const r=repOf(t.st);return `<button class="tile ${r?(REPS[r].light?'light':''):'un'} ${sel===t.st?'sel':''}" style="grid-column:${t.x+1};grid-row:${t.y+1};${r?`background:${REPS[r].c}`:''}" data-a="mapSel" data-st="${t.st}" aria-label="${t.st}, ${repName(r)}">${t.st}</button>`}).join('')}</div></div>
+    ${un.length?`<div class="note" style="border-color:var(--bad);background:var(--bad-soft);color:var(--bad)">${un.join(', ')}: no RSM. ${plural(db.leads.filter(l=>un.includes(l.st)&&l.stage<5).length,'lead')} and ${plural(db.clinics.filter(c=>un.includes(c.st)).length,'clinic')} are unowned.</div>`:''}
+    <div class="box"><h2 class="sec">Check a ZIP code</h2><form data-f="zipcheck" class="row" style="flex-wrap:nowrap"><input id="zipq" name="zip" inputmode="numeric" maxlength="5" placeholder="e.g. 68114" value="${esc(S.f.zip||'')}" style="max-width:200px" aria-label="ZIP code"><button class="btn">Check</button></form>
+      ${S.f.zip?(()=>{const st=zipState(S.f.zip);return `<p style="margin:10px 0 0">${st?`<span class="mono">${esc(S.f.zip)}</span> is in <b>${st}</b> and routes to ${repTag(repOf(st))}`:'That isn\'t a recognized US ZIP code.'}</p>`})():''}</div>
+  </section><section class="box">${panel}</section></div>`;
+};
+
+/* ========== CS: Katie ========== */
+function csItems(){
+  const it=[];
+  db.pickups.filter(p=>p.status===0).forEach(p=>{const c=C(p.clinic);const d=ago(p.date);
+    it.push({k:0+(d<0?1:0),lv:d>=0?'bad':'warn',t:`Book FedEx for ${esc(c.name)}`,why:`${d>=0?tag('Pickup today','bad'):tag('Pickup '+wk(p.date),'warn')}<span>${p.win} · ${plural(p.n,'sample')}</span>${p.nano===0?tag('Out of Nanocools','warn'):''}`,acts:`<button class="btn sm pri" data-a="mFedex" data-id="${p.id}">Book FedEx</button>`})});
+  db.inbox.filter(m=>m.open).forEach(m=>{const late=m.hrs>4;
+    it.push({k:late?0.5:2,lv:late?'warn':'',t:esc(m.type==='Where is my order?'?`${C(m.clinic).name} asked where an order is`:m.type==='Rep question'?`${m.from} asked a question`:`${C(m.clinic).name} needs an account change`),
+      why:`${late?tag(`Waiting ${m.hrs}h`,'warn'):tag(`${m.hrs}h ago`)}<span>${esc(m.text)}</span>`,
+      acts:m.order?`<button class="btn sm pri" data-a="mReply" data-id="${m.id}">Send status</button>`:m.type==='Rep question'?`<button class="btn sm" data-a="msgDone" data-id="${m.id}">Decline</button><button class="btn sm pri" data-a="mFoc" data-id="${m.id}">Create free order</button>`:`<button class="btn sm" data-a="openAcct" data-id="${m.clinic}">Open account</button><button class="btn sm pri" data-a="msgDone" data-id="${m.id}">Done</button>`})});
+  db.orders.filter(o=>o.stage===3).forEach(o=>it.push({k:1,lv:orderLate(o)?'bad':'',t:`Ship ${o.id} to ${esc(C(o.clinic).name)}`,why:`${orderLate(o)?tag('Packed '+stageAge(o)+' days ago','bad'):tag('Packed')}<span>${P[o.sku].n} for ${ptLabel(o.pt)}</span>`,acts:`<button class="btn sm pri" data-a="mShip" data-id="${o.id}">Ship</button>`}));
+  db.orders.filter(o=>o.stage===0&&o.paid!=='Unpaid').forEach(o=>it.push({k:1.5,lv:orderLate(o)?'warn':'',t:`Review new order ${o.id}`,why:`${tag('Submitted '+rel(o.sd),orderLate(o)?'warn':'')}<span>${esc(C(o.clinic).name)} · ${P[o.sku].n}</span>`,acts:`<button class="btn sm" data-a="orderView" data-id="${o.id}">Details</button><button class="btn sm pri" data-a="oAdv" data-id="${o.id}">Approve</button>`}));
+  db.devs.filter(d=>d.status!=='Resolved'&&d.owner==='Katie Anderson').forEach(d=>it.push({k:1.8,lv:'warn',t:`Resolve ${d.kind.toLowerCase()} issue on ${d.order}`,why:`<span>${esc(d.text)}</span>`,acts:`<button class="btn sm pri" data-a="devDone" data-id="${d.id}">Mark resolved</button>`}));
+  db.requests.filter(r=>r.owner==='Katie Anderson'&&r.status!=='Done').forEach(r=>it.push({k:r.urgent?0.8:3,lv:r.urgent?'warn':'',t:esc(r.title),why:`${tag('Request from '+r.from,'blue')}<span>due ${fd(r.due)}</span>`,acts:`<button class="btn sm" data-a="nav" data-v="requests">Open</button>`}));
+  return it.sort((a,b)=>a.k-b.k);
+}
+V.queue=()=>{
+  const it=csItems();const hot=it.filter(i=>i.lv==='bad').length;
+  const todays=db.pickups.filter(p=>p.date>=TODAY&&p.date<=addD(TODAY,1));
+  return ph('Thursday, October 29','Good afternoon, Katie',`<b>${plural(it.length,'open item')}</b>, ${hot?`<b>${hot}</b> can't wait`:'nothing urgent'}. Clinics get a reply within 4 business hours.`)+
+  `<div class="cols"><section class="stack tight"><h2 class="sec">My queue <span class="muted small">Most urgent first</span></h2>${al(it,'Queue is clear.')}</section>
+   <section class="stack">
+     <div class="box"><h2 class="sec">Pickups today and tomorrow</h2>${todays.map(p=>`<div class="row sp" style="padding:8px 0;border-bottom:1px solid var(--line)"><div><b>${esc(C(p.clinic).name)}</b><div class="small muted">${wk(p.date)} · ${p.win}</div></div>${tag(PSTAT[p.status],p.status===0?'warn':'good')}</div>`).join('')||'<div class="empty">None scheduled.</div>'}</div>
+     <div class="box wash"><h2 class="sec">Quick lookup</h2><p class="small muted" style="margin:0 0 10px">Paste an order number, tracking number, clinic or patient name into the search bar at the top.</p>
+       <div class="row"><button class="btn sm" data-a="searchFor" data-q="SEC-2611">SEC-2611</button><button class="btn sm" data-a="searchFor" data-q="797213060768">797213060768</button><button class="btn sm" data-a="searchFor" data-q="Marsh">Marsh</button></div></div>
+   </section></div>`;
+};
+V.pickups=()=>{
+  const ps=db.pickups.slice().sort((a,b)=>a.status-b.status||a.date.localeCompare(b.date));
+  return ph('Pickups','Sample pickups','Replaces the Monday board. When you mark a pickup "At the lab", the sample appears in the lab\'s queue.')+
+  `<div class="tw"><table><thead><tr><th>Clinic</th><th>Pickup</th><th class="r">Samples</th><th>Status</th><th>Tracking</th><th></th></tr></thead><tbody>
+  ${ps.map(p=>{const c=C(p.clinic);return `<tr><td class="nm">${esc(c.name)}<small>${esc(c.city)}, ${c.st}</small></td><td>${wk(p.date)}<div class="small muted">${p.win}</div></td><td class="r num">${p.n}</td><td>${tag(PSTAT[p.status],['warn','blue','','good'][p.status])}</td><td class="mono">${esc(p.track)||'<span class="muted">Not booked</span>'}${p.note?`<div class="small muted" style="font-family:var(--sans)">${esc(p.note)}</div>`:''}</td>
+  <td class="r">${p.status===0?`<button class="btn sm pri" data-a="mFedex" data-id="${p.id}">Book FedEx</button>`:p.status<3?`<button class="btn sm" data-a="pkNext" data-id="${p.id}">Mark ${PSTAT[p.status+1].toLowerCase()}</button>`:''}</td></tr>`}).join('')}</tbody></table></div>`;
+};
+V.orders=()=>{
+  const sf=S.f.os||'Needs action';
+  let os=db.orders.slice().sort((a,b)=>(orderLate(b)-orderLate(a))||b.date.localeCompare(a.date));
+  const needs=o=>o.stage===0||o.stage===3||orderLate(o);
+  if(sf==='Needs action')os=os.filter(needs);else if(sf==='In lab')os=os.filter(o=>o.stage>=1&&o.stage<=2);else if(sf==='Shipped')os=os.filter(o=>o.stage===4||o.stage===5);else if(sf==='Free / replacements')os=os.filter(o=>o.paid==='FOC');else if(sf==='Open')os=os.filter(o=>o.stage<6);
+  const opts=['Needs action','In lab','Shipped','Free / replacements','Open','All'];
+  return ph('Orders','Secretome orders','Partner Support reviews and ships. The lab makes and packs. Everyone sees the same status.',`<div class="seg">${opts.map(o=>`<button data-a="fset" data-k="os" data-v="${o}" aria-pressed="${o===sf}">${o}</button>`).join('')}</div>`)+
+  `<div class="tw"><table><thead><tr><th>Order</th><th>Clinic</th><th>Patient</th><th>Product</th><th>Status</th><th>Next step</th><th></th></tr></thead><tbody>
+  ${os.map(o=>{const nxt=o.stage===0?(o.paid==='Unpaid'?'Clinic pays':'You: review'):o.stage<=2?'Lab':o.stage===3?'You: ship':o.stage<6?'FedEx':'Done';
+   return `<tr><td class="mono"><button class="btn link mono" data-a="orderView" data-id="${o.id}">${o.id}</button><div class="muted">${fd(o.date)}</div></td><td class="nm">${esc(C(o.clinic).name)}</td><td>${ptLabel(o.pt)}</td><td>${P[o.sku].n}${o.qty>1?' ×'+o.qty:''}<div>${paidTag(o.paid)}</div></td><td>${oTag(o)}${mini(o.stage)}</td><td class="small">${nxt}</td>
+   <td class="r"><div class="row end" style="flex-wrap:nowrap">${o.stage===0&&o.paid!=='Unpaid'?`<button class="btn sm pri" data-a="oAdv" data-id="${o.id}">Approve</button>`:o.stage===3?`<button class="btn sm pri" data-a="mShip" data-id="${o.id}">Ship</button>`:o.stage===4||o.stage===5?`<button class="btn sm" data-a="oAdv" data-id="${o.id}">Mark ${OST[o.stage+1].toLowerCase()}</button>`:''}${o.stage>=4?`<button class="btn sm quiet" data-a="mRepl" data-id="${o.id}">Replace</button>`:''}</div></td></tr>`}).join('')||'<tr><td colspan="7" class="empty">Nothing here. Good.</td></tr>'}
+  </tbody></table></div>`;
+};
+V.onboarding=()=>{const cl=db.clinics.filter(c=>c.onb);
+  return ph('Onboarding','New clinics','Each new clinic gets a checklist with owners and dates, so nothing falls between Sales and Partner Support.')+
+  `<div class="stack">${cl.map(c=>`<div class="stack tight"><button class="btn link" style="justify-self:start;font-size:16px;font-weight:600" data-a="openAcct" data-id="${c.id}">${esc(c.name)}</button>${onbBox(c)}</div>`).join('')||'<div class="al empty">No clinics onboarding.</div>'}</div>`};
+
+/* ========== LAB ========== */
+V.samples=()=>{
+  const need=db.samples.filter(s=>!s.dispo).sort((a,b)=>a.rec.localeCompare(b.rec));const done=db.samples.filter(s=>s.dispo);
+  return ph('Lab bench',need.length?`${plural(need.length,'sample')} to flag`:'All samples flagged',`Oldest first. The flag decides what happens next, and the clinic and Partner Support see it right away.`)+
+  `<div class="stack">${need.length?`<div class="al">${need.map(s=>`<div class="ai ${ago(s.rec)>=2?'warn':''}"><span class="rail"></span><div style="min-width:0"><div class="t"><span class="mono" style="font-size:13px">${s.id}</span> · ${esc(s.pt)}</div>
+    <div class="why">${tag('Received '+rel(s.rec),ago(s.rec)>=2?'warn':'')}<span>${esc(C(s.clinic).name)} · ${s.spec} specimens · activity ${s.act} · lot ${s.lot}</span></div></div>
+    <div class="acts">${DISPO.map((d,i)=>`<button class="btn sm ${i===1?'pri':''}" data-a="dispo" data-id="${s.id}" data-i="${i}">${d}</button>`).join('')}</div></div>`).join('')}</div>`:''}
+  <h2 class="sec">Flagged</h2><div class="tw"><table><thead><tr><th>Transport ID</th><th>Patient</th><th>Clinic</th><th>Received</th><th class="r">Specimens</th><th>Flag</th></tr></thead><tbody>
+  ${done.map(s=>`<tr><td class="mono">${s.id}</td><td>${esc(s.pt)}</td><td>${esc(C(s.clinic).name)}</td><td>${fd(s.rec)}</td><td class="r num">${s.spec}</td><td>${tag(s.dispo,s.dispo.includes('destroy')?'bad':s.dispo.includes('Secretome')?'blue':'')}</td></tr>`).join('')}</tbody></table></div></div>`;
+};
+V.production=()=>{
+  const cols=[[1,'To start'],[2,'In production'],[3,'Packed, waiting to ship']];
+  return ph('Lab bench','Production','Status changes here show up for the clinic, Partner Support and the rep. Packing requires a three-point label check.')+
+  `<div class="kb">${cols.map(([st,n])=>{const os=db.orders.filter(o=>o.stage===st).sort((a,b)=>a.sd.localeCompare(b.sd));return `<div class="col"><h3>${n}<span>${os.length}</span></h3>
+   ${os.map(o=>`<div class="card" style="cursor:default"><span class="row sp"><span class="t mono">${o.id}</span>${orderLate(o)?tag(stageAge(o)+'d','bad'):`<span class="small muted">${stageAge(o)}d</span>`}</span><span>${esc(o.pt)}</span><span class="m"><span>${P[o.sku].n}${o.qty>1?' ×'+o.qty:''}</span>${paidTag(o.paid)}</span><span class="m"><span>${esc(C(o.clinic).name)}</span></span>
+   ${st===1?`<button class="btn sm pri" data-a="oAdv" data-id="${o.id}">Start production</button>`:st===2?`<button class="btn sm pri" data-a="mPack" data-id="${o.id}">Pack and check labels</button>`:`<span class="small muted">Partner Support ships next</span>`}</div>`).join('')||'<div class="small muted" style="padding:6px 2px">Nothing here</div>'}</div>`}).join('')}</div>`;
+};
+V.deviations=()=>ph('Lab bench','Deviation log','Labeling, packing, order or shipping problems, with who is investigating and what was done.',`<button class="btn pri" data-a="mDev">+ Log deviation</button>`)+
+  `<div class="tw"><table><thead><tr><th>ID</th><th>Order</th><th>Type</th><th>What happened</th><th>Owner</th><th>Action taken</th><th>Status</th></tr></thead><tbody>
+  ${db.devs.slice().reverse().map(d=>`<tr><td class="mono">${d.id}<div class="muted">${fd(d.date)}</div></td><td class="mono">${d.order}</td><td>${tag(d.kind)}</td><td style="min-width:200px">${esc(d.text)}</td><td>${esc(d.owner)}</td><td style="min-width:200px" class="small">${esc(d.action)}</td><td>${d.status==='Resolved'?tag('Resolved','good'):`<button class="btn sm" data-a="devDone" data-id="${d.id}">Mark resolved</button>`}</td></tr>`).join('')}</tbody></table></div>`;
+
+/* ========== MARKETING: Mariia ========== */
+V.perf=()=>{
+  const F=db.funnel.slice().sort((a,b)=>b.rev-a.rev);const mx=Math.max(...F.map(f=>f.rev));const best=F[0];
+  const roi=f=>f.rev/f.cost;
+  const sched=db.campaigns.filter(c=>c.status==='Scheduled'||c.status==='Running');
+  return ph('Marketing performance',`${best.s} drives the most revenue`,`${best.s} brought in <b>${$k(best.rev)}</b> in first-year revenue over the last 12 months at <b>${roi(best).toFixed(0)}× return</b>. Instagram drives the most MQLs but converts at ${Math.round(F.find(f=>f.s==='Instagram').won/F.find(f=>f.s==='Instagram').mql*100)}%.`)+
+  `<div class="stack"><div class="stats">${stat('MQLs, last 90 days',db.funnel.reduce((a,f)=>a+f.mql,0)/4|0,'Across all sources')}${stat('MQL to paying clinic',Math.round(F.reduce((a,f)=>a+f.won,0)/F.reduce((a,f)=>a+f.mql,0)*100)+'%','Last 12 months')}${stat('Webinar sign-ups','212','Nov 12 · goal 300',`<div class="meter"><i style="width:${212/300*100}%"></i></div>`)}${stat('Open leads from marketing',db.leads.filter(l=>l.stage<5&&l.src!=='Referral').length,'Being worked by reps')}</div>
+  <div class="cols"><section class="box"><h2 class="sec">Revenue by source <span class="muted small">First-year revenue from won clinics</span></h2>
+    ${F.map(f=>`<div class="hb"><span>${f.s}</span><div class="tr"><i style="width:${f.rev/mx*100}%;background:#111"></i></div><span class="n">${$k(f.rev)}</span></div>`).join('')}
+    <div class="tw" style="margin-top:14px"><table><thead><tr><th>Source</th><th class="r">MQL</th><th class="r">Lead</th><th class="r">Meeting</th><th class="r">Won</th><th class="r">Spend</th><th class="r">Return</th></tr></thead><tbody>
+    ${F.map(f=>`<tr><td>${f.s}</td><td class="r num">${f.mql}</td><td class="r num">${f.lead}</td><td class="r num">${f.meet}</td><td class="r num"><b>${f.won}</b></td><td class="r num">${$k(f.cost)}</td><td class="r num">${roi(f).toFixed(1)}×</td></tr>`).join('')}</tbody></table></div></section>
+  <section class="stack"><div class="stack tight"><h2 class="sec">Running and scheduled <button class="btn link small" data-a="nav" data-v="compose">New send</button></h2>
+    ${al(sched.map(c=>({t:esc(c.name),why:`${tag(c.status,c.status==='Scheduled'?'warn':'blue')}<span>${c.ch} · ${esc(c.aud)} · ${fd(c.date)}</span>`,acts:''})),'Nothing scheduled. Plan the webinar reminder?')}</div>
+    <div class="stack tight"><h2 class="sec">Asked of you</h2>${al(db.requests.filter(r=>r.owner===me().person&&r.status!=='Done').map(r=>({lv:r.due<=addD(TODAY,7)?'warn':'',t:esc(r.title),why:`<span>${esc(r.from)} · due ${wk(r.due)}</span>`,acts:`<button class="btn sm pri" data-a="rqSt" data-id="${r.id}" data-s="Done">Done</button>`})),'Nothing assigned to you.')}</div></section></div></div>`;
+};
+V.campaigns=()=>ph('Campaigns','Every send','Email, SMS and newsletters to clinic staff and leads. Patient data never reaches campaign tools.',`<button class="btn pri" data-a="nav" data-v="compose">+ New send</button>`)+
+  `<div class="tw"><table><thead><tr><th>Campaign</th><th>Channel</th><th>Audience</th><th>Status</th><th class="r">Sent</th><th class="r">Open</th><th class="r">Click</th><th class="r">MQLs</th></tr></thead><tbody>
+  ${db.campaigns.slice().reverse().map(c=>`<tr><td class="nm">${esc(c.name)}<small>${fdy(c.date)}</small></td><td>${c.ch}</td><td class="small">${esc(c.aud)}</td><td>${tag(c.status,c.status==='Scheduled'?'warn':c.status==='Sent'?'good':'blue')}</td><td class="r num">${c.sent.toLocaleString()}</td><td class="r num">${c.open?c.open+'%':'n/a'}</td><td class="r num">${c.click}%</td><td class="r num"><b>${c.mql}</b></td></tr>`).join('')}</tbody></table></div>`;
+const AUD={'Active clinics + open leads':312,'Active clinics only':11,'Open leads only':14,'Clinics with no order in 60+ days':4,'Clinic staff, SMS opted in':186};
+V.compose=()=>{
+  const d=S.f.draft||{ch:'Email',aud:'Active clinics + open leads',subj:'Last call: Secretome for hair loss webinar, Nov 12',body:'Hi {first_name},\n\nOur free webinar on Secretome for hair loss is Thursday, Nov 12. Bring your team and your questions.\n\nSave a seat: acorn.me/webinar\n\nThe Acorn team',date:'2026-11-03'};
+  return ph('New send','Write once, send to the right clinics','Pick who it\'s for, write it, and preview exactly what they\'ll see.')+
+  `<div class="cols"><form class="stack tight" data-f="campaign" id="cform">
+    <div class="fg"><label class="f">Channel<select id="cch" name="ch" data-ch="draft">${['Email','SMS','Newsletter'].map(x=>`<option ${x===d.ch?'selected':''}>${x}</option>`).join('')}</select></label>
+    <label class="f">Audience<select id="caud" name="aud" data-ch="draft">${Object.keys(AUD).map(x=>`<option ${x===d.aud?'selected':''}>${x}</option>`).join('')}</select></label>
+    <label class="f">Send on<input id="cdate" type="date" name="date" value="${d.date}" data-ch="draft"></label></div>
+    <label class="f">Subject<input id="csubj" name="subj" value="${esc(d.subj)}" data-in="draft"></label>
+    <label class="f">Message<textarea id="cbody" name="body" rows="9" data-in="draft">${esc(d.body)}</textarea></label>
+    <div class="note">${lockI}<span>Only clinic staff and lead contacts can be merged. Patient names, emails and health details are never available here.</span></div>
+    <div class="row"><button class="btn pri">Schedule for ${AUD[d.aud]} people</button></div></form>
+   <section class="stack tight"><h2 class="sec">Preview</h2><div class="mail" id="cprev">${prevMail(d)}</div></section></div>`;
+};
+function prevMail(d){return `<div class="small muted">${esc(d.ch)} · to ${AUD[d.aud]} people · ${fdy(d.date)}</div><div style="font-weight:600;margin:8px 0">${esc(d.subj)}</div>${esc(d.body.replace(/\{first_name\}/g,'Heather'))}`}
+
+/* ========== FINANCE: Bryce ========== */
+function finExceptions(){
+  const ex=[];
+  db.pays.filter(p=>p.status==='Failed').forEach(p=>ex.push({lv:'bad',t:`Card payment failed for ${esc(C(p.clinic).name)}`,why:`<span>${$m(p.amt)} · ${p.ref} still open · ${fd(p.date)}</span>`,acts:`<button class="btn sm pri" data-a="remind" data-id="${p.ref}">Send new pay link</button>`}));
+  db.pays.filter(p=>p.status==='Refunded'&&!p.ok).forEach(p=>ex.push({lv:'warn',t:`Confirm refund for ${esc(C(p.clinic).name)}`,why:`<span>${$m(p.amt)} refunded ${fd(p.date)} · ${esc(p.ref)}. Customer still disputes it.</span>`,acts:`<button class="btn sm pri" data-a="payOk" data-id="${p.id}">Confirm and notify</button>`}));
+  db.pays.filter(p=>p.status==='Succeeded'&&!p.ref).forEach(p=>ex.push({lv:'warn',t:`Payment with no invoice from ${esc(C(p.clinic).name)}`,why:`<span>${$m(p.amt)} received ${fd(p.date)} · ${p.id}</span>`,acts:`<button class="btn sm pri" data-a="payMatch" data-id="${p.id}">Match to SEC-2615</button>`}));
+  return ex;
+}
+V.cash=()=>{
+  const col=db.pays.filter(p=>p.status==='Succeeded'&&p.date>='2026-10-01').reduce((a,p)=>a+p.amt,0);
+  const od=db.invoices.filter(overdue).sort((a,b)=>b.amt*ago(b.due)-a.amt*ago(a.due));const odAmt=od.reduce((a,i)=>a+i.amt,0);
+  const exp=db.invoices.filter(i=>i.status==='Open'&&!overdue(i)).reduce((a,i)=>a+i.amt,0);
+  const ex=finExceptions();
+  return ph('Cash','Collected '+$k(col)+' in October',`<b>${$k(odAmt)}</b> is overdue across ${plural(od.length,'clinic')} and <b>${plural(ex.length,'payment')}</b> need${ex.length===1?'s':''} a fix. Clinics pay by Stripe link, never by emailing card numbers.`)+
+  `<div class="stack"><div class="stats">${stat('Collected in October',$m(col))}${stat('Due in the next 30 days',$m(exp))}${stat('Overdue',$m(odAmt),`${od.length} invoices`)}${stat('Refunds in October',$m(db.pays.filter(p=>p.status==='Refunded').reduce((a,p)=>a+p.amt,0)))}</div>
+  <div class="cols"><section class="stack tight"><h2 class="sec">Chase list <span class="muted small">Largest and oldest first</span></h2>
+    ${al(od.map(i=>{const c=C(i.clinic);const d=ago(i.due);return {lv:d>45?'bad':'warn',t:`${esc(c.name)} · ${$m(i.amt)}`,why:`${tag(d+' days overdue',d>45?'bad':'warn')}<span>${i.id} · RSM ${repName(repOf(c.st))}</span>${i.reminded?tag('Reminder sent today','blue'):''}`,acts:`<button class="btn sm" data-a="askRep" data-id="${i.id}">Ask the rep</button><button class="btn sm pri" data-a="remind" data-id="${i.id}" ${i.reminded?'disabled':''}>Send pay link</button>`}}),'Nobody is overdue.')}</section>
+  <section class="stack tight"><h2 class="sec">Payments to fix</h2>${al(ex,'Stripe and invoices match.')}
+    <h2 class="sec" style="margin-top:14px">Recent Stripe payments</h2><div class="tw"><table><tbody>${db.pays.slice().sort((a,b)=>b.date.localeCompare(a.date)).slice(0,6).map(p=>`<tr><td>${esc(C(p.clinic).name)}<div class="mono muted">${p.id}</div></td><td>${tag(p.status,p.status==='Succeeded'?'good':p.status==='Failed'?'bad':'warn')}</td><td class="r num">${p.status==='Refunded'?'−':''}${$m(p.amt)}</td></tr>`).join('')}</tbody></table></div></section></div></div>`;
+};
+V.ar=()=>{
+  const open=db.invoices.filter(i=>i.status==='Open');
+  const b=[['Not yet due',-1e9,0],['1 to 30 days',1,30],['31 to 60 days',31,60],['61+ days',61,1e9]].map(([n,a,z])=>[n,open.filter(i=>{const d=ago(i.due);return d>=a&&d<=z}).reduce((s,i)=>s+i.amt,0)]);
+  const mx=Math.max(...b.map(x=>x[1]),1);
+  return ph('Receivables','Invoices by age','Every open invoice, oldest first, with the rep who owns the relationship.')+
+  `<div class="stack"><section class="box">${b.map(([n,v],i)=>`<div class="hb"><span class="small">${n}</span><div class="tr"><i style="width:${v/mx*100}%;background:${['#cbd5e1','#94a3b8','#a15c07','#b42318'][i]}"></i></div><span class="n small">${$m(v)}</span></div>`).join('')}</section>
+  <div class="tw"><table><thead><tr><th>Invoice</th><th>Clinic</th><th>RSM</th><th>Due</th><th>Status</th><th class="r">Amount</th><th></th></tr></thead><tbody>
+  ${db.invoices.slice().sort((a,b)=>a.due.localeCompare(b.due)).map(i=>{const c=C(i.clinic);const d=ago(i.due);return `<tr><td class="mono">${i.id}</td><td>${esc(c.name)}</td><td>${repTag(repOf(c.st))}</td><td>${fd(i.due)}</td><td>${i.status==='Paid'?tag('Paid','good'):d>0?tag(d+' days late',d>45?'bad':'warn'):tag('Open')}</td><td class="r num">${$m(i.amt)}</td><td class="r">${i.status==='Open'?`<button class="btn sm" data-a="remind" data-id="${i.id}" ${i.reminded?'disabled':''}>${i.reminded?'Sent':'Send pay link'}</button>`:''}</td></tr>`}).join('')}</tbody></table></div></div>`;
+};
+V.commissions=()=>ph('Commissions','Q4 commissions so far','8% of paid Secretome orders in each rep\'s territory. Free (FOC) orders and refunds never count. Reps only see their own line.')+
+  `<div class="stack"><div class="tw"><table><thead><tr><th>RSM</th><th class="r">Paid revenue</th><th class="r">Target</th><th class="r">Attainment</th><th class="r">Commission</th><th></th></tr></thead><tbody>
+  ${Object.keys(REPS).map(r=>{const rv=q4rev(r);const tg={jill:90000,luv:96000,faith:70000,tay:40000}[r];return `<tr><td>${repTag(r)}</td><td class="r num">${$m(rv)}</td><td class="r num">${$m(tg)}</td><td class="r num">${Math.round(rv/tg*100)}%</td><td class="r num"><b>${$m(rv*.08)}</b></td><td class="r"><button class="btn sm quiet" data-a="mCom" data-r="${r}">See orders</button></td></tr>`}).join('')}</tbody></table></div>
+  <section class="stack tight"><h2 class="sec">Referral fees</h2><div class="tw"><table><thead><tr><th>Referrer</th><th>Clinic</th><th>Terms</th><th>Limit</th><th></th></tr></thead><tbody>
+  ${db.refs.map((f,i)=>`<tr><td class="nm">${esc(f.who)}</td><td>${esc(f.clinic)}</td><td>${esc(f.terms)}</td><td class="small muted">${esc(f.limit)}</td><td class="r">${f.status==='Pending'?`<button class="btn sm pri" data-a="refOk" data-i="${i}">Approve</button>`:tag('Approved','good')}</td></tr>`).join('')}</tbody></table></div></section></div>`;
+
+/* ========== REQUESTS (shared) ========== */
+V.requests=()=>{
+  const u=me();const sf=S.f.rq||'Assigned to me';
+  let rs=db.requests.slice();
+  if(sf==='Assigned to me')rs=rs.filter(r=>r.owner===u.person&&r.status!=='Done');else if(sf==='I asked')rs=rs.filter(r=>r.from===u.person);else if(sf==='Open')rs=rs.filter(r=>r.status!=='Done');
+  rs.sort((a,b)=>(a.status==='Done')-(b.status==='Done')||(b.urgent-a.urgent)||a.due.localeCompare(b.due));
+  return ph('Requests','Asks between teams','One tracked place for what used to get lost in Slack DMs and group chats. Every ask has an owner, a due date and a status, and you get notified when it moves.',
+    `<div class="seg">${['Assigned to me','I asked','Open','All'].map(o=>`<button data-a="fset" data-k="rq" data-v="${o}" aria-pressed="${o===sf}">${o}</button>`).join('')}</div><button class="btn pri" data-a="mReq">+ Ask someone</button>`)+
+  `<div class="stack tight">${rs.map(r=>{const late=r.status!=='Done'&&r.due<TODAY;return `<div class="box"><div class="row sp"><div class="row">${r.urgent&&r.status!=='Done'?tag('Urgent','bad'):''}${tag(r.status,r.status==='Done'?'good':r.status==='In progress'?'blue':'')}<span class="small muted">${esc(r.from)} → <b style="color:var(--ink)">${esc(r.owner)}</b> · due ${fd(r.due)}${late?' · <span style="color:var(--bad)">overdue</span>':''}</span></div>
+     <div class="row">${r.owner===u.person&&r.status==='Open'?`<button class="btn sm" data-a="rqSt" data-id="${r.id}" data-s="In progress">I'm on it</button>`:''}${r.status!=='Done'&&(r.owner===u.person||r.from===u.person)?`<button class="btn sm pri" data-a="rqSt" data-id="${r.id}" data-s="Done">Mark done</button>`:''}</div></div>
+     <div style="font-size:16px;font-weight:500;margin-top:8px">${esc(r.title)}</div><div class="small muted">Started as a ${esc(r.src)}</div>
+     ${r.notes.map(n=>`<div class="quote"><span><span class="small muted">${esc(n[0])}:</span> ${esc(n[1])}</span></div>`).join('')}
+     ${r.status!=='Done'?`<form data-f="rqNote" data-id="${r.id}" class="row" style="flex-wrap:nowrap;margin-top:10px"><input id="rn-${r.id}" name="t" placeholder="Add an update" aria-label="Add an update"><button class="btn sm">Post</button></form>`:''}</div>`}).join('')||`<div class="al empty">${sf==='Assigned to me'?'Nothing assigned to you right now.':'No requests.'}</div>`}</div>`;
+};
+
+/* ========== CLINIC PORTAL: Dr. Tess ========== */
+const CL='c5';
+V.phome=()=>{
+  const os=db.orders.filter(o=>o.clinic===CL&&o.stage<6).sort((a,b)=>b.stage-a.stage);
+  const due=db.invoices.filter(i=>i.clinic===CL&&i.status==='Open');
+  const pk=db.pickups.filter(p=>p.clinic===CL).sort((a,b)=>b.date.localeCompare(a.date))[0];
+  const smp=db.samples.filter(s=>s.clinic===CL).sort((a,b)=>b.rec.localeCompare(a.rec))[0];
+  const todo=[];
+  due.forEach(i=>{const o=O(i.order);todo.push({lv:'warn',t:`Pay ${$m(i.amt)} to start ${o?esc(o.pt)+'\'s':'your'} order`,why:`<span>${i.id}${o?' · '+P[o.sku].n:''} · due ${fd(i.due)}. Production starts as soon as it's paid.</span>`,acts:`<button class="btn sm pri" data-a="mPay" data-id="${i.id}">Pay now</button>`})});
+  const lastNano=db.pickups.filter(p=>p.clinic===CL).sort((a,b)=>b.date.localeCompare(a.date))[0];
+  if(lastNano&&lastNano.nano<=1)todo.push({lv:'',t:'You have 1 Nanocool left',why:'<span>Each collection needs one. Restock before your next appointment.</span>',acts:`<button class="btn sm" data-a="nano">Send me 6 more</button>`});
+  return `<div class="stack"><div class="banner"><span><b>Free webinar, Nov 12:</b> Secretome for hair loss. Invite your patients.</span><button class="btn sm" data-a="toastOnly" data-m="Invite link copied.">Copy invite link</button></div>`+
+  ph('Partner portal','Good afternoon, Dr. Tess',todo.length?`<b>${plural(todo.length,'thing')}</b> need${todo.length===1?'s':''} you. Everything else is on track.`:'Everything is on track.')+
+  `${todo.length?`<section class="stack tight">${al(todo)}</section>`:''}
+  <div class="bigact"><button data-a="nav" data-v="pickup"><b>Book a FedEx pickup</b><span>After a collection. We handle FedEx.</span></button><button data-a="mOrder"><b>Order Secretome</b><span>For a patient with banked cells.</span></button><button data-a="nav" data-v="patients"><b>Look up a patient</b><span>Banked specimens and history.</span></button></div>
+  <div class="cols"><section class="stack tight"><h2 class="sec">Your patients' orders</h2>
+    ${os.map(o=>`<div class="box"><div class="row sp"><div><b>${esc(o.pt)}</b> · ${P[o.sku].n}</div>${oTag(o)}</div>${trk(o.stage,true)}<p class="small" style="margin:10px 0 0">${estLine(o)}</p></div>`).join('')||'<div class="al empty">No orders in progress.</div>'}</section>
+  <section class="stack tight"><h2 class="sec">Latest sample</h2><div class="box">${pk?`<dl class="dl"><dt>Picked up</dt><dd>${wk(pk.date)}</dd><dt>FedEx</dt><dd class="mono">${esc(pk.track)||'We\'ll email it shortly'}</dd><dt>Status</dt><dd>${tag(PSTAT[pk.status],pk.status===3?'good':'blue')}</dd>${smp?`<dt>Lab</dt><dd>Received safely ${rel(smp.rec)}. ${smp.spec} specimens${smp.dispo?', '+esc(smp.dispo.toLowerCase()):', being processed'}.</dd>`:''}</dl>`:'<div class="empty">No pickups yet.</div>'}</div>
+    <div class="note">Questions? Your rep is ${repName(repOf(C(CL).st))}. Partner Support replies within 4 business hours.</div></section></div></div>`;
+};
+V.pickup=()=>{
+  const mine=db.pickups.filter(p=>p.clinic===CL).sort((a,b)=>b.date.localeCompare(a.date));
+  return ph('FedEx pickups','Book a pickup','Tell us when the collection happens. We book FedEx and email you the tracking number.')+
+  `<div class="cols"><form class="stack tight" data-f="pickup">
+    <div class="fg"><label class="f">Collection date<input id="pk-cd" type="date" name="cd" value="2026-10-30" required></label><label class="f">Collection time<input id="pk-ct" type="time" name="ct" value="13:30" required></label></div>
+    <div class="fg"><label class="f">Pickup window<select id="pk-w" name="w"><option>10:00 AM to 1:00 PM</option><option selected>2:00 to 5:00 PM</option><option>3:00 to 6:00 PM</option></select><small>Same day as the collection</small></label><label class="f">Samples<input id="pk-n" type="number" min="1" max="20" name="n" value="1" required></label><label class="f">Nanocools left after this<input id="pk-nano" type="number" min="0" name="nano" value="0"><small>We'll send more if you're low</small></label></div>
+    <label class="f">Anything we should know? <small>Optional</small><textarea id="pk-c" name="c" rows="3" placeholder="e.g. Use the side entrance after 4 PM"></textarea></label>
+    <div class="row"><button class="btn pri">Book pickup</button></div></form>
+  <section class="stack tight"><h2 class="sec">Recent pickups</h2>${al(mine.map(p=>({t:`${wk(p.date)} · ${plural(p.n,'sample')}`,why:`${tag(PSTAT[p.status],p.status===3?'good':p.status===0?'warn':'blue')}<span class="mono">${esc(p.track)||'FedEx details coming by email'}</span>`,acts:''})),'No pickups yet.')}</section></div>`;
+};
+V.porders=()=>{
+  const os=db.orders.filter(o=>o.clinic===CL).sort((a,b)=>b.date.localeCompare(a.date));
+  return ph('Orders','Secretome orders','Where every order is, what you paid, and when it arrives.',`<button class="btn pri" data-a="mOrder">+ Order Secretome</button>`)+
+  `<div class="stack tight">${os.map(o=>{const inv=db.invoices.find(i=>i.order===o.id);return `<div class="box"><div class="row sp"><div><div class="mono muted">${o.id} · ordered ${fdy(o.date)}</div><div style="font-size:17px;font-weight:500;margin-top:2px">${esc(o.pt)} · ${P[o.sku].n}${o.qty>1?' ×'+o.qty:''}</div></div><div class="row">${paidTag(o.paid)}<span class="num">${$m(oval(o))}</span></div></div>
+    ${trk(o.stage,true)}<div class="row sp" style="margin-top:10px"><span class="small">${estLine(o)}</span>${inv&&inv.status==='Open'?`<button class="btn sm pri" data-a="mPay" data-id="${inv.id}">Pay ${$m(inv.amt)}</button>`:''}</div></div>`}).join('')}</div>`;
+};
+V.patients=()=>ph('Patients','Your patients','Banked specimens, how long they\'ve been stored, and what each patient can order.')+
+  `<div class="tw"><table><thead><tr><th>Patient</th><th>ID</th><th class="r">Banked specimens</th><th>Last collection</th><th>Stored since</th></tr></thead><tbody>
+  ${db.patients.map(p=>`<tr class="click" data-a="openPt" data-id="${p.id}"><td class="nm">${esc(p.name)}<small>${esc(p.email)}</small></td><td class="mono">${p.id}</td><td class="r num">${p.banked}</td><td>${fdy(p.lastCol)}</td><td>${fdy(p.first)}</td></tr>`).join('')}</tbody></table></div>`;
+V.patient=()=>{
+  const p=db.patients.find(x=>x.id===S.sel);if(!p)return '';
+  const os=db.orders.filter(o=>o.pt===p.name&&o.clinic===CL);const ss=db.samples.filter(s=>s.pt===p.name);
+  const age=Math.floor((pd(TODAY)-pd(p.dob))/(365.25*864e5));
+  return `<button class="crumb" data-a="nav" data-v="patients">← Patients</button>`+ph(`Patient · ${p.id}`,esc(p.name),`${age} years old · ${p.sex} · last collection ${rel(p.lastCol)}`,`<button class="btn pri" data-a="mOrder" data-pt="${esc(p.name)}">Order Secretome for ${esc(p.name.split(' ')[0])}</button>`)+
+  `<div class="stack"><div class="box wash"><div class="eyebrow">Cell bank standing</div><div style="font-size:20px;font-weight:300;letter-spacing:-.5px;margin-top:6px">Eligible for all three products</div><div class="row" style="margin-top:10px">${tag('✓ 6-Pack Secretome','good')}${tag('✓ 12-Pack Secretome','good')}${tag('✓ Biobanking','good')}</div></div>
+  <div class="stats">${stat('Banked specimens',p.banked,'Follicles and plugs')}${stat('Last collection',fd(p.lastCol),rel(p.lastCol))}${stat('In storage',ago(p.first)+' days','since '+fdy(p.first))}</div>
+  <section class="stack tight"><h2 class="sec">History</h2><div class="tl">${[...ss.map(s=>[s.rec,'Sample','Lab',`Sample received, ${s.spec} specimens. ${s.dispo||'Being processed.'}`]),...os.map(o=>[o.date,'Order','You',`${P[o.sku].n} · ${OST_PLAIN[o.stage]}`])].sort((a,b)=>b[0].localeCompare(a[0])).map(tli).join('')||'<div class="empty">No history yet.</div>'}</div></section></div>`;
+};
+V.billing=()=>{
+  const inv=db.invoices.filter(i=>i.clinic===CL);const pays=db.pays.filter(p=>p.clinic===CL);const open=inv.filter(i=>i.status==='Open');
+  return ph('Billing',open.length?`${$m(open.reduce((a,i)=>a+i.amt,0))} due`:'You\'re all paid up','Pay securely through Stripe. Acorn never asks for card details by email.')+
+  `<div class="stack"><div class="tw"><table><thead><tr><th>Invoice</th><th>For</th><th>Due</th><th>Status</th><th class="r">Amount</th><th></th></tr></thead><tbody>
+  ${inv.map(i=>{const o=O(i.order);return `<tr><td class="mono">${i.id}</td><td>${o?esc(o.pt)+' · '+P[o.sku].n:''}</td><td>${fd(i.due)}</td><td>${tag(i.status,i.status==='Paid'?'good':'warn')}</td><td class="r num">${$m(i.amt)}</td><td class="r">${i.status==='Open'?`<button class="btn sm pri" data-a="mPay" data-id="${i.id}">Pay now</button>`:''}</td></tr>`}).join('')}</tbody></table></div>
+  <section class="stack tight"><h2 class="sec">Receipts</h2>${al(pays.map(p=>({t:$m(p.amt),why:`${tag('Paid','good')}<span>${fdy(p.date)} · ${esc(p.ref)}</span>`,acts:''})),'No payments yet.')}</section></div>`;
+};
+
+/* ---------- search ---------- */
+function searchResults(q){
+  q=q.trim().toLowerCase();if(q.length<2)return '';const out=[];
+  const canAcct=['sales','admin','cs','fin'].includes(S.role);
+  if(canAcct){const cs=db.clinics.filter(c=>c.name.toLowerCase().includes(q)||c.zip.includes(q)).slice(0,5);if(cs.length)out.push(['Clinics',cs.map(c=>[`openAcct`,c.id,esc(c.name),`${esc(c.city)}, ${c.st}`])])}
+  if(S.role!=='mkt'){const os=db.orders.filter(o=>o.id.toLowerCase().includes(q)||(o.track&&o.track.includes(q))||(ptCan()&&o.pt.toLowerCase().includes(q))).slice(0,6);if(os.length)out.push(['Orders',os.map(o=>['orderView',o.id,`${o.id} · ${esc(C(o.clinic).name)}`,OST[o.stage]+(o.track&&o.track.includes(q)?' · '+o.track:'')])])}
+  if(['cs','admin'].includes(S.role)){const ps=db.pickups.filter(p=>p.track&&p.track.toLowerCase().includes(q)).slice(0,4);if(ps.length)out.push(['Pickups',ps.map(p=>['pickupGo',p.id,`${esc(C(p.clinic).name)} pickup`,`${p.track} · ${PSTAT[p.status]}`])])}
+  if(['sales','admin','mkt'].includes(S.role)){const ls=db.leads.filter(l=>l.name.toLowerCase().includes(q)&&(S.role!=='sales'||repOf(l.st)===me().rep)).slice(0,5);if(ls.length)out.push(['Leads',ls.map(l=>[S.role==='mkt'?'toastOnly':'openLead',l.id,esc(l.name),STAGES[l.stage].n])])}
+  if(!out.length)return `<div class="sres"><div class="empty small">No matches for “${esc(q)}”.${!ptCan()?' Patient names are hidden for your role.':''}</div></div>`;
+  return `<div class="sres">${out.map(([g,rows])=>`<div class="grp">${g}</div>${rows.map(([a,id,t,s])=>`<button data-a="${a}" data-id="${id}" data-m="Leads open in the rep's view."><span>${t}</span><small>${esc(s)}</small></button>`).join('')}`).join('')}</div>`;
+}
+
+/* ---------- modals ---------- */
+function openModal(m){S.modal=m;renderModal();setTimeout(()=>{const f=document.querySelector('#modal input:not([type=checkbox]),#modal select,#modal textarea,#modal .btn.pri');f&&f.focus()},30)}
+function closeModal(){S.modal=null;renderModal()}
+function renderModal(){const el=document.getElementById('modal');const m=S.modal;if(!m){el.innerHTML='';return}el.innerHTML=`<div class="ov" data-a="ovClose"><div class="md" role="dialog" aria-modal="true">${M[m.k](m)}</div></div>`}
+const foot=(label,extra='')=>`<div class="row end">${extra}<button type="button" class="btn quiet" data-a="close">Cancel</button><button class="btn pri">${label}</button></div>`;
+const M={};
+M.fedex=m=>{const p=db.pickups.find(x=>x.id===m.id);const c=C(p.clinic);m.tn=m.tn||('7972'+String(Math.floor(Math.random()*1e8)).padStart(8,'0'));
+  return `<div><div class="eyebrow">Book FedEx</div><h2>${esc(c.name)}</h2><p class="small muted" style="margin:4px 0 0">${wk(p.date)} · ${p.win} · ${plural(p.n,'sample')}</p></div>
+  <form data-f="fedex" data-id="${p.id}" class="stack tight"><label class="f">FedEx tracking number <small>From fedex.com after you book</small><input id="fx-tn" name="tn" class="mono" value="${m.tn}" required></label>
+  ${p.nano===0?`<label class="chk" for="fx-nano"><input type="checkbox" id="fx-nano" name="nano" checked><span>Send 6 Nanocools with the driver (clinic is out)</span></label>`:''}
+  <label class="chk" for="fx-mail"><input type="checkbox" id="fx-mail" name="mail" checked><span>Email the clinic and log it on the account</span></label>
+  <div class="mail">To ${esc(c.email)}
+<b>FedEx pickup confirmed for ${wk(p.date)}</b>
+
+Hi ${esc(c.contact.split(' ')[0])},
+
+FedEx will collect ${plural(p.n,'sample')} on ${wk(p.date)} between ${p.win}.
+Tracking: ${m.tn}
+${p.nano===0?'We\'re also sending 6 Nanocools with the driver.\n':''}
+Keep samples in the blue cooling packet until the driver arrives.
+
+Acorn Partner Support</div>${foot('Confirm and send')}</form>`};
+M.reply=m=>{const msg=db.inbox.find(x=>x.id===m.id);const o=O(msg.order);const c=C(o.clinic);
+  return `<div><div class="eyebrow">Reply</div><h2>Order status for ${esc(c.name)}</h2></div><div>${oTag(o)}${trk(o.stage,true)}</div>
+  <div class="mail">To ${esc(c.email)}
+<b>Update on ${o.id}</b>
+
+Hi ${esc(c.contact.split(' ')[0])},
+
+${esc(o.pt)}'s ${P[o.sku].n} is ${OST_PLAIN[o.stage].toLowerCase()}. ${estLine(o)}
+
+You can follow every step under Orders in the partner portal.
+
+Acorn Partner Support</div><div class="row end"><button class="btn quiet" data-a="close">Cancel</button><button class="btn pri" data-a="replySend" data-id="${m.id}">Send reply</button></div>`};
+M.ship=m=>{const o=O(m.id);return `<div><div class="eyebrow">Ship</div><h2>${o.id} to ${esc(C(o.clinic).name)}</h2><p class="small muted" style="margin:4px 0 0">${esc(o.pt)} · ${P[o.sku].n}</p></div>
+  <form data-f="ship" data-id="${o.id}" class="stack tight"><label class="f">FedEx tracking number<input id="sh-tn" name="tn" class="mono" value="7971${String(Math.floor(Math.random()*1e8)).padStart(8,'0')}" required></label>
+  <p class="small muted" style="margin:0">The clinic, the rep and the portal update automatically.</p>${foot('Mark shipped')}</form>`};
+M.pack=m=>{const o=O(m.id);const ck=m.ck||(m.ck=[false,false,false]);
+  return `<div><div class="eyebrow">Pack ${o.id}</div><h2>Check all three before sealing</h2></div>
+  <div class="stack tight">${[`Vial label patient is <b>${esc(o.pt)}</b>`,`Product is <b>${P[o.sku].n}${o.qty>1?' ×'+o.qty:''}</b>`,`Box label matches the vial and ships to <b>${esc(C(o.clinic).name)}</b>`].map((t,i)=>`<label class="chk" for="pk-${i}" style="padding:10px;border:1px solid ${ck[i]?'var(--ink)':'var(--line)'}"><input type="checkbox" id="pk-${i}" data-a="packCk" data-i="${i}" ${ck[i]?'checked':''}><span>${t}</span></label>`).join('')}</div>
+  <div class="row sp"><button class="btn danger" data-a="packDev" data-id="${o.id}">Something doesn't match</button><button class="btn pri" data-a="packOk" data-id="${o.id}" ${ck.every(Boolean)?'':'disabled'}>${ck.every(Boolean)?'Mark packed':`${ck.filter(Boolean).length} of 3 checked`}</button></div>`};
+M.dev=m=>`<div><div class="eyebrow">Deviation</div><h2>What went wrong?</h2></div><form data-f="dev" class="stack tight">
+  <div class="fg"><label class="f">Order<select id="dv-o" name="order">${db.orders.map(o=>`<option ${o.id===m.order?'selected':''}>${o.id}</option>`).join('')}</select></label>
+  <label class="f">Type<select id="dv-k" name="kind">${['Labeling','Packing','Shipping','Order'].map(k=>`<option ${k===m.kind?'selected':''}>${k}</option>`).join('')}</select></label>
+  <label class="f">Who investigates<select id="dv-ow" name="owner">${INTERNAL.map(p=>`<option ${p==='Amatullah Fatehi'?'selected':''}>${esc(p)}</option>`).join('')}</select></label></div>
+  <label class="f">What happened<textarea id="dv-t" name="text" required>${m.order?'Label check failed at packing.':''}</textarea></label>
+  <label class="f">What you did so far <small>Optional</small><input id="dv-a" name="action"></label>${foot('Log it')}</form>`;
+M.repl=m=>{const o=O(m.id);return `<div><div class="eyebrow">Replacement</div><h2>Replace ${o.id} for free</h2></div><form data-f="repl" data-id="${o.id}" class="stack tight">
+  <label class="f">Reason<select id="rp-r" name="r"><option>Damaged in transit</option><option>Label mismatch</option><option>Delivery exception</option><option>Sales comp: account recovery</option></select></label>
+  <p class="small muted" style="margin:0">Creates a free order linked to ${o.id}. It doesn't count toward revenue or commission.</p>${foot('Create replacement')}</form>`};
+M.foc=m=>{const msg=db.inbox.find(x=>x.id===m.id);const c=C(msg.clinic);return `<div><div class="eyebrow">Free order</div><h2>${esc(c.name)}</h2><p class="small muted" style="margin:4px 0 0">Requested by ${esc(msg.from)}</p></div><form data-f="foc" data-id="${m.id}" class="stack tight">
+  <div class="fg"><label class="f">Product<select id="fc-s" name="sku"><option value="six">6-Pack Secretome</option><option value="twelve">12-Pack Secretome</option></select></label><label class="f">Patient<input id="fc-p" name="pt" value="To be assigned" required></label></div>
+  <label class="f">Reason<input id="fc-r" name="r" value="Sales comp: account recovery" required></label>${foot('Create free order')}</form>`};
+M.task=m=>`<div><div class="eyebrow">Follow-up</div><h2>What do you need to do?</h2></div><form data-f="task" class="stack tight"><label class="f">Task<input id="tk-t" name="t" required placeholder="Call, email, visit..." value="${m.ref&&m.ref[0]==='c'?'Visit '+esc(C(m.ref).name):''}"></label>
+  <div class="fg"><label class="f">Due<input id="tk-d" type="date" name="d" value="${addD(TODAY,1)}" required></label><label class="f">Related to<select id="tk-r" name="r"><option value="">Nothing</option>${db.leads.filter(l=>repOf(l.st)===me().rep&&l.stage<5).map(l=>`<option value="${l.id}" ${m.ref===l.id?'selected':''}>${esc(l.name)}</option>`).join('')}${db.clinics.filter(c=>repOf(c.st)===me().rep).map(c=>`<option value="${c.id}" ${m.ref===c.id?'selected':''}>${esc(c.name)}</option>`).join('')}</select></label></div>${foot('Add')}</form>`;
+M.lead=()=>`<div><div class="eyebrow">New lead</div><h2>Add a practice</h2></div><form data-f="lead" class="stack tight"><label class="f">Practice name<input id="ld-n" name="n" required></label>
+  <div class="fg"><label class="f">ZIP code <small>Picks the rep automatically</small><input id="ld-z" name="z" inputmode="numeric" maxlength="5" required></label><label class="f">Came from<select id="ld-s" name="s"><option>Instagram</option><option>Website form</option><option>Referral</option><option>Event</option></select></label></div>
+  <div class="fg"><label class="f">Contact<input id="ld-c" name="c" placeholder="Name and role"></label><label class="f">Referred by or event<input id="ld-r" name="r"></label><label class="f">Est. yearly value<input id="ld-v" type="number" name="v" value="20000"></label></div>${foot('Add lead')}</form>`;
+M.act=m=>{const n=m.id[0]==='l'?L(m.id).name:C(m.id).name;return `<div><div class="eyebrow">Log activity</div><h2>${esc(n)}</h2></div><form data-f="act" data-id="${m.id}" class="stack tight"><div class="seg" role="radiogroup">${['Call','Email','Text','Meeting','Note'].map((t,i)=>`<label style="display:contents"><input type="radio" name="t" value="${t}" ${i===0?'checked':''} hidden><button type="button" data-a="radio" data-v="${t}" aria-pressed="${i===0}">${t}</button></label>`).join('')}</div>
+  <label class="f">What happened<textarea id="ac-n" name="n" required placeholder="Outcome and next step"></textarea></label>
+  <label class="f">Next follow-up <small>Optional</small><input id="ac-d" type="date" name="d"></label>${foot('Log')}</form>`};
+M.req=()=>`<div><div class="eyebrow">Ask someone</div><h2>What do you need?</h2><p class="small muted" style="margin:4px 0 0">Instead of a Slack DM. The owner gets notified and you can see when it moves.</p></div><form data-f="req" class="stack tight"><label class="f">Request<input id="rq-t" name="t" required placeholder="Be specific so they can act without asking back"></label>
+  <div class="fg"><label class="f">Who<select id="rq-o" name="o">${INTERNAL.filter(p=>p!==me().person).map(p=>`<option>${esc(p)}</option>`).join('')}</select></label><label class="f">By when<input id="rq-d" type="date" name="d" value="${addD(TODAY,2)}"></label></div>
+  <label class="chk" for="rq-u"><input type="checkbox" id="rq-u" name="u"><span>Urgent: also notify by push and text</span></label>${foot('Send request')}</form>`;
+M.order=m=>`<div><div class="eyebrow">Order Secretome</div><h2>Who is it for?</h2></div><form data-f="order" class="stack tight">
+  <label class="f">Patient<select id="or-p" name="pt">${db.patients.map(p=>`<option ${p.name===m.pt?'selected':''}>${esc(p.name)}</option>`).join('')}</select></label>
+  <fieldset style="border:0;padding:0;margin:0;display:grid;gap:8px"><legend class="f" style="margin-bottom:6px">Product</legend>${[['six','6-Pack Secretome','$1,800 · about 6 weeks of use'],['twelve','12-Pack Secretome','$3,200 · about 12 weeks, best value']].map(([v,n,s],i)=>`<label class="chk" for="or-${v}" style="padding:12px;border:1px solid var(--line)"><input type="radio" id="or-${v}" name="sku" value="${v}" ${i===1?'checked':''}><span><b>${n}</b><br><span class="small muted">${s}</span></span></label>`).join('')}</fieldset>
+  <p class="small muted" style="margin:0">You'll get a Stripe payment link. Production starts once it's paid, and it ships in about 3 weeks.</p>${foot('Place order')}</form>`;
+M.pay=m=>{const i=db.invoices.find(x=>x.id===m.id);const o=O(i.order);return `<div><div class="eyebrow">${i.id}</div><h2>Pay ${$m(i.amt)}</h2>${o?`<p class="small muted" style="margin:4px 0 0">${esc(o.pt)} · ${P[o.sku].n}</p>`:''}</div>
+  <div class="note">${lockI}<span>You'll finish on Stripe's secure checkout. Card details go straight to Stripe and never reach Acorn's email or staff.</span></div>
+  <div class="row end"><button class="btn quiet" data-a="close">Cancel</button><button class="btn pri" data-a="paySim" data-id="${i.id}">Continue to Stripe</button></div>`};
+M.orderView=m=>{const o=O(m.id);const c=C(o.clinic);return `<div><div class="eyebrow">${o.id}</div><h2>${esc(c.name)}</h2><p class="small muted" style="margin:4px 0 0">Patient: ${ptLabel(o.pt)} · ${P[o.sku].n}${o.qty>1?' ×'+o.qty:''} · ${o.paid==='FOC'?'Free (FOC)':o.paid}</p></div>
+  <div>${oTag(o)}${trk(o.stage)}</div><dl class="dl"><dt>Ordered</dt><dd>${fdy(o.date)}</dd><dt>In this step</dt><dd>${stageAge(o)} days (target ${SLA[o.stage]>99?'n/a':SLA[o.stage]})</dd><dt>Est. ship</dt><dd>${o.stage<4?wk(estShip(o)):'Shipped'}</dd>${o.track?`<dt>FedEx</dt><dd class="mono">${o.track}</dd>`:''}${o.foc?`<dt>Free because</dt><dd>${esc(o.foc)}${o.orig?' (replaces '+o.orig+')':''}</dd>`:''}<dt>RSM</dt><dd>${repTag(repOf(c.st))}</dd></dl>
+  <div class="row end">${['sales','admin','cs','fin'].includes(S.role)?`<button class="btn" data-a="openAcct" data-id="${c.id}">Open account</button>`:''}<button class="btn pri" data-a="close">Close</button></div>`};
+M.com=m=>{const r=m.r;const os=db.orders.filter(o=>repOf(C(o.clinic).st)===r&&o.date>='2026-10-26');return `<div><div class="eyebrow">Commission detail</div><h2>${REPS[r].name}</h2></div>
+  <div class="tw"><table><thead><tr><th>Item</th><th>Counts?</th><th class="r">Amount</th></tr></thead><tbody><tr><td>Paid orders Oct 1 to 25 (${Math.round(db.q4base[r]/2150)})</td><td>${tag('Yes','good')}</td><td class="r num">${$m(db.q4base[r])}</td></tr>
+  ${os.map(o=>`<tr><td class="mono">${o.id}<div class="muted" style="font-family:var(--sans)">${esc(C(o.clinic).name)}</div></td><td>${o.paid==='Paid'?tag('Yes','good'):tag(o.paid==='FOC'?'No, free':'Not paid yet','warn')}</td><td class="r num">${$m(oval(o))}</td></tr>`).join('')}
+  <tr><td><b>Commission at 8%</b></td><td></td><td class="r num"><b>${$m(q4rev(r)*.08)}</b></td></tr></tbody></table></div><div class="row end"><button class="btn pri" data-a="close">Close</button></div>`};
+
+/* ---------- actions ---------- */
+const A={};
+const go=(v,sel=null)=>{S.view=v;S.sel=sel;S.q='';render();window.scrollTo(0,0)};
+A.role=d=>{S.role=d.id;S.f={};S.mapSel=null;S.modal=null;go(NAV[d.id][0][0])};
+A.nav=d=>go(d.v);
+A.reset=()=>{db=seed();S.f={};S.mapSel=null;S.modal=null;go(NAV[S.role][0][0]);toast('Sample data restored.')};
+A.undo=()=>{if(UNDO){UNDO();UNDO=null;document.getElementById('toast').hidden=true;render()}};
+A.openLead=d=>go('lead',d.id);
+A.openAcct=d=>{S.modal=null;if(!['sales','admin','cs','fin'].includes(S.role)){toast('Accounts aren\'t part of this role.');return}go('account',d.id)};
+A.openPt=d=>go('patient',d.id);
+A.fset=d=>{S.f[d.k]=d.v;render()};
+A.close=closeModal;A.ovClose=(d,el,e)=>{if(e.target===el)closeModal()};
+A.toastOnly=d=>{S.q='';toast(d.m);render()};
+A.copy=d=>{try{navigator.clipboard.writeText(d.t).then(()=>toast('Copied.'),()=>toast('Copy blocked here. Select the text instead.'))}catch(e){toast('Copy blocked here. Select the text instead.')}};
+A.searchFor=d=>{S.q=d.q;render();const i=document.getElementById('gsearch');i&&(i.focus(),showRes())};
+A.pickupGo=()=>go('pickups');
+A.radio=(d,el)=>{const seg=el.closest('.seg');seg.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',b===el));seg.querySelector(`input[value="${d.v}"]`).checked=true};
+A.taskDone=d=>{const t=db.tasks.find(x=>x.id===d.id);t.done=true;render();toast('Marked done.',()=>{t.done=false})};
+A.leadWon=d=>{const l=L(d.id);const prev=l.stage;l.stage=5;l.last=TODAY;const id='c'+(db.clinics.length+1);const rn=repName(repOf(l.st));
+  db.clinics.push({id,name:l.name,city:l.st,st:l.st,zip:l.zip,status:'Onboarding',key:false,contact:l.contact,crole:'Primary contact',email:'new@clinic.example',phone:'Not added yet',since:TODAY,ytd:0,last:null,pts:0,bg:l.bg,act:[[TODAY,'System','CRM',`Won from ${l.src}${l.ref?' ('+l.ref+')':''}.`]],
+    onb:[['Partner agreement signed',rn,TODAY,true],['Portal accounts created','Katie Anderson',addD(TODAY,2),false],['Stripe payment method on file','Bryce Martindale',addD(TODAY,5),false],['Staff training: collection technique',rn,addD(TODAY,7),false],['First kit and Nanocools shipped','Katie Anderson',addD(TODAY,9),false],['First FedEx pickup completed','Katie Anderson',addD(TODAY,16),false]]});
+  go('account',id);toast(`${l.name} won. Partner Support has the onboarding checklist.`)};
+A.docusign=d=>{const l=L(d.id);l.stage=4;l.last=TODAY;(l.acts=l.acts||[]).push([TODAY,'DocuSign',me().person,'Proposal sent for signature.']);render();toast('Proposal sent via DocuSign.')};
+A.toggleKey=d=>{const c=C(d.id);c.key=!c.key;render()};
+A.mTask=d=>openModal({k:'task',ref:d.ref});A.mLead=()=>openModal({k:'lead'});A.mAct=d=>openModal({k:'act',id:d.id});A.mReq=()=>openModal({k:'req'});
+A.mFedex=d=>openModal({k:'fedex',id:d.id});A.mReply=d=>openModal({k:'reply',id:d.id});A.mShip=d=>openModal({k:'ship',id:d.id});
+A.mPack=d=>openModal({k:'pack',id:d.id});A.mDev=()=>openModal({k:'dev'});A.mRepl=d=>openModal({k:'repl',id:d.id});A.mFoc=d=>openModal({k:'foc',id:d.id});
+A.mOrder=d=>openModal({k:'order',pt:d.pt});A.mPay=d=>openModal({k:'pay',id:d.id});A.orderView=d=>{S.q='';renderTop();openModal({k:'orderView',id:d.id})};A.mCom=d=>openModal({k:'com',r:d.r});
+A.packCk=d=>{S.modal.ck[+d.i]=!S.modal.ck[+d.i];renderModal()};
+A.packOk=d=>{const o=O(d.id);o.stage=3;o.sd=TODAY;closeModal();render();toast(`${o.id} packed. Partner Support ships next.`)};
+A.packDev=d=>openModal({k:'dev',order:d.id,kind:'Labeling'});
+A.oAdv=d=>{const o=O(d.id);const prev=[o.stage,o.sd];o.stage++;o.sd=TODAY;render();toast(`${o.id}: ${OST[o.stage].toLowerCase()}.`,()=>{o.stage=prev[0];o.sd=prev[1]})};
+A.escDone=d=>{const e=db.escal.find(x=>x.id===d.id);e.open=false;render();toast(d.d==='yes'?`Approved. ${e.from} was notified.`:`Declined. ${e.from} was notified.`,()=>{e.open=true})};
+A.mapSel=d=>{S.mapSel=d.st;render()};
+A.mapGo=d=>{S.mapSel=d.st;go('territories')};
+A.flowGo=()=>{document.getElementById('flow')?.scrollIntoView({behavior:'smooth'})};
+A.msgDone=d=>{const m=db.inbox.find(x=>x.id===d.id);m.open=false;render();toast('Done.',()=>{m.open=true})};
+A.replySend=d=>{const m=db.inbox.find(x=>x.id===d.id);m.open=false;C(m.clinic).act.push([TODAY,'Email','Katie Anderson',`Sent status for ${m.order}.`]);closeModal();render();toast('Reply sent and logged on the account.')};
+A.pkNext=d=>{const p=db.pickups.find(x=>x.id===d.id);p.status++;
+  if(p.status===3){const pt=['Hannah Cole','Leo Park','Sofia Reyes'][Math.floor(Math.random()*3)];db.samples.unshift({id:'4088'+String(Math.floor(Math.random()*1e6)).padStart(6,'0'),clinic:p.clinic,pt,plk:'Clinic staff',col:p.date,rec:TODAY,spec:30+Math.floor(Math.random()*15),lot:'2864132',act:'High',dispo:null});toast('At the lab. The sample is now in the lab\'s queue.')}
+  else toast(`Marked ${PSTAT[p.status].toLowerCase()}.`);render()};
+A.dispo=d=>{const s=db.samples.find(x=>x.id===d.id);s.dispo=DISPO[+d.i];render();toast(`${s.id} flagged: ${s.dispo}.`,()=>{s.dispo=null})};
+A.devDone=d=>{const x=db.devs.find(v=>v.id===d.id);x.status='Resolved';render();toast('Resolved.',()=>{x.status='Investigating'})};
+A.rqSt=d=>{const r=db.requests.find(x=>x.id===d.id);const prev=r.status;r.status=d.s;const n=[me().person,d.s==='Done'?'Marked done.':'On it.'];r.notes.push(n);render();toast(`${r.from===me().person?r.owner:r.from} was notified.`,()=>{r.status=prev;r.notes.splice(r.notes.indexOf(n),1)})};
+A.answerQ3=()=>{const r=db.requests.find(x=>x.id==='r1');const {out,excl}=q3ByRep();r.notes.push([me().person,`Live numbers: ${Object.entries(out).map(([k,v])=>`${REPS[k].name} ${v.n}`).join(', ')}. Colorado (${excl}) excluded.`]);r.status='Done';render();toast('Sent to Katie and closed.')};
+A.onb=d=>{const c=C(d.id);const x=c.onb[+d.i];x[3]=!x[3];if(c.onb.every(y=>y[3])){c.status='Active';toast(`${c.name} is fully onboarded.`)}render()};
+A.remind=d=>{const i=db.invoices.find(x=>x.id===d.id);if(i)i.reminded=true;render();toast(`Stripe pay link sent for ${d.id}.`)};
+A.askRep=d=>{const i=db.invoices.find(x=>x.id===d.id);const c=C(i.clinic);const r=repName(repOf(c.st));db.requests.push({id:'r'+db.seq.req++,title:`Help collect ${$m(i.amt)} from ${c.name} (${i.id}, ${ago(i.due)} days late)`,from:me().person,owner:r==='No RSM'?'Mike Romo':r,due:addD(TODAY,3),status:'Open',src:'request',urgent:false,notes:[]});render();toast(`Request sent to ${r==='No RSM'?'Mike Romo':r}.`)};
+A.payOk=d=>{const p=db.pays.find(x=>x.id===d.id);p.ok=true;const inv=db.invoices.find(i=>i.id==='INV-1038');render();toast('Refund confirmed. Tay and the clinic were notified.',()=>{p.ok=false})};
+A.payMatch=d=>{const p=db.pays.find(x=>x.id===d.id);p.ref='SEC-2615';render();toast('Matched to SEC-2615.',()=>{p.ref=''})};
+A.refOk=d=>{db.refs[+d.i].status='Approved';render()};
+A.nano=()=>{toast('6 Nanocools are on the way. Arriving Monday.')};
+A.paySim=d=>{const i=db.invoices.find(x=>x.id===d.id);i.status='Paid';db.pays.push({id:'pi_3Q'+Math.random().toString(36).slice(2,8),clinic:i.clinic,amt:i.amt,status:'Succeeded',date:TODAY,ref:i.id});
+  const o=i.order&&O(i.order);if(o&&o.paid==='Unpaid')o.paid='Paid';closeModal();render();toast(`Paid ${$m(i.amt)}. Your receipt is on its way.`)};
+
+/* ---------- forms ---------- */
+const F={};
+F.logLead=(v,f)=>{const l=L(f.dataset.id);(l.acts=l.acts||[]).push([TODAY,v.get('type'),me().person,v.get('text')]);l.last=TODAY;render();toast('Logged.')};
+F.act=(v,f)=>{const id=f.dataset.id;const rec=[TODAY,v.get('t')||'Call',me().person,v.get('n')];if(id[0]==='l'){const l=L(id);(l.acts=l.acts||[]).push(rec);l.last=TODAY}else C(id).act.push(rec);
+  if(v.get('d'))db.tasks.push({id:'t'+db.seq.task++,rep:me().rep||'jill',text:'Follow up: '+v.get('n').slice(0,60),due:v.get('d'),ref:id,done:false});
+  db.tasks.filter(t=>t.ref===id&&!t.done&&t.due<=TODAY).forEach(t=>t.done=true);closeModal();render();toast(v.get('d')?'Logged, follow-up scheduled.':'Logged.')};
+F.task=v=>{db.tasks.push({id:'t'+db.seq.task++,rep:me().rep||'jill',text:v.get('t'),due:v.get('d'),ref:v.get('r')||null,done:false});closeModal();render();toast('Follow-up added.')};
+F.lead=v=>{const z=String(v.get('z')).trim();const st=zipState(z);if(!st){toast('Enter a valid 5-digit US ZIP so the lead reaches the right rep.');return}
+  db.leads.push({id:'l'+db.seq.lead++,name:v.get('n'),st,zip:z,src:v.get('s'),ref:v.get('r'),stage:0,value:+v.get('v')||0,created:TODAY,last:TODAY,contact:v.get('c')||'Not added',bg:'New lead.',open:['Openers appear once the practice has been researched.']});
+  closeModal();const r=repOf(st);render();toast(S.role==='sales'&&r!==me().rep?`${st} belongs to ${repName(r)}. Handed off.`:`Added and assigned to ${repName(r)}.`)};
+F.req=v=>{db.requests.push({id:'r'+db.seq.req++,title:v.get('t'),from:me().person,owner:v.get('o'),due:v.get('d')||addD(TODAY,2),status:'Open',src:'request',urgent:!!v.get('u'),notes:[]});closeModal();render();toast(`Sent to ${v.get('o')}. You'll see it under Requests → I asked.`)};
+F.rqNote=(v,f)=>{const t=String(v.get('t')).trim();if(!t)return;db.requests.find(x=>x.id===f.dataset.id).notes.push([me().person,t]);render()};
+F.fedex=(v,f)=>{const p=db.pickups.find(x=>x.id===f.dataset.id);p.track=v.get('tn');p.status=1;if(v.get('nano'))p.note='6 Nanocools sent with driver';
+  if(v.get('mail'))C(p.clinic).act.push([TODAY,'Email','Katie Anderson',`FedEx pickup confirmed for ${fd(p.date)}, tracking ${p.track}.`]);closeModal();render();toast('FedEx booked. Clinic emailed.')};
+F.ship=(v,f)=>{const o=O(f.dataset.id);o.track=v.get('tn');o.stage=4;o.sd=TODAY;C(o.clinic).act.push([TODAY,'Email','Katie Anderson',`${o.id} shipped, tracking ${o.track}.`]);closeModal();render();toast(`${o.id} shipped. Clinic and rep notified.`)};
+F.dev=v=>{db.devs.push({id:'DV-0'+db.seq.dev++,order:v.get('order'),kind:v.get('kind'),text:v.get('text'),owner:v.get('owner'),action:v.get('action')||'Under investigation.',status:'Investigating',date:TODAY});closeModal();go('deviations');toast(`Logged. ${v.get('owner')} was notified.`)};
+F.repl=(v,f)=>{const o=O(f.dataset.id);const id='SEC-'+db.seq.order++;db.orders.push({id,clinic:o.clinic,pt:o.pt,sku:o.sku,qty:o.qty,paid:'FOC',stage:1,date:TODAY,sd:TODAY,track:'',foc:'Replacement: '+v.get('r'),orig:o.id});closeModal();render();toast(`${id} created and sent to the lab.`)};
+F.foc=(v,f)=>{const m=db.inbox.find(x=>x.id===f.dataset.id);const id='SEC-'+db.seq.order++;db.orders.push({id,clinic:m.clinic,pt:v.get('pt'),sku:v.get('sku'),qty:1,paid:'FOC',stage:1,date:TODAY,sd:TODAY,track:'',foc:v.get('r'),orig:''});m.open=false;closeModal();render();toast(`${id} created. ${m.from} was notified.`)};
+F.order=v=>{const id='SEC-'+db.seq.order++;const sku=v.get('sku')||'twelve';db.orders.push({id,clinic:CL,pt:v.get('pt'),sku,qty:1,paid:'Unpaid',stage:0,date:TODAY,sd:TODAY,track:'',foc:'',orig:''});
+  db.invoices.push({id:'INV-'+db.seq.inv++,clinic:CL,amt:P[sku].p,issued:TODAY,due:addD(TODAY,30),status:'Open',order:id});closeModal();go('porders');toast(`Order placed. Pay ${$m(P[sku].p)} to start production.`)};
+F.pickup=v=>{db.pickups.push({id:'p'+db.seq.pickup++,clinic:CL,appt:`${fd(v.get('cd'))}, ${v.get('ct')}`,date:v.get('cd'),win:v.get('w'),n:+v.get('n'),nano:+v.get('nano'),status:0,track:'',note:v.get('c'),created:`${TODAY} 12:44`});render();toast('Pickup requested. FedEx details will arrive by email.')};
+F.campaign=v=>{db.campaigns.push({id:'cp'+db.seq.camp++,name:v.get('subj'),ch:v.get('ch'),aud:v.get('aud'),status:'Scheduled',date:v.get('date'),sent:AUD[v.get('aud')]||0,open:0,click:0,mql:0});S.f.draft=null;go('campaigns');toast('Scheduled.')};
+F.reassign=(v,f)=>{const st=f.dataset.st,r=v.get('rep');const prev=db.terr[st];if(r)db.terr[st]=r;else delete db.terr[st];
+  const cl=db.clinics.filter(c=>c.st===st).length,ls=db.leads.filter(l=>l.st===st&&l.stage<5).length;render();
+  toast(`${st} moved to ${repName(r||null)} with ${plural(cl,'clinic')} and ${plural(ls,'lead')}.`,()=>{if(prev)db.terr[st]=prev;else delete db.terr[st]})};
+F.zipcheck=v=>{S.f.zip=String(v.get('zip')).trim();render()};
+
+/* ---------- wiring ---------- */
+function showRes(){const box=document.getElementById('sres');if(box)box.innerHTML=searchResults(S.q)}
+document.addEventListener('click',e=>{
+  if(!e.target.closest('.search')){const b=document.getElementById('sres');if(b&&b.innerHTML){b.innerHTML=''}}
+  const el=e.target.closest('[data-a]');if(!el)return;const fn=A[el.dataset.a];if(!fn)return;
+  if(el.dataset.a==='ovClose'){fn(el.dataset,el,e);return}
+  if(el.tagName!=='INPUT')e.preventDefault();e.stopPropagation();fn(el.dataset,el,e)});
+document.addEventListener('input',e=>{
+  if(e.target.id==='gsearch'){S.q=e.target.value;showRes()}
+  if(e.target.dataset.in==='draft'||e.target.dataset.ch==='draft'){const f=document.getElementById('cform');const fdt=new FormData(f);S.f.draft={ch:fdt.get('ch'),aud:fdt.get('aud'),subj:fdt.get('subj'),body:fdt.get('body'),date:fdt.get('date')};const p=document.getElementById('cprev');if(p)p.innerHTML=prevMail(S.f.draft);
+    const b=f.querySelector('.btn.pri');if(b)b.textContent=`Schedule for ${AUD[S.f.draft.aud]} people`}});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){if(S.modal)closeModal();else if(S.q){S.q='';renderTop()}}
+  if(e.key==='/'&&!e.target.closest('input,textarea,select')){const i=document.getElementById('gsearch');if(i){e.preventDefault();i.focus()}}
+  if(e.key==='Enter'&&e.target.id==='gsearch'){const b=document.querySelector('.sres button');if(b){e.preventDefault();b.click()}}});
+document.addEventListener('focusin',e=>{if(e.target.id==='gsearch'&&S.q)showRes()});
+document.addEventListener('submit',e=>{const f=e.target.closest('form[data-f]');if(!f)return;e.preventDefault();F[f.dataset.f](new FormData(f),f)});
+document.addEventListener('change',e=>{const el=e.target;
+  if(el.dataset.ch==='leadStage'){const l=L(el.dataset.id);const v=+el.value;if(v===5){A.leadWon({id:l.id});return}const prev=l.stage;l.stage=v;l.last=TODAY;render();toast(`Moved to ${STAGES[v].n}.`,()=>{l.stage=prev})}
+  if(el.dataset.ch==='draft'){el.dispatchEvent(new Event('input',{bubbles:true}))}});
+render();
+</script>
+</body></html>
