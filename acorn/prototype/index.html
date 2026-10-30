@@ -567,7 +567,7 @@ V.home=()=>{
   const waiting=db.requests.filter(x=>x.from===me().person&&x.status!=='Done');
   const recent=db.requests.filter(x=>x.from===me().person&&x.status==='Done').slice(-1);
   const pipe=db.leads.filter(l=>repOf(l.st)===r&&l.stage<5);
-  const meter=`<div class="meter"><i style="width:${cnt/top*100}%"></i>${BONUS.map(b=>`<b style="left:${b/top*100}%"></b>`).join('')}</div><div class="meterlab">${BONUS.map((b,i)=>`<span style="left:${b/top*100}%">Tier ${i+1}</span>`).join('')}</div>`;
+  const meter=`<div class="meter"><i style="width:${cnt/top*100}%"></i>${BONUS.map(b=>`<b style="left:${b/top*100}%"></b>`).join('')}</div><div class="meterlab">${BONUS.map((b,i)=>`<span style="left:${b/top*100}%">${b}</span>`).join('')}</div>`;
   return ph('Thursday, October 29',`Good afternoon, Jill`,
     `<b>${plural(items.length,'thing')}</b> need you today${items.some(i=>i.lv==='bad')?`, ${items.filter(i=>i.lv==='bad').length} overdue`:''}. ${next?`You're <b>${next-cnt} paid orders</b> from Bonus Tier ${BONUS.indexOf(next)+1}.`:'Every bonus tier reached.'}`)+
   `<div class="stack">
