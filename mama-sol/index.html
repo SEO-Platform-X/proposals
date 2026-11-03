@@ -386,7 +386,7 @@ h3{font-weight:400}
 .shero .win{display:grid;place-items:center;background:var(--paper2);padding:30px}
 .shero .win .gw{width:min(100%,330px);aspect-ratio:1}
 .sdoc img{box-shadow:none}
-.sdoc .gw{width:200px;height:200px}
+.sdoc .gw{width:120px;height:120px}.sdoc{grid-template-columns:auto 1fr}
 .li .card .board{aspect-ratio:1.91/1;height:auto;flex-direction:row;gap:22px}
 .li .card .board .gw{width:96px;height:96px}
 .art .kick{display:flex;align-items:center;gap:8px}
@@ -511,6 +511,24 @@ h3{font-weight:400}
 .qbox b{display:block;font-size:13px;margin-bottom:8px;color:var(--ink)}
 .qbox span{display:block;background:#f1f1f1;border-radius:10px;padding:10px;color:#888}
 @media (max-width:700px){.phones{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:18px;padding-bottom:12px;margin-inline:-22px;padding-inline:22px}.phones figure{flex:0 0 280px;scroll-snap-align:center}}
+
+/* ===== v7 ===== */
+.wm{font-weight:500;color:var(--ink);text-transform:uppercase;line-height:.95;text-align:center}
+.wm span{display:block;font-size:.42em;letter-spacing:.32em;margin-left:.32em}
+.wm b{display:block;font-weight:500;letter-spacing:.14em;margin-left:.14em}
+.cmp td.mid{font-size:13px;color:var(--muted);text-align:left;vertical-align:top}
+.cmpfoot2{display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:20px 24px;border-bottom:1px solid var(--line);font-size:14px}
+.cmpfoot2 b{display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--soft);font-weight:600;margin-bottom:4px}
+.fam{display:flex;flex-direction:column;gap:6px;margin-top:6px}
+.fam div{display:flex;justify-content:space-between;gap:10px;border-top:1px solid var(--line);padding-top:6px;font-size:14px}
+.fam div span:last-child{color:var(--muted);text-align:right}
+.step{display:grid;grid-template-columns:30px 1fr;gap:10px;align-items:center;background:var(--white);border:1px solid var(--line);padding:10px}
+.step .n{width:26px;height:26px;border-radius:50%;border:1px solid var(--ink);display:grid;place-items:center;font-size:12px;color:var(--ink)}
+.step b{display:block;font-weight:500;color:var(--ink)}
+.founders{display:flex;gap:12px;justify-content:center}
+.founders .gw{width:84px;height:84px}
+.founders figure{text-align:center;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--soft);font-weight:600}
+@media (max-width:560px){.cmpfoot2{grid-template-columns:1fr}.sdoc{grid-template-columns:1fr}.founders{justify-content:flex-start}}
 </style>
 </head>
 <body>
@@ -519,7 +537,7 @@ h3{font-weight:400}
  <div class="stage">
   <div class="w top"><div class="logo">MAMA<b>SOL</b></div><nav class="nav"><a href="#science">The science</a><a href="#joanna">Joanna</a><a href="#awareness">The path</a><a href="#plan">The plan</a></nav></div>
   <div class="w stagein">
-   <div class="kick">The first and only</div>
+   <div class="kick">Mama Sol introduces the first and only</div>
    <h1 class="bio"><span class="ln"><span>Biological</span></span><span class="ln"><span>Suncare<sup>™</sup></span></span></h1>
    <div class="cutout window" aria-hidden="true"><div class="sheen"></div></div>
    <p class="hl">Sunscreen has always played defense. Ours is proactive.</p>
@@ -535,7 +553,7 @@ h3{font-weight:400}
    <div>
     <div class="caps">A new category · December 1, 2026</div>
     <h2 style="margin-top:18px">Mineral SPF on top. <span class="serif">Skincare underneath.</span></h2>
-    <p class="hsub" style="margin-top:22px">Mineral SPF protects on top. Skincare ingredients support underneath. Designed by a physician, built on published research, and wrapped in the most beautiful carton in suncare.</p>
+    <p class="hsub" style="margin-top:22px">Developed by beauty industry veteran Arielle Moody in collaboration with physician Dr. Sheri Rowen, combining two decades of beauty and product development expertise with medical insight.</p>
     <div class="fo"><i></i>The first and only Biological Suncare™ brand<i></i></div>
    </div>
    <div class="hphoto" role="img" aria-label="The new FACEBRELLA SPF 30 carton"><div></div></div>
@@ -547,15 +565,16 @@ h3{font-weight:400}
 <section class="band sci" id="science">
  <div class="w">
   <div class="caps">Why this is not just marketing</div>
-  <h2 style="margin-top:16px;max-width:22ch">A physician's answer to sunscreen that only defends.</h2>
+  <h2 style="margin-top:16px;max-width:24ch">Beauty expertise, developed with a physician.</h2>
+  <p class="lede" style="margin-top:16px">Arielle Moody, CEO and Co-Founder, spent two decades in beauty and product development before leading Mama Sol. She developed Biological Suncare™ with her mother and Medical Co-Founder, Dr. Sheri Rowen, who brings the clinical rigor.</p>
   <div class="doc">
    <div class="docph">
     <img src="https://www.shopmamasol.com/cdn/shop/files/sheri_adapated.webp?width=900" alt="Sheri Rowen, MD" style="object-position:50% 45%">
-    <div class="tag">Sheri Rowen, M.D., F.A.C.S.</div>
+    <div class="tag">Dr. Sheri Rowen, Medical Co-Founder</div>
    </div>
    <div>
     <p class="quote">“Sunscreen has always played defense. Biological Suncare™ plays offense. It protects the surface and takes care of the skin underneath. Every sunscreen should work this way.”</p>
-    <p class="caps" style="margin-top:18px">Sheri Rowen, MD · Leads Mama Sol's clinical studies</p>
+    <p class="caps" style="margin-top:18px">Dr. Sheri Rowen · Medical Co-Founder and scientific partner</p>
     <div class="creds">
      <div><b>Training</b>Fellowship, Johns Hopkins Hospital, Wilmer Eye Institute</div>
      <div><b>Medical school</b>University of Maryland School of Medicine</div>
@@ -613,9 +632,10 @@ h3{font-weight:400}
       <path pathLength="1" class="dw" d="M176 104 C186 90 194 76 196 60" stroke="#E3A13D" stroke-width=".9" style="--dl:1.3s"/>
       <g class="late" fill="#F2B95A" stroke="none"><circle cx="44" cy="70" r="2.4" class="bob"/><circle cx="210" cy="132" r="2" class="bob2"/><circle cx="188" cy="30" r="1.8" class="bob"/></g>
      </svg></div>
-     <div class="job">Job two: supports underneath</div>
-     <h4>FaceSOL Complex™</h4>
-     <p>Antioxidant-rich botanicals that help defend against everyday environmental stressors.</p>
+     <div class="job">The FaceSOL™ Complex family</div>
+     <h4>FaceSOL™ Complex</h4>
+     <p>Two proprietary antioxidant-rich botanical complexes. One shared philosophy: skincare that supports underneath while mineral SPF protects on top.</p>
+     <div class="fam"><div><span>FaceSOL™ Complex</span><span>FACEBRELLA™ SPF 30</span></div><div><span>FaceSOL™ Complex II</span><span>FACEBRELLA™ Tints SPF 45</span></div></div>
     </article>
    </div>
   </div>
@@ -668,15 +688,15 @@ h3{font-weight:400}
      <g stroke="#F8D596" stroke-width="1.2" class="uv rf"><line x1="96" y1="92" x2="118" y2="40"/><line x1="186" y1="92" x2="208" y2="40"/><line x1="276" y1="92" x2="298" y2="40"/><line x1="366" y1="92" x2="388" y2="40"/></g><rect y="94" width="400" height="10" fill="#F2B95A"/><rect y="104" width="400" height="96" fill="#5B3A95"/>
      <g fill="#F2B95A" opacity=".85" class="bob"><circle cx="40" cy="150" r="3"/><circle cx="96" cy="170" r="2.4"/><circle cx="150" cy="140" r="3.4"/><circle cx="212" cy="176" r="2.4"/><circle cx="270" cy="146" r="3"/><circle cx="330" cy="172" r="2.4"/><circle cx="372" cy="138" r="2.8"/></g>
      <text x="16" y="88" font-family="Jost,Arial" font-size="10" letter-spacing="3" fill="#F8D596">NON-NANO ZINC OXIDE</text>
-     <text x="16" y="192" font-family="Jost,Arial" font-size="10" letter-spacing="3" fill="#F8D596">ECTOIN + FACESOL COMPLEX™ ANTIOXIDANTS</text>
+     <text x="16" y="192" font-family="Jost,Arial" font-size="10" letter-spacing="3" fill="#F8D596">ECTOIN + FACESOL™ COMPLEX ANTIOXIDANTS</text>
     </svg>
    </figure>
   </div>
 
   <div class="honest">
-   <div><b>What we can say</b><ul><li>Mineral SPF protects on top</li><li>Skincare ingredients support underneath</li><li>Ectoin supports hydration and the moisture barrier</li><li>Antioxidants help defend against other environmental stressors</li></ul></div>
-   <div><b>What we never say</b><ul><li>Reaches the dermis or bloodstream</li><li>Repairs damage or treats skin</li><li>Boosts the SPF</li><li>Pregnancy-safe, until it is substantiated</li></ul></div>
-   <div><b>Where it stands</b><ul><li>Press release in regulatory review (Mo)</li><li>“First and only” with trademark counsel (Sheridan Ross)</li><li>White paper in Dr. Rowen's final review</li><li>Finished-formula studies: the next step</li></ul></div>
+   <div><b>What we can say</b><ul><li>Mineral SPF protects on top</li><li>Skincare ingredients support underneath</li><li>Ectoin supports hydration and the moisture barrier</li><li>Antioxidants help defend against other environmental stressors</li><li>Every ingredient was researched with pregnancy and nursing considerations in mind</li></ul></div>
+   <div><b>What we never say</b><ul><li>Reaches the dermis or bloodstream</li><li>Repairs damage or treats skin</li><li>Boosts the SPF</li></ul></div>
+   <div><b>Where it stands</b><ul><li>Press release in regulatory review (Mo)</li><li>“First and only” with trademark counsel (Sheridan Ross)</li><li>White paper in Dr. Rowen's final review</li><li>Pregnancy and nursing wording: Mo to confirm phrasing</li><li>Finished-formula studies: the next step</li></ul></div>
   </div>
 
   <div class="refs">
@@ -731,15 +751,15 @@ h3{font-weight:400}
      <div><b>Moves</b>Pilates, yoga, tennis, beach days with the dogs.</div>
      <div><b>Values</b>Glass over plastic, organic, brands with real commitments.</div>
      <div><b>Trusts</b>Doctors, ingredient lists, friends with good skin.</div>
-     <div><b>Weak spot</b>Saves everything. Buys almost nothing without a reason.</div>
+     <div><b>How she buys</b>Saves products and recommendations for later. Researches before buying and needs a compelling reason to purchase.</div>
     </div>
    </div>
   </div>
   <h3 style="margin-top:80px">A Tuesday with Joanna, and where the category finds her</h3>
   <div class="day">
    <div class="mo"><img src="https://images.unsplash.com/photo-1787631449841-16acf4d907af?w=600&h=600&fit=crop&crop=faces,entropy&q=80&auto=format" alt=""><div class="t">7:10 am</div><p>Coffee at the island, kids out the door, hair up.</p><div class="m">One step that protects and cares for her skin.</div></div>
-   <div class="mo"><img src="https://images.unsplash.com/photo-1717500251741-cdbc93342d5a?w=600&h=600&fit=crop&crop=faces,entropy&q=80&auto=format" alt=""><div class="t">9:30 am</div><p>Pilates. The studio where her friends compare skin notes.</p><div class="m">Word of mouth, once she is a customer.</div></div>
-   <div class="mo"><img src="https://images.unsplash.com/photo-1595349785606-5982d59ef635?w=600&h=600&fit=crop&crop=faces,entropy&q=80&auto=format" alt=""><div class="t">12:40 pm</div><p>Between meetings, scrolling.</p><div class="m">An ad from a physician asks a question she has never asked.</div></div>
+   <div class="mo"><img src="https://images.unsplash.com/photo-1620246499650-86ee085562fa?w=600&h=600&fit=crop&crop=faces,entropy&q=80&auto=format" alt=""><div class="t">10:30 am</div><p>Coffee after Pilates. Friends exchange skincare discoveries and recommendations.</p><div class="m">Word of mouth, once she is a customer.</div></div>
+   <div class="mo"><img src="https://images.unsplash.com/photo-1595349785606-5982d59ef635?w=600&h=600&fit=crop&crop=faces,entropy&q=80&auto=format" alt=""><div class="t">12:40 pm</div><p>Between meetings, scrolling.</p><div class="m">A Mama Sol ad asks a question she has never asked.</div></div>
    <div class="mo"><img src="https://images.unsplash.com/photo-1722966873647-0a71ec8ab83b?w=600&h=600&fit=crop&crop=faces,entropy&q=80&auto=format" alt=""><div class="t">9:15 pm</div><p>House is quiet. She reads and browses.</p><div class="m">She looks it up. The science convinces her.</div></div>
   </div>
  </div>
@@ -752,39 +772,39 @@ h3{font-weight:400}
 <main>
 <section class="st" id="awareness">
  <div class="w">
-  <div class="sh"><div class="no">1</div><div><div class="caps">Awareness</div><h2 style="margin-top:8px">Name the category, with a doctor beside it.</h2></div><div class="bud"><b>$15k</b><span>per month</span></div></div>
+  <div class="sh"><div class="no">1</div><div><div class="caps">Awareness</div><h2 style="margin-top:8px">Mama Sol names the category.</h2></div><div class="bud"><b>$15k</b><span>per month</span></div></div>
   <div class="scene">
-   <p class="serif">Joanna does not know Biological Suncare™ exists. Every first touch says the name, claims it first, and puts Dr. Rowen's credibility next to it, so it reads as medicine, not hype.</p>
-   <div class="beat"><b>Category beat</b>The first and only Biological Suncare™ brand. Designed by a physician.</div>
+   <p class="serif">Joanna does not know Biological Suncare™ exists. Every first touch leads with Mama Sol, claims the category, and puts Dr. Rowen's medical credibility behind it, so it reads as real, not hype.</p>
+   <div class="beat"><b>Category beat</b>The first and only Biological Suncare™ brand. Developed with a physician.</div>
   </div>
   <div class="grid">
    <figure class="c4">
     <div class="ph"><div class="sc">
      <div class="sb"><span>9:41</span><span>● ● ●</span></div>
      <div class="ih"><div class="av" style="background-image:url(https://www.shopmamasol.com/cdn/shop/files/mamasol-soft-black-3.png?width=80);background-size:70%;background-repeat:no-repeat;background-position:center"></div><div><b>shopmamasol</b><small>Sponsored</small></div><span class="dots">···</span></div>
-     <div class="cr"><div class="board"><div class="bk">The first and only</div><div class="bh">Biological<br>Suncare™</div><span class="gw lg" style="width:46%;aspect-ratio:1;margin:8px 0"></span><div class="bs">Your sunscreen, with a second job.</div></div><div class="goldline"></div></div>
+     <div class="cr"><div class="board"><div class="wm" style="font-size:40px"><span>Mama</span><b>Sol</b></div><div class="bk">Biological Suncare™</div><span class="gw lg" style="width:40%;aspect-ratio:1;margin:6px 0"></span><div class="bs">Your sunscreen, with a second job.</div><div class="bk">The first and only Biological Suncare™ brand</div></div><div class="goldline"></div></div>
      <div class="cta"><span>Discover Biological Suncare™</span><span>›</span></div>
      <div class="acts">♡ ◯ ➤</div>
      <div class="ic"><b>shopmamasol</b> For as long as sunscreen has existed, it has had one job. Meet the first and only Biological Suncare™ brand: mineral SPF on top, skincare underneath.</div>
     </div></div>
-    <figcaption class="cap"><b>Ad 1 · Category</b>The carton as the ad: the claim in the carton's type and the window.</figcaption>
+    <figcaption class="cap"><b>Ad 1 · Category</b>MAMA SOL leads, like the carton. Biological Suncare™ reads as Mama Sol's approach and proposed category, never the brand name.</figcaption>
    </figure>
    <figure class="c4">
     <div class="ph"><div class="sc">
      <div class="sb"><span>9:41</span><span>● ● ●</span></div>
      <div class="ih"><div class="av" style="background-image:url(https://www.shopmamasol.com/cdn/shop/files/mamasol-soft-black-3.png?width=80);background-size:70%;background-repeat:no-repeat;background-position:center"></div><div><b>shopmamasol</b><small>Sponsored</small></div><span class="dots">···</span></div>
-     <div class="cr"><div class="board"><span class="gw lg" style="width:54%;aspect-ratio:1"><img src="https://www.shopmamasol.com/cdn/shop/files/sheri_adapated.webp?width=500" alt="" style="object-position:50% 45%"></span><div class="bk" style="margin-top:6px">Sheri Rowen, MD</div><div class="bs" style="font-size:19px">“Sunscreen has always played defense.”</div><div class="bh" style="font-size:12px">Biological Suncare™ is proactive</div></div></div>
+     <div class="cr"><div class="board"><div class="wm" style="font-size:26px"><span>Mama</span><b>Sol</b></div><span class="gw lg" style="width:44%;aspect-ratio:1"><img src="https://www.shopmamasol.com/cdn/shop/files/sheri_adapated.webp?width=500" alt="" style="object-position:50% 45%"></span><div class="bk" style="margin-top:4px">Dr. Sheri Rowen, Medical Co-Founder</div><div class="bs" style="font-size:18px">“Sunscreen has always played defense.”</div><div class="bh" style="font-size:11px">Mama Sol Biological Suncare™ is proactive</div></div></div>
      <div class="cta"><span>See the Science</span><span>›</span></div>
      <div class="acts">♡ ◯ ➤</div>
-     <div class="ic"><b>shopmamasol</b> Johns Hopkins-trained, principal investigator for multiple FDA trials, and the physician behind our formulas.</div>
+     <div class="ic"><b>shopmamasol</b> Our Medical Co-Founder: Johns Hopkins-trained and a principal investigator for multiple FDA trials. Mama Sol Biological Suncare™ was developed with her.</div>
     </div></div>
-    <figcaption class="cap"><b>Ad 2 · The doctor</b>Dr. Rowen as the face of the science. This is the anti-hype ad.</figcaption>
+    <figcaption class="cap"><b>Ad 2 · The science</b>Mama Sol first, with Dr. Rowen as the medical proof. This is the anti-hype ad.</figcaption>
    </figure>
    <figure class="c4">
     <div class="ph"><div class="sc">
      <div class="sb"><span>9:41</span><span>● ● ●</span></div>
      <div class="ih"><div class="av" style="background-image:url(https://www.shopmamasol.com/cdn/shop/files/mamasol-soft-black-3.png?width=80);background-size:70%;background-repeat:no-repeat;background-position:center"></div><div><b>shopmamasol</b><small>Sponsored</small></div><span class="dots">···</span></div>
-     <div class="cr"><div class="board"><div class="bh" style="font-size:15px">Protects on top.</div><span class="gw lg" style="width:50%;aspect-ratio:1"><img src="https://www.shopmamasol.com/cdn/shop/files/260306_MamaSol_BEAUTY_EYE_MEDIUM_1303_1600px.webp?width=600" alt="" style="object-position:50% 40%"></span><div class="bh" style="font-size:15px">Supports underneath.</div><div class="bk">Biological Suncare™</div></div><div class="goldline"></div></div>
+     <div class="cr"><div class="board"><div class="wm" style="font-size:26px"><span>Mama</span><b>Sol</b></div><div class="bh" style="font-size:14px">Protects on top.</div><span class="gw lg" style="width:44%;aspect-ratio:1"><img src="https://www.shopmamasol.com/cdn/shop/files/260306_MamaSol_BEAUTY_FACE_LIGHT_0663_1600px.webp?width=600" alt="" style="object-position:50% 30%"></span><div class="bh" style="font-size:14px">Supports underneath.</div><div class="bk">Biological Suncare™</div></div><div class="goldline"></div></div>
      <div class="cta"><span>How It Works</span><span>›</span></div>
      <div class="acts">♡ ◯ ➤</div>
      <div class="ic"><b>shopmamasol</b> Non-nano zinc oxide on top. Ectoin and antioxidant-rich botanicals for the skin underneath.</div>
@@ -793,12 +813,12 @@ h3{font-weight:400}
    </figure>
 
    <figure class="c6">
-    <div class="pcf"><div><div class="k">Mama Sol asks</div><div class="h">Why does your sunscreen only defend?</div><div class="s">The first and only Biological Suncare™ brand.</div></div><span class="gw lg"></span><div class="goldline"></div></div>
+    <div class="pcf"><div><div class="wm" style="font-size:30px"><span>Mama</span><b>Sol</b></div><div class="k" style="margin-top:14px">Mama Sol asks</div><div class="h">Why does your sunscreen only defend?</div><div class="s">The first and only Biological Suncare™ brand.</div></div><span class="gw lg"></span><div class="goldline"></div></div>
     <figcaption class="cap"><b>Postcard · Front</b>Arielle's founding question on the carton board, with the die-cut window.</figcaption>
    </figure>
    <figure class="c6">
     <div class="pcb">
-     <div><h4>A physician-designed sunscreen.</h4><p>Mineral zinc oxide protects on top. Ectoin and our FaceSOL Complex™ support hydration and the moisture barrier underneath. Formulated with Sheri Rowen, MD.</p><p style="margin-top:10px;color:var(--ink)">Scan to try FACEBRELLA™ free for 30 days.</p></div>
+     <div><h4>Developed with a physician.</h4><p>Mineral zinc oxide protects on top. Ectoin and our FaceSOL™ Complex support hydration and the moisture barrier underneath. Developed by Arielle Moody with physician Dr. Sheri Rowen.</p><p style="margin-top:10px;color:var(--ink)">Scan to try FACEBRELLA™ free for 30 days.</p></div>
      <div class="r"><div class="stamp">STAMP</div><div class="qr" id="qr"></div><span class="gw offer"><span><b>30</b>days free</span></span></div>
     </div>
     <figcaption class="cap"><b>Postcard · Back</b>The QR goes to the trial, so the card sells as well as it intrigues.</figcaption>
@@ -810,20 +830,20 @@ h3{font-weight:400}
      <img src="https://www.shopmamasol.com/cdn/shop/files/mamasol_founders_landscape.jpg?width=1200" alt="Mama Sol founders">
      <div class="in">
       <div class="kick"><span class="gw" style="width:16px;height:16px"></span>New category</div>
-      <h4>A mother and daughter want sunscreen to do more than block</h4>
+      <h4>After two decades in beauty, Arielle Moody wants sunscreen to do more than block</h4>
       <div class="by">By a beauty editor · 5 min read</div>
-      <p>Sheri Rowen, MD, spent decades as a surgeon and FDA trial investigator. Her daughter, Arielle Moody, wanted a mineral sunscreen she would actually look forward to wearing. Together they built Biological Suncare™.</p>
+      <p>After two decades in the beauty industry, including product development work alongside chemists and raw ingredient suppliers, Arielle Moody saw an opportunity to rethink daily sun protection. With her mother, physician and FDA clinical trial investigator Dr. Sheri Rowen, she developed Mama Sol's Biological Suncare™ approach.</p>
       <p class="pull">“Why does sunscreen only defend? Why can't it give something back at the same time?”</p>
      </div>
     </div>
-    <figcaption class="cap"><b>PR · Launch story</b>The mother-daughter, doctor-founder story is the angle editors will want.</figcaption>
+    <figcaption class="cap"><b>PR · Launch story</b>Leads with Arielle's experience and vision, then the mother-daughter, founder-physician collaboration.</figcaption>
    </figure>
    <figure class="c5">
     <div class="li">
-     <div class="who"><img class="pic" src="https://www.shopmamasol.com/cdn/shop/files/mamasol_founders_landscape.jpg?width=300" alt=""><div><b>Arielle Moody</b><small>CEO &amp; Co-Founder, Mama Sol · 1d</small></div></div>
-     <p>When I was pregnant with my first, I kept asking one question: why does sunscreen only defend?</p>
-     <p>My mother is a physician. So we answered it together, with research, not marketing. Today it becomes a category: Biological Suncare™.</p>
-     <div class="card"><div class="board"><span class="gw lg"></span><div style="text-align:left"><div class="bk">Introducing</div><div class="bh" style="font-size:16px">Biological<br>Suncare™</div></div></div><div>shopmamasol.com · Introducing Biological Suncare™</div></div>
+     <div class="who"><img class="pic" src="https://www.shopmamasol.com/cdn/shop/files/upscaled-4x-Arielle.png?width=200" alt="" style="object-position:50% 20%"><div><b>Arielle Moody</b><small>CEO &amp; Co-Founder, Mama Sol · 1d</small></div></div>
+     <p>After two decades in beauty and product development, and while pregnant with my first, I kept asking one question: why does sunscreen only defend?</p>
+     <p>My mother, Dr. Sheri Rowen, is a physician. So we answered it together, with research, not marketing. Today it becomes a category: Biological Suncare™.</p>
+     <div class="card"><div class="board"><span class="gw lg"></span><div style="text-align:left"><div class="bh" style="font-size:18px">Mama Sol</div><div class="bk">Introducing Biological Suncare™</div></div></div><div>shopmamasol.com · Introducing Biological Suncare™</div></div>
      <div class="rx"><span>Like</span><span>Comment</span><span>Repost</span></div>
     </div>
     <figcaption class="cap"><b>Founder post · LinkedIn</b>Arielle's story, with her mother's credibility behind it.</figcaption>
@@ -837,17 +857,17 @@ h3{font-weight:400}
    <div class="phones"><figure><div class="ph"><div class="sc app"><div class="scr"><div class="sb"><span>9:41</span><span>● ● ●</span></div><div class="ah"><span>‹</span><span class="lg">MAMA SOL</span><span>♡</span></div><div class="bd"><div class="banner"><span class="gw"></span><span><b style="font-weight:600">POSTCARD30</b> applied. Your trial is free for 30 days.</span></div>
  <span class="gw lg" style="width:150px;height:150px;align-self:center;margin:6px 0"></span>
  <div class="k" style="text-align:center">You found the window</div>
- <h5 style="text-align:center">The first and only<br>Biological Suncare™</h5>
- <p class="mut" style="text-align:center">Mineral SPF on top. Skincare underneath. Designed by Sheri Rowen, MD.</p>
+ <h5 style="text-align:center">Mama Sol<br>Biological Suncare™</h5><div class="k" style="text-align:center">The first and only Biological Suncare™ brand</div>
+ <p class="mut" style="text-align:center">Mineral SPF on top. Skincare underneath. Developed by Arielle Moody with physician Dr. Sheri Rowen.</p>
  <div style="margin-top:auto;display:flex;flex-direction:column;gap:8px"><a class="pbtn">Start my free trial</a><a class="pbtn gh">See the science</a></div></div></div></div></div><figcaption class="cap"><b>Postcard QR landing</b>The scan opens a page with the trial code already applied. No typing.</figcaption></figure><figure><div class="ph"><div class="sc ios"><div class="scr"><div class="sb"><span>9:41</span><span>● ● ●</span></div><div class="serp"><div class="sbar">biological suncare</div>
- <div class="aio"><div class="hd"><i></i>AI Overview</div>Biological Suncare™ is a category of sunscreen introduced by Mama Sol. It pairs mineral zinc oxide protection on top with skincare ingredients, like ectoin, that support the skin underneath. The formulas were designed with Sheri Rowen, MD.
+ <div class="aio"><div class="hd"><i></i>AI Overview</div>Biological Suncare™ is a category of sunscreen introduced by Mama Sol. It pairs mineral zinc oxide protection on top with skincare ingredients, like ectoin, that support the skin underneath. Mama Sol was founded by beauty industry veteran Arielle Moody, who developed the approach with physician Dr. Sheri Rowen.
  <div class="cite"><span class="gw"></span><div><b>shopmamasol.com</b><br>What is Biological Suncare™?</div></div></div>
  <div class="res">shopmamasol.com<a>Biological Suncare™ | FACEBRELLA™ SPF 30</a>The first and only Biological Suncare™ brand. Protects on top, supports underneath.</div>
  <div class="res">shopmamasol.com › science<a>The science behind Biological Suncare™</a>Published research on ectoin, antioxidants and non-nano zinc oxide.</div></div></div></div></div><figcaption class="cap"><b>Search and AI answers</b>At 9:15 pm she searches the name. The site is built so Google and AI assistants answer with Mama Sol and cite it.</figcaption></figure><figure><div class="ph"><div class="sc ios"><div class="scr"><div class="sb"><span>9:41</span><span>● ● ●</span></div><div class="story"><div class="bars"><i></i><i></i><i></i></div>
- <span class="gw lg" style="width:110px;height:110px"><img src="https://www.shopmamasol.com/cdn/shop/files/sheri_adapated.webp?width=300" alt="" style="object-position:50% 45%"></span>
- <div style="font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--sol)">Ask Dr. Rowen</div>
- <div class="qbox"><b>What does your sunscreen do for your skin?</b><span>Type your question</span></div>
- <div style="font-size:11px;opacity:.8">Answers posted Friday</div></div></div></div></div><figcaption class="cap"><b>Instagram story · Question sticker</b>Dr. Rowen collects questions, then answers them on camera. Free content that teaches the category.</figcaption></figure></div>
+ <span class="gw lg" style="width:110px;height:110px"><img src="https://www.shopmamasol.com/cdn/shop/files/upscaled-4x-Arielle.png?width=300" alt="" style="object-position:50% 20%"></span>
+ <div style="font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--sol)">Ask the Founders</div>
+ <div class="qbox"><b>What if your sunscreen did more than protect?</b><span>Ask Arielle and Dr. Rowen</span></div>
+ <div style="font-size:11px;opacity:.8">Answers posted Friday</div></div></div></div></div><figcaption class="cap"><b>Instagram story · Question sticker</b>Arielle collects questions and answers them on camera, with Dr. Rowen joining for the science. Free content that teaches the category.</figcaption></figure></div>
   </div>
  </div>
 </section>
@@ -856,30 +876,30 @@ h3{font-weight:400}
  <div class="w">
   <div class="sh"><div class="no">2</div><div><div class="caps">Consideration</div><h2 style="margin-top:8px">Prove it is real in ten seconds.</h2></div><div class="bud"><b>$10k</b><span>site build</span></div></div>
   <div class="scene">
-   <p class="serif">At 9:15 pm she types the name into Google. The homepage answers three questions before she scrolls: what is it, which doctor stands behind it, and who already trusts it.</p>
-   <div class="beat"><b>Category beat</b>The hero is the category. Dr. Rowen is the second thing she sees.</div>
+   <p class="serif">At 9:15 pm she types the name into Google. The homepage answers three questions before she scrolls: what is it, who is behind it, and who already trusts it.</p>
+   <div class="beat"><b>Category beat</b>The hero is Mama Sol and the category. The founders, beauty and science together, come second.</div>
   </div>
   <div class="grid">
    <figure class="c12">
     <div class="br"><div class="bar"><i></i><i></i><i></i><span>shopmamasol.com</span></div>
      <div class="site">
-      <div class="snav"><span class="lg">MAMA SOL</span><span>Shop · Biological Suncare™ · The Science · Dr. Rowen · Our Story</span></div>
+      <div class="snav"><span class="lg">MAMA SOL</span><span>Shop · Biological Suncare™ · The Science · Our Founders</span></div>
       <div class="shero">
-       <div class="tx"><div class="caps">The first and only Biological Suncare™ brand</div><h4>Biological<br>Suncare™</h4><p class="muted" style="max-width:40ch">Sunscreen has always played defense. Ours is proactive. Mineral SPF protects on top, while ectoin and our FaceSOL Complex™ support your skin underneath.</p><div><a class="btn">Shop FACEBRELLA™</a><a class="btn g">The science</a></div></div>
+       <div class="tx"><div class="caps">The first and only Biological Suncare™ brand</div><h4>Biological<br>Suncare™</h4><p class="muted" style="max-width:40ch">Sunscreen has always played defense. Ours is proactive. Mineral SPF protects on top, while ectoin and our FaceSOL™ Complex family support your skin underneath.</p><div><a class="btn">Shop FACEBRELLA™</a><a class="btn g">The science</a></div></div>
        <div class="win"><span class="gw lg"><img src="https://www.shopmamasol.com/cdn/shop/files/260306_MamaSol_BEAUTY_FACE_LIGHT_0663_1600px.webp?width=900" alt="" style="object-position:50% 30%"></span></div>
       </div>
-      <div class="sdoc"><span class="gw lg"><img src="https://www.shopmamasol.com/cdn/shop/files/sheri_adapated.webp?width=400" alt="" style="object-position:50% 45%"></span><div><div class="caps">Designed by a physician</div><p class="serif" style="font-size:24px;margin-top:8px">“It protects the surface and takes care of the skin underneath.”</p><p class="muted" style="font-size:14px;margin-top:6px">Sheri Rowen, MD, F.A.C.S. Johns Hopkins fellowship. Principal investigator for multiple FDA trials.</p></div></div>
+      <div class="sdoc"><div class="founders"><figure><span class="gw lg"><img src="https://www.shopmamasol.com/cdn/shop/files/upscaled-4x-Arielle.png?width=300" alt="Arielle Moody" style="object-position:50% 20%"></span><figcaption>Arielle</figcaption></figure><figure><span class="gw lg"><img src="https://www.shopmamasol.com/cdn/shop/files/sheri_adapated.webp?width=300" alt="Dr. Sheri Rowen" style="object-position:50% 45%"></span><figcaption>Dr. Rowen</figcaption></figure></div><div><div class="caps">Developed with a physician</div><p class="serif" style="font-size:24px;margin-top:8px">“It protects the surface and takes care of the skin underneath.”</p><p class="muted" style="font-size:14px;margin-top:6px">Dr. Sheri Rowen, F.A.C.S., Medical Co-Founder. Johns Hopkins fellowship. Principal investigator for multiple FDA trials.</p></div></div>
       <div class="sprod">
        <div><img src="https://www.shopmamasol.com/cdn/shop/files/100-Mineral-Face-Flat-Lay-1000x1000.png?width=500" alt=""><b>FACEBRELLA™</b><span class="muted">Mineral Moisturizing Sunscreen SPF 30</span></div>
        <div><img src="https://www.shopmamasol.com/cdn/shop/files/facebrella-tints-100-mineral-glow-serum-spf-45-pa-2383756.jpg?width=500" alt=""><b>FACEBRELLA™ Tints</b><span class="muted">Mineral Glow Serum SPF 45</span></div>
-       <div><img src="https://www.shopmamasol.com/cdn/shop/files/260306_MamaSol_BEAUTY_EYE_MEDIUM_1303_1600px.webp?width=500" alt=""><b>Shade-matched</b><span class="muted">Tinted or untinted, so every skin tone has a version</span></div>
+       <div><img src="https://www.shopmamasol.com/cdn/shop/files/facebrella-tints-100-mineral-glow-serum-spf-45-pa-5262892.webp?width=500" alt="Four models wearing the four FACEBRELLA Tints shades"><b>Four Tints shades</b><span class="muted">Layer FACEBRELLA™ Tints over your SPF 30 base for complexion coverage</span></div>
       </div>
       <div class="slogos">
        <img src="https://www.shopmamasol.com/cdn/shop/files/harpers-bazaar.webp?width=240" alt="Harper's Bazaar"><img src="https://www.shopmamasol.com/cdn/shop/files/NewBeauty-SoftBlack-SizeCorrected.png?width=240" alt="NewBeauty"><img src="https://www.shopmamasol.com/cdn/shop/files/Four-Seasons-Logo.png?width=240" alt="Four Seasons"><img src="https://cdn.shopify.com/s/files/1/0721/7623/8885/files/Bloomingdale_s_Logo_svg.webp?width=240" alt="Bloomingdale's"><img src="https://www.shopmamasol.com/cdn/shop/files/shape.webp?width=240" alt="Shape">
       </div>
      </div>
     </div>
-    <figcaption class="cap"><b>Homepage</b>Category first, physician second, products third, proof last. Every image sits in the carton's window.</figcaption>
+    <figcaption class="cap"><b>Homepage</b>Mama Sol and the category first, founders second, products third, proof last. Every image sits in the carton's window.</figcaption>
    </figure>
   </div>
   <div class="rtb">
@@ -892,23 +912,24 @@ h3{font-weight:400}
    <div class="grid">
     <figure class="c12">
      <div class="cmp">
-      <div class="cmphead"><p>What to look for in a daily SPF</p><div class="legend"><span><span class="gw"></span>Look for this</span><span><span class="gw no"></span>Not designed for it</span></div></div>
+      <div class="cmphead"><p>The Biological Difference</p><div class="legend"><span><span class="gw"></span>Look for this</span><span><span class="gw no"></span>Not designed for it</span></div></div>
       <div class="tw"><table>
-       <thead><tr><th>Look for</th><th>Typical chemical SPF</th><th>Typical mineral SPF</th><th class="us">Mama Sol<small>Biological Suncare™</small></th></tr></thead>
-       <tbody><tr><td>A mineral filter that stays on top<small>Non-nano zinc oxide</small></td><td><span class="gw no" role="img" aria-label="No"></span></td><td><span class="gw" role="img" aria-label="Yes"></span></td><td class="us"><span class="gw" role="img" aria-label="Yes"></span></td></tr><tr><td>Ingredients chosen to support skin underneath<small>Ectoin for hydration and the moisture barrier</small></td><td><span class="gw no" role="img" aria-label="No"></span></td><td><span class="gw no" role="img" aria-label="No"></span></td><td class="us"><span class="gw" role="img" aria-label="Yes"></span></td></tr><tr><td>Antioxidant-rich botanicals<small>For everyday environmental stressors</small></td><td><span class="vary">Varies</span></td><td><span class="vary">Varies</span></td><td class="us"><span class="gw" role="img" aria-label="Yes"></span></td></tr><tr><td>Works as your daily moisturizer<small>One step instead of two</small></td><td><span class="vary">Varies</span></td><td><span class="vary">Varies</span></td><td class="us"><span class="gw" role="img" aria-label="Yes"></span></td></tr><tr><td>Designed by a physician<small>Sheri Rowen, MD</small></td><td><span class="gw no" role="img" aria-label="No"></span></td><td><span class="gw no" role="img" aria-label="No"></span></td><td class="us"><span class="gw" role="img" aria-label="Yes"></span></td></tr></tbody>
+       <thead><tr><th>Look for</th><th>Traditional chemical sunscreens</th><th>Typical mineral sunscreens</th><th class="us">Mama Sol<small>Biological Suncare™</small></th></tr></thead>
+       <tbody><tr><td>Forms a breathable barrier that helps reflect UV rays<small>100% mineral protection</small></td><td><span class="gw no" role="img" aria-label="No"></span></td><td><span class="gw" role="img" aria-label="Yes"></span></td><td class="us"><span class="gw" role="img" aria-label="Yes"></span></td></tr><tr><td>Works the moment you apply it<small>Chemical filters need 15 to 20 minutes</small></td><td><span class="gw no" role="img" aria-label="No"></span></td><td><span class="gw" role="img" aria-label="Yes"></span></td><td class="us"><span class="gw" role="img" aria-label="Yes"></span></td></tr><tr><td>Sits on top of the skin<small>Not absorbed into the body</small></td><td><span class="gw no" role="img" aria-label="No"></span></td><td><span class="gw" role="img" aria-label="Yes"></span></td><td class="us"><span class="gw" role="img" aria-label="Yes"></span></td></tr><tr><td>Gentle on sensitive skin</td><td><span class="vary">Varies</span></td><td><span class="gw" role="img" aria-label="Yes"></span></td><td class="us"><span class="gw" role="img" aria-label="Yes"></span></td></tr><tr><td>Ingredients chosen to support skin underneath<small>Ectoin for hydration and the moisture barrier</small></td><td><span class="gw no" role="img" aria-label="No"></span></td><td><span class="gw no" role="img" aria-label="No"></span></td><td class="us"><span class="gw" role="img" aria-label="Yes"></span></td></tr><tr><td>Antioxidant-rich botanicals<small>The FaceSOL™ Complex family</small></td><td><span class="vary">Varies</span></td><td><span class="vary">Varies</span></td><td class="us"><span class="gw" role="img" aria-label="Yes"></span></td></tr><tr><td>Works as your daily moisturizer<small>One step instead of two</small></td><td><span class="vary">Varies</span></td><td><span class="vary">Varies</span></td><td class="us"><span class="gw" role="img" aria-label="Yes"></span></td></tr><tr><td>Developed with a physician<small>Dr. Sheri Rowen, Medical Co-Founder</small></td><td><span class="vary">Varies</span></td><td><span class="vary">Varies</span></td><td class="us"><span class="gw" role="img" aria-label="Yes"></span></td></tr></tbody>
       </table></div>
-      <div class="cmpfoot">Every sunscreen protects. Only one is Biological.</div>
+      <div class="cmpfoot2"><div><b>What's inside</b>Non-nano zinc oxide, ectoin and the FaceSOL™ Complex family</div><div><b>What we leave out</b>Oxybenzone, Avobenzone, Homosalate, Octinoxate, Octisalate, Octocrylene</div></div>
+      <div class="cmpfoot">Apply and go. Every sunscreen protects. Only one is Biological.</div>
      </div>
-     <figcaption class="cap"><b>Comparison chart · Site and product page</b>Category versus category, never brand versus brand. The gold window marks what to look for.</figcaption>
+     <figcaption class="cap"><b>Comparison chart · Site and product page</b>Your current Mineral Difference chart, extended with the Biological rows. Named-brand comparisons can sit beside it on our own site once each claim is substantiated and cleared by Mo.</figcaption>
     </figure>
    </div>
    <div class="tiles">
     <div class="tile"><span class="tl">The research</span><span class="gw lg">SPF</span><p><span>SPF measures sunburn protection.</span><span>Not what your sunscreen</span><span>does for your skin.</span></p><span class="src">J Invest Dermatol, 2003</span></div>
     <div class="tile dk"><span class="tl">The ingredient</span><span class="gw lg">104</span><p><span>104 women.</span><span>A randomized trial.</span><span>Ectoin measurably improved</span><span>skin hydration.</span></p><span class="src">Skin Pharmacol Physiol, 2007 · Ingredient study</span></div>
     <div class="tile"><span class="tl">The filter</span><span class="gw lg">Zn</span><p><span>Zinc oxide stays on the surface,</span><span>even after repeated use.</span><span>Exactly where protection belongs.</span></p><span class="src">J Invest Dermatol, 2019</span></div>
-    <div class="tile"><span class="tl">The physician</span><span class="gw lg photo"><img src="https://www.shopmamasol.com/cdn/shop/files/sheri_adapated.webp?width=500" alt="" style="object-position:50% 45%"></span><p><span>Designed by a physician</span><span>who has led multiple FDA trials.</span></p><span class="src">Sheri Rowen, MD, F.A.C.S.</span></div>
+    <div class="tile"><span class="tl">The physician</span><span class="gw lg photo"><img src="https://www.shopmamasol.com/cdn/shop/files/sheri_adapated.webp?width=500" alt="" style="object-position:50% 45%"></span><p><span>Developed with a physician</span><span>who has led multiple FDA trials.</span></p><span class="src">Dr. Sheri Rowen, Medical Co-Founder</span></div>
     <div class="tile dk"><span class="tl">The formula</span><span class="gw lg">2</span><p><span>One step. Two jobs.</span><span>Protects on top.</span><span>Supports underneath.</span></p><span class="src">FACEBRELLA™ SPF 30</span></div>
-    <div class="tile"><span class="tl">The question</span><span class="gw lg">?</span><p><span>Ask your sunscreen one question.</span><span>What does it do for your skin?</span></p><span class="src">Biological Suncare™</span></div>
+    <div class="tile"><span class="tl">The question</span><span class="gw lg">?</span><p><span>Your sunscreen protects your skin from the sun.</span><span>But what else does it do?</span></p><span class="src">Meet Mama Sol Biological Suncare™. Mineral SPF protects on top. Skincare supports underneath.</span></div>
    </div>
    <p class="cap" style="margin-top:14px"><b>Snippets · Ads, social carousels, product page</b>One fact per card, each with its source. Ingredient findings are labeled as ingredient research, not finished-formula results.</p>
   </div>
@@ -916,20 +937,20 @@ h3{font-weight:400}
   <div class="uirow">
    <div class="caps">The UI · Consideration</div>
    <h3>Make choosing feel like a consultation.</h3>
-   <p class="lead">The product page and shade match do the selling, with the window as the visual thread.</p>
+   <p class="lead">The product page and routine quiz do the selling: SPF 30 as the base, Tints as the optional layer on top.</p>
    <div class="phones"><figure><div class="ph"><div class="sc app"><div class="scr"><div class="sb"><span>9:41</span><span>● ● ●</span></div><div class="ah"><span>‹</span><span class="lg">MAMA SOL</span><span>♡</span></div><div class="bd" style="gap:10px"><span class="gw lg" style="width:170px;height:170px;align-self:center"><img src="https://www.shopmamasol.com/cdn/shop/files/100-Mineral-Face-Flat-Lay-1000x1000.png?width=400" alt=""></span>
  <div class="k">Biological Suncare™</div><h5>FACEBRELLA™ SPF 30</h5>
  <div class="opt on"><span class="gw"></span><b>Protects on top</b><span class="r">Non-nano zinc</span></div>
- <div class="opt on"><span class="gw"></span><b>Supports underneath</b><span class="r">Ectoin + FaceSOL™</span></div>
- <div class="k" style="margin-top:4px">Your version</div><div class="shades"><i style="background:#F6F1EA" class="on"></i><i style="background:#EBCFB2"></i><i style="background:#C99A72"></i><i style="background:#8C5F3F"></i></div>
- <a class="pbtn" style="margin-top:auto">Try it free for 30 days</a></div></div></div></div><figcaption class="cap"><b>Product page</b>The two jobs are the first thing on the page, then her shade, then the trial.</figcaption></figure><figure><div class="ph"><div class="sc app"><div class="scr"><div class="sb"><span>9:41</span><span>● ● ●</span></div><div class="ah"><span>‹</span><span class="lg">MAMA SOL</span><span>♡</span></div><div class="bd"><div class="k">Find your FACEBRELLA™ · 2 of 3</div><div class="sv">How does your skin feel by 3 pm?</div>
- <div class="opt"><span class="gw no"></span>Tight and dry</div><div class="opt on"><span class="gw"></span><b>Comfortable</b></div><div class="opt"><span class="gw no"></span>A little shiny</div><div class="opt"><span class="gw no"></span>It changes daily</div>
+ <div class="opt on"><span class="gw"></span><b>Supports underneath</b><span class="r">Ectoin + FaceSOL™ Complex</span></div>
+ <div class="k" style="margin-top:4px">Add a tint on top, if you like</div><div class="shades"><i style="background:#F6F1EA" class="on"></i><i style="background:#EBCFB2"></i><i style="background:#C99A72"></i><i style="background:#8C5F3F"></i></div>
+ <a class="pbtn" style="margin-top:auto">Try it free for 30 days</a><p class="mut" style="text-align:center">SPF 30 is your base. Tints are a bonus layer, not the base.</p></div></div></div></div><figcaption class="cap"><b>Product page</b>The two jobs come first, then the optional tint to layer on top, then the trial.</figcaption></figure><figure><div class="ph"><div class="sc app"><div class="scr"><div class="sb"><span>9:41</span><span>● ● ●</span></div><div class="ah"><span>‹</span><span class="lg">MAMA SOL</span><span>♡</span></div><div class="bd"><div class="k">Find your FACEBRELLA™ Routine · 2 of 3</div><div class="sv">Over your SPF 30 base, how much coverage do you like?</div>
+ <div class="opt"><span class="gw no"></span>None, just my sunscreen base</div><div class="opt on"><span class="gw"></span><b>A sheer, even glow</b></div><div class="opt"><span class="gw no"></span>A little more coverage</div><div class="opt"><span class="gw no"></span>Not sure yet</div>
  <div style="height:3px;background:var(--line);margin-top:6px"><div style="width:66%;height:100%;background:var(--sol)"></div></div>
- <a class="pbtn" style="margin-top:auto">Next</a><p class="mut" style="text-align:center">Your match in 30 seconds</p></div></div></div></div><figcaption class="cap"><b>Shade and skin match</b>Three questions, then the right version. Answers feed her emails later.</figcaption></figure><figure><div class="ph"><div class="sc app"><div class="scr"><div class="sb"><span>9:41</span><span>● ● ●</span></div><div class="ah"><span>‹</span><span class="lg">MAMA SOL</span><span>♡</span></div><div class="bd"><div class="k">Your match</div><span class="gw lg" style="width:140px;height:140px;align-self:center"><img src="https://www.shopmamasol.com/cdn/shop/files/facebrella-tints-100-mineral-glow-serum-spf-45-pa-2383756.jpg?width=400" alt=""></span>
- <h5 style="text-align:center">FACEBRELLA™ Tints<br>Light</h5><p class="mut" style="text-align:center">A sheer tint for comfortable skin, SPF 45.</p>
- <div class="opt on"><span class="gw"></span><b>Recommended by your answers</b></div>
- <div class="banner"><span class="gw"></span>Dr. Rowen's note: reapply as the label directs when you are outdoors.</div>
- <a class="pbtn" style="margin-top:auto">Start my free trial</a></div></div></div></div><figcaption class="cap"><b>Quiz result</b>Her result feels personal, with a note in Dr. Rowen's voice.</figcaption></figure></div>
+ <a class="pbtn" style="margin-top:auto">Next</a><p class="mut" style="text-align:center">Your routine in 30 seconds</p></div></div></div></div><figcaption class="cap"><b>Find your FACEBRELLA™ Routine</b>Every routine starts with the SPF 30 base. The quiz only decides whether and which tint to layer on top.</figcaption></figure><figure><div class="ph"><div class="sc app"><div class="scr"><div class="sb"><span>9:41</span><span>● ● ●</span></div><div class="ah"><span>‹</span><span class="lg">MAMA SOL</span><span>♡</span></div><div class="bd"><div class="k">Your FACEBRELLA™ Routine</div><span class="gw lg" style="width:110px;height:110px;align-self:center"><img src="https://www.shopmamasol.com/cdn/shop/files/facebrella-tints-100-mineral-glow-serum-spf-45-pa-5262892.webp?width=400" alt=""></span>
+ <div class="step"><span class="n">1</span><div><b>FACEBRELLA™ SPF 30</b><span class="mut">Your sunscreen base. Apply a full, generous layer.</span></div></div>
+ <div class="step"><span class="n">2</span><div><b>FACEBRELLA™ Tints SPF 45, Light</b><span class="mut">Layer on top for complexion coverage.</span></div></div>
+ <div class="banner"><span class="gw"></span>Makeup SPF is a bonus, not the base. Use enough SPF 30 to get its labeled protection.</div>
+ <a class="pbtn" style="margin-top:auto">Start my free trial</a></div></div></div></div><figcaption class="cap"><b>Quiz result</b>A two-step routine: the base first, the tint on top, and why both matter.</figcaption></figure></div>
   </div>
  </div>
 </section>
@@ -940,10 +961,10 @@ h3{font-weight:400}
   <div class="scene">
    <p class="serif">A new category is a bigger leap than a new brand, and Joanna saves things without buying them. Every barrier gets one clear answer, and the trial does the convincing.</p>
    <div class="tw"><table class="tbl"><thead><tr><th>Her doubt</th><th>Our answer</th></tr></thead><tbody>
-    <tr><td>“Is this real?”</td><td>Dr. Rowen, the research, and a 30-day trial</td></tr>
+    <tr><td>“Is this real?”</td><td>The founders, the research, and a 30-day trial</td></tr>
     <tr><td>Time</td><td>Apple Pay in one tap, free returns at any UPS</td></tr>
     <tr><td>Money</td><td>A cart reminder with a small thank-you</td></tr>
-    <tr><td>Fit</td><td>Tinted or untinted, so she picks her version</td></tr>
+    <tr><td>Fit</td><td>FACEBRELLA™ SPF 30 creates her daily sunscreen base. FACEBRELLA™ Tints layer on top for complexion coverage.</td></tr>
     <tr><td>Commitment</td><td>Subscribe and save, skip anytime</td></tr>
    </tbody></table></div>
   </div>
@@ -953,7 +974,7 @@ h3{font-weight:400}
      <div class="sb"><span>9:16</span><span>● ● ●</span></div>
      <div class="co">
       <div class="caps" style="text-align:center;font-size:9px">Your bag</div>
-      <div class="ln"><img src="https://www.shopmamasol.com/cdn/shop/files/100-Mineral-Face-Flat-Lay-1000x1000.png?width=200" alt=""><div><b>FACEBRELLA™ SPF 30</b><div style="color:#777;font-size:12px">Biological Suncare™ · Untinted</div></div></div>
+      <div class="ln"><img src="https://www.shopmamasol.com/cdn/shop/files/100-Mineral-Face-Flat-Lay-1000x1000.png?width=200" alt=""><div><b>FACEBRELLA™ SPF 30</b><div style="color:#777;font-size:12px">Your daily sunscreen base</div></div></div><div class="ln"><img src="https://www.shopmamasol.com/cdn/shop/files/facebrella-tints-100-mineral-glow-serum-spf-45-pa-2383756.jpg?width=200" alt=""><div><b>+ FACEBRELLA™ Tints SPF 45</b><div style="color:#777;font-size:12px">Layer on top for coverage</div></div></div>
       <div class="bdg"><span class="gw"></span><span>Try it for 30 days. Not your new ritual? Send it back.</span></div>
       <div class="row"><span>Subscribe and save</span><b>Every 60 days</b></div>
       <div class="row"><span>Shipping</span><b>Free</b></div>
@@ -964,8 +985,8 @@ h3{font-weight:400}
     <figcaption class="cap"><b>Mobile checkout</b>Built for 9:15 pm on the couch.</figcaption>
    </figure>
    <figure class="c8">
-    <div class="em"><div class="hd"><b>Mama Sol</b> · A note from Dr. Rowen about your cart</div>
-     <div class="bd"><span class="gw lg"><img src="https://www.shopmamasol.com/cdn/shop/files/20260306_MAMASOL_BEAUTY_EYE_MEDIUM_1259_1600px.jpg?width=700" alt="" style="object-position:50% 40%"></span><div><div class="caps">Still deciding?</div><p class="serif" style="font-size:26px;line-height:1.15">Your mama said to wear sunscreen. We made you want to.</p><p style="font-size:14px;color:var(--text)">Try the first Biological Suncare™ for 30 days. If it is not your new ritual, send it back.</p><a class="btn" style="align-self:flex-start">Start my trial</a></div></div>
+    <div class="em"><div class="hd"><b>Mama Sol</b> · A note from Arielle about your cart</div>
+     <div class="bd"><span class="gw lg"><img src="https://www.shopmamasol.com/cdn/shop/files/facebrella-tints-100-mineral-glow-serum-spf-45-pa-6910794.jpg?width=700" alt="" style="object-position:50% 30%"></span><div><div class="caps">Still deciding?</div><p class="serif" style="font-size:26px;line-height:1.15">Your mama said to wear sunscreen. We made you want to.</p><p style="font-size:14px;color:var(--text)">Try the first Biological Suncare™ for 30 days. If it is not your new ritual, send it back.</p><a class="btn" style="align-self:flex-start">Start my trial</a></div></div>
     </div>
     <figcaption class="cap"><b>Cart reminder email</b>The journey map's FOMO line, in the brand's voice.</figcaption>
    </figure>
@@ -977,13 +998,13 @@ h3{font-weight:400}
    <p class="lead">The trial, the subscription choice and the payment, each one screen.</p>
    <div class="phones"><figure><div class="ph"><div class="sc app"><div class="scr"><div class="sb"><span>9:41</span><span>● ● ●</span></div><div class="ah"><span>‹</span><span class="lg">MAMA SOL</span><span>♡</span></div><div class="bd"><div class="k">Delivery</div><div class="seg"><span>30 days</span><span>45 days</span><span class="on">60 days</span></div>
  <div class="opt on"><span class="gw"></span><b>Subscribe and save</b><span class="r">Skip anytime</span></div><div class="opt"><span class="gw no"></span>One-time trial</div>
- <div class="line"><span>FACEBRELLA™ Tints, Light</span><span>Free trial</span></div><div class="line g"><span>POSTCARD30</span><span>Applied</span></div><div class="line"><span>Due today</span><b style="font-weight:500">$0.00</b></div>
+ <div class="line"><span>FACEBRELLA™ SPF 30</span><span>Free trial</span></div><div class="line"><span>+ Tints SPF 45, Light</span><span>Free trial</span></div><div class="line g"><span>POSTCARD30</span><span>Applied</span></div><div class="line"><span>Due today</span><b style="font-weight:500">$0.00</b></div>
  <p class="mut">You will not be charged until day 30. We remind you on day 25.</p>
  <a class="pbtn" style="margin-top:auto;background:#000">Pay with Apple Pay</a></div></div></div></div><figcaption class="cap"><b>Trial and subscription</b>She sees $0 today, the reminder promise and the skip option before she pays.</figcaption></figure><figure><div class="ph"><div class="sc app"><div class="scr"><div class="sb"><span>9:41</span><span>● ● ●</span></div><div class="ah"><span>‹</span><span class="lg">MAMA SOL</span><span>♡</span></div><div class="bd" style="opacity:.5"><h5>Checkout</h5><div class="line"><span>Due today</span><span>$0.00</span></div></div><div class="dim"></div>
  <div class="sheet ios"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><b style="font-size:16px">Pay</b><span style="color:#0A84FF">Cancel</span></div>
  <div class="row"><span>Card</span><span>Visa •••• 0000</span></div><div class="row"><span>Ship to</span><span>Joanna, Irvine CA</span></div><div class="row"><span>Pay</span><span>MAMA SOL $0.00</span></div>
  <div class="side"><i></i>Confirm with Side Button</div></div></div></div></div><figcaption class="cap"><b>Apple Pay</b>Built for the couch at 9:15 pm. Nothing to type.</figcaption></figure><figure><div class="ph"><div class="sc app"><div class="scr"><div class="sb"><span>9:41</span><span>● ● ●</span></div><div class="ah"><span>‹</span><span class="lg">MAMA SOL</span><span>♡</span></div><div class="bd"><span class="gw lg" style="width:96px;height:96px;align-self:center"></span><h5 style="text-align:center">Your trial has begun</h5>
- <ul class="tl"><li><span class="gw"></span><div><b>Today</b><span class="mut">Order confirmed</span></div></li><li><span class="gw no"></span><div><b>Thursday</b><span class="mut">Arrives with Dr. Rowen's card</span></div></li><li><span class="gw no"></span><div><b>Day 25</b><span class="mut">We check in. Keep it or send it back.</span></div></li><li><span class="gw no"></span><div><b>Day 30</b><span class="mut">Your subscription starts</span></div></li></ul>
+ <ul class="tl"><li><span class="gw"></span><div><b>Today</b><span class="mut">Order confirmed</span></div></li><li><span class="gw no"></span><div><b>Thursday</b><span class="mut">Arrives with a note from Arielle and Dr. Rowen</span></div></li><li><span class="gw no"></span><div><b>Day 25</b><span class="mut">We check in. Keep it or send it back.</span></div></li><li><span class="gw no"></span><div><b>Day 30</b><span class="mut">Your subscription starts</span></div></li></ul>
  <a class="pbtn gh" style="margin-top:auto">Add reminder to calendar</a></div></div></div></div><figcaption class="cap"><b>Order confirmation</b>The whole trial on one timeline. The gold windows fill in as the days pass.</figcaption></figure></div>
   </div>
  </div>
@@ -994,15 +1015,15 @@ h3{font-weight:400}
   <div class="sh"><div class="no">4</div><div><div class="caps">Service</div><h2 style="margin-top:8px">The box teaches the category.</h2></div><div class="bud"><b>Insert</b><span>in every box</span></div></div>
   <div class="scene">
    <p class="serif">She opens it at the kitchen island. The sun window catches the light. One card explains the two jobs, so tomorrow she can explain Biological Suncare™ to her friends.</p>
-   <div class="beat"><b>Category beat</b>The insert repeats the two jobs and Dr. Rowen's signature.</div>
+   <div class="beat"><b>Category beat</b>The insert repeats the two jobs, signed by Arielle and Dr. Rowen.</div>
   </div>
   <div class="grid">
    <figure class="c8">
     <div class="ub"><div class="bx" role="img" aria-label="The FACEBRELLA carton"></div>
      <div class="ins"><span class="gw lg"></span><div class="caps">Your new morning ritual</div><p class="serif" style="font-size:28px">One step. Two jobs.</p>
-      <ol class="steps"><li>After cleansing, smooth a generous layer over face and neck.</li><li>Give it a minute. It works as your moisturizer.</li><li>Reapply as the Drug Facts label directs when outdoors.</li></ol>
-      <p class="serif" style="font-size:18px;margin-top:6px">With care, Sheri Rowen, MD</p></div></div>
-    <figcaption class="cap"><b>Unboxing insert</b>The real carton, plus a card signed by the physician.</figcaption>
+      <ol class="steps"><li>After cleansing, smooth a generous layer of FACEBRELLA™ SPF 30 over face and neck. Use enough for its labeled protection.</li><li>Give it a minute. It works as your moisturizer. For coverage, layer FACEBRELLA™ Tints on top.</li><li>Reapply as the Drug Facts label directs when outdoors.</li></ol>
+      <p class="serif" style="font-size:18px;margin-top:6px">With care,<br>Arielle Moody, CEO &amp; Co-Founder<br>Dr. Sheri Rowen, Medical Co-Founder</p></div></div>
+    <figcaption class="cap"><b>Unboxing insert</b>The real carton, plus a note from Arielle and Dr. Rowen.</figcaption>
    </figure>
    <figure class="c4"><div class="rit"><img src="https://images.unsplash.com/photo-1702312686957-572286d28e11?w=700&h=700&fit=crop&crop=faces,entropy&q=80&auto=format" alt="Morning skincare ritual"></div><figcaption class="cap"><b>First morning</b>The moment the ritual has to feel like luxury skincare.</figcaption></figure>
   </div>
@@ -1013,11 +1034,11 @@ h3{font-weight:400}
    <p class="lead">Texts and emails that coach the ritual and make the trial decision easy.</p>
    <div class="phones"><figure><div class="ph"><div class="sc ios"><div class="scr"><div class="sb"><span>2:14</span><span>● ● ●</span></div><div class="mh"><div class="av2"><span class="gw"></span></div>Mama Sol</div><div class="msgs">
  <div class="ts">Tue 2:14 PM</div><div class="bub in">Your Biological Suncare™ ships today and arrives Thursday. Track it here: shopmamasol.com/t/48213</div>
- <div class="ts">Thu 8:02 AM</div><div class="bub in">It's here. Tip from Dr. Rowen: after cleansing, smooth a generous layer over face and neck. It works as your moisturizer.</div>
- <div class="bub out">Already using it, love the box!</div><div class="bub in">Wonderful. Reply SHADE anytime if you want to try another tint.</div></div></div></div></div><figcaption class="cap"><b>Delivery and day-one texts</b>Shipping updates that double as coaching from Dr. Rowen.</figcaption></figure><figure><div class="ph"><div class="sc app"><div class="scr"><div class="sb"><span>9:41</span><span>● ● ●</span></div><div class="ah"><span>‹</span><span class="lg">MAMA SOL</span><span>♡</span></div><div class="bd"><div class="k">Day 25 of 30</div><div class="sv">Is it your new ritual?</div>
+ <div class="ts">Thu 8:02 AM</div><div class="bub in">It's here. Tip from Arielle: after cleansing, smooth a generous layer of SPF 30 over face and neck. Then add Tints on top if you want coverage.</div>
+ <div class="bub out">Already using it, love the box!</div><div class="bub in">Wonderful. Reply SHADE anytime if you want to try another tint.</div></div></div></div></div><figcaption class="cap"><b>Delivery and day-one texts</b>Shipping updates that double as routine coaching from Arielle.</figcaption></figure><figure><div class="ph"><div class="sc app"><div class="scr"><div class="sb"><span>9:41</span><span>● ● ●</span></div><div class="ah"><span>‹</span><span class="lg">MAMA SOL</span><span>♡</span></div><div class="bd"><div class="k">Day 25 of 30</div><div class="sv">Is it your new ritual?</div>
  <div class="wins"><span class="gw"></span><span class="gw"></span><span class="gw"></span><span class="gw"></span><span class="gw no"></span></div><p class="mut" style="text-align:center">25 mornings of Biological Suncare™</p>
  <a class="pbtn">Keep my ritual</a><a class="pbtn gh">Swap my shade</a><a class="pbtn gh">Send it back free</a>
- <p class="mut" style="text-align:center;margin-top:auto">Sending it back? We email a prepaid UPS label in one tap.</p></div></div></div></div><figcaption class="cap"><b>Day 25 trial check-in</b>Three honest choices. Keeping it is easiest, returning it is still one tap.</figcaption></figure><figure><div class="ph"><div class="sc app"><div class="scr"><div class="sb"><span>9:41</span><span>● ● ●</span></div><div class="ah"><span>‹</span><span class="lg">MAMA SOL</span><span>♡</span></div><div class="bd"><div class="k">My subscription</div><div class="opt on"><span class="gw"></span><div><b>FACEBRELLA™ Tints, Light</b><div class="mut">Every 60 days</div></div></div>
+ <p class="mut" style="text-align:center;margin-top:auto">Sending it back? We email a prepaid UPS label in one tap.</p></div></div></div></div><figcaption class="cap"><b>Day 25 trial check-in</b>Three honest choices. Keeping it is easiest, returning it is still one tap.</figcaption></figure><figure><div class="ph"><div class="sc app"><div class="scr"><div class="sb"><span>9:41</span><span>● ● ●</span></div><div class="ah"><span>‹</span><span class="lg">MAMA SOL</span><span>♡</span></div><div class="bd"><div class="k">My subscription</div><div class="opt on"><span class="gw"></span><div><b>FACEBRELLA™ Routine</b><div class="mut">SPF 30 base + Tints, Light · Every 60 days</div></div></div>
  <div class="stat"><span class="mut">Next delivery</span><b>Jan 14</b></div>
  <a class="pbtn gh">Skip next delivery</a><a class="pbtn gh">Delay 2 weeks</a><a class="pbtn gh">Add FACEBRELLA™ for a friend</a>
  <p class="mut" style="text-align:center;margin-top:auto">Cancel anytime. No calls, no forms.</p></div></div></div></div><figcaption class="cap"><b>Manage subscription</b>Skip, delay or swap in seconds, so pausing never turns into canceling.</figcaption></figure></div>
@@ -1046,9 +1067,9 @@ h3{font-weight:400}
    </figure>
    <div class="c7 lc">
     <div class="lcard dk"><span class="gw"></span><b>Referral</b><div class="big">$5 for you. $5 for her.</div><p>A code on the insert card and in the post-purchase email.</p></div>
-    <div class="lcard"><span class="gw"></span><b>Give back</b><div class="big">Send back the empty.</div><p>Return the bottle and we donate to a mom-focused charity.</p></div>
-    <div class="lcard"><span class="gw"></span><b>Share</b><div class="big">Show us your ritual.</div><p>Tag @shopmamasol. A monthly winner gets a year of Mama Sol.</p></div>
-    <div class="lcard"><span class="gw"></span><b>Community</b><div class="big">Ask Dr. Rowen.</div><p>Quarterly live Q&amp;A with Dr. Rowen and Arielle for customers.</p></div>
+    <div class="lcard"><span class="gw"></span><b>Give back · Once a year</b><div class="big">A year of sun protection.</div><p>Each year, a year's supply of FACEBRELLA™ SPF 30 Untinted for a person in need. Eligibility and fulfillment defined up front.</p></div>
+    <div class="lcard"><span class="gw"></span><b>Share</b><div class="big">Show us your ritual.</div><p>Tag @shopmamasol. Small monthly prizes, like a FACEBRELLA™ routine, for the best rituals.</p></div>
+    <div class="lcard"><span class="gw"></span><b>Community</b><div class="big">Ask the Founders.</div><p>Live conversations hosted by Arielle, with special appearances by Dr. Rowen.</p></div>
    </div>
   </div>
  
@@ -1061,7 +1082,7 @@ h3{font-weight:400}
  <div class="share"><div><i style="background:#34C759">✉</i>Messages</div><div><i style="background:#25D366">W</i>WhatsApp</div><div><i style="background:#E1306C">IG</i>Instagram</div><div><i style="background:var(--ink)">⧉</i>Link</div></div>
  <p class="mut" style="text-align:center;margin-top:auto">Created automatically with her first order. Also printed on her insert card.</p></div></div></div></div><figcaption class="cap"><b>Her code, auto-generated</b>Made from her first name at checkout. Tap Copy code to try it.</figcaption></figure><figure><div class="ph"><div class="sc ios"><div class="scr"><div class="sb"><span>6:40</span><span>● ● ●</span></div><div class="mh"><div class="av2" style="background:#ddd"></div>Joanna</div><div class="msgs">
  <div class="ts">Today 6:40 PM</div><div class="bub in">This is the sunscreen I was telling you about at Pilates. It's the one that also does skincare. $5 off on me</div>
- <div class="lp"><div class="board"><span class="gw lg"></span><div style="text-align:left"><div class="bk">Joanna sent you $5</div><div class="bh" style="font-size:13px">Biological<br>Suncare™</div></div></div><div class="t"><b>Your $5 from Joanna is waiting</b><span>shopmamasol.com</span></div></div>
+ <div class="lp"><div class="board"><span class="gw lg"></span><div style="text-align:left"><div class="bk">Joanna sent you $5</div><div class="bh" style="font-size:15px">Mama Sol</div><div class="bk">Biological Suncare™</div></div></div><div class="t"><b>Your $5 from Joanna is waiting</b><span>shopmamasol.com</span></div></div>
  <div class="bub out">Ok you sold me. Ordering</div></div></div></div></div><figcaption class="cap"><b>What her friend receives</b>The link carries the code, so the preview already says who it is from.</figcaption></figure><figure><div class="ph"><div class="sc app"><div class="scr"><div class="sb"><span>9:41</span><span>● ● ●</span></div><div class="ah"><span>‹</span><span class="lg">MAMA SOL</span><span>♡</span></div><div class="bd"><div class="banner"><span class="gw"></span><span><b style="font-weight:600">JOANNA5</b> applied. Joanna's $5 is yours.</span></div>
  <span class="gw lg" style="width:120px;height:120px;align-self:center"><img src="https://www.shopmamasol.com/cdn/shop/files/100-Mineral-Face-Flat-Lay-1000x1000.png?width=300" alt=""></span>
  <div class="line"><span>FACEBRELLA™ SPF 30</span><span>Trial</span></div><div class="line g"><span>Friend credit</span><span>−$5.00</span></div><div class="line"><span>Due today</span><b style="font-weight:500">$0.00</b></div>
@@ -1069,14 +1090,11 @@ h3{font-weight:400}
  <div class="wins"><span class="gw"></span><span class="gw"></span><span class="gw"></span><span class="gw no"></span><span class="gw no"></span></div>
  <p class="mut" style="text-align:center">3 of 5 friends. Share 2 more for a free full size.</p>
  <div class="opt"><span class="gw"></span>Mia joined<span class="r">+$5</span></div><div class="opt"><span class="gw"></span>Dana joined<span class="r">+$5</span></div><div class="opt"><span class="gw"></span>Priya joined<span class="r">+$5</span></div>
- <a class="pbtn" style="margin-top:auto">Apply $15 to next delivery</a></div></div></div></div><figcaption class="cap"><b>Rewards wallet</b>Each friend fills a gold window. Five windows earns a free full size.</figcaption></figure><figure><div class="ph"><div class="sc app"><div class="scr"><div class="sb"><span>9:41</span><span>● ● ●</span></div><div class="ah"><span>‹</span><span class="lg">MAMA SOL</span><span>♡</span></div><div class="bd"><div class="k">Send back the empty</div><div class="sv">Your bottle, a mom's day made better.</div>
- <div class="qr2" id="qr2"></div><p class="mut" style="text-align:center">Show this at any UPS store. Postage is on us.</p>
- <div class="stat"><span class="mut">Bottles you returned</span><b>2</b></div><div class="stat"><span class="mut">Donated in your name</span><b>$4</b></div>
- <a class="pbtn gh" style="margin-top:auto">Email me the label</a></div></div></div></div><figcaption class="cap"><b>Give back</b>A prepaid return in one screen, with a running tally of her impact.</figcaption></figure><figure><div class="ph"><div class="sc app"><div class="scr"><div class="sb"><span>9:41</span><span>● ● ●</span></div><div class="ah"><span>‹</span><span class="lg">MAMA SOL</span><span>♡</span></div><div class="bd"><div class="k">Members only · Live</div><span class="gw lg" style="width:120px;height:120px;align-self:center"><img src="https://www.shopmamasol.com/cdn/shop/files/sheri_adapated.webp?width=300" alt="" style="object-position:50% 45%"></span>
- <h5 style="text-align:center">Ask Dr. Rowen</h5><p class="mut" style="text-align:center">Quarterly live Q&amp;A with Dr. Rowen and Arielle</p>
+ <a class="pbtn" style="margin-top:auto">Apply $15 to next delivery</a></div></div></div></div><figcaption class="cap"><b>Rewards wallet</b>Each friend fills a gold window. Five windows earns a free full size.</figcaption></figure><figure><div class="ph"><div class="sc app"><div class="scr"><div class="sb"><span>9:41</span><span>● ● ●</span></div><div class="ah"><span>‹</span><span class="lg">MAMA SOL</span><span>♡</span></div><div class="bd"><div class="k">Members only · Live</div><div class="founders"><span class="gw lg"><img src="https://www.shopmamasol.com/cdn/shop/files/upscaled-4x-Arielle.png?width=300" alt="" style="object-position:50% 20%"></span><span class="gw lg" style="width:64px;height:64px;align-self:flex-end"><img src="https://www.shopmamasol.com/cdn/shop/files/sheri_adapated.webp?width=200" alt="" style="object-position:50% 45%"></span></div>
+ <h5 style="text-align:center">Ask the Founders</h5><p class="mut" style="text-align:center">Join founder Arielle Moody for conversations about skincare, sun protection, ingredients and the science behind Biological Suncare™, with special appearances by medical co-founder Dr. Sheri Rowen.</p>
  <div class="opt"><span class="gw"></span><b>Thursday, 7 pm PT</b><span class="r">45 min</span></div>
- <div class="opt" style="color:var(--muted)">Your question for Dr. Rowen…</div>
- <a class="pbtn" style="margin-top:auto">Save my seat</a><a class="pbtn gh">Add to calendar</a></div></div></div></div><figcaption class="cap"><b>Ask Dr. Rowen, RSVP</b>Customers save a seat and send a question ahead. It is the community and the content engine.</figcaption></figure></div>
+ <div class="opt" style="color:var(--muted)">Your question for Arielle…</div>
+ <a class="pbtn" style="margin-top:auto">Save my seat</a><a class="pbtn gh">Add to calendar</a></div></div></div></div><figcaption class="cap"><b>Ask the Founders, RSVP</b>Customers save a seat and send a question ahead. It is the community and the content engine.</figcaption></figure></div>
   </div>
  </div>
 </section>
@@ -1089,13 +1107,13 @@ h3{font-weight:400}
 <section class="band close" id="plan">
  <div class="w">
   <div class="caps" style="color:var(--sol)">The plan</div>
-  <h2 class="mega" style="margin-top:20px;font-size:clamp(28px,5.6vw,72px)"><span>One category.</span><span>One physician.</span><span>One customer.</span></h2>
+  <h2 class="mega" style="margin-top:20px;font-size:clamp(28px,5.6vw,72px)"><span>One category.</span><span>Beauty meets science.</span><span>One customer.</span></h2>
   <div class="sum">
-   <div><b>Awareness</b>Claim the category with Dr. Rowen beside it. About $15k a month.</div>
-   <div><b>Consideration</b>Category-first site, the doctor, the research, the proof. About $10k.</div>
+   <div><b>Awareness</b>Mama Sol claims the category, with the founders behind it. About $15k a month.</div>
+   <div><b>Consideration</b>Category-first site, the founders, the research, the proof. About $10k.</div>
    <div><b>Conversion</b>30-day trial, Apple Pay, reminders, subscriptions. About $500 a month.</div>
-   <div><b>Service</b>An insert that teaches the two jobs, signed by Dr. Rowen.</div>
-   <div><b>Loyalty</b>Referral, give-back and Ask Dr. Rowen. About $1k a month.</div>
+   <div><b>Service</b>An insert that teaches the two jobs and the routine, signed by Arielle and Dr. Rowen.</div>
+   <div><b>Loyalty</b>Referral, monthly ritual prizes and Ask the Founders. About $1k a month.</div>
   </div>
   <p class="foot">Draft for Mama Sol review. Comparison chart describes typical product categories, not named brands, and needs regulatory review like every other claim. Claims follow the approved press release language and need regulatory and trademark sign-off before launch. Research findings describe published ingredient studies, not Mama Sol finished-product results. Lifestyle photos are licensed Unsplash stock for illustration; product, founder and press imagery is Mama Sol's own.</p>
  </div>
@@ -1114,7 +1132,7 @@ if(ph&&!rm){var t=false;window.addEventListener('scroll',function(){if(t)return;
 
 (function(){
 document.querySelectorAll('[data-copy]').forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-copy');try{navigator.clipboard&&navigator.clipboard.writeText(t)}catch(e){}b.textContent='Copied';b.classList.add('done');setTimeout(function(){b.textContent='Copy code';b.classList.remove('done')},1800)})});
-var q=document.getElementById('qr2');if(q){var h='';for(var i=0;i<169;i++){var x=i%13,y=Math.floor(i/13);var f=(x<3&&y<3)||(x>9&&y<3)||(x<3&&y>9);var on=f?!((x===1&&y===1)||(x===11&&y===1)||(x===1&&y===11)):((x*5+y*11+x*y)%7<3);h+='<i class="'+(on?'on':'')+'"></i>'}q.innerHTML=h}
+var q=null;if(q){var h='';for(var i=0;i<169;i++){var x=i%13,y=Math.floor(i/13);var f=(x<3&&y<3)||(x>9&&y<3)||(x<3&&y>9);var on=f?!((x===1&&y===1)||(x===11&&y===1)||(x===1&&y===11)):((x*5+y*11+x*y)%7<3);h+='<i class="'+(on?'on':'')+'"></i>'}q.innerHTML=h}
 })();
 </script>
 </body>
