@@ -428,6 +428,89 @@ h3{font-weight:400}
 @media (max-width:560px){.tiles{grid-template-columns:1fr}.tile{aspect-ratio:auto;padding:40px 24px}.tile .gw{width:46%}.tile p{font-size:15px}
  .cmp th,.cmp td{padding:12px 8px}.cmp th{font-size:9px;letter-spacing:.1em}.cmp td:first-child{font-size:14px}.cmp .gw{width:24px;height:24px}.cmp .vary{font-size:9px;letter-spacing:.04em}.cmp td:first-child small{display:none}
  .pcf{grid-template-columns:1fr;aspect-ratio:auto}.pcf .gw{width:150px}.li .card .board .gw{width:70px;height:70px}}
+
+/* ===== v6: product UI across the journey ===== */
+.uirow{margin-top:84px}
+.uirow h3{font-size:clamp(26px,3vw,36px);line-height:1.15;margin-top:12px;max-width:26ch}
+.uirow .lead{margin-top:10px;max-width:62ch;color:var(--muted)}
+.phones{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:34px 26px;margin-top:34px}
+.phones figure{min-width:0}
+.scr{height:600px;overflow:hidden;position:relative;display:flex;flex-direction:column}
+.app{background:var(--paper);font-family:var(--d);color:var(--text);font-size:13px;line-height:1.45}
+.app .ah{display:flex;justify-content:space-between;align-items:center;padding:8px 16px 10px;border-bottom:1px solid var(--line);font-size:11px;letter-spacing:.24em;color:var(--ink);font-weight:600}
+.app .ah .lg{font-size:13px;letter-spacing:.22em}
+.app .bd{padding:16px;display:flex;flex-direction:column;gap:12px;flex:1}
+.app h5{margin:0;font-weight:500;color:var(--ink);text-transform:uppercase;letter-spacing:.12em;font-size:16px;line-height:1.3}
+.app .sv{font-family:var(--v);font-style:italic;color:var(--ink);font-size:20px;line-height:1.2}
+.app .k{font-size:9px;letter-spacing:.3em;text-transform:uppercase;font-weight:600;color:var(--soft)}
+.app .mut{color:var(--muted);font-size:12px}
+.pbtn{display:block;text-align:center;background:var(--ink);color:var(--paper);padding:13px;font-size:10px;letter-spacing:.26em;text-transform:uppercase;font-weight:600;border:0;width:100%;font-family:var(--d);cursor:pointer}
+.pbtn.gh{background:transparent;color:var(--ink);border:1px solid var(--ink)}
+.pbtn:focus-visible,.cpy:focus-visible{outline:2px solid var(--sold);outline-offset:2px}
+.banner{display:flex;gap:10px;align-items:center;background:#FBF3E2;border:1px solid #EBD3A4;padding:10px 12px;font-size:12px;color:var(--ink)}
+.banner .gw{width:24px;height:24px}
+.opt{display:flex;align-items:center;gap:10px;border:1px solid var(--line);background:var(--white);padding:11px 12px;font-size:13px}
+.opt.on{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.opt .gw{width:20px;height:20px}.opt .gw.no{width:20px;height:20px}
+.opt b{font-weight:500;color:var(--ink)}
+.opt .r{margin-left:auto;font-size:11px;color:var(--muted)}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--ink)}
+.seg span{text-align:center;padding:9px 0;font-size:11px;letter-spacing:.1em;color:var(--ink)}
+.seg span.on{background:var(--ink);color:var(--paper)}
+.shades{display:flex;gap:10px}
+.shades i{width:34px;height:34px;border-radius:50%;box-shadow:inset 3px 4px 6px rgba(60,30,10,.35),inset -1px -2px 1px rgba(255,255,255,.6)}
+.shades i.on{outline:2px solid var(--ink);outline-offset:3px}
+.line{display:flex;justify-content:space-between;font-size:13px;padding:6px 0;border-bottom:1px solid var(--line)}
+.line.g{color:#2F7A4F}
+.ticket{position:relative;background:var(--white);border:1px dashed var(--sold);padding:16px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px}
+.code{font-weight:500;letter-spacing:.28em;font-size:22px;color:var(--ink)}
+.cpy{background:var(--ink);color:var(--paper);border:0;padding:9px 18px;font-size:10px;letter-spacing:.24em;text-transform:uppercase;font-weight:600;font-family:var(--d);cursor:pointer;min-width:120px}
+.cpy.done{background:#2F7A4F}
+.share{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;text-align:center;font-size:10px;color:var(--muted)}
+.share i{display:grid;place-items:center;width:44px;height:44px;margin:0 auto 4px;border-radius:12px;font-style:normal;font-weight:700;color:#fff;font-size:15px}
+.wins{display:flex;gap:8px;justify-content:center}.wins .gw{width:34px;height:34px}.wins .gw.no{width:34px;height:34px}
+.stat{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--line);padding-top:10px}
+.stat b{font-size:26px;font-weight:400;color:var(--ink)}
+.qr2{width:120px;height:120px;margin:0 auto;display:grid;grid-template-columns:repeat(13,1fr);background:#fff;padding:6px;border:1px solid var(--line)}.qr2 i.on{background:var(--ink)}
+.tl{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0}
+.tl li{display:grid;grid-template-columns:22px 1fr;gap:10px;padding-bottom:12px;position:relative}
+.tl li::before{content:"";position:absolute;left:10px;top:20px;bottom:0;width:1px;background:var(--line)}
+.tl li:last-child::before{display:none}
+.tl .gw,.tl .gw.no{width:20px;height:20px}
+.tl b{display:block;font-weight:500;color:var(--ink);font-size:13px}
+/* system UIs */
+.ios{font-family:-apple-system,"SF Pro Text","Helvetica Neue",Arial,sans-serif;color:#111;font-size:13px;background:#fff}
+.msgs{display:flex;flex-direction:column;gap:8px;padding:12px 12px 16px;flex:1}
+.mh{text-align:center;padding:4px 0 10px;border-bottom:1px solid #eee;font-size:12px}
+.mh .av2{width:40px;height:40px;border-radius:50%;margin:0 auto 4px;display:grid;place-items:center;background:var(--paper);overflow:hidden}
+.mh .av2 .gw{width:26px;height:26px}
+.ts{text-align:center;color:#8e8e93;font-size:10px;margin:4px 0}
+.bub{max-width:80%;padding:8px 12px;border-radius:18px;font-size:13px;line-height:1.35}
+.bub.in{background:#E9E9EB;align-self:flex-start;border-bottom-left-radius:6px}
+.bub.out{background:#0A84FF;color:#fff;align-self:flex-end;border-bottom-right-radius:6px}
+.lp{align-self:flex-start;width:80%;border-radius:16px;overflow:hidden;background:#E9E9EB}
+.lp .board{height:120px;flex-direction:row;gap:14px}.lp .board .gw{width:60px;height:60px}
+.lp div.t{padding:8px 12px;font-size:12px}.lp div.t b{display:block;font-weight:600}.lp div.t span{color:#666}
+.sheet{position:absolute;left:0;right:0;bottom:0;background:#F2F2F7;border-radius:16px 16px 0 0;padding:14px 16px 22px;box-shadow:0 -10px 30px rgba(0,0,0,.18)}
+.sheet .row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #ddd;font-size:13px}
+.sheet .row span:first-child{color:#8e8e93;width:70px}
+.sheet .side{text-align:center;margin-top:14px;font-size:12px;color:#555}
+.sheet .side i{display:block;width:34px;height:34px;margin:0 auto 6px;border:2px solid #0A84FF;border-radius:9px}
+.dim{position:absolute;inset:0;background:rgba(0,0,0,.35)}
+.serp{padding:10px 12px;display:flex;flex-direction:column;gap:10px;font-family:Arial,Helvetica,sans-serif}
+.sbar{border:1px solid #dfe1e5;border-radius:22px;padding:9px 14px;font-size:13px;color:#202124;box-shadow:0 1px 4px rgba(32,33,36,.15)}
+.aio{background:#F3F6FC;border-radius:14px;padding:12px;font-size:12.5px;color:#202124;line-height:1.5}
+.aio .hd{font-size:12px;font-weight:600;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.aio .hd i{width:14px;height:14px;border-radius:50%;background:conic-gradient(#4285F4,#9B72CB,#D96570,#4285F4)}
+.cite{display:flex;gap:8px;align-items:center;background:#fff;border-radius:10px;padding:8px;margin-top:8px;font-size:11px}
+.cite .gw{width:26px;height:26px}
+.res{font-size:12px;color:#4d5156}.res a{display:block;color:#1a0dab;font-size:15px;text-decoration:none;margin:2px 0}
+.story{background:linear-gradient(180deg,#2C1556,#45237E);color:#fff;padding:16px;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;position:relative}
+.story .bars{position:absolute;top:10px;left:10px;right:10px;display:flex;gap:4px}.story .bars i{flex:1;height:2px;background:rgba(255,255,255,.4)}.story .bars i:first-child{background:#fff}
+.qbox{background:#fff;color:#111;border-radius:16px;width:86%;padding:14px;font-size:12px}
+.qbox b{display:block;font-size:13px;margin-bottom:8px;color:var(--ink)}
+.qbox span{display:block;background:#f1f1f1;border-radius:10px;padding:10px;color:#888}
+@media (max-width:700px){.phones{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:18px;padding-bottom:12px;margin-inline:-22px;padding-inline:22px}.phones figure{flex:0 0 280px;scroll-snap-align:center}}
 </style>
 </head>
 <body>
@@ -746,6 +829,26 @@ h3{font-weight:400}
     <figcaption class="cap"><b>Founder post · LinkedIn</b>Arielle's story, with her mother's credibility behind it.</figcaption>
    </figure>
   </div>
+ 
+  <div class="uirow">
+   <div class="caps">The UI · Awareness</div>
+   <h3>Every first touch lands somewhere real.</h3>
+   <p class="lead">Where the postcard, the search and the story send her, screen by screen.</p>
+   <div class="phones"><figure><div class="ph"><div class="sc app"><div class="scr"><div class="sb"><span>9:41</span><span>● ● ●</span></div><div class="ah"><span>‹</span><span class="lg">MAMA SOL</span><span>♡</span></div><div class="bd"><div class="banner"><span class="gw"></span><span><b style="font-weight:600">POSTCARD30</b> applied. Your trial is free for 30 days.</span></div>
+ <span class="gw lg" style="width:150px;height:150px;align-self:center;margin:6px 0"></span>
+ <div class="k" style="text-align:center">You found the window</div>
+ <h5 style="text-align:center">The first and only<br>Biological Suncare™</h5>
+ <p class="mut" style="text-align:center">Mineral SPF on top. Skincare underneath. Designed by Sheri Rowen, MD.</p>
+ <div style="margin-top:auto;display:flex;flex-direction:column;gap:8px"><a class="pbtn">Start my free trial</a><a class="pbtn gh">See the science</a></div></div></div></div></div><figcaption class="cap"><b>Postcard QR landing</b>The scan opens a page with the trial code already applied. No typing.</figcaption></figure><figure><div class="ph"><div class="sc ios"><div class="scr"><div class="sb"><span>9:41</span><span>● ● ●</span></div><div class="serp"><div class="sbar">biological suncare</div>
+ <div class="aio"><div class="hd"><i></i>AI Overview</div>Biological Suncare™ is a category of sunscreen introduced by Mama Sol. It pairs mineral zinc oxide protection on top with skincare ingredients, like ectoin, that support the skin underneath. The formulas were designed with Sheri Rowen, MD.
+ <div class="cite"><span class="gw"></span><div><b>shopmamasol.com</b><br>What is Biological Suncare™?</div></div></div>
+ <div class="res">shopmamasol.com<a>Biological Suncare™ | FACEBRELLA™ SPF 30</a>The first and only Biological Suncare™ brand. Protects on top, supports underneath.</div>
+ <div class="res">shopmamasol.com › science<a>The science behind Biological Suncare™</a>Published research on ectoin, antioxidants and non-nano zinc oxide.</div></div></div></div></div><figcaption class="cap"><b>Search and AI answers</b>At 9:15 pm she searches the name. The site is built so Google and AI assistants answer with Mama Sol and cite it.</figcaption></figure><figure><div class="ph"><div class="sc ios"><div class="scr"><div class="sb"><span>9:41</span><span>● ● ●</span></div><div class="story"><div class="bars"><i></i><i></i><i></i></div>
+ <span class="gw lg" style="width:110px;height:110px"><img src="https://www.shopmamasol.com/cdn/shop/files/sheri_adapated.webp?width=300" alt="" style="object-position:50% 45%"></span>
+ <div style="font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--sol)">Ask Dr. Rowen</div>
+ <div class="qbox"><b>What does your sunscreen do for your skin?</b><span>Type your question</span></div>
+ <div style="font-size:11px;opacity:.8">Answers posted Friday</div></div></div></div></div><figcaption class="cap"><b>Instagram story · Question sticker</b>Dr. Rowen collects questions, then answers them on camera. Free content that teaches the category.</figcaption></figure></div>
+  </div>
  </div>
 </section>
 
@@ -809,6 +912,25 @@ h3{font-weight:400}
    </div>
    <p class="cap" style="margin-top:14px"><b>Snippets · Ads, social carousels, product page</b>One fact per card, each with its source. Ingredient findings are labeled as ingredient research, not finished-formula results.</p>
   </div>
+ 
+  <div class="uirow">
+   <div class="caps">The UI · Consideration</div>
+   <h3>Make choosing feel like a consultation.</h3>
+   <p class="lead">The product page and shade match do the selling, with the window as the visual thread.</p>
+   <div class="phones"><figure><div class="ph"><div class="sc app"><div class="scr"><div class="sb"><span>9:41</span><span>● ● ●</span></div><div class="ah"><span>‹</span><span class="lg">MAMA SOL</span><span>♡</span></div><div class="bd" style="gap:10px"><span class="gw lg" style="width:170px;height:170px;align-self:center"><img src="https://www.shopmamasol.com/cdn/shop/files/100-Mineral-Face-Flat-Lay-1000x1000.png?width=400" alt=""></span>
+ <div class="k">Biological Suncare™</div><h5>FACEBRELLA™ SPF 30</h5>
+ <div class="opt on"><span class="gw"></span><b>Protects on top</b><span class="r">Non-nano zinc</span></div>
+ <div class="opt on"><span class="gw"></span><b>Supports underneath</b><span class="r">Ectoin + FaceSOL™</span></div>
+ <div class="k" style="margin-top:4px">Your version</div><div class="shades"><i style="background:#F6F1EA" class="on"></i><i style="background:#EBCFB2"></i><i style="background:#C99A72"></i><i style="background:#8C5F3F"></i></div>
+ <a class="pbtn" style="margin-top:auto">Try it free for 30 days</a></div></div></div></div><figcaption class="cap"><b>Product page</b>The two jobs are the first thing on the page, then her shade, then the trial.</figcaption></figure><figure><div class="ph"><div class="sc app"><div class="scr"><div class="sb"><span>9:41</span><span>● ● ●</span></div><div class="ah"><span>‹</span><span class="lg">MAMA SOL</span><span>♡</span></div><div class="bd"><div class="k">Find your FACEBRELLA™ · 2 of 3</div><div class="sv">How does your skin feel by 3 pm?</div>
+ <div class="opt"><span class="gw no"></span>Tight and dry</div><div class="opt on"><span class="gw"></span><b>Comfortable</b></div><div class="opt"><span class="gw no"></span>A little shiny</div><div class="opt"><span class="gw no"></span>It changes daily</div>
+ <div style="height:3px;background:var(--line);margin-top:6px"><div style="width:66%;height:100%;background:var(--sol)"></div></div>
+ <a class="pbtn" style="margin-top:auto">Next</a><p class="mut" style="text-align:center">Your match in 30 seconds</p></div></div></div></div><figcaption class="cap"><b>Shade and skin match</b>Three questions, then the right version. Answers feed her emails later.</figcaption></figure><figure><div class="ph"><div class="sc app"><div class="scr"><div class="sb"><span>9:41</span><span>● ● ●</span></div><div class="ah"><span>‹</span><span class="lg">MAMA SOL</span><span>♡</span></div><div class="bd"><div class="k">Your match</div><span class="gw lg" style="width:140px;height:140px;align-self:center"><img src="https://www.shopmamasol.com/cdn/shop/files/facebrella-tints-100-mineral-glow-serum-spf-45-pa-2383756.jpg?width=400" alt=""></span>
+ <h5 style="text-align:center">FACEBRELLA™ Tints<br>Light</h5><p class="mut" style="text-align:center">A sheer tint for comfortable skin, SPF 45.</p>
+ <div class="opt on"><span class="gw"></span><b>Recommended by your answers</b></div>
+ <div class="banner"><span class="gw"></span>Dr. Rowen's note: reapply as the label directs when you are outdoors.</div>
+ <a class="pbtn" style="margin-top:auto">Start my free trial</a></div></div></div></div><figcaption class="cap"><b>Quiz result</b>Her result feels personal, with a note in Dr. Rowen's voice.</figcaption></figure></div>
+  </div>
  </div>
 </section>
 
@@ -848,6 +970,22 @@ h3{font-weight:400}
     <figcaption class="cap"><b>Cart reminder email</b>The journey map's FOMO line, in the brand's voice.</figcaption>
    </figure>
   </div>
+ 
+  <div class="uirow">
+   <div class="caps">The UI · Conversion</div>
+   <h3>One tap, no risk, no surprises.</h3>
+   <p class="lead">The trial, the subscription choice and the payment, each one screen.</p>
+   <div class="phones"><figure><div class="ph"><div class="sc app"><div class="scr"><div class="sb"><span>9:41</span><span>● ● ●</span></div><div class="ah"><span>‹</span><span class="lg">MAMA SOL</span><span>♡</span></div><div class="bd"><div class="k">Delivery</div><div class="seg"><span>30 days</span><span>45 days</span><span class="on">60 days</span></div>
+ <div class="opt on"><span class="gw"></span><b>Subscribe and save</b><span class="r">Skip anytime</span></div><div class="opt"><span class="gw no"></span>One-time trial</div>
+ <div class="line"><span>FACEBRELLA™ Tints, Light</span><span>Free trial</span></div><div class="line g"><span>POSTCARD30</span><span>Applied</span></div><div class="line"><span>Due today</span><b style="font-weight:500">$0.00</b></div>
+ <p class="mut">You will not be charged until day 30. We remind you on day 25.</p>
+ <a class="pbtn" style="margin-top:auto;background:#000">Pay with Apple Pay</a></div></div></div></div><figcaption class="cap"><b>Trial and subscription</b>She sees $0 today, the reminder promise and the skip option before she pays.</figcaption></figure><figure><div class="ph"><div class="sc app"><div class="scr"><div class="sb"><span>9:41</span><span>● ● ●</span></div><div class="ah"><span>‹</span><span class="lg">MAMA SOL</span><span>♡</span></div><div class="bd" style="opacity:.5"><h5>Checkout</h5><div class="line"><span>Due today</span><span>$0.00</span></div></div><div class="dim"></div>
+ <div class="sheet ios"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><b style="font-size:16px">Pay</b><span style="color:#0A84FF">Cancel</span></div>
+ <div class="row"><span>Card</span><span>Visa •••• 0000</span></div><div class="row"><span>Ship to</span><span>Joanna, Irvine CA</span></div><div class="row"><span>Pay</span><span>MAMA SOL $0.00</span></div>
+ <div class="side"><i></i>Confirm with Side Button</div></div></div></div></div><figcaption class="cap"><b>Apple Pay</b>Built for the couch at 9:15 pm. Nothing to type.</figcaption></figure><figure><div class="ph"><div class="sc app"><div class="scr"><div class="sb"><span>9:41</span><span>● ● ●</span></div><div class="ah"><span>‹</span><span class="lg">MAMA SOL</span><span>♡</span></div><div class="bd"><span class="gw lg" style="width:96px;height:96px;align-self:center"></span><h5 style="text-align:center">Your trial has begun</h5>
+ <ul class="tl"><li><span class="gw"></span><div><b>Today</b><span class="mut">Order confirmed</span></div></li><li><span class="gw no"></span><div><b>Thursday</b><span class="mut">Arrives with Dr. Rowen's card</span></div></li><li><span class="gw no"></span><div><b>Day 25</b><span class="mut">We check in. Keep it or send it back.</span></div></li><li><span class="gw no"></span><div><b>Day 30</b><span class="mut">Your subscription starts</span></div></li></ul>
+ <a class="pbtn gh" style="margin-top:auto">Add reminder to calendar</a></div></div></div></div><figcaption class="cap"><b>Order confirmation</b>The whole trial on one timeline. The gold windows fill in as the days pass.</figcaption></figure></div>
+  </div>
  </div>
 </section>
 
@@ -867,6 +1005,22 @@ h3{font-weight:400}
     <figcaption class="cap"><b>Unboxing insert</b>The real carton, plus a card signed by the physician.</figcaption>
    </figure>
    <figure class="c4"><div class="rit"><img src="https://images.unsplash.com/photo-1702312686957-572286d28e11?w=700&h=700&fit=crop&crop=faces,entropy&q=80&auto=format" alt="Morning skincare ritual"></div><figcaption class="cap"><b>First morning</b>The moment the ritual has to feel like luxury skincare.</figcaption></figure>
+  </div>
+ 
+  <div class="uirow">
+   <div class="caps">The UI · Service</div>
+   <h3>Stay with her through the first month.</h3>
+   <p class="lead">Texts and emails that coach the ritual and make the trial decision easy.</p>
+   <div class="phones"><figure><div class="ph"><div class="sc ios"><div class="scr"><div class="sb"><span>2:14</span><span>● ● ●</span></div><div class="mh"><div class="av2"><span class="gw"></span></div>Mama Sol</div><div class="msgs">
+ <div class="ts">Tue 2:14 PM</div><div class="bub in">Your Biological Suncare™ ships today and arrives Thursday. Track it here: shopmamasol.com/t/48213</div>
+ <div class="ts">Thu 8:02 AM</div><div class="bub in">It's here. Tip from Dr. Rowen: after cleansing, smooth a generous layer over face and neck. It works as your moisturizer.</div>
+ <div class="bub out">Already using it, love the box!</div><div class="bub in">Wonderful. Reply SHADE anytime if you want to try another tint.</div></div></div></div></div><figcaption class="cap"><b>Delivery and day-one texts</b>Shipping updates that double as coaching from Dr. Rowen.</figcaption></figure><figure><div class="ph"><div class="sc app"><div class="scr"><div class="sb"><span>9:41</span><span>● ● ●</span></div><div class="ah"><span>‹</span><span class="lg">MAMA SOL</span><span>♡</span></div><div class="bd"><div class="k">Day 25 of 30</div><div class="sv">Is it your new ritual?</div>
+ <div class="wins"><span class="gw"></span><span class="gw"></span><span class="gw"></span><span class="gw"></span><span class="gw no"></span></div><p class="mut" style="text-align:center">25 mornings of Biological Suncare™</p>
+ <a class="pbtn">Keep my ritual</a><a class="pbtn gh">Swap my shade</a><a class="pbtn gh">Send it back free</a>
+ <p class="mut" style="text-align:center;margin-top:auto">Sending it back? We email a prepaid UPS label in one tap.</p></div></div></div></div><figcaption class="cap"><b>Day 25 trial check-in</b>Three honest choices. Keeping it is easiest, returning it is still one tap.</figcaption></figure><figure><div class="ph"><div class="sc app"><div class="scr"><div class="sb"><span>9:41</span><span>● ● ●</span></div><div class="ah"><span>‹</span><span class="lg">MAMA SOL</span><span>♡</span></div><div class="bd"><div class="k">My subscription</div><div class="opt on"><span class="gw"></span><div><b>FACEBRELLA™ Tints, Light</b><div class="mut">Every 60 days</div></div></div>
+ <div class="stat"><span class="mut">Next delivery</span><b>Jan 14</b></div>
+ <a class="pbtn gh">Skip next delivery</a><a class="pbtn gh">Delay 2 weeks</a><a class="pbtn gh">Add FACEBRELLA™ for a friend</a>
+ <p class="mut" style="text-align:center;margin-top:auto">Cancel anytime. No calls, no forms.</p></div></div></div></div><figcaption class="cap"><b>Manage subscription</b>Skip, delay or swap in seconds, so pausing never turns into canceling.</figcaption></figure></div>
   </div>
  </div>
 </section>
@@ -896,6 +1050,33 @@ h3{font-weight:400}
     <div class="lcard"><span class="gw"></span><b>Share</b><div class="big">Show us your ritual.</div><p>Tag @shopmamasol. A monthly winner gets a year of Mama Sol.</p></div>
     <div class="lcard"><span class="gw"></span><b>Community</b><div class="big">Ask Dr. Rowen.</div><p>Quarterly live Q&amp;A with Dr. Rowen and Arielle for customers.</p></div>
    </div>
+  </div>
+ 
+  <div class="uirow">
+   <div class="caps">The UI · Loyalty</div>
+   <h3>The referral loop, end to end.</h3>
+   <p class="lead">Her code is generated the moment she orders. Sharing takes one tap, and her friend never has to type it.</p>
+   <div class="phones"><figure><div class="ph"><div class="sc app"><div class="scr"><div class="sb"><span>9:41</span><span>● ● ●</span></div><div class="ah"><span>‹</span><span class="lg">MAMA SOL</span><span>♡</span></div><div class="bd"><div class="k" style="text-align:center">Give $5, get $5</div><div class="sv" style="text-align:center">Share Biological Suncare™ with a friend</div>
+ <div class="ticket"><span class="gw" style="width:34px;height:34px"></span><div class="mut">Your personal code</div><div class="code" id="refcode">JOANNA5</div><button class="cpy" type="button" data-copy="JOANNA5">Copy code</button></div>
+ <div class="share"><div><i style="background:#34C759">✉</i>Messages</div><div><i style="background:#25D366">W</i>WhatsApp</div><div><i style="background:#E1306C">IG</i>Instagram</div><div><i style="background:var(--ink)">⧉</i>Link</div></div>
+ <p class="mut" style="text-align:center;margin-top:auto">Created automatically with her first order. Also printed on her insert card.</p></div></div></div></div><figcaption class="cap"><b>Her code, auto-generated</b>Made from her first name at checkout. Tap Copy code to try it.</figcaption></figure><figure><div class="ph"><div class="sc ios"><div class="scr"><div class="sb"><span>6:40</span><span>● ● ●</span></div><div class="mh"><div class="av2" style="background:#ddd"></div>Joanna</div><div class="msgs">
+ <div class="ts">Today 6:40 PM</div><div class="bub in">This is the sunscreen I was telling you about at Pilates. It's the one that also does skincare. $5 off on me</div>
+ <div class="lp"><div class="board"><span class="gw lg"></span><div style="text-align:left"><div class="bk">Joanna sent you $5</div><div class="bh" style="font-size:13px">Biological<br>Suncare™</div></div></div><div class="t"><b>Your $5 from Joanna is waiting</b><span>shopmamasol.com</span></div></div>
+ <div class="bub out">Ok you sold me. Ordering</div></div></div></div></div><figcaption class="cap"><b>What her friend receives</b>The link carries the code, so the preview already says who it is from.</figcaption></figure><figure><div class="ph"><div class="sc app"><div class="scr"><div class="sb"><span>9:41</span><span>● ● ●</span></div><div class="ah"><span>‹</span><span class="lg">MAMA SOL</span><span>♡</span></div><div class="bd"><div class="banner"><span class="gw"></span><span><b style="font-weight:600">JOANNA5</b> applied. Joanna's $5 is yours.</span></div>
+ <span class="gw lg" style="width:120px;height:120px;align-self:center"><img src="https://www.shopmamasol.com/cdn/shop/files/100-Mineral-Face-Flat-Lay-1000x1000.png?width=300" alt=""></span>
+ <div class="line"><span>FACEBRELLA™ SPF 30</span><span>Trial</span></div><div class="line g"><span>Friend credit</span><span>−$5.00</span></div><div class="line"><span>Due today</span><b style="font-weight:500">$0.00</b></div>
+ <a class="pbtn" style="margin-top:auto;background:#000">Pay with Apple Pay</a><p class="mut" style="text-align:center">No code to type. It is already applied.</p></div></div></div></div><figcaption class="cap"><b>Friend lands, promo auto-applied</b>The code rides in the link and shows at the top, so the discount feels like a gift.</figcaption></figure><figure><div class="ph"><div class="sc app"><div class="scr"><div class="sb"><span>9:41</span><span>● ● ●</span></div><div class="ah"><span>‹</span><span class="lg">MAMA SOL</span><span>♡</span></div><div class="bd"><div class="k">My rewards</div><div class="stat" style="border:0;padding:0"><span class="mut">Earned</span><b>$15.00</b></div>
+ <div class="wins"><span class="gw"></span><span class="gw"></span><span class="gw"></span><span class="gw no"></span><span class="gw no"></span></div>
+ <p class="mut" style="text-align:center">3 of 5 friends. Share 2 more for a free full size.</p>
+ <div class="opt"><span class="gw"></span>Mia joined<span class="r">+$5</span></div><div class="opt"><span class="gw"></span>Dana joined<span class="r">+$5</span></div><div class="opt"><span class="gw"></span>Priya joined<span class="r">+$5</span></div>
+ <a class="pbtn" style="margin-top:auto">Apply $15 to next delivery</a></div></div></div></div><figcaption class="cap"><b>Rewards wallet</b>Each friend fills a gold window. Five windows earns a free full size.</figcaption></figure><figure><div class="ph"><div class="sc app"><div class="scr"><div class="sb"><span>9:41</span><span>● ● ●</span></div><div class="ah"><span>‹</span><span class="lg">MAMA SOL</span><span>♡</span></div><div class="bd"><div class="k">Send back the empty</div><div class="sv">Your bottle, a mom's day made better.</div>
+ <div class="qr2" id="qr2"></div><p class="mut" style="text-align:center">Show this at any UPS store. Postage is on us.</p>
+ <div class="stat"><span class="mut">Bottles you returned</span><b>2</b></div><div class="stat"><span class="mut">Donated in your name</span><b>$4</b></div>
+ <a class="pbtn gh" style="margin-top:auto">Email me the label</a></div></div></div></div><figcaption class="cap"><b>Give back</b>A prepaid return in one screen, with a running tally of her impact.</figcaption></figure><figure><div class="ph"><div class="sc app"><div class="scr"><div class="sb"><span>9:41</span><span>● ● ●</span></div><div class="ah"><span>‹</span><span class="lg">MAMA SOL</span><span>♡</span></div><div class="bd"><div class="k">Members only · Live</div><span class="gw lg" style="width:120px;height:120px;align-self:center"><img src="https://www.shopmamasol.com/cdn/shop/files/sheri_adapated.webp?width=300" alt="" style="object-position:50% 45%"></span>
+ <h5 style="text-align:center">Ask Dr. Rowen</h5><p class="mut" style="text-align:center">Quarterly live Q&amp;A with Dr. Rowen and Arielle</p>
+ <div class="opt"><span class="gw"></span><b>Thursday, 7 pm PT</b><span class="r">45 min</span></div>
+ <div class="opt" style="color:var(--muted)">Your question for Dr. Rowen…</div>
+ <a class="pbtn" style="margin-top:auto">Save my seat</a><a class="pbtn gh">Add to calendar</a></div></div></div></div><figcaption class="cap"><b>Ask Dr. Rowen, RSVP</b>Customers save a seat and send a question ahead. It is the community and the content engine.</figcaption></figure></div>
   </div>
  </div>
 </section>
@@ -929,6 +1110,11 @@ var ds=[].slice.call(document.querySelectorAll('.draw'));
 if('IntersectionObserver'in window){var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');o.unobserve(e.target)}})},{threshold:.25});ds.forEach(function(d){o.observe(d)})}else ds.forEach(function(d){d.classList.add('in')});
 var ph=document.querySelector('.hphoto div'),rm=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
 if(ph&&!rm){var t=false;window.addEventListener('scroll',function(){if(t)return;t=true;requestAnimationFrame(function(){var b=ph.parentNode.getBoundingClientRect(),v=(b.top+b.height/2-innerHeight/2)/innerHeight;ph.style.animation='none';ph.style.transform='translateY('+(v*-40).toFixed(1)+'px) scale(1.08)';t=false})},{passive:true})}
+})();
+
+(function(){
+document.querySelectorAll('[data-copy]').forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-copy');try{navigator.clipboard&&navigator.clipboard.writeText(t)}catch(e){}b.textContent='Copied';b.classList.add('done');setTimeout(function(){b.textContent='Copy code';b.classList.remove('done')},1800)})});
+var q=document.getElementById('qr2');if(q){var h='';for(var i=0;i<169;i++){var x=i%13,y=Math.floor(i/13);var f=(x<3&&y<3)||(x>9&&y<3)||(x<3&&y>9);var on=f?!((x===1&&y===1)||(x===11&&y===1)||(x===1&&y===11)):((x*5+y*11+x*y)%7<3);h+='<i class="'+(on?'on':'')+'"></i>'}q.innerHTML=h}
 })();
 </script>
 </body>
