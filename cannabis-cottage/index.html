@@ -335,6 +335,15 @@ section.alt .tl .when{background:var(--paper2)}
 .chat .lbl.good{color:var(--blue)}
 .chat cite{font-style:normal;font-size:12px;color:var(--mute);display:block;margin-top:8px}
 .pair{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.pillar{margin:0 0 48px}.pillar .head{display:flex;gap:14px;align-items:baseline;margin-bottom:6px}.pillar .pn{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:15px;color:#fff;background:#1F4FE0;border-radius:999px;padding:3px 11px}.pillar h3{font-size:24px;margin:0}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:14px;align-items:start}
+.algo{background:#0B1A2E;color:#DCE5FF;border-radius:16px;padding:18px;font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:12px;line-height:1.6;white-space:pre-wrap}
+.algo .h{color:#fff;font-weight:700;font-family:'Bricolage Grotesque',sans-serif;font-size:14px;display:block;margin-bottom:2px}
+.algo .f{display:block;color:#fff;font-size:14px;margin:8px 0 0;padding:8px 12px;border-left:3px solid #1F4FE0;background:rgba(255,255,255,.05);border-radius:6px;font-family:'Hanken Grotesk',sans-serif}
+.ptext p{margin:0 0 12px;color:var(--ink2)}.ptext ul{margin:0 0 12px;padding-left:18px;color:var(--ink2);font-size:15.5px}.ptext li{margin-bottom:6px}.ptext .see{color:var(--ink);font-size:15px}
+.fx{margin:-2px 0 4px;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:13.5px;color:var(--blue)}
+@media (max-width:700px){.pgrid{grid-template-columns:1fr}.pillar h3{font-size:20px}.pillar{margin-bottom:40px}}
+
 @media (max-width:640px){.pair{grid-template-columns:1fr}}
 </style>
 <style>
@@ -427,43 +436,20 @@ section.alt .tl .when{background:var(--paper2)}
   </div>
 </section>
 
-<section class="alt" aria-labelledby="s-site">
+<section class="alt" aria-labelledby="s-how">
   <div class="wrap">
-    <h2 id="s-site">Your website, read the way AI reads&nbsp;it</h2>
-    <p class="sub">AI doesn’t see your design. It reads the text, headings and data behind it. Here’s what it found on cannabis-cottage.ca in&nbsp;November.</p>
-    <div class="tw"><table class="fx2"><thead><tr><th>What we found</th><th>Why it matters</th></tr></thead><tbody>
-    <tr><td class="n">The homepage text is a summer hookah session on the potio. It says “this summer” in&nbsp;November.</td><td>AI sees a seasonal event, not a dispensary open&nbsp;today.</td></tr>
-    <tr><td class="n">The event paragraph and “Buy Tickets Here” each appear twice, word for&nbsp;word.</td><td>Repeated text looks like a broken page to AI and to&nbsp;Google.</td></tr>
-    <tr><td class="n">No address, phone number or hours in the homepage text. The map shows “Map Script is loading …” and never&nbsp;loads.</td><td>These are the first facts AI checks before it recommends a&nbsp;shop.</td></tr>
-    <tr><td class="n">No headings AI can use to tell what each part of the page is&nbsp;about.</td><td>Headings are how AI finds the answer to a question on a&nbsp;page.</td></tr>
-    <tr><td class="n">Your owner story, the 1914 cottage and your plant biochemistry background aren’t on the site in a form AI can&nbsp;read.</td><td>So Google’s AI tells your story from theounce.ca instead, and calls your cottage 108 years old. It’s&nbsp;112.</td></tr>
-    <tr><td class="n">We found no business data AI can read directly, like your address, hours and type of business in&nbsp;code.</td><td>This is the fastest way to tell AI exactly who and where you&nbsp;are.</td></tr>
-    <tr><td>Your menu and product pages are live, and a few rank across&nbsp;Canada.</td><td>A good base for product and strain&nbsp;guides.</td></tr>
-    </tbody></table></div>
-    <h3 style="margin-top:30px">Where your Google visits&nbsp;land</h3>
-    <p class="small" style="margin:0 0 12px">More than half go to your homepage, mostly from people searching your name. Most of the rest are product pages read by shoppers across&nbsp;Canada.</p>
-    <figure class="vf an" style="margin:0"><svg viewBox='0 0 400 204' style='max-width:560px' role='img' aria-label='Where Google visits land: homepage 135 a month, Bliss gummies page 73, ash catcher page 18, every other page 20'><text x='0' y='18' font-size='14' font-weight='700' fill='#0B1A2E' font-family='Hanken Grotesk, sans-serif'>Homepage</text><text x='400' y='18' text-anchor='end' font-size='14' font-weight='700' fill='#0B1A2E' font-family='Hanken Grotesk, sans-serif'>135 a month</text><rect x='0' y='26' width='400' height='14' rx='7' fill='#EEF1F6'/><rect x='0' y='26' width='400.0' height='14' rx='7' fill='#1F4FE0'/><text x='0' y='68' font-size='14' font-weight='700' fill='#0B1A2E' font-family='Hanken Grotesk, sans-serif'>Bliss gummies page</text><text x='400' y='68' text-anchor='end' font-size='14' font-weight='700' fill='#0B1A2E' font-family='Hanken Grotesk, sans-serif'>73 a month</text><rect x='0' y='76' width='400' height='14' rx='7' fill='#EEF1F6'/><rect x='0' y='76' width='216.2962962962963' height='14' rx='7' fill='#9DB0D8'/><text x='0' y='118' font-size='14' font-weight='700' fill='#0B1A2E' font-family='Hanken Grotesk, sans-serif'>Ash catcher page</text><text x='400' y='118' text-anchor='end' font-size='14' font-weight='700' fill='#0B1A2E' font-family='Hanken Grotesk, sans-serif'>18 a month</text><rect x='0' y='126' width='400' height='14' rx='7' fill='#EEF1F6'/><rect x='0' y='126' width='53.333333333333336' height='14' rx='7' fill='#9DB0D8'/><text x='0' y='168' font-size='14' font-weight='700' fill='#0B1A2E' font-family='Hanken Grotesk, sans-serif'>Every other page</text><text x='400' y='168' text-anchor='end' font-size='14' font-weight='700' fill='#0B1A2E' font-family='Hanken Grotesk, sans-serif'>20 a month</text><rect x='0' y='176' width='400' height='14' rx='7' fill='#EEF1F6'/><rect x='0' y='176' width='59.25925925925925' height='14' rx='7' fill='#9DB0D8'/></svg></figure>
+    <h2 id="s-how">How AI decides who to&nbsp;name</h2>
+    <p class="sub">AEO stands for answer engine optimization. It’s SEO for AI. SEO gets you onto Google’s list of links. AEO gets your name into the answer&nbsp;itself.</p>
+    <div class="tiers3">
+      <div class="tc3"><span class="amt">1</span><h3>It reads your&nbsp;website</h3><p>Not the design. The words, headings and business details behind it. If your address and hours aren’t there in plain text, AI doesn’t know&nbsp;them.</p></div>
+      <div class="tc3"><span class="amt">2</span><h3>It checks other sites&nbsp;agree</h3><p>Google, Leafly, Weedmaps, Visit Penticton and local news. When they match your site, AI trusts you more. When they don’t, it&nbsp;hedges.</p></div>
+      <div class="tc3"><span class="amt">3</span><h3>It names the ones it&nbsp;trusts</h3><p>An AI answer names two or three shops, not ten links. The shops it can verify best get named. Everyone else is left&nbsp;out.</p></div>
+    </div>
+    <p>So the work isn’t tricks. It’s making sure the facts about you are true, complete and the same everywhere, then publishing pages that answer what people actually&nbsp;ask.</p>
   </div>
 </section>
 
-<section aria-labelledby="s-fix">
-  <div class="wrap">
-    <h2 id="s-fix">What AI sees around your&nbsp;site</h2>
-    <p class="sub">AI checks your website against what other sites say. When they disagree, it trusts you&nbsp;less.</p>
-    <div class="tw"><table class="fx2"><thead><tr><th>What we found</th><th>Why it matters</th></tr></thead><tbody>
-    <tr><td class="n">Hours disagree: Visit Penticton lists 9 to 9 (Fri and Sat 9 to 10). Leafly lists 9 to 8&nbsp;daily.</td><td>Wrong hours lose visitors and AI’s&nbsp;trust.</td></tr>
-    <tr><td class="n">Your Leafly profile is unclaimed, with 4 reviews, and says its information may not be up to&nbsp;date.</td><td>Leafly ranks #5 for “dispensary penticton.” AI reads&nbsp;it.</td></tr>
-    <tr><td class="n">The building is a “1914 Edwardian cottage” in one place and “the old Chris’ Photography building” in another. Your name appears as Mariana and&nbsp;Marianna.</td><td>Small differences make AI less sure these are the same shop and&nbsp;person.</td></tr>
-    <tr><td class="n">37 of the top 60 sites linking to you are flagged as spam link&nbsp;shops.</td><td>Most shops collect these without asking. We disavow them so they can’t hurt&nbsp;you.</td></tr>
-    <tr><td>Real links from penticton.ca, Visit Penticton, StratCann, KelownaNow, Leafly and&nbsp;Weedmaps.</td><td>A strong base. We build on&nbsp;these.</td></tr>
-    </tbody></table></div><h3 style="margin-top:34px">Explore it in 3D: what AI knows about&nbsp;you</h3><p class="small" style="margin:0 0 12px">Spheres are facts, boxes are sources. Blue helps you. Red holds you back, and&nbsp;pulses.</p><div class="g3" id="g-ent" role="img" aria-label="Interactive 3D graph of facts and sources about Cannabis Cottage"><div class="fallback">Loading the 3D model…</div></div><p class="g3hint">Drag to rotate. Pinch, or use + and −, to zoom. Tap anything to read it.</p>
-    <h3 style="margin-top:30px">Spam links next to good&nbsp;ones</h3>
-    <p class="small" style="margin:0 0 12px">The top 60 sites linking to cannabis-cottage.ca. Each square is one&nbsp;site.</p>
-    <figure class="vf an" style="margin:0"><svg viewBox='0 0 480 250' role='img' aria-label='37 of the top 60 sites linking to cannabis-cottage.ca are flagged as spam'><rect x='3' y='3' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='43' y='3' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='83' y='3' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='123' y='3' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='163' y='3' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='203' y='3' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='243' y='3' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='283' y='3' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='323' y='3' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='363' y='3' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='403' y='3' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='443' y='3' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='3' y='43' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='43' y='43' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='83' y='43' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='123' y='43' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='163' y='43' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='203' y='43' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='243' y='43' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='283' y='43' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='323' y='43' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='363' y='43' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='403' y='43' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='443' y='43' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='3' y='83' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='43' y='83' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='83' y='83' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='123' y='83' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='163' y='83' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='203' y='83' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='243' y='83' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='283' y='83' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='323' y='83' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='363' y='83' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='403' y='83' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='443' y='83' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='3' y='123' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='43' y='123' width='32' height='32' rx='6' fill='#1F4FE0'/><rect x='83' y='123' width='32' height='32' rx='6' fill='#1F4FE0'/><rect x='123' y='123' width='32' height='32' rx='6' fill='#1F4FE0'/><rect x='163' y='123' width='32' height='32' rx='6' fill='#1F4FE0'/><rect x='203' y='123' width='32' height='32' rx='6' fill='#1F4FE0'/><rect x='243' y='123' width='32' height='32' rx='6' fill='#1F4FE0'/><rect x='283' y='123' width='32' height='32' rx='6' fill='#1F4FE0'/><rect x='323' y='123' width='32' height='32' rx='6' fill='#1F4FE0'/><rect x='363' y='123' width='32' height='32' rx='6' fill='#1F4FE0'/><rect x='403' y='123' width='32' height='32' rx='6' fill='#1F4FE0'/><rect x='443' y='123' width='32' height='32' rx='6' fill='#1F4FE0'/><rect x='3' y='163' width='32' height='32' rx='6' fill='#1F4FE0'/><rect x='43' y='163' width='32' height='32' rx='6' fill='#1F4FE0'/><rect x='83' y='163' width='32' height='32' rx='6' fill='#1F4FE0'/><rect x='123' y='163' width='32' height='32' rx='6' fill='#1F4FE0'/><rect x='163' y='163' width='32' height='32' rx='6' fill='#1F4FE0'/><rect x='203' y='163' width='32' height='32' rx='6' fill='#1F4FE0'/><rect x='243' y='163' width='32' height='32' rx='6' fill='#1F4FE0'/><rect x='283' y='163' width='32' height='32' rx='6' fill='#1F4FE0'/><rect x='323' y='163' width='32' height='32' rx='6' fill='#1F4FE0'/><rect x='363' y='163' width='32' height='32' rx='6' fill='#1F4FE0'/><rect x='403' y='163' width='32' height='32' rx='6' fill='#1F4FE0'/><rect x='443' y='163' width='32' height='32' rx='6' fill='#1F4FE0'/><rect x='0' y='214' width='12' height='12' rx='3' fill='#D63A1C'/><text x='18' y='225' font-size='13' fill='#0B1A2E' font-family='Hanken Grotesk, sans-serif'>37 spam link shops</text><rect x='200' y='214' width='12' height='12' rx='3' fill='#1F4FE0'/><text x='218' y='225' font-size='13' fill='#0B1A2E' font-family='Hanken Grotesk, sans-serif'>23 real sites, like penticton.ca</text></svg></figure>
-  </div>
-</section>
-
-<section class="alt" aria-labelledby="s-towns">
+<section aria-labelledby="s-towns">
   <div class="wrap">
     <h2 id="s-towns">Where you show up on&nbsp;Google</h2>
     <p class="sub">Monthly dispensary searches by town, and where your website ranks&nbsp;today.</p>
@@ -474,29 +460,31 @@ section.alt .tl .when{background:var(--paper2)}
   </div>
 </section>
 
-<section aria-labelledby="s-why">
+<section class="alt" aria-labelledby="s-fix">
   <div class="wrap">
-    <h2 id="s-why">Why AI is your best&nbsp;channel</h2>
-    <p class="sub">The Cannabis Act closes most doors other businesses use. AI answers are one of the few left&nbsp;open.</p>
-    <div class="adch">
-      <div class="adc"><h3>You can’t advertise like&nbsp;others</h3><p>Federal rules sharply limit cannabis promotion, and BC shops can’t run loyalty programs. That’s why your potio has grown only by word of&nbsp;mouth.</p></div>
-      <div class="adc best3"><h3>But AI can recommend&nbsp;you</h3><p>When someone asks AI where to go, it answers from facts it can verify. Clear, informational pages about who you are, where you are and what you offer are how you get&nbsp;named.</p></div>
-    </div>
-    <p>Everything we publish stays informational and within federal and BC cannabis rules: your story, your hours, your events and your products, written for adults looking for&nbsp;them.</p>
-  </div>
-</section>
-
-<section class="alt" aria-labelledby="s-do">
-  <div class="wrap">
-    <h2 id="s-do">What we’d&nbsp;do</h2>
-    <p class="sub">In order, starting the week you&nbsp;approve.</p>
-    <ol class="steps4">
-      <li><b>Rebuild your homepage for AI (weeks 1 to 2)</b><span>Address, phone, hours, a working map, your owner story and the 1914 cottage, with clear headings and business data in code. Events move to their own&nbsp;pages.</span></li>
-      <li><b>One set of facts everywhere (month 1)</b><span>Claim Leafly, match your hours on every listing, settle the name spellings, verify your Local AI Registry record and disavow the spam&nbsp;links.</span></li>
-      <li><b>Pages for what people ask (months 1 to 3)</b><span>The potio, events, a first-visit guide for tourists, product and strain guides, and pages for Kelowna, Summerland, Naramata and&nbsp;Osoyoos.</span></li>
-      <li><b>Win the map in Penticton (months 1 to 3)</b><span>Photos, posts and events on your Google Business Profile, plus more reviews with personal replies, to move from below the map to inside&nbsp;it.</span></li>
-      <li><b>Earn press and measure (every month)</b><span>Story pitches to Okanagan and cannabis press, and a monthly report showing how often AI names you and where your visits come&nbsp;from.</span></li>
-    </ol>
+    <h2 id="s-fix">What AI sees when it reads about&nbsp;you</h2>
+    <p class="sub">We read cannabis-cottage.ca the way AI does, then checked it against every other site that talks about you. The first rows are your website. The rest are the sites around&nbsp;it.</p>
+    <div class="tw"><table class="fx2"><thead><tr><th>What we found</th><th>Why it matters</th></tr></thead><tbody>
+    <tr><td class="n">The homepage text is a summer hookah session on the potio. It says “this summer” in&nbsp;November.</td><td>AI sees a seasonal event, not a dispensary open&nbsp;today.</td></tr>
+    <tr><td class="n">The event paragraph and “Buy Tickets Here” each appear twice, word for&nbsp;word.</td><td>Repeated text looks like a broken page to AI and to&nbsp;Google.</td></tr>
+    <tr><td class="n">No address, phone number or hours in the homepage text. The map shows “Map Script is loading …” and never&nbsp;loads.</td><td>These are the first facts AI checks before it recommends a&nbsp;shop.</td></tr>
+    <tr><td class="n">No headings AI can use to tell what each part of the page is&nbsp;about.</td><td>Headings are how AI finds the answer to a question on a&nbsp;page.</td></tr>
+    <tr><td class="n">Your owner story, the 1914 cottage and your plant biochemistry background aren’t on the site in a form AI can&nbsp;read.</td><td>So Google’s AI tells your story from theounce.ca instead, and calls your cottage 108 years old. It’s&nbsp;112.</td></tr>
+    <tr><td class="n">We found no business data AI can read directly, like your address, hours and type of business in&nbsp;code.</td><td>This is the fastest way to tell AI exactly who and where you&nbsp;are.</td></tr>
+    
+    
+    <tr><td class="n">Hours disagree: Visit Penticton lists 9 to 9 (Fri and Sat 9 to 10). Leafly lists 9 to 8&nbsp;daily.</td><td>Wrong hours lose visitors and AI’s&nbsp;trust.</td></tr>
+    <tr><td class="n">Your Leafly profile is unclaimed, with 4 reviews, and says its information may not be up to&nbsp;date.</td><td>Leafly ranks #5 for “dispensary penticton.” AI reads&nbsp;it.</td></tr>
+    <tr><td class="n">The building is a “1914 Edwardian cottage” in one place and “the old Chris’ Photography building” in another. Your name appears as Mariana and&nbsp;Marianna.</td><td>Small differences make AI less sure these are the same shop and&nbsp;person.</td></tr>
+    <tr><td class="n">37 of the top 60 sites linking to you are flagged as spam link&nbsp;shops.</td><td>Most shops collect these without asking. We disavow them so they can’t hurt&nbsp;you.</td></tr>
+    <tr><td>Real links from penticton.ca, Visit Penticton, StratCann, KelownaNow, Leafly and&nbsp;Weedmaps.</td><td>A strong base. We build on&nbsp;these.</td></tr>
+    </tbody></table></div><h3 style="margin-top:34px">Explore it in 3D: what AI knows about&nbsp;you</h3><p class="small" style="margin:0 0 12px">Spheres are facts, boxes are sources. Blue helps you. Red holds you back, and&nbsp;pulses.</p><div class="g3" id="g-ent" role="img" aria-label="Interactive 3D graph of facts and sources about Cannabis Cottage"><div class="fallback">Loading the 3D model…</div></div><p class="g3hint">Drag to rotate. Pinch, or use + and −, to zoom. Tap anything to read it.</p>
+    <h3 style="margin-top:30px">Where your Google visits&nbsp;land</h3>
+    <p class="small" style="margin:0 0 12px">More than half go to your homepage, mostly from people searching your name. Most of the rest are product pages read by shoppers across&nbsp;Canada.</p>
+    <figure class="vf an" style="margin:0"><svg viewBox='0 0 400 204' style='max-width:560px' role='img' aria-label='Where Google visits land: homepage 135 a month, Bliss gummies page 73, ash catcher page 18, every other page 20'><text x='0' y='18' font-size='14' font-weight='700' fill='#0B1A2E' font-family='Hanken Grotesk, sans-serif'>Homepage</text><text x='400' y='18' text-anchor='end' font-size='14' font-weight='700' fill='#0B1A2E' font-family='Hanken Grotesk, sans-serif'>135 a month</text><rect x='0' y='26' width='400' height='14' rx='7' fill='#EEF1F6'/><rect x='0' y='26' width='400.0' height='14' rx='7' fill='#1F4FE0'/><text x='0' y='68' font-size='14' font-weight='700' fill='#0B1A2E' font-family='Hanken Grotesk, sans-serif'>Bliss gummies page</text><text x='400' y='68' text-anchor='end' font-size='14' font-weight='700' fill='#0B1A2E' font-family='Hanken Grotesk, sans-serif'>73 a month</text><rect x='0' y='76' width='400' height='14' rx='7' fill='#EEF1F6'/><rect x='0' y='76' width='216.2962962962963' height='14' rx='7' fill='#9DB0D8'/><text x='0' y='118' font-size='14' font-weight='700' fill='#0B1A2E' font-family='Hanken Grotesk, sans-serif'>Ash catcher page</text><text x='400' y='118' text-anchor='end' font-size='14' font-weight='700' fill='#0B1A2E' font-family='Hanken Grotesk, sans-serif'>18 a month</text><rect x='0' y='126' width='400' height='14' rx='7' fill='#EEF1F6'/><rect x='0' y='126' width='53.333333333333336' height='14' rx='7' fill='#9DB0D8'/><text x='0' y='168' font-size='14' font-weight='700' fill='#0B1A2E' font-family='Hanken Grotesk, sans-serif'>Every other page</text><text x='400' y='168' text-anchor='end' font-size='14' font-weight='700' fill='#0B1A2E' font-family='Hanken Grotesk, sans-serif'>20 a month</text><rect x='0' y='176' width='400' height='14' rx='7' fill='#EEF1F6'/><rect x='0' y='176' width='59.25925925925925' height='14' rx='7' fill='#9DB0D8'/></svg></figure>
+    <h3 style="margin-top:30px">Spam links next to good&nbsp;ones</h3>
+    <p class="small" style="margin:0 0 12px">The top 60 sites linking to cannabis-cottage.ca. Each square is one&nbsp;site.</p>
+    <figure class="vf an" style="margin:0"><svg viewBox='0 0 480 250' role='img' aria-label='37 of the top 60 sites linking to cannabis-cottage.ca are flagged as spam'><rect x='3' y='3' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='43' y='3' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='83' y='3' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='123' y='3' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='163' y='3' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='203' y='3' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='243' y='3' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='283' y='3' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='323' y='3' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='363' y='3' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='403' y='3' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='443' y='3' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='3' y='43' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='43' y='43' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='83' y='43' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='123' y='43' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='163' y='43' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='203' y='43' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='243' y='43' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='283' y='43' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='323' y='43' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='363' y='43' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='403' y='43' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='443' y='43' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='3' y='83' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='43' y='83' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='83' y='83' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='123' y='83' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='163' y='83' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='203' y='83' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='243' y='83' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='283' y='83' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='323' y='83' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='363' y='83' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='403' y='83' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='443' y='83' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='3' y='123' width='32' height='32' rx='6' fill='#D63A1C'/><rect x='43' y='123' width='32' height='32' rx='6' fill='#1F4FE0'/><rect x='83' y='123' width='32' height='32' rx='6' fill='#1F4FE0'/><rect x='123' y='123' width='32' height='32' rx='6' fill='#1F4FE0'/><rect x='163' y='123' width='32' height='32' rx='6' fill='#1F4FE0'/><rect x='203' y='123' width='32' height='32' rx='6' fill='#1F4FE0'/><rect x='243' y='123' width='32' height='32' rx='6' fill='#1F4FE0'/><rect x='283' y='123' width='32' height='32' rx='6' fill='#1F4FE0'/><rect x='323' y='123' width='32' height='32' rx='6' fill='#1F4FE0'/><rect x='363' y='123' width='32' height='32' rx='6' fill='#1F4FE0'/><rect x='403' y='123' width='32' height='32' rx='6' fill='#1F4FE0'/><rect x='443' y='123' width='32' height='32' rx='6' fill='#1F4FE0'/><rect x='3' y='163' width='32' height='32' rx='6' fill='#1F4FE0'/><rect x='43' y='163' width='32' height='32' rx='6' fill='#1F4FE0'/><rect x='83' y='163' width='32' height='32' rx='6' fill='#1F4FE0'/><rect x='123' y='163' width='32' height='32' rx='6' fill='#1F4FE0'/><rect x='163' y='163' width='32' height='32' rx='6' fill='#1F4FE0'/><rect x='203' y='163' width='32' height='32' rx='6' fill='#1F4FE0'/><rect x='243' y='163' width='32' height='32' rx='6' fill='#1F4FE0'/><rect x='283' y='163' width='32' height='32' rx='6' fill='#1F4FE0'/><rect x='323' y='163' width='32' height='32' rx='6' fill='#1F4FE0'/><rect x='363' y='163' width='32' height='32' rx='6' fill='#1F4FE0'/><rect x='403' y='163' width='32' height='32' rx='6' fill='#1F4FE0'/><rect x='443' y='163' width='32' height='32' rx='6' fill='#1F4FE0'/><rect x='0' y='214' width='12' height='12' rx='3' fill='#D63A1C'/><text x='18' y='225' font-size='13' fill='#0B1A2E' font-family='Hanken Grotesk, sans-serif'>37 spam link shops</text><rect x='200' y='214' width='12' height='12' rx='3' fill='#1F4FE0'/><text x='218' y='225' font-size='13' fill='#0B1A2E' font-family='Hanken Grotesk, sans-serif'>23 real sites, like penticton.ca</text></svg></figure>
   </div>
 </section>
 
@@ -513,7 +501,60 @@ section.alt .tl .when{background:var(--paper2)}
   </div>
 </section>
 
-<section class="alt" aria-labelledby="s-roi">
+<section class="alt" aria-labelledby="s-why">
+  <div class="wrap">
+    <h2 id="s-why">Why AI is your best&nbsp;channel</h2>
+    <p class="sub">The Cannabis Act closes most doors other businesses use. AI answers are one of the few left&nbsp;open.</p>
+    <div class="adch">
+      <div class="adc"><h3>You can’t advertise like&nbsp;others</h3><p>Federal rules sharply limit cannabis promotion, and BC shops can’t run loyalty programs. That’s why your potio has grown only by word of&nbsp;mouth.</p></div>
+      <div class="adc best3"><h3>But AI can recommend&nbsp;you</h3><p>When someone asks AI where to go, it answers from facts it can verify. Clear, informational pages about who you are, where you are and what you offer are how you get&nbsp;named.</p></div>
+    </div>
+    <p>Everything we publish stays informational and within federal and BC cannabis rules: your story, your hours, your events and your products, written for adults looking for&nbsp;them.</p>
+  </div>
+</section>
+
+<section aria-labelledby="s-do">
+  <div class="wrap">
+    <h2 id="s-do">How it works: five pieces of&nbsp;work</h2>
+    <p class="sub">What we do, which finding it fixes, what you’ll see, and what it does under the&nbsp;hood.</p>
+    <div class="pillar"><div class="head"><span class="pn">1</span><h3>Rebuild your homepage for&nbsp;AI</h3></div><p class="fx">Fixes: a homepage that reads as a summer&nbsp;event</p><div class="pgrid"><div class="ptext"><p>Your homepage becomes the source AI quotes about you, with today’s&nbsp;facts.</p><ul><li>Address, phone, hours and a map that&nbsp;loads</li><li>Your story, the 1914 cottage and the potio, in plain&nbsp;text</li><li>Clear headings, and your business details in code AI reads&nbsp;directly</li><li>Events move to their own pages with real&nbsp;dates</li></ul><p class="see"><b>What you’ll see:</b> the new page side by side with today’s, before anything goes&nbsp;live.</p></div><div class="algo"><span class="h">Structured&nbsp;data</span>Store → name, address, hours, location
+<span class="f">AI reads facts, instead of&nbsp;guessing</span></div></div></div>
+    <div class="pillar"><div class="head"><span class="pn">2</span><h3>One set of facts&nbsp;everywhere</h3></div><p class="fx">Fixes: conflicting hours, names and&nbsp;listings</p><div class="pgrid"><div class="ptext"><p>We fix every listing so it matches your website, and clean up the links that hurt&nbsp;you.</p><ul><li>Claim Leafly, match hours on Google, Leafly, Weedmaps and Visit&nbsp;Penticton</li><li>One spelling for your name, one description of the&nbsp;building</li><li>Your verified Local AI Registry&nbsp;record</li><li>Disavow the 37 spam&nbsp;links</li></ul><p class="see"><b>What you’ll see:</b> a listing tracker showing each site, what it said, what we changed and&nbsp;when.</p></div><div class="algo"><span class="h">Entity&nbsp;matching</span>same name + address + hours, on every source
+<span class="f">AI confidence goes&nbsp;up</span></div></div></div>
+    <div class="pillar"><div class="head"><span class="pn">3</span><h3>Pages for what people&nbsp;ask</h3></div><p class="fx">Fixes: no pages for the potio, events or&nbsp;tourists</p><div class="pgrid"><div class="ptext"><p>We write the pages that answer what visitors and locals ask&nbsp;AI.</p><ul><li>The potio and how it&nbsp;works</li><li>Events, with&nbsp;dates</li><li>A first-visit guide for people from out of&nbsp;town</li><li>Product and strain guides, and pages for Kelowna, Summerland, Naramata and&nbsp;Osoyoos</li></ul><p class="see"><b>What you’ll see:</b> every page as a draft for your approval. You approve or edit it before it’s&nbsp;published.</p></div><div class="algo"><span class="h">Question to&nbsp;page</span>one question → one page that answers it first
+<span class="f">AI quotes the page that answers&nbsp;best</span></div></div></div>
+    <div class="pillar"><div class="head"><span class="pn">4</span><h3>Win the map in&nbsp;Penticton</h3></div><p class="fx">Fixes: #2 below the map, not on&nbsp;it</p><div class="pgrid"><div class="ptext"><p>Google’s map is where most people tap. We build the signals that move you into&nbsp;it.</p><ul><li>Photos, posts and events on your Google Business&nbsp;Profile</li><li>Review requests, and a personal reply to every&nbsp;review</li><li>Links from Penticton sites that already know&nbsp;you</li></ul><p class="see"><b>What you’ll see:</b> where you rank on the map, checked from Penticton every&nbsp;week.</p></div><div class="algo"><span class="h">Local&nbsp;ranking</span>relevance × prominence × distance
+<span class="f">we raise the first&nbsp;two</span></div></div></div>
+    <div class="pillar"><div class="head"><span class="pn">5</span><h3>Get mentioned, then&nbsp;measure</h3></div><p class="fx">Fixes: 0 AI&nbsp;citations</p><div class="pgrid"><div class="ptext"><p>We pitch your story to Okanagan and cannabis press, then track whether AI names&nbsp;you.</p><ul><li>Story pitches about the potio and the&nbsp;cottage</li><li>The same set of questions asked to ChatGPT, Gemini, Google AI and Perplexity every&nbsp;month</li></ul><p class="see"><b>What you’ll see:</b> the actual AI answers, word for word, every month, so you see what changed&nbsp;yourself.</p></div><div class="algo"><span class="h">AI&nbsp;visibility</span>times you’re named ÷ times asked
+<span class="f">0 today → named in most&nbsp;answers</span></div></div></div>
+  </div>
+</section>
+
+<section class="alt" aria-labelledby="s-tl">
+  <div class="wrap">
+    <h2 id="s-tl">Timeline</h2>
+    <ol class="tl">
+      <li><div class="when">Week 1</div><div class="what"><h3>Kickoff</h3><p>Intake form, website and Google access, and the first set of AI questions we’ll&nbsp;track.</p></div></li>
+      <li><div class="when">Weeks 1 to 2</div><div class="what"><h3>Homepage&nbsp;rebuilt</h3><p>Address, hours, map, story and business data, approved by you and&nbsp;live.</p></div></li>
+      <li><div class="when">Month 1</div><div class="what"><h3>One set of&nbsp;facts</h3><p>Leafly claimed, listings matched, spam links disavowed, Local AI Registry record&nbsp;verified.</p></div></li>
+      <li><div class="when">Months 2 to 3</div><div class="what"><h3>New&nbsp;pages</h3><p>Potio, events, first-visit guide, product guides and nearby&nbsp;towns.</p></div></li>
+      <li class="key"><div class="when">About day 90</div><div class="what"><h3>Named in AI&nbsp;answers</h3><p>Cannabis Cottage starts appearing when people ask AI about dispensaries and things to do in&nbsp;Penticton.</p></div></li>
+      <li><div class="when">Month 6</div><div class="what"><h3>In Penticton’s&nbsp;map</h3><p>A top 3 map spot for “dispensary penticton,” and named for the&nbsp;potio.</p></div></li>
+    </ol>
+    <h3 style="margin-top:40px">What you’ll see, every&nbsp;month</h3>
+    <p class="small" style="margin:0 0 12px">You told us you want to know what’s being done, not just the results. This is&nbsp;how.</p>
+    <dl class="terms">
+      <div><dt>A work&nbsp;log</dt><dd>Every task<small>What we did, when, and a link to&nbsp;it</small></dd></div>
+      <div><dt>Your approval&nbsp;first</dt><dd>Every page and post<small>Nothing goes live without your&nbsp;OK</small></dd></div>
+      <div><dt>The real AI&nbsp;answers</dt><dd>Word for word<small>Same questions each month, so you can&nbsp;compare</small></dd></div>
+      <div><dt>Rankings, map and&nbsp;visits</dt><dd>Monthly report<small>With what changed and&nbsp;why</small></dd></div>
+      <div><dt>A call to walk through&nbsp;it</dt><dd>Every month<small>Ask anything, change&nbsp;priorities</small></dd></div>
+      <div><dt>Your&nbsp;accounts</dt><dd>Stay yours<small>We work through access you can remove&nbsp;anytime</small></dd></div>
+    </dl>
+  </div>
+</section>
+
+<section aria-labelledby="s-roi">
   <div class="wrap">
     <h2 id="s-roi">Is it worth&nbsp;it?</h2>
     <p class="sub">At about $40 a visit, here’s what pays for each&nbsp;plan.</p>
