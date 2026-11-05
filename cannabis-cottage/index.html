@@ -335,6 +335,10 @@ section.alt .tl .when{background:var(--paper2)}
 .chat .lbl.good{color:var(--blue)}
 .chat cite{font-style:normal;font-size:12px;color:var(--mute);display:block;margin-top:8px}
 .pair{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.tiers{width:100%;border-collapse:collapse;font-size:15px}.tiers th,.tiers td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:center;vertical-align:top}.tiers th:first-child,.tiers td:first-child{text-align:left}.tiers thead th{font-family:'Bricolage Grotesque',sans-serif;border-bottom:1.5px solid var(--ink);vertical-align:bottom}.tiers thead th small{display:block;font-family:'Hanken Grotesk',sans-serif;font-weight:500;color:var(--ink2);font-size:13px}.tiers .rec{background:var(--blue-soft)}.tiers tr.grp td{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;padding-top:18px;border-bottom:1px solid var(--ink);text-align:left}.tiers td.y{color:var(--blue);font-weight:800}.tiers td.n{color:var(--mute)}
+.cmpw{margin-top:22px}.cmp{width:100%;border-collapse:separate;border-spacing:0;font-size:14px;min-width:640px}.cmp th,.cmp td{padding:11px 10px;border-bottom:1px solid var(--line);text-align:center;vertical-align:middle;line-height:1.35}.cmp thead th{font-family:'Bricolage Grotesque',sans-serif;font-size:13.5px;vertical-align:bottom;border-bottom:1.5px solid var(--ink)}.cmp thead th small{display:block;font-family:'Hanken Grotesk',sans-serif;font-weight:500;color:var(--ink2);font-size:12px}.cmp tbody th{text-align:left;font-weight:500;color:var(--ink);width:34%;position:sticky;left:0;background:var(--paper2)}.cmp .us{background:var(--blue-soft);color:var(--ink)}.cmp thead th.us{background:#1F4FE0;color:#fff;border-radius:12px 12px 0 0}.cmp td.cp{color:var(--ink2);font-size:13px}.cmp td.cn{color:var(--mute);font-size:16px}.cmp .ck{display:inline-flex;width:24px;height:24px;border-radius:50%;background:#1F4FE0;color:#fff;align-items:center;justify-content:center;font-weight:800;font-size:13px}.cmp td:not(.us) .ck{background:#9AA8BD}
+.faq{margin:10px 0 0}.faq div{border-bottom:1px solid var(--line);padding:16px 0}.faq dt{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:18px;margin-bottom:6px}.faq dd{margin:0;color:var(--ink2)}
+@media (max-width:600px){.tiers{font-size:13.5px}.tiers th,.tiers td{padding:9px 5px}.cmp{font-size:13px}.cmp tbody th{width:150px;min-width:150px}}
 .pillar{margin:0 0 48px}.pillar .head{display:flex;gap:14px;align-items:baseline;margin-bottom:6px}.pillar .pn{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:15px;color:#fff;background:#1F4FE0;border-radius:999px;padding:3px 11px}.pillar h3{font-size:24px;margin:0}
 .pgrid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:14px;align-items:start}
 .algo{background:#0B1A2E;color:#DCE5FF;border-radius:16px;padding:18px;font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:12px;line-height:1.6;white-space:pre-wrap}
@@ -346,6 +350,7 @@ section.alt .tl .when{background:var(--paper2)}
 
 @media (max-width:640px){.pair{grid-template-columns:1fr}}
 </style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What exactly do you do each month?", "acceptedAnswer": {"@type": "Answer", "text": "It depends on the plan, and it’s listed line by line in the table above. In short: we fix your listings every week, post to Google every week, reply to every review, and on Authority we rebuild your homepage and add 2 new pages a month."}}, {"@type": "Question", "name": "How will I know it’s working?", "acceptedAnswer": {"@type": "Answer", "text": "Every month we ask ChatGPT, Gemini, Google AI and Perplexity the same set of questions and show you their answers word for word, next to your Google rankings, map position and visits."}}, {"@type": "Question", "name": "Is this allowed under Canada’s cannabis rules?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Everything we publish is informational: your address, hours, story, events and products, for adults looking for them. No promotions or inducements."}}, {"@type": "Question", "name": "What if it doesn’t work?", "acceptedAnswer": {"@type": "Answer", "text": "You’re month to month, so you can stop anytime. On the Authority plan, if Cannabis Cottage isn’t named in AI answers within 90 days, we keep working for free until it is."}}, {"@type": "Question", "name": "Is it worth it for a single shop?", "acceptedAnswer": {"@type": "Answer", "text": "At about $40 a visit, the Trust plan pays for itself at 6 extra customers a week, and Authority at 2 or 3 a day. With 0 AI citations today and most ads off the table, the room to grow is large."}}]}</script>
 <style>
 .g3{position:relative;background:#07101D;border-radius:20px;overflow:hidden;height:min(560px,78vh);min-height:400px;touch-action:pan-y;user-select:none;-webkit-user-select:none}
 .g3 canvas{display:block;width:100%!important;height:100%!important;cursor:grab}
@@ -408,23 +413,24 @@ section.alt .tl .when{background:var(--paper2)}
 
 <section class="alt" aria-labelledby="s-sum">
   <div class="wrap">
-    <h2 id="s-sum">The audit in one&nbsp;look</h2>
-    <p class="sub">Strong name, real local press, a story AI wants to tell. The gap is your own&nbsp;website.</p>
+    <h2 id="s-sum">The short&nbsp;answers</h2>
+    <p class="sub">Each one is explained further&nbsp;down.</p>
     <dl class="terms">
-      <div><dt>Google visits to your&nbsp;website</dt><dd>246 a month<small>Down from 322 a year&nbsp;ago</small></dd></div>
-      <div><dt>AI citations of your&nbsp;website</dt><dd>0<small>ChatGPT, Gemini, Google AI, Perplexity, Copilot,&nbsp;Grok</small></dd></div>
-      <div><dt>Your homepage, as AI reads&nbsp;it</dt><dd>A summer event<small>No address, hours, phone or&nbsp;story</small></dd></div>
-      <div><dt>Google rank for “dispensary&nbsp;penticton”</dt><dd>#2<small>Below the map, where most people&nbsp;tap</small></dd></div>
-      <div><dt>Spam sites linking to&nbsp;you</dt><dd>37 of the top 60<small>Next to real ones like&nbsp;penticton.ca</small></dd></div>
-      <div><dt>Recommended&nbsp;plan</dt><dd>Gold, $3,000 a month<small>Website work and our 90-day AI&nbsp;guarantee</small></dd></div>
+      <div><dt>The&nbsp;problem</dt><dd>AI can’t find you<small>0 AI citations, and a homepage that reads as a summer&nbsp;event</small></dd></div>
+      <div><dt>The&nbsp;solution</dt><dd>Make AI sure about you<small>Right facts, everywhere, plus pages that answer real&nbsp;questions</small></dd></div>
+      <div><dt>How we do&nbsp;it</dt><dd>Done for you<small>Listings, Google, reviews, your website and press, approved by&nbsp;you</small></dd></div>
+      <div><dt>How&nbsp;often</dt><dd>Every week<small>Reported to you every month, task by&nbsp;task</small></dd></div>
+      <div><dt>Price</dt><dd>$500, $1,000 or $3,000<small>A month, in US dollars. You pick the&nbsp;plan</small></dd></div>
+      <div><dt>Contract</dt><dd>None<small>Month to month, cancel&nbsp;anytime</small></dd></div>
+      <div><dt>Guarantee</dt><dd>90 days, on the $3,000 plan<small>Named by AI, or we keep working for&nbsp;free</small></dd></div>
     </dl>
   </div>
 </section>
 
 <section aria-labelledby="s-now">
   <div class="wrap">
-    <h2 id="s-now">Where you stand&nbsp;today</h2>
-    <p class="sub">Monthly Google visits to cannabis-cottage.ca over the last year. Even the summer, your busiest season, didn’t lift&nbsp;it.</p>
+    <h2 id="s-now">The&nbsp;problem</h2>
+    <p class="sub">People who already know your name find you. Almost nobody else does, and AI doesn’t mention you at all. Here are your monthly Google visits over the last year. Even summer, your busiest season, didn’t lift&nbsp;them.</p>
     <figure class="vf an" style="margin:0 0 26px"><svg viewBox='0 0 640 240' role='img' aria-label='Monthly Google visits to cannabis-cottage.ca fell from 322 in November 2025 to 180 in September 2026, and are 246 now'><line x1='44' x2='620' y1='206.0' y2='206.0' stroke='#D9DEE7'/><text x='36' y='210.0' text-anchor='end' font-size='11' fill='#7F8EA6' font-family='Hanken Grotesk, sans-serif'>0</text><line x1='44' x2='620' y1='118.0' y2='118.0' stroke='#D9DEE7'/><text x='36' y='122.0' text-anchor='end' font-size='11' fill='#7F8EA6' font-family='Hanken Grotesk, sans-serif'>200</text><line x1='44' x2='620' y1='30.0' y2='30.0' stroke='#D9DEE7'/><text x='36' y='34.0' text-anchor='end' font-size='11' fill='#7F8EA6' font-family='Hanken Grotesk, sans-serif'>400</text><text x='44.0' y='230' text-anchor='middle' font-size='12' fill='#7F8EA6' font-family='Hanken Grotesk, sans-serif'>Nov</text><text x='139.33333333333331' y='230' text-anchor='middle' font-size='12' fill='#7F8EA6' font-family='Hanken Grotesk, sans-serif'>Jan</text><text x='234.66666666666666' y='230' text-anchor='middle' font-size='12' fill='#7F8EA6' font-family='Hanken Grotesk, sans-serif'>Mar</text><text x='330.0' y='230' text-anchor='middle' font-size='12' fill='#7F8EA6' font-family='Hanken Grotesk, sans-serif'>May</text><text x='425.3333333333333' y='230' text-anchor='middle' font-size='12' fill='#7F8EA6' font-family='Hanken Grotesk, sans-serif'>Jul</text><text x='520.6666666666667' y='230' text-anchor='middle' font-size='12' fill='#7F8EA6' font-family='Hanken Grotesk, sans-serif'>Sep</text><text x='616.0' y='230' text-anchor='middle' font-size='12' fill='#7F8EA6' font-family='Hanken Grotesk, sans-serif'>Nov</text><polyline points='44.0,64.32 91.66666666666666,74.88 139.33333333333331,68.28 187.0,113.6 234.66666666666666,102.16000000000001 282.33333333333337,76.64 330.0,94.24 377.6666666666667,106.56 425.3333333333333,105.68 473.0,121.96 520.6666666666667,126.80000000000001 568.3333333333334,105.68 616.0,97.76' fill='none' stroke='#1F4FE0' stroke-width='3.5'/><circle cx='44.0' cy='64.32' r='4' fill='#1F4FE0'/><circle cx='91.66666666666666' cy='74.88' r='4' fill='#1F4FE0'/><circle cx='139.33333333333331' cy='68.28' r='4' fill='#1F4FE0'/><circle cx='187.0' cy='113.6' r='4' fill='#1F4FE0'/><circle cx='234.66666666666666' cy='102.16000000000001' r='4' fill='#1F4FE0'/><circle cx='282.33333333333337' cy='76.64' r='4' fill='#1F4FE0'/><circle cx='330.0' cy='94.24' r='4' fill='#1F4FE0'/><circle cx='377.6666666666667' cy='106.56' r='4' fill='#1F4FE0'/><circle cx='425.3333333333333' cy='105.68' r='4' fill='#1F4FE0'/><circle cx='473.0' cy='121.96' r='4' fill='#1F4FE0'/><circle cx='520.6666666666667' cy='126.80000000000001' r='4' fill='#1F4FE0'/><circle cx='568.3333333333334' cy='105.68' r='4' fill='#1F4FE0'/><circle cx='616.0' cy='97.76' r='4' fill='#1F4FE0'/><text x='48.0' y='50.31999999999999' font-size='12' font-weight='700' fill='#0B1A2E' font-family='Hanken Grotesk, sans-serif'>322 a month, a year ago</text><text x='520.6666666666667' y='150.8' text-anchor='middle' font-size='12' font-weight='700' fill='#D63A1C' font-family='Hanken Grotesk, sans-serif'>180 in September</text><text x='616.0' y='83.76' text-anchor='end' font-size='12' font-weight='700' fill='#1F4FE0' font-family='Hanken Grotesk, sans-serif'>246 now</text></svg></figure>
     <div class="stats">
       <div class="stat"><span class="num">#1</span><p>For “cannabis cottage,” “cannabis cottage penticton” and even “weed cottage.” People who know you find&nbsp;you</p></div>
@@ -436,33 +442,9 @@ section.alt .tl .when{background:var(--paper2)}
   </div>
 </section>
 
-<section class="alt" aria-labelledby="s-how">
-  <div class="wrap">
-    <h2 id="s-how">How AI decides who to&nbsp;name</h2>
-    <p class="sub">AEO stands for answer engine optimization. It’s SEO for AI. SEO gets you onto Google’s list of links. AEO gets your name into the answer&nbsp;itself.</p>
-    <div class="tiers3">
-      <div class="tc3"><span class="amt">1</span><h3>It reads your&nbsp;website</h3><p>Not the design. The words, headings and business details behind it. If your address and hours aren’t there in plain text, AI doesn’t know&nbsp;them.</p></div>
-      <div class="tc3"><span class="amt">2</span><h3>It checks other sites&nbsp;agree</h3><p>Google, Leafly, Weedmaps, Visit Penticton and local news. When they match your site, AI trusts you more. When they don’t, it&nbsp;hedges.</p></div>
-      <div class="tc3"><span class="amt">3</span><h3>It names the ones it&nbsp;trusts</h3><p>An AI answer names two or three shops, not ten links. The shops it can verify best get named. Everyone else is left&nbsp;out.</p></div>
-    </div>
-    <p>So the work isn’t tricks. It’s making sure the facts about you are true, complete and the same everywhere, then publishing pages that answer what people actually&nbsp;ask.</p>
-  </div>
-</section>
-
-<section aria-labelledby="s-towns">
-  <div class="wrap">
-    <h2 id="s-towns">Where you show up on&nbsp;Google</h2>
-    <p class="sub">Monthly dispensary searches by town, and where your website ranks&nbsp;today.</p>
-    <figure class="vf an" style="margin:0 0 22px"><svg viewBox='0 0 640 170' role='img' aria-label='Monthly dispensary searches by Okanagan town and where Cannabis Cottage ranks'><text x='0' y='25' font-size='13.5' fill='#0B1A2E' font-family='Hanken Grotesk, sans-serif'>Penticton</text><rect x='110' y='12' width='330' height='18' rx='9' fill='#EEF1F6'/><rect x='110' y='12' width='330.0' height='18' rx='9' fill='#1F4FE0'/><text x='448' y='25' font-size='12.5' fill='#0B1A2E' font-family='Hanken Grotesk, sans-serif'>260/mo</text><text x='640' y='25' text-anchor='end' font-size='12.5' font-weight='700' fill='#D63A1C' font-family='Hanken Grotesk, sans-serif'>#2, not on the map</text><text x='0' y='65' font-size='13.5' fill='#0B1A2E' font-family='Hanken Grotesk, sans-serif'>Kelowna</text><rect x='110' y='52' width='330' height='18' rx='9' fill='#EEF1F6'/><rect x='110' y='52' width='190.38461538461536' height='18' rx='9' fill='#9DB0D8'/><text x='448' y='65' font-size='12.5' fill='#0B1A2E' font-family='Hanken Grotesk, sans-serif'>150/mo</text><text x='640' y='65' text-anchor='end' font-size='12.5' font-weight='700' fill='#D63A1C' font-family='Hanken Grotesk, sans-serif'>Not ranked</text><text x='0' y='105' font-size='13.5' fill='#0B1A2E' font-family='Hanken Grotesk, sans-serif'>Osoyoos</text><rect x='110' y='92' width='330' height='18' rx='9' fill='#EEF1F6'/><rect x='110' y='92' width='50.769230769230774' height='18' rx='9' fill='#9DB0D8'/><text x='448' y='105' font-size='12.5' fill='#0B1A2E' font-family='Hanken Grotesk, sans-serif'>40/mo</text><text x='640' y='105' text-anchor='end' font-size='12.5' font-weight='700' fill='#D63A1C' font-family='Hanken Grotesk, sans-serif'>Not ranked</text><text x='0' y='145' font-size='13.5' fill='#0B1A2E' font-family='Hanken Grotesk, sans-serif'>Summerland</text><rect x='110' y='132' width='330' height='18' rx='9' fill='#EEF1F6'/><rect x='110' y='132' width='38.07692307692308' height='18' rx='9' fill='#9DB0D8'/><text x='448' y='145' font-size='12.5' fill='#0B1A2E' font-family='Hanken Grotesk, sans-serif'>30/mo</text><text x='640' y='145' text-anchor='end' font-size='12.5' font-weight='700' fill='#D63A1C' font-family='Hanken Grotesk, sans-serif'>Not ranked</text></svg></figure>
-    <p>You rank #2 for “dispensary penticton,” right under Google’s map. Most people tap the map, so the map is where the visit is won. In Kelowna, the map goes to Prime Cannabis, Central Cannabis and Kelo&nbsp;Cannabis.</p>
-    <p>Penticton is also wine country. “Things to do in Penticton” gets 1,100 searches a month and “Penticton wineries” 350. Your potio, live music and Puff n Paint nights belong in those answers, and your site doesn’t have a page for any of&nbsp;them.</p>
-    <p class="small">Searches from Ahrefs, Canada, November 2026. Penticton combines phrasings like “dispensary penticton,” “penticton dispensary” and “cannabis&nbsp;penticton.”</p><h3 style="margin-top:34px">Explore it in 3D: the South&nbsp;Okanagan</h3><p class="small" style="margin:0 0 12px">Columns rise with monthly searches. Blue you rank, red you don’t. The pulse is your cottage, the inner ring your reach today, the outer ring the reach we&nbsp;build.</p><div class="g3" id="g-map" role="img" aria-label="Interactive 3D map of Penticton, Summerland and Kelowna with search demand and rankings"><div class="fallback">Loading the 3D model…</div></div><p class="g3hint">Drag to rotate. Pinch, or use + and −, to zoom. Tap anything to read it.</p><h3 style="margin-top:34px">Explore it in 3D: every search, by&nbsp;topic</h3><p class="small" style="margin:0 0 12px">Each cluster is a topic. Bright stars rank top 3. Red rings are searches someone else&nbsp;wins.</p><div class="g3" id="g-topic" role="img" aria-label="Interactive 3D galaxy of search terms grouped by topic"><div class="fallback">Loading the 3D model…</div></div><p class="g3hint">Drag to rotate. Pinch, or use + and −, to zoom. Tap anything to read it.</p>
-  </div>
-</section>
-
 <section class="alt" aria-labelledby="s-fix">
   <div class="wrap">
-    <h2 id="s-fix">What AI sees when it reads about&nbsp;you</h2>
+    <h2 id="s-fix">What we&nbsp;found</h2>
     <p class="sub">We read cannabis-cottage.ca the way AI does, then checked it against every other site that talks about you. The first rows are your website. The rest are the sites around&nbsp;it.</p>
     <div class="tw"><table class="fx2"><thead><tr><th>What we found</th><th>Why it matters</th></tr></thead><tbody>
     <tr><td class="n">The homepage text is a summer hookah session on the potio. It says “this summer” in&nbsp;November.</td><td>AI sees a seasonal event, not a dispensary open&nbsp;today.</td></tr>
@@ -488,16 +470,39 @@ section.alt .tl .when{background:var(--paper2)}
   </div>
 </section>
 
-<section aria-labelledby="s-price">
+<section aria-labelledby="s-towns">
   <div class="wrap">
-    <h2 id="s-price">Plans</h2>
-    <p class="sub">Three monthly plans. Each one includes everything in the plan before&nbsp;it.</p>
+    <h2 id="s-towns">Where you show up on&nbsp;Google</h2>
+    <p class="sub">Monthly dispensary searches by town, and where your website ranks&nbsp;today.</p>
+    <figure class="vf an" style="margin:0 0 22px"><svg viewBox='0 0 640 170' role='img' aria-label='Monthly dispensary searches by Okanagan town and where Cannabis Cottage ranks'><text x='0' y='25' font-size='13.5' fill='#0B1A2E' font-family='Hanken Grotesk, sans-serif'>Penticton</text><rect x='110' y='12' width='330' height='18' rx='9' fill='#EEF1F6'/><rect x='110' y='12' width='330.0' height='18' rx='9' fill='#1F4FE0'/><text x='448' y='25' font-size='12.5' fill='#0B1A2E' font-family='Hanken Grotesk, sans-serif'>260/mo</text><text x='640' y='25' text-anchor='end' font-size='12.5' font-weight='700' fill='#D63A1C' font-family='Hanken Grotesk, sans-serif'>#2, not on the map</text><text x='0' y='65' font-size='13.5' fill='#0B1A2E' font-family='Hanken Grotesk, sans-serif'>Kelowna</text><rect x='110' y='52' width='330' height='18' rx='9' fill='#EEF1F6'/><rect x='110' y='52' width='190.38461538461536' height='18' rx='9' fill='#9DB0D8'/><text x='448' y='65' font-size='12.5' fill='#0B1A2E' font-family='Hanken Grotesk, sans-serif'>150/mo</text><text x='640' y='65' text-anchor='end' font-size='12.5' font-weight='700' fill='#D63A1C' font-family='Hanken Grotesk, sans-serif'>Not ranked</text><text x='0' y='105' font-size='13.5' fill='#0B1A2E' font-family='Hanken Grotesk, sans-serif'>Osoyoos</text><rect x='110' y='92' width='330' height='18' rx='9' fill='#EEF1F6'/><rect x='110' y='92' width='50.769230769230774' height='18' rx='9' fill='#9DB0D8'/><text x='448' y='105' font-size='12.5' fill='#0B1A2E' font-family='Hanken Grotesk, sans-serif'>40/mo</text><text x='640' y='105' text-anchor='end' font-size='12.5' font-weight='700' fill='#D63A1C' font-family='Hanken Grotesk, sans-serif'>Not ranked</text><text x='0' y='145' font-size='13.5' fill='#0B1A2E' font-family='Hanken Grotesk, sans-serif'>Summerland</text><rect x='110' y='132' width='330' height='18' rx='9' fill='#EEF1F6'/><rect x='110' y='132' width='38.07692307692308' height='18' rx='9' fill='#9DB0D8'/><text x='448' y='145' font-size='12.5' fill='#0B1A2E' font-family='Hanken Grotesk, sans-serif'>30/mo</text><text x='640' y='145' text-anchor='end' font-size='12.5' font-weight='700' fill='#D63A1C' font-family='Hanken Grotesk, sans-serif'>Not ranked</text></svg></figure>
+    <p>You rank #2 for “dispensary penticton,” right under Google’s map. Most people tap the map, so the map is where the visit is won. In Kelowna, the map goes to Prime Cannabis, Central Cannabis and Kelo&nbsp;Cannabis.</p>
+    <p>Penticton is also wine country. “Things to do in Penticton” gets 1,100 searches a month and “Penticton wineries” 350. Your potio, live music and Puff n Paint nights belong in those answers, and your site doesn’t have a page for any of&nbsp;them.</p>
+    <p class="small">Searches from Ahrefs, Canada, November 2026. Penticton combines phrasings like “dispensary penticton,” “penticton dispensary” and “cannabis&nbsp;penticton.”</p><h3 style="margin-top:34px">Explore it in 3D: the South&nbsp;Okanagan</h3><p class="small" style="margin:0 0 12px">Columns rise with monthly searches. Blue you rank, red you don’t. The pulse is your cottage, the inner ring your reach today, the outer ring the reach we&nbsp;build.</p><div class="g3" id="g-map" role="img" aria-label="Interactive 3D map of Penticton, Summerland and Kelowna with search demand and rankings"><div class="fallback">Loading the 3D model…</div></div><p class="g3hint">Drag to rotate. Pinch, or use + and −, to zoom. Tap anything to read it.</p><h3 style="margin-top:34px">Explore it in 3D: every search, by&nbsp;topic</h3><p class="small" style="margin:0 0 12px">Each cluster is a topic. Bright stars rank top 3. Red rings are searches someone else&nbsp;wins.</p><div class="g3" id="g-topic" role="img" aria-label="Interactive 3D galaxy of search terms grouped by topic"><div class="fallback">Loading the 3D model…</div></div><p class="g3hint">Drag to rotate. Pinch, or use + and −, to zoom. Tap anything to read it.</p>
+  </div>
+</section>
+
+<section class="alt" aria-labelledby="s-how">
+  <div class="wrap">
+    <h2 id="s-how">The&nbsp;solution</h2>
+    <p class="sub">Make AI sure about you. This is called AEO, answer engine optimization: SEO for AI. SEO gets you onto Google’s list of links. AEO gets your name into the answer itself. AI decides in three&nbsp;steps.</p>
     <div class="tiers3">
-      <div class="tc3"><span class="amt">$1,000<small> /mo</small></span><h3>Silver</h3><p>Listings and directories fixed and kept in sync, Google Business Profile managed, review replies and basic&nbsp;press.</p></div>
-      <div class="tc3 best"><span class="tag">Recommended</span><span class="amt">$3,000<small> /mo</small></span><h3>Gold</h3><p>Everything in Silver, plus full website work: homepage, potio, events and town pages. Includes our 90-day AI&nbsp;guarantee.</p></div>
-      <div class="tc3"><span class="amt">$5,000<small> /mo</small></span><h3>Platinum</h3><p>Everything in Gold, plus original research, video explainers and real press. Built for owners who want to lead the conversation in the&nbsp;industry.</p></div>
+      <div class="tc3"><span class="amt">1</span><h3>It reads your&nbsp;website</h3><p>Not the design. The words, headings and business details behind it. If your address and hours aren’t there in plain text, AI doesn’t know&nbsp;them.</p></div>
+      <div class="tc3"><span class="amt">2</span><h3>It checks other sites&nbsp;agree</h3><p>Google, Leafly, Weedmaps, Visit Penticton and local news. When they match your site, AI trusts you more. When they don’t, it&nbsp;hedges.</p></div>
+      <div class="tc3"><span class="amt">3</span><h3>It names the ones it&nbsp;trusts</h3><p>An AI answer names two or three shops, not ten links. The shops it can verify best get named. Everyone else is left&nbsp;out.</p></div>
     </div>
-    <p>We recommend Gold. Your biggest gap is your own website, and Gold is the plan that fixes&nbsp;it.</p>
+    <p>So the work isn’t tricks. It’s making sure the facts about you are true, complete and the same everywhere, then publishing pages that answer what people actually&nbsp;ask.</p>
+  </div>
+</section>
+
+<section aria-labelledby="s-month">
+  <div class="wrap">
+    <h2 id="s-month">How we do it, and how&nbsp;often</h2>
+    <p class="sub">Exactly what we deliver each month on each plan. Every plan includes everything in the plan before it. Nothing goes live without your&nbsp;approval.</p>
+    <div class="tw"><table class="tiers">
+      <thead><tr><th>Every month</th><th>Fix<small>$500/mo</small></th><th>Trust<small>$1,000/mo</small></th><th class="rec">Authority<small>$3,000/mo</small></th></tr></thead>
+      <tbody><tr class="grp"><td colspan="4">Get your facts right&nbsp;everywhere</td></tr><tr><td>Your verified Local AI Registry profile, kept up to&nbsp;date</td><td class="y">✓</td><td class="y">✓</td><td class="y rec">✓</td></tr><tr><td>Listings fixed and kept matching: Google, Leafly, Weedmaps, Apple Maps, Bing, Yelp and Visit Penticton. Checked every&nbsp;week</td><td class="y">✓</td><td class="y">✓</td><td class="y rec">✓</td></tr><tr><td>Monthly report: the same questions asked to ChatGPT, Gemini, Google AI and Perplexity, with their answers word for&nbsp;word</td><td class="y">✓</td><td class="y">✓</td><td class="y rec">✓</td></tr><tr><td>A work log of every task, with the date and a&nbsp;link</td><td class="y">✓</td><td class="y">✓</td><td class="y rec">✓</td></tr><tr class="grp"><td colspan="4">Build trust: Google and&nbsp;reviews</td></tr><tr><td>Google Business Profile posts, every week (4 a&nbsp;month)</td><td class="n">–</td><td class="y">✓</td><td class="y rec">✓</td></tr><tr><td>New photos on Google and Leafly, every&nbsp;month</td><td class="n">–</td><td class="y">✓</td><td class="y rec">✓</td></tr><tr><td>A personal reply to every review, within 2 business&nbsp;days</td><td class="n">–</td><td class="y">✓</td><td class="y rec">✓</td></tr><tr><td>Your own review link and a QR code for the&nbsp;counter</td><td class="n">–</td><td class="y">✓</td><td class="y rec">✓</td></tr><tr><td>One press release a month on real news&nbsp;sites</td><td class="n">–</td><td class="y">✓</td><td class="y rec">✓</td></tr><tr class="grp"><td colspan="4">Become the answer: your&nbsp;website</td></tr><tr><td>Homepage rebuilt: address, hours, map, your story and business data in code (month&nbsp;1)</td><td class="n">–</td><td class="n">–</td><td class="y rec">✓</td></tr><tr><td>Spam links cleaned up (month 1), then 2 trusted links a&nbsp;month</td><td class="n">–</td><td class="n">–</td><td class="y rec">✓</td></tr><tr><td>2 new pages a month: the potio, events, a first-visit guide, product guides, nearby&nbsp;towns</td><td class="n">–</td><td class="n">–</td><td class="y rec">✓</td></tr><tr><td>Story pitches to Okanagan and cannabis press, every&nbsp;month</td><td class="n">–</td><td class="n">–</td><td class="y rec">✓</td></tr><tr><td>A monthly call to walk through the&nbsp;report</td><td class="n">–</td><td class="n">–</td><td class="y rec">✓</td></tr><tr><td>90-day AI&nbsp;guarantee</td><td class="n">–</td><td class="n">–</td><td class="y rec">✓</td></tr></tbody>
+    </table></div>
+    <p style="margin-top:20px">We recommend Authority. Your biggest gap is your own website, and only Authority fixes it. If you’d rather start smaller, Trust fixes your listings, Google and reviews, and you can move up&nbsp;anytime.</p>
   </div>
 </section>
 
@@ -513,20 +518,13 @@ section.alt .tl .when{background:var(--paper2)}
   </div>
 </section>
 
-<section aria-labelledby="s-do">
+<section aria-labelledby="s-cmp">
   <div class="wrap">
-    <h2 id="s-do">How it works: five pieces of&nbsp;work</h2>
-    <p class="sub">What we do, which finding it fixes, what you’ll see, and what it does under the&nbsp;hood.</p>
-    <div class="pillar"><div class="head"><span class="pn">1</span><h3>Rebuild your homepage for&nbsp;AI</h3></div><p class="fx">Fixes: a homepage that reads as a summer&nbsp;event</p><div class="pgrid"><div class="ptext"><p>Your homepage becomes the source AI quotes about you, with today’s&nbsp;facts.</p><ul><li>Address, phone, hours and a map that&nbsp;loads</li><li>Your story, the 1914 cottage and the potio, in plain&nbsp;text</li><li>Clear headings, and your business details in code AI reads&nbsp;directly</li><li>Events move to their own pages with real&nbsp;dates</li></ul><p class="see"><b>What you’ll see:</b> the new page side by side with today’s, before anything goes&nbsp;live.</p></div><div class="algo"><span class="h">Structured&nbsp;data</span>Store → name, address, hours, location
-<span class="f">AI reads facts, instead of&nbsp;guessing</span></div></div></div>
-    <div class="pillar"><div class="head"><span class="pn">2</span><h3>One set of facts&nbsp;everywhere</h3></div><p class="fx">Fixes: conflicting hours, names and&nbsp;listings</p><div class="pgrid"><div class="ptext"><p>We fix every listing so it matches your website, and clean up the links that hurt&nbsp;you.</p><ul><li>Claim Leafly, match hours on Google, Leafly, Weedmaps and Visit&nbsp;Penticton</li><li>One spelling for your name, one description of the&nbsp;building</li><li>Your verified Local AI Registry&nbsp;record</li><li>Disavow the 37 spam&nbsp;links</li></ul><p class="see"><b>What you’ll see:</b> a listing tracker showing each site, what it said, what we changed and&nbsp;when.</p></div><div class="algo"><span class="h">Entity&nbsp;matching</span>same name + address + hours, on every source
-<span class="f">AI confidence goes&nbsp;up</span></div></div></div>
-    <div class="pillar"><div class="head"><span class="pn">3</span><h3>Pages for what people&nbsp;ask</h3></div><p class="fx">Fixes: no pages for the potio, events or&nbsp;tourists</p><div class="pgrid"><div class="ptext"><p>We write the pages that answer what visitors and locals ask&nbsp;AI.</p><ul><li>The potio and how it&nbsp;works</li><li>Events, with&nbsp;dates</li><li>A first-visit guide for people from out of&nbsp;town</li><li>Product and strain guides, and pages for Kelowna, Summerland, Naramata and&nbsp;Osoyoos</li></ul><p class="see"><b>What you’ll see:</b> every page as a draft for your approval. You approve or edit it before it’s&nbsp;published.</p></div><div class="algo"><span class="h">Question to&nbsp;page</span>one question → one page that answers it first
-<span class="f">AI quotes the page that answers&nbsp;best</span></div></div></div>
-    <div class="pillar"><div class="head"><span class="pn">4</span><h3>Win the map in&nbsp;Penticton</h3></div><p class="fx">Fixes: #2 below the map, not on&nbsp;it</p><div class="pgrid"><div class="ptext"><p>Google’s map is where most people tap. We build the signals that move you into&nbsp;it.</p><ul><li>Photos, posts and events on your Google Business&nbsp;Profile</li><li>Review requests, and a personal reply to every&nbsp;review</li><li>Links from Penticton sites that already know&nbsp;you</li></ul><p class="see"><b>What you’ll see:</b> where you rank on the map, checked from Penticton every&nbsp;week.</p></div><div class="algo"><span class="h">Local&nbsp;ranking</span>relevance × prominence × distance
-<span class="f">we raise the first&nbsp;two</span></div></div></div>
-    <div class="pillar"><div class="head"><span class="pn">5</span><h3>Get mentioned, then&nbsp;measure</h3></div><p class="fx">Fixes: 0 AI&nbsp;citations</p><div class="pgrid"><div class="ptext"><p>We pitch your story to Okanagan and cannabis press, then track whether AI names&nbsp;you.</p><ul><li>Story pitches about the potio and the&nbsp;cottage</li><li>The same set of questions asked to ChatGPT, Gemini, Google AI and Perplexity every&nbsp;month</li></ul><p class="see"><b>What you’ll see:</b> the actual AI answers, word for word, every month, so you see what changed&nbsp;yourself.</p></div><div class="algo"><span class="h">AI&nbsp;visibility</span>times you’re named ÷ times asked
-<span class="f">0 today → named in most&nbsp;answers</span></div></div></div>
+    <h2 id="s-cmp">How we&nbsp;compare</h2>
+    <p class="sub">You have options. Here’s how they stack up on the work that gets a dispensary named by AI. Clear yeses, out of&nbsp;10:</p>
+    <figure class="vf an" style="max-width:560px"><svg viewBox='0 0 450 176' role='img' aria-label='Clear yes answers out of 10: Local AI Registry 10, typical SEO agency 0, listing software 1, freelancer or DIY 0'><text x='0' y='18' font-size='13' fill='#0B1A2E' font-family='Bricolage Grotesque, sans-serif' font-weight='700'>Local AI Registry</text><rect x='0' y='25' width='380' height='16' rx='8' fill='#E3E8F2'/><rect x='0' y='25' width='380.0' height='16' rx='8' fill='#1F4FE0'/><text x='390' y='38' font-size='13' fill='#1F4FE0' font-family='Bricolage Grotesque, sans-serif' font-weight='800'>10 of 10</text><text x='0' y='62' font-size='13' fill='#0B1A2E' font-family='Bricolage Grotesque, sans-serif' font-weight='700'>Typical SEO agency</text><rect x='0' y='69' width='380' height='16' rx='8' fill='#E3E8F2'/><text x='390' y='82' font-size='13' fill='#3D4A5C' font-family='Bricolage Grotesque, sans-serif' font-weight='800'>0 of 10</text><text x='0' y='106' font-size='13' fill='#0B1A2E' font-family='Bricolage Grotesque, sans-serif' font-weight='700'>Listing software</text><rect x='0' y='113' width='380' height='16' rx='8' fill='#E3E8F2'/><rect x='0' y='113' width='38.0' height='16' rx='8' fill='#9AA8BD'/><text x='390' y='126' font-size='13' fill='#3D4A5C' font-family='Bricolage Grotesque, sans-serif' font-weight='800'>1 of 10</text><text x='0' y='150' font-size='13' fill='#0B1A2E' font-family='Bricolage Grotesque, sans-serif' font-weight='700'>Freelancer or DIY</text><rect x='0' y='157' width='380' height='16' rx='8' fill='#E3E8F2'/><text x='390' y='170' font-size='13' fill='#3D4A5C' font-family='Bricolage Grotesque, sans-serif' font-weight='800'>0 of 10</text></svg></figure>
+    <div class="tw cmpw"><table class="cmp"><thead><tr><th></th><th class="us">Local AI Registry</th><th>Typical SEO agency</th><th>Listing software<small>Synup,&nbsp;Yext</small></th><th>Freelancer or DIY</th></tr></thead><tbody><tr><th scope="row">Who does the work</th><td class="us cp">Our team, done for&nbsp;you</td><td class="cp">An agency, often around a&nbsp;template</td><td class="cp">You, in the&nbsp;software</td><td class="cp">One&nbsp;person</td></tr><tr><th scope="row">Fixes Leafly, Weedmaps, Google and Apple Maps listings</th><td class="us cy"><span class="ck">✓</span></td><td class="cp">Sometimes</td><td class="cp">Its own network, not Leafly or&nbsp;Weedmaps</td><td class="cp">By hand,&nbsp;slowly</td></tr><tr><th scope="row">Rebuilds your homepage and pages so AI can read them</th><td class="us cy"><span class="ck">✓</span></td><td class="cp">Often billed&nbsp;extra</td><td class="cn">✗</td><td class="cp">Varies</td></tr><tr><th scope="row">Writes informational content that fits the Cannabis Act</th><td class="us cy"><span class="ck">✓</span></td><td class="cp">Rarely cannabis&nbsp;experience</td><td class="cn">✗</td><td class="cp">Varies</td></tr><tr><th scope="row">Measures how often AI names you, every month</th><td class="us cy"><span class="ck">✓</span></td><td class="cp">Rarely</td><td class="cy"><span class="ck">✓</span></td><td class="cn">✗</td></tr><tr><th scope="row">Shows you the actual AI answers, word for word</th><td class="us cy"><span class="ck">✓</span></td><td class="cp">Rarely</td><td class="cp">Partly</td><td class="cn">✗</td></tr><tr><th scope="row">A work log of every task</th><td class="us cy"><span class="ck">✓</span></td><td class="cp">Varies</td><td class="cn">✗</td><td class="cp">Varies</td></tr><tr><th scope="row">Press and trusted links</th><td class="us cy"><span class="ck">✓</span></td><td class="cp">Varies</td><td class="cn">✗</td><td class="cp">Varies</td></tr><tr><th scope="row">Month to month, no contract</th><td class="us cy"><span class="ck">✓</span></td><td class="cp">Often 6 to 12&nbsp;months</td><td class="cp">Often&nbsp;yearly</td><td class="cp">Varies</td></tr><tr><th scope="row">90-day AI guarantee</th><td class="us cy"><span class="ck">✓</span></td><td class="cn">✗</td><td class="cn">✗</td><td class="cn">✗</td></tr></tbody></table></div>
+    <p class="small" style="margin-top:14px">Listing software is good at syncing directories and tracking AI answers, but it’s software you run, and it doesn’t write pages, earn press or fix your website. Agencies and freelancers vary. This reflects what we typically see when shops come to&nbsp;us.</p>
   </div>
 </section>
 
@@ -548,7 +546,7 @@ section.alt .tl .when{background:var(--paper2)}
       <div><dt>Your approval&nbsp;first</dt><dd>Every page and post<small>Nothing goes live without your&nbsp;OK</small></dd></div>
       <div><dt>The real AI&nbsp;answers</dt><dd>Word for word<small>Same questions each month, so you can&nbsp;compare</small></dd></div>
       <div><dt>Rankings, map and&nbsp;visits</dt><dd>Monthly report<small>With what changed and&nbsp;why</small></dd></div>
-      <div><dt>A call to walk through&nbsp;it</dt><dd>Every month<small>Ask anything, change&nbsp;priorities</small></dd></div>
+      <div><dt>A call to walk through&nbsp;it</dt><dd>Every month<small>On Authority. Ask anything, change&nbsp;priorities</small></dd></div>
       <div><dt>Your&nbsp;accounts</dt><dd>Stay yours<small>We work through access you can remove&nbsp;anytime</small></dd></div>
     </dl>
   </div>
@@ -557,14 +555,28 @@ section.alt .tl .when{background:var(--paper2)}
 <section aria-labelledby="s-roi">
   <div class="wrap">
     <h2 id="s-roi">Is it worth&nbsp;it?</h2>
-    <p class="sub">At about $40 a visit, here’s what pays for each&nbsp;plan.</p>
-    <dl class="terms">
-      <div><dt>Silver, $1,000 a&nbsp;month</dt><dd>25 visits a month<small>Less than one a&nbsp;day</small></dd></div>
-      <div><dt>Gold, $3,000 a&nbsp;month</dt><dd>75 visits a month<small>About 2 or 3 a&nbsp;day</small></dd></div>
-      <div><dt>Platinum, $5,000 a&nbsp;month</dt><dd>125 visits a month<small>About 4 a&nbsp;day</small></dd></div>
-    </dl>
-    <p style="margin-top:20px">A spot in Penticton’s map, plus being the name AI gives visitors who ask where to go, is worth more than a few customers a day. And regulars on the potio come back again and&nbsp;again.</p>
-    <p class="small">Spend per visit is an estimate. We replace it with your real numbers at&nbsp;kickoff.</p>
+    <p class="sub">Short answer: yes, if it brings in a few extra customers a week. Here’s the math at about $40 a&nbsp;visit.</p>
+    <div class="tw"><table class="fx2"><thead><tr><th>Plan</th><th>Cost a month</th><th>Visits to break even</th><th>About</th></tr></thead><tbody>
+    <tr><td>Fix</td><td>$500</td><td>13 a&nbsp;month</td><td>3 a&nbsp;week</td></tr>
+    <tr><td>Trust</td><td>$1,000</td><td>25 a&nbsp;month</td><td>6 a&nbsp;week</td></tr>
+    <tr><td><b>Authority</b></td><td><b>$3,000</b></td><td><b>75 a month</b></td><td><b>2 or 3 a day</b></td></tr>
+    </tbody></table></div>
+    <h3 style="margin-top:30px">Why we think the answer is&nbsp;yes</h3>
+    <ol class="steps4">
+      <li><b>The gap is large and specific</b><span>0 AI citations, a homepage with no address or hours, and #2 just below Penticton’s map. Each of these has a known&nbsp;fix.</span></li>
+      <li><b>You can’t buy your way around it</b><span>The Cannabis Act blocks most advertising. Being named by AI and found on Google is one of the few channels&nbsp;left.</span></li>
+      <li><b>You have the story AI wants</b><span>A 1914 cottage, a plant biochemist owner and one of the first consumption patios in the Okanagan. Google’s AI already tells it, just from someone else’s&nbsp;website.</span></li>
+      <li><b>The downside is one month</b><span>No contract, no setup fee. If it isn’t working, you stop. On Authority, if AI isn’t naming you by day 90, we keep working for&nbsp;free.</span></li>
+      <li><b>You see every step</b><span>A work log, your approval on everything, and the real AI answers each month, so you can judge it&nbsp;yourself.</span></li>
+    </ol>
+    <p class="small" style="margin-top:16px">Spend per visit is an estimate. We replace it with your real numbers at kickoff. Regulars on the potio come back, so one new customer is often worth more than one&nbsp;visit.</p>
+  </div>
+</section>
+
+<section class="alt" aria-labelledby="s-faq">
+  <div class="wrap">
+    <h2 id="s-faq">Questions owners&nbsp;ask</h2>
+    <dl class="faq"><div><dt>What exactly do you do each&nbsp;month?</dt><dd>It depends on the plan, and it’s listed line by line in the table above. In short: we fix your listings every week, post to Google every week, reply to every review, and on Authority we rebuild your homepage and add 2 new pages a&nbsp;month.</dd></div><div><dt>How will I know it’s&nbsp;working?</dt><dd>Every month we ask ChatGPT, Gemini, Google AI and Perplexity the same set of questions and show you their answers word for word, next to your Google rankings, map position and&nbsp;visits.</dd></div><div><dt>Is this allowed under Canada’s cannabis&nbsp;rules?</dt><dd>Yes. Everything we publish is informational: your address, hours, story, events and products, for adults looking for them. No promotions or&nbsp;inducements.</dd></div><div><dt>What if it doesn’t&nbsp;work?</dt><dd>You’re month to month, so you can stop anytime. On the Authority plan, if Cannabis Cottage isn’t named in AI answers within 90 days, we keep working for free until it&nbsp;is.</dd></div><div><dt>Is it worth it for a single&nbsp;shop?</dt><dd>At about $40 a visit, the Trust plan pays for itself at 6 extra customers a week, and Authority at 2 or 3 a day. With 0 AI citations today and most ads off the table, the room to grow is&nbsp;large.</dd></div></dl>
   </div>
 </section>
 <section aria-labelledby="s-team">
@@ -596,16 +608,16 @@ section.alt .tl .when{background:var(--paper2)}
   <div class="wrap">
     <h2 id="s-inv">Investment and&nbsp;terms</h2>
     <div class="price">
-      <div class="pc main"><div class="amt">$3,000<small> /month</small></div><h3>Gold,&nbsp;recommended</h3><p>Website work, listings, Google, reviews, content and press. Month to&nbsp;month.</p></div>
-      <div class="pc"><div class="amt">$1,000<small> /month</small></div><h3>Silver</h3><p>Listings, Google and reviews. No website work or&nbsp;guarantee.</p></div>
+      <div class="pc main"><div class="amt">$3,000<small> /month</small></div><h3>Authority,&nbsp;recommended</h3><p>Everything in the table, including your website, press and the 90-day AI&nbsp;guarantee.</p></div>
+      <div class="pc"><div class="amt">$1,000<small> /month</small></div><h3>Trust</h3><p>Listings, Google, reviews and press. Or Fix at $500 a month for listings and&nbsp;reporting.</p></div>
     </div>
     <div class="guar">
-      <h3>Our 90-day AI guarantee, on Gold and&nbsp;Platinum</h3>
+      <h3>Our 90-day AI guarantee, on&nbsp;Authority</h3>
       <p>If Cannabis Cottage isn’t named in AI answers within 90 days, we keep working for free until it is. This assumes website access in week one and drafts approved within 3 business&nbsp;days.</p>
     </div>
     <ul class="fine">
       <li>Prices in US dollars. First month due at kickoff, then billed&nbsp;monthly.</li>
-      <li>No contract. Stay because it&nbsp;works.</li>
+      <li>No contract, no setup fee. Move between plans or cancel&nbsp;anytime.</li>
       <li>You own your website, content and&nbsp;accounts.</li>
       <li>Nothing goes live without your&nbsp;approval.</li>
     </ul>
