@@ -191,6 +191,31 @@ td .c{color:var(--muted);font-size:13px}
 @media (max-width:640px){.week{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .day{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px;display:grid;gap:4px;font-size:14px}
 .day b{font:700 13px/1 var(--head);letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+/* Illustrations */
+.fig{margin:4px 0 0;display:grid;gap:10px}
+.fig svg{display:block;width:100%;height:auto;max-width:560px}
+.fig figcaption{font-size:14px;color:var(--muted);max-width:60ch}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px}
+@media (max-width:640px){.two{grid-template-columns:1fr}}
+.two figure{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;display:grid;gap:8px}
+.two figcaption{font:600 15px/1.4 var(--head);color:var(--fg)}
+.two figcaption span{display:block;font:400 13.5px/1.4 var(--body);color:var(--muted)}
+.ill text{font-family:var(--body)}
+.ill .bg{fill:var(--surface)} .ill .bd{stroke:var(--line);stroke-width:1.5;fill:none}
+.ill .fg{fill:var(--fg)} .ill .mut{fill:var(--muted)} .ill .acc{fill:var(--accent)} .ill .cor{fill:var(--coral)}
+.ill .soft{fill:var(--tint)} .ill .grey{fill:var(--line)} .ill .good{fill:var(--good)} .ill .onacc{fill:var(--accent-fg)}
+.ill .page{fill:var(--bg)}
+.ill .s-acc{stroke:var(--accent)} .ill .s-cor{stroke:var(--coral)} .ill .s-fg{stroke:var(--fg)} .ill .s-mut{stroke:var(--muted)}
+.ill .shop-a{color:var(--accent)} .ill .shop-m{color:var(--muted)}
+.flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;list-style:none;padding:0;margin:0}
+@media (max-width:700px){.flow{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.flow li{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;display:grid;gap:6px;align-content:start}
+.flow svg{width:56px;height:56px}
+.flow b{font:700 15px/1.3 var(--head)}
+.flow b small{display:block;font:700 11px/1.4 var(--head);letter-spacing:.08em;text-transform:uppercase;color:var(--coral)}
+.flow span{font-size:14px;color:var(--muted);line-height:1.45}
+.story{border-left:4px solid var(--coral);padding:4px 0 4px 16px;display:grid;gap:6px}
+.story .say{font-size:24px}
 footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);display:grid;gap:6px}
 @media (prefers-reduced-motion:no-preference){.bar .fill{transition:width .5s ease}}
 </style>
@@ -237,24 +262,43 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-si
     <div class="prose">
       <p>People used to Google "jewelry store near me" and scroll through ten blue links. Now more and more of them ask ChatGPT or Google's AI answer box instead, and the AI just names two or three stores. If a jeweler isn't one of those names, that couple never even sees them.</p>
     </div>
-    <div class="shift">
-      <div class="panel">
-        <span class="tag">How search worked</span>
-        <div class="q">custom engagement ring irvine</div>
-        <div class="links"><i></i><i></i><i></i><i></i></div>
-        <p class="small muted">Ten links. The couple clicks around and compares. Every store had a shot.</p>
-      </div>
-      <div class="panel now">
-        <span class="tag">How it works now</span>
-        <div class="q">Who's the best jeweler in Irvine for a custom engagement ring?</div>
-        <p class="ai-ans">"For custom work, couples often recommend <b>Store A</b> and <b>Store B</b>..."</p>
-        <p class="small muted">Two names. Everyone else is invisible.</p>
-      </div>
-    </div>
+    <figure class="fig">
+<svg class="ill" viewBox="0 0 360 272" role="img" aria-label="Left phone shows ten search links, every store gets a turn. Right phone shows AI naming only two stores while six others are left out.">
+<defs><symbol id="shop" viewBox="0 0 16 16"><rect x="0" y="0" width="16" height="5" rx="1" fill="currentColor"/><rect x="1.5" y="5" width="13" height="11" fill="currentColor" opacity=".55"/><rect x="6" y="9" width="4" height="7" fill="currentColor"/></symbol></defs>
+<rect class="bg" x="15" y="15" width="150" height="222" rx="18"/><rect class="bd" x="15" y="15" width="150" height="222" rx="18"/>
+<rect class="soft" x="27" y="35" width="126" height="22" rx="11"/><text x="40" y="50" font-size="10" class="mut">jeweler irvine</text>
+<use href="#shop" class="shop-a" x="27" y="68" width="16" height="16"/><rect class="grey" x="49" y="69" width="90" height="5" rx="2.5"/><rect class="grey" x="49" y="78" width="60" height="5" rx="2.5"/><use href="#shop" class="shop-a" x="27" y="94" width="16" height="16"/><rect class="grey" x="49" y="95" width="76" height="5" rx="2.5"/><rect class="grey" x="49" y="104" width="70" height="5" rx="2.5"/><use href="#shop" class="shop-a" x="27" y="120" width="16" height="16"/><rect class="grey" x="49" y="121" width="90" height="5" rx="2.5"/><rect class="grey" x="49" y="130" width="60" height="5" rx="2.5"/><use href="#shop" class="shop-a" x="27" y="146" width="16" height="16"/><rect class="grey" x="49" y="147" width="76" height="5" rx="2.5"/><rect class="grey" x="49" y="156" width="70" height="5" rx="2.5"/><use href="#shop" class="shop-a" x="27" y="172" width="16" height="16"/><rect class="grey" x="49" y="173" width="90" height="5" rx="2.5"/><rect class="grey" x="49" y="182" width="60" height="5" rx="2.5"/><use href="#shop" class="shop-a" x="27" y="198" width="16" height="16"/><rect class="grey" x="49" y="199" width="76" height="5" rx="2.5"/><rect class="grey" x="49" y="208" width="70" height="5" rx="2.5"/>
+<rect class="bg" x="195" y="15" width="150" height="222" rx="18"/><rect class="bd" x="195" y="15" width="150" height="222" rx="18"/>
+<rect class="acc" x="221" y="33" width="114" height="36" rx="11"/>
+<text x="231" y="48" font-size="10" class="onacc">Best jeweler in Irvine</text><text x="231" y="61" font-size="10" class="onacc">for a custom ring?</text>
+<rect class="soft" x="205" y="79" width="126" height="62" rx="11"/>
+<text x="215" y="96" font-size="10" class="fg">Couples love</text>
+<text x="215" y="111" font-size="11" font-weight="700" class="acc">Store A and Store B.</text>
+<text x="215" y="126" font-size="10" class="fg">Both do custom work.</text>
+<text x="207" y="158" font-size="9.5" class="mut">Every other store:</text>
+<use href="#shop" class="shop-m" opacity=".45" x="209" y="166" width="16" height="16"/><use href="#shop" class="shop-m" opacity=".45" x="230" y="166" width="16" height="16"/><use href="#shop" class="shop-m" opacity=".45" x="251" y="166" width="16" height="16"/><use href="#shop" class="shop-m" opacity=".45" x="272" y="166" width="16" height="16"/><use href="#shop" class="shop-m" opacity=".45" x="293" y="166" width="16" height="16"/><use href="#shop" class="shop-m" opacity=".45" x="314" y="166" width="16" height="16"/>
+<text x="207" y="200" font-size="9.5" class="cor" font-weight="700">Never mentioned</text>
+<text x="90" y="262" text-anchor="middle" font-size="12" font-weight="700" class="fg">Before: 10 links</text>
+<text x="270" y="262" text-anchor="middle" font-size="12" font-weight="700" class="fg">Now: AI names 2</text>
+</svg>
+<figcaption>Google used to give every store a turn. AI picks two and stops. That's the whole problem we solve.</figcaption>
+</figure>
     <div class="prose">
       <p>AI decides who to name by reading about a business all over the internet: its Google profile, reviews, directories, news articles, its own website. When those sources are thin or disagree, AI doesn't trust the store and leaves it out.</p>
+    </div>
+    <div class="two">
+<figure><svg class="ill" viewBox="0 0 340 232" role="img" aria-label="Sources about the store disagree, so AI is unsure"><line x1="58" y1="32" x2="170" y2="120" class="s-mut" stroke-width="1.5" stroke-dasharray="0"/><line x1="282" y1="32" x2="170" y2="120" class="s-mut" stroke-width="1.5" stroke-dasharray="0"/><line x1="50" y1="120" x2="170" y2="120" class="s-cor" stroke-width="1.5" stroke-dasharray="4 4"/><line x1="290" y1="120" x2="170" y2="120" class="s-cor" stroke-width="1.5" stroke-dasharray="4 4"/><line x1="170" y1="204" x2="170" y2="120" class="s-cor" stroke-width="1.5" stroke-dasharray="4 4"/><rect class="bg" x="8" y="14" width="100" height="36" rx="10"/><rect class="bd" x="8" y="14" width="100" height="36" rx="10"/><text x="18" y="29" font-size="10" font-weight="700" class="fg">Google profile</text><text x="18" y="42" font-size="9.5" class="mut">Open 10am</text><circle cx="96" cy="26" r="7" class="good"/><text x="96" y="29.5" font-size="10" font-weight="700" text-anchor="middle" fill="#fff">✓</text><rect class="bg" x="232" y="14" width="100" height="36" rx="10"/><rect class="bd" x="232" y="14" width="100" height="36" rx="10"/><text x="242" y="29" font-size="10" font-weight="700" class="fg">Reviews</text><text x="242" y="42" font-size="9.5" class="mut">312 reviews</text><circle cx="320" cy="26" r="7" class="good"/><text x="320" y="29.5" font-size="10" font-weight="700" text-anchor="middle" fill="#fff">✓</text><rect class="bg" x="0" y="102" width="100" height="36" rx="10"/><rect class="bd" x="0" y="102" width="100" height="36" rx="10" stroke-dasharray="3 3"/><text x="10" y="117" font-size="10" font-weight="700" class="fg">Directories</text><text x="10" y="130" font-size="9.5" class="cor">Old address</text><circle cx="88" cy="114" r="7" class="cor"/><text x="88" y="117.5" font-size="10" font-weight="700" text-anchor="middle" fill="#fff">!</text><rect class="bg" x="240" y="102" width="100" height="36" rx="10"/><rect class="bd" x="240" y="102" width="100" height="36" rx="10" stroke-dasharray="3 3"/><text x="250" y="117" font-size="10" font-weight="700" class="fg">Website</text><text x="250" y="130" font-size="9.5" class="cor">Open 11am</text><circle cx="328" cy="114" r="7" class="cor"/><text x="328" y="117.5" font-size="10" font-weight="700" text-anchor="middle" fill="#fff">!</text><rect class="bg" x="120" y="186" width="100" height="36" rx="10"/><rect class="bd" x="120" y="186" width="100" height="36" rx="10" stroke-dasharray="3 3"/><text x="130" y="201" font-size="10" font-weight="700" class="fg">News</text><text x="130" y="214" font-size="9.5" class="cor">Nothing found</text><circle cx="208" cy="198" r="7" class="cor"/><text x="208" y="201.5" font-size="10" font-weight="700" text-anchor="middle" fill="#fff">!</text><circle cx="170" cy="120" r="30" class="grey"/><text x="170" y="127" font-size="22" font-weight="800" text-anchor="middle" class="fg">?</text></svg><figcaption>Sources disagree<span>Different hours, an old address, no news. AI isn't sure, so it skips the store.</span></figcaption></figure>
+<figure><svg class="ill" viewBox="0 0 340 232" role="img" aria-label="Sources about the store agree, so AI trusts it"><line x1="58" y1="32" x2="170" y2="120" class="s-acc" stroke-width="2"/><line x1="282" y1="32" x2="170" y2="120" class="s-acc" stroke-width="2"/><line x1="50" y1="120" x2="170" y2="120" class="s-acc" stroke-width="2"/><line x1="290" y1="120" x2="170" y2="120" class="s-acc" stroke-width="2"/><line x1="170" y1="204" x2="170" y2="120" class="s-acc" stroke-width="2"/><rect class="bg" x="8" y="14" width="100" height="36" rx="10"/><rect class="bd" x="8" y="14" width="100" height="36" rx="10"/><text x="18" y="29" font-size="10" font-weight="700" class="fg">Google profile</text><text x="18" y="42" font-size="9.5" class="mut">Open 10am</text><circle cx="96" cy="26" r="7" class="good"/><text x="96" y="29.5" font-size="10" font-weight="700" text-anchor="middle" fill="#fff">✓</text><rect class="bg" x="232" y="14" width="100" height="36" rx="10"/><rect class="bd" x="232" y="14" width="100" height="36" rx="10"/><text x="242" y="29" font-size="10" font-weight="700" class="fg">Reviews</text><text x="242" y="42" font-size="9.5" class="mut">312 reviews</text><circle cx="320" cy="26" r="7" class="good"/><text x="320" y="29.5" font-size="10" font-weight="700" text-anchor="middle" fill="#fff">✓</text><rect class="bg" x="0" y="102" width="100" height="36" rx="10"/><rect class="bd" x="0" y="102" width="100" height="36" rx="10"/><text x="10" y="117" font-size="10" font-weight="700" class="fg">Directories</text><text x="10" y="130" font-size="9.5" class="mut">Same address</text><circle cx="88" cy="114" r="7" class="good"/><text x="88" y="117.5" font-size="10" font-weight="700" text-anchor="middle" fill="#fff">✓</text><rect class="bg" x="240" y="102" width="100" height="36" rx="10"/><rect class="bd" x="240" y="102" width="100" height="36" rx="10"/><text x="250" y="117" font-size="10" font-weight="700" class="fg">Website</text><text x="250" y="130" font-size="9.5" class="mut">Open 10am</text><circle cx="328" cy="114" r="7" class="good"/><text x="328" y="117.5" font-size="10" font-weight="700" text-anchor="middle" fill="#fff">✓</text><rect class="bg" x="120" y="186" width="100" height="36" rx="10"/><rect class="bd" x="120" y="186" width="100" height="36" rx="10"/><text x="130" y="201" font-size="10" font-weight="700" class="fg">News</text><text x="130" y="214" font-size="9.5" class="mut">Local news story</text><circle cx="208" cy="198" r="7" class="good"/><text x="208" y="201.5" font-size="10" font-weight="700" text-anchor="middle" fill="#fff">✓</text><circle cx="170" cy="120" r="30" class="acc"/><text x="170" y="125" font-size="15" font-weight="800" text-anchor="middle" class="onacc">AI</text></svg><figcaption>Sources agree<span>Same facts everywhere. AI trusts the store and names it.</span></figcaption></figure>
+</div>
+    <div class="prose">
       <p><b>Local AI Registry (LAIR) fixes that.</b> Think of it as a Wikipedia page for the business. We gather everything the internet says about the store, the owner claims it for free and corrects it, and then our team pushes that accurate story out to all the places AI reads. The more places agree, the more AI trusts the store and names it.</p>
     </div>
+    <ol class="flow">
+<li><svg class="ill" viewBox="0 0 56 56" aria-hidden="true"><rect class="soft" x="6" y="8" width="30" height="36" rx="4"/><rect class="grey" x="11" y="15" width="20" height="3" rx="1.5"/><rect class="grey" x="11" y="22" width="16" height="3" rx="1.5"/><rect class="grey" x="11" y="29" width="18" height="3" rx="1.5"/><circle cx="36" cy="34" r="10" class="bg"/><circle cx="36" cy="34" r="10" fill="none" class="s-acc" stroke-width="3.5"/><line x1="43" y1="41" x2="51" y2="49" class="s-acc" stroke-width="4.5" stroke-linecap="round"/></svg><b><small>Step 1</small>We gather</b><span>We collect everything the internet says about the store.</span></li>
+<li><svg class="ill" viewBox="0 0 56 56" aria-hidden="true"><rect class="soft" x="8" y="6" width="34" height="44" rx="4"/><circle cx="16" cy="17" r="4" class="good"/><rect class="grey" x="23" y="15" width="14" height="4" rx="2"/><circle cx="16" cy="29" r="4" class="good"/><rect class="grey" x="23" y="27" width="12" height="4" rx="2"/><circle cx="16" cy="41" r="4" class="cor"/><rect class="grey" x="23" y="39" width="14" height="4" rx="2"/><path d="M38 48 L50 30 L54 33 L42 51 L37 52 Z" class="fg"/></svg><b><small>Step 2</small>Owner corrects</b><span>The owner claims the page for free and fixes what's wrong.</span></li>
+<li><svg class="ill" viewBox="0 0 56 56" aria-hidden="true"><g class="s-acc" stroke-width="2.5" stroke-linecap="round"><line x1="28" y1="28" x2="10" y2="10"/><line x1="28" y1="28" x2="46" y2="10"/><line x1="28" y1="28" x2="10" y2="46"/><line x1="28" y1="28" x2="46" y2="46"/></g><rect class="soft" x="3" y="3" width="13" height="13" rx="3"/><rect class="soft" x="40" y="3" width="13" height="13" rx="3"/><rect class="soft" x="3" y="40" width="13" height="13" rx="3"/><rect class="soft" x="40" y="40" width="13" height="13" rx="3"/><circle cx="28" cy="28" r="9" class="acc"/><path d="M28 21 L33 30 L23 30 Z" class="onacc"/></svg><b><small>Step 3</small>We spread it</b><span>Our team pushes the correct story to every place AI reads.</span></li>
+<li><svg class="ill" viewBox="0 0 56 56" aria-hidden="true"><path d="M6 10 h44 a4 4 0 0 1 4 4 v24 a4 4 0 0 1 -4 4 h-26 l-10 9 v-9 h-8 a4 4 0 0 1 -4 -4 v-24 a4 4 0 0 1 4 -4 z" class="acc"/><use href="#shop" x="13" y="17" width="16" height="16" style="color:var(--accent-fg)"/><path d="M41 18 l2.4 4.9 5.4.8-3.9 3.8.9 5.4-4.8-2.5-4.8 2.5.9-5.4-3.9-3.8 5.4-.8z" class="cor"/></svg><b><small>Step 4</small>AI names them</b><span>The sources agree, so AI trusts the store and recommends it.</span></li>
+</ol>
     <h3>What the jeweler gets on the $3,000 a month plan</h3>
     <ol class="steps">
       <li><div><b>A free AI visibility audit first</b><span>We show them what ChatGPT and Google AI say about their store today, and which competitors get named instead.</span></div></li>
@@ -263,6 +307,22 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-si
       <li><div><b>A monthly report</b><span>Plain proof of what we did and where they now show up.</span></div></li>
     </ol>
     <p class="prose">No contract, they can cancel anytime, and our team is US based. Steve will walk owners through the 90-day AI guarantee on the call, so you never have to explain the fine print yourself.</p>
+    <figure class="fig">
+<svg class="ill" viewBox="0 0 340 196" role="img" aria-label="A balance scale with one engagement ring on one side and one month of Local AI Registry on the other, perfectly balanced.">
+<rect class="fg" x="167" y="40" width="6" height="118"/><rect class="fg" x="118" y="156" width="104" height="9" rx="4.5"/>
+<rect class="fg" x="48" y="36" width="244" height="5" rx="2.5"/><circle cx="170" cy="38" r="7" class="cor"/>
+<line x1="70" y1="41" x2="42" y2="96" class="s-mut" stroke-width="1.5"/><line x1="70" y1="41" x2="98" y2="96" class="s-mut" stroke-width="1.5"/>
+<line x1="270" y1="41" x2="242" y2="96" class="s-mut" stroke-width="1.5"/><line x1="270" y1="41" x2="298" y2="96" class="s-mut" stroke-width="1.5"/>
+<path d="M36 96 h68 a34 12 0 0 1 -68 0 z" class="soft"/><path d="M236 96 h68 a34 12 0 0 1 -68 0 z" class="soft"/>
+<circle cx="70" cy="80" r="11" fill="none" class="s-acc" stroke-width="4"/><path d="M70 56 L78 63 L70 70 L62 63 Z" class="bg"/><path d="M70 56 L78 63 L70 70 L62 63 Z" fill="none" class="s-acc" stroke-width="2"/>
+<rect class="acc" x="246" y="78" width="48" height="16" rx="3"/><rect class="acc" x="249" y="72" width="48" height="16" rx="3" opacity=".7"/>
+<text x="273" y="84" font-size="10" font-weight="800" text-anchor="middle" class="onacc">$3,000</text>
+<text x="70" y="130" font-size="11.5" font-weight="700" text-anchor="middle" class="fg">1 extra ring sale</text>
+<text x="270" y="130" font-size="11.5" font-weight="700" text-anchor="middle" class="fg">1 month of LAIR</text>
+<text x="170" y="186" font-size="10.5" text-anchor="middle" class="mut">One ring covers the month. The rest is profit.</text>
+</svg>
+<figcaption>This is the only money line an owner needs. If AI sends them one more ring buyer a month, it pays for itself.</figcaption>
+</figure>
     <h3>Five words you'll hear</h3>
     <dl class="gloss">
       <div><dt>SEO</dt><dd>Getting found on Google's regular search results.</dd></div>
@@ -277,6 +337,11 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-si
     <span class="num">Lesson two</span>
     <h2>How to pitch it</h2>
     <div class="prose"><p>You don't need to understand the tech. You need to show the owner one thing: when a couple asks AI where to buy a ring, their store isn't on the list. Your phone does the selling. There are three ways in, and they convert very differently.</p></div>
+    <div class="story">
+      <span class="eyebrow">Your strongest line</span>
+      <p class="say">"I'm a jeweler too. Local AI Registry really helped my own jewelry business, and now I help other jewelers get the same result."</p>
+      <p class="small muted">Owners trust another owner more than any salesperson. Lead with your story, then let the phone test prove it. Keep your own before and after on your phone, like what ChatGPT said about your shop before and what it says now.</p>
+    </div>
     <div class="cards">
       <div class="card">
         <h3>Warm</h3>
@@ -300,6 +365,7 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-si
     <div class="edge">
       <h3>Your unfair advantage: you're a jeweler</h3>
       <ul>
+        <li><span class="k">You're living proof.</span> You use it in your own jewelry business. You're not selling a theory, you're sharing what worked for you.</li>
         <li><span class="k">Talk shop first.</span> Owners tune out marketing people. They listen to someone who knows the bench, casting and stones. Open with the craft, then the problem.</li>
         <li><span class="k">You know their pain.</span> Couples walk in having already "researched" on their phones. You can say "I see it in my own business" and mean it.</li>
         <li><span class="k">Your suppliers know everyone.</span> Casting houses, setters and diamond dealers serve dozens of local stores. One good word from them is a warm intro.</li>
@@ -312,10 +378,16 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-si
   <section id="script">
     <span class="num">Lesson three</span>
     <h2>The simple pitch, and how to book the meeting on the spot</h2>
+    <figure class="fig">
+<svg class="ill" viewBox="0 0 340 104" role="img" aria-label="The five-minute visit: say hi and talk shop, hand over your phone, show the gap, book with Steve.">
+<line x1="30" y1="44" x2="310" y2="44" class="s-mut" stroke-width="2"/><circle cx="30" cy="44" r="8" class="acc"/><text x="30" y="24" font-size="10.5" font-weight="700" text-anchor="middle" class="mut">0:00</text><text x="30" y="76" font-size="11" font-weight="700" text-anchor="middle" class="fg">Say hi,</text><text x="30" y="91" font-size="11" text-anchor="middle" class="fg">talk shop</text><circle cx="123" cy="44" r="8" class="acc"/><text x="123" y="24" font-size="10.5" font-weight="700" text-anchor="middle" class="mut">1:00</text><text x="123" y="76" font-size="11" font-weight="700" text-anchor="middle" class="fg">Hand over</text><text x="123" y="91" font-size="11" text-anchor="middle" class="fg">your phone</text><circle cx="216" cy="44" r="8" class="acc"/><text x="216" y="24" font-size="10.5" font-weight="700" text-anchor="middle" class="mut">3:00</text><text x="216" y="76" font-size="11" font-weight="700" text-anchor="middle" class="fg">Show the</text><text x="216" y="91" font-size="11" text-anchor="middle" class="fg">gap</text><circle cx="310" cy="44" r="11" class="cor"/><text x="310" y="24" font-size="10.5" font-weight="700" text-anchor="middle" class="mut">4:00</text><text x="310" y="76" font-size="11" font-weight="700" text-anchor="middle" class="fg">Book with</text><text x="310" y="91" font-size="11" text-anchor="middle" class="fg">Steve</text>
+</svg>
+</figure>
     <div class="prose"><p>The whole visit takes five minutes. Your only goal is a booked meeting with Steve. Don't try to close the sale yourself.</p></div>
     <div class="script">
       <div class="line"><span class="who">Warm text</span><p class="say">"Hey Mike, Johnny here. I've been testing what ChatGPT says when someone asks for the best custom ring jeweler in Tustin. You didn't come up. Can I swing by and show you? Five minutes."</p></div>
       <div class="line"><span class="who">Walk-in</span><p class="say">"Hi, I'm Johnny. I make jewelry, and I also work with Local AI Registry here in Irvine. Can I show you something on my phone? Sixty seconds."</p></div>
+      <div class="line"><span class="who">Your story</span><p class="say">"I started using it for my own shop and it really helped. Want to see what it says about you?"</p></div>
       <div class="line"><span class="who">Live test</span><p class="say plain">Open ChatGPT on your phone, hand it to them, and let them type one of these questions with their own city. Let them see the answer themselves.</p></div>
     </div>
     <div class="prompts" id="prompts">
