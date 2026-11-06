@@ -1,0 +1,730 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Cipher Growth Report | Local AI Registry</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Cormorant:ital,wght@0,400;0,500;1,400;1,500&family=Hanken+Grotesk:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: one long scrolling story in six parts, Ink ground, each part a full-width band with a centered 1080px column. Big numerals in Bricolage, headlines in Cormorant, body in Hanken. */
+:root{
+  --bg:#0B1A2E; --band:#0E2038; --panel:#132A48; --fg:#F4F1EA; --muted:#A9B4C6; --line:rgba(244,241,234,.13);
+  --blue:#1F4FE0; --blue-text:#8AA3FF; --blue-soft:rgba(31,79,224,.28); --coral:#FF5A3C; --ghost:#3A4C68; --neg:#56688A;
+  --ink:#0B1A2E; --paper:#F4F1EA;
+  --f-display:"Cormorant",Georgia,"Times New Roman",serif;
+  --f-label:"Bricolage Grotesque","Arial Narrow",Arial,sans-serif;
+  --f-text:"Hanken Grotesk","Helvetica Neue",Arial,sans-serif;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]){
+  --bg:#F4F1EA; --band:#ECE6D6; --panel:#FFFDF8; --fg:#0B1A2E; --muted:#4D5A6E; --line:rgba(11,26,46,.14);
+  --blue:#1F4FE0; --blue-text:#1F4FE0; --blue-soft:rgba(31,79,224,.14); --coral:#E8472A; --ghost:#C9CFDA; --neg:#9AA6BA; color-scheme:light}}
+:root[data-theme="light"]{
+  --bg:#F4F1EA; --band:#ECE6D6; --panel:#FFFDF8; --fg:#0B1A2E; --muted:#4D5A6E; --line:rgba(11,26,46,.14);
+  --blue:#1F4FE0; --blue-text:#1F4FE0; --blue-soft:rgba(31,79,224,.14); --coral:#E8472A; --ghost:#C9CFDA; --neg:#9AA6BA; color-scheme:light}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-text);font-size:19px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.band{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:88px}
+.band.alt{background:var(--band)}
+.wrap{max-width:1080px;margin:0 auto;display:grid;gap:40px}
+h1,h2,h3{font-family:var(--f-display);font-weight:500;line-height:1.08;margin:0;text-wrap:balance}
+h1{font-size:clamp(46px,8vw,92px);letter-spacing:-.01em}
+h2{font-size:clamp(38px,5.6vw,64px)}
+h3{font-size:clamp(28px,3.4vw,38px)}
+p{margin:0;max-width:64ch;text-wrap:pretty}
+.lede{font-size:clamp(20px,2.2vw,23px);color:var(--fg)}
+.muted{color:var(--muted)}
+.eyebrow{font-family:var(--f-label);font-weight:700;font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:var(--blue-text)}
+.num{font-family:var(--f-label);font-weight:800;font-variant-numeric:tabular-nums;line-height:1}
+.src{font-size:14px;color:var(--muted)}
+.stack{display:grid;gap:18px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:28px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px}
+.grid2>*,.grid3>*{min-width:0}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:28px}
+.chart{width:100%;height:auto;display:block;overflow:visible}
+.scroll-x{overflow-x:auto}
+.explain{display:grid;grid-template-columns:52px 1fr;gap:16px;align-items:start;border-top:1px solid var(--line);padding-top:20px}
+.explain svg{width:52px;height:52px}
+.explain b{font-family:var(--f-label);font-weight:700}
+a{color:var(--blue-text)}
+:focus-visible{outline:3px solid var(--coral);outline-offset:3px}
+
+/* header */
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.lair{display:flex;align-items:center;gap:10px;font-family:var(--f-label);font-weight:700;font-size:20px;color:var(--fg)}
+.lair svg{width:26px;height:24px}
+.meta{font-size:14px;color:var(--muted);text-align:right}
+.cobrand{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.cipher-logo{height:44px;width:auto;fill:var(--fg)}
+.x{font-family:var(--f-label);font-size:26px;color:var(--muted)}
+
+/* hero */
+.hero h1 em{font-style:italic;color:var(--blue-text)}
+.hero-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:28px;align-items:end}
+.vs{display:grid;gap:14px}
+.vs-row{display:grid;grid-template-columns:110px 1fr;gap:14px;align-items:center}
+.vs-row .lbl{font-family:var(--f-label);font-weight:700;font-size:15px;color:var(--muted)}
+.bar{height:46px;border-radius:6px;position:relative;display:flex;align-items:center;justify-content:flex-end;padding-right:12px;font-family:var(--f-label);font-weight:800;font-size:20px;transform-origin:left center}
+.bar.old{background:var(--ghost);color:var(--fg)}
+.bar.new{background:var(--blue);color:#fff}
+.tip{position:absolute;right:-9px;top:50%;width:18px;height:18px;margin-top:-9px;background:var(--coral);transform:rotate(45deg);border-radius:2px}
+@keyframes grow{from{transform:scaleX(0)}}
+@keyframes growY{from{transform:scaleY(0)}}
+@keyframes rise{from{transform:translateY(18px);opacity:.15}}
+@keyframes draw{from{stroke-dashoffset:var(--len)}}
+@keyframes pop{0%{transform:scale(0)}70%{transform:scale(1.15)}100%{transform:scale(1)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes spinr{to{transform:rotate(-360deg)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.45}}
+@keyframes climb{from{transform:translateY(var(--from))}}
+.play .a-grow{animation:grow 1.4s cubic-bezier(.2,.8,.2,1) backwards}
+.play .a-growY{animation:growY 1.1s cubic-bezier(.2,.8,.2,1) backwards;transform-box:fill-box;transform-origin:bottom}
+.play .a-rise{animation:rise .9s ease-out backwards}
+.play .a-draw{animation:draw 2.2s ease-in-out backwards}
+.play .a-pop{animation:pop .5s ease-out backwards;transform-box:fill-box;transform-origin:center}
+.play .a-climb{animation:climb 1.6s cubic-bezier(.2,.8,.2,1) backwards}
+
+/* tiles */
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:20px}
+.tile{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:26px;display:grid;gap:10px;align-content:start}
+.tile .num{font-size:clamp(36px,3.6vw,46px);color:var(--blue-text)}
+.tile .num.coral{color:var(--coral)}
+.tile p{font-size:17px}
+
+/* parts nav */
+.parts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:10px}
+.parts a{display:grid;gap:6px;border:1px solid var(--line);border-radius:10px;padding:14px;text-decoration:none;color:var(--fg);font-size:15px;line-height:1.3}
+.parts a:hover{border-color:var(--blue-text)}
+.parts .n{width:24px;height:24px;border-radius:50%;background:var(--blue);color:#fff;font-family:var(--f-label);font-weight:700;font-size:13px;display:grid;place-items:center}
+
+/* charts text */
+svg text{font-family:var(--f-text);fill:var(--muted);font-size:13px}
+svg .t-fg{fill:var(--fg)}
+svg .t-lab{font-family:var(--f-label);font-weight:700}
+svg .t-big{font-family:var(--f-label);font-weight:800;fill:var(--fg)}
+svg .t-blue{fill:var(--blue-text)}
+svg .t-coral{fill:var(--coral)}
+.gridline{stroke:var(--line);stroke-width:1}
+.axis0{stroke:var(--muted);stroke-width:1.2}
+
+/* heatmap */
+.heat{border-collapse:separate;border-spacing:4px;width:100%;min-width:640px;font-variant-numeric:tabular-nums}
+.heat th{font-family:var(--f-label);font-weight:700;font-size:14px;color:var(--muted);text-align:left;padding:6px 8px;white-space:nowrap}
+.heat thead th{text-align:center}
+.heat td{border-radius:8px;text-align:center;font-family:var(--f-label);font-weight:700;font-size:15px;padding:16px 6px;color:var(--fg);transition:transform .2s}
+.heat td:hover{transform:scale(1.06)}
+.legend{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--muted);flex-wrap:wrap}
+.cal{min-width:720px}.cal td{padding:12px 2px;font-size:13px}
+.legend .ramp{width:180px;height:12px;border-radius:6px;background:linear-gradient(90deg,var(--panel),var(--blue))}
+
+/* gears */
+.gear-a{transform-box:fill-box;transform-origin:center;animation:spin 16s linear infinite}
+.gear-b{transform-box:fill-box;transform-origin:center;animation:spinr 11s linear infinite}
+.gear-c{transform-box:fill-box;transform-origin:center;animation:spinr 13s linear infinite}
+.svc{display:grid;gap:12px}
+.svc h3{display:flex;align-items:center;gap:12px}
+.dot{width:14px;height:14px;border-radius:50%;flex:none}
+.svc ul{margin:0;padding-left:20px;display:grid;gap:6px}
+
+/* ladder */
+.ladder{display:grid;gap:8px}
+.lrow{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:12px;align-items:center;font-size:16px}
+.track{position:relative;height:30px;background:linear-gradient(90deg,var(--ghost) 0 0) no-repeat;border-radius:6px;background:var(--bg);border:1px solid var(--line)}
+.p1zone{position:absolute;left:0;top:0;bottom:0;width:58%;background:var(--blue-soft);border-radius:6px 0 0 6px}
+.chip{position:absolute;top:3px;height:22px;min-width:38px;padding:0 8px;border-radius:5px;background:var(--blue);color:#fff;font-family:var(--f-label);font-weight:700;font-size:13px;display:grid;place-items:center}
+.play .chip{animation:slideL 1.6s cubic-bezier(.2,.8,.2,1) backwards}
+@keyframes slideL{from{left:calc(100% - 46px)}}
+
+/* ai */
+.chat{background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:20px;display:grid;gap:14px}
+.bubble{border-radius:14px;padding:14px 16px;font-size:16px;max-width:92%}
+.bubble.q{justify-self:end;background:var(--blue);color:#fff}
+.bubble.a{background:var(--panel);border:1px solid var(--line)}
+.bubble.a mark{background:var(--blue-soft);color:var(--fg);padding:0 4px;border-radius:4px;font-weight:700}
+.rank{display:inline-grid;place-items:center;width:40px;height:40px;border-radius:50%;font-family:var(--f-label);font-weight:800;font-size:17px}
+.r1{background:var(--blue);color:#fff}.r2{background:var(--blue-soft);color:var(--fg);border:1px solid var(--blue)}.r3{border:1px dashed var(--muted);color:var(--fg)}.r0{color:var(--muted)}
+.ai-table{border-collapse:collapse;width:100%;min-width:520px;font-size:16px}
+.ai-table th{font-family:var(--f-label);font-weight:700;font-size:14px;color:var(--muted);text-align:center;padding:8px}
+.ai-table th:first-child{text-align:left}
+.ai-table td{border-top:1px solid var(--line);padding:8px;text-align:center}
+.ai-table td:first-child{text-align:left}
+
+/* funnel */
+.funnel{display:grid;gap:10px}
+.frow{display:grid;grid-template-columns:150px 1fr;gap:14px;align-items:center}
+.frow .lbl{font-size:15px;color:var(--muted);line-height:1.25}
+.fbar{height:44px;border-radius:6px;background:var(--blue);color:#fff;display:flex;align-items:center;padding-left:12px;font-family:var(--f-label);font-weight:800;font-size:19px;transform-origin:left;white-space:nowrap}
+.fbar.last{background:var(--coral)}
+
+.pgrid{display:grid;gap:16px}
+.prow{display:grid;grid-template-columns:200px 1fr;gap:16px;align-items:center}
+.pl{font-size:16px;line-height:1.3}
+.pb{display:grid;grid-template-columns:auto;gap:3px;min-width:0}
+.pb>*{grid-column:1}
+.pbar{height:14px;border-radius:3px;transform-origin:left}
+.pbar.old{background:var(--ghost);max-width:78%}
+.pbar.new{background:var(--blue);height:20px;max-width:78%}
+.pv{font-size:14px;line-height:1.2}
+.pv .up{color:var(--blue-text);font-family:var(--f-label);font-weight:700}
+@media (max-width:560px){.prow{grid-template-columns:1fr;gap:6px}}
+.callout{border-left:4px solid var(--coral);padding:6px 0 6px 18px;font-size:20px}
+.next{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:20px}
+.next .panel{display:grid;gap:10px;align-content:start}
+.next .num{font-size:30px;color:var(--blue-text)}
+footer{font-size:14px;color:var(--muted)}
+@media (max-width:560px){
+  body{font-size:18px}
+  .band{padding-block:60px}
+  .vs-row{grid-template-columns:78px 1fr}
+  .frow{grid-template-columns:96px 1fr}
+  .lrow{grid-template-columns:minmax(0,1fr) 130px;font-size:15px}
+  .panel{padding:20px}
+  .meta{text-align:left}
+}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+
+</head>
+<body>
+<!-- HERO -->
+<section class="band hero" id="top">
+  <div class="wrap">
+    <div class="top">
+      <div class="lair"><svg viewBox="0 0 64 59" aria-hidden="true"><path fill="#FF5A3C" d="M32 1L39.2 14.5H24.8Z"/><path fill="#1F4FE0" d="M24 16H40L62.5 58H42.5L32 37L21.5 58H1.5Z"/></svg>Local AI Registry</div>
+      <div class="meta">Prepared November 5, 2026<br>by Steve Lee, Irvine</div>
+    </div>
+    <div class="stack">
+      <div class="cobrand"><svg class="cipher-logo" role="img" aria-label="Cipher" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1540 312"><path fill-rule="evenodd" d="M138 311C136 310 131 309 128 309C120 308 108 305 103 302C101 301 98 300 98 300C92 300 67 285 54 274C37 260 23 241 15 223C7 207 5 202 4 191C3 186 2 181 1 180C-1 176 -1 141 1 137C2 135 3 130 4 125C5 120 6 114 6 112C7 110 8 107 8 106C8 105 18 84 22 77C23 76 25 72 27 70C29 68 31 65 32 64C33 61 53 40 54 40C55 40 58 38 61 35C68 29 72 26 86 19C106 9 127 4 152 4C187 4 212 11 239 29C251 37 261 46 261 48C261 50 224 87 222 88C222 88 220 86 219 84C216 80 202 66 185 50C179 44 171 36 168 33C165 30 162 28 162 28C161 28 161 29 160 30C158 33 164 101 166 103C166 104 167 106 168 107C169 111 177 122 181 125C182 126 187 130 190 132C194 135 198 138 199 139C200 140 204 143 208 146C212 149 216 152 217 153C218 154 219 155 219 157C219 161 216 164 200 174C184 185 172 198 167 210C164 217 163 223 160 254C158 281 158 283 160 284C161 284 168 278 180 267C190 258 198 250 200 249C201 247 204 244 208 241C212 237 216 233 217 230C218 227 220 225 222 225C223 225 229 230 242 244C258 259 261 263 261 265C260 268 243 284 241 284C240 284 238 285 236 287C231 291 224 295 216 298C212 299 208 301 205 302C203 303 201 304 200 304C200 304 196 305 193 306C190 307 184 308 180 309C176 309 171 310 168 311C163 312 142 312 138 311ZM323 305C322 303 322 267 322 155C323 73 323 6 324 6C324 6 338 5 354 5C379 5 385 5 386 6C387 7 387 49 388 156L388 305L386 306C385 307 374 307 354 307C324 307 324 307 323 305ZM449 305C448 304 448 275 448 155C449 73 449 6 450 6C450 5 478 5 512 5C576 6 575 6 594 11C605 14 609 15 618 21C630 29 631 30 636 35C639 38 642 40 642 40C644 40 658 59 662 65C663 69 666 72 666 73C667 73 667 74 667 75C667 76 668 78 669 80C670 83 672 89 673 94C675 102 675 105 675 126C675 151 674 159 668 170C667 172 665 177 663 180C657 193 648 204 633 217C625 224 602 236 592 238C582 241 569 242 542 242C521 242 516 242 515 243C514 244 514 254 514 275C514 300 513 305 512 306C511 307 498 307 480 307C455 307 450 307 449 305ZM735 305C733 302 735 8 736 6C737 5 744 5 768 5C796 5 799 5 799 7C800 8 800 34 800 65C800 97 800 123 801 123C802 124 924 124 925 123C926 123 926 97 926 66C926 13 926 9 928 7C929 5 930 5 959 5C975 5 989 6 989 6C990 6 990 73 991 155C991 274 991 304 990 305C989 307 984 307 958 307C935 307 928 307 927 306C926 305 926 287 926 247L926 189L924 188C922 188 894 188 861 188L800 188L800 248C800 280 799 307 799 307C799 307 785 307 768 307C736 307 736 307 735 305ZM1052 305C1050 302 1052 7 1053 6C1054 5 1098 5 1152 5C1227 5 1250 5 1251 6C1252 8 1253 64 1251 67C1250 69 1248 69 1185 69C1123 69 1119 69 1118 71C1116 72 1116 76 1116 96C1116 111 1116 121 1117 122C1118 124 1120 124 1170 124C1208 124 1223 124 1224 125C1224 126 1224 139 1225 156C1225 178 1225 185 1224 186C1223 188 1216 188 1171 188C1132 188 1119 188 1118 189C1117 190 1117 197 1117 215C1117 238 1117 239 1119 240C1120 241 1142 241 1186 241C1221 241 1251 241 1251 242C1252 242 1252 303 1251 305C1251 307 1241 307 1152 307L1053 307L1052 305ZM1311 305C1309 302 1311 8 1312 6C1313 5 1326 5 1371 5C1403 5 1432 6 1434 6C1437 7 1442 7 1445 8C1456 10 1471 15 1478 20C1482 23 1487 26 1490 27C1497 32 1514 50 1519 58C1521 62 1524 66 1525 68C1529 72 1535 94 1537 106C1537 110 1538 114 1539 116C1540 119 1540 126 1539 130C1538 131 1537 136 1537 141C1536 152 1532 166 1529 173C1526 179 1515 196 1512 200C1506 206 1499 213 1495 216C1491 220 1490 224 1493 226C1493 227 1496 230 1498 234C1500 237 1502 240 1502 241C1502 241 1503 243 1504 245C1505 247 1507 250 1508 253C1511 257 1514 261 1519 271C1520 274 1524 280 1526 284C1533 293 1537 303 1536 305C1536 307 1532 307 1501 307C1463 307 1464 307 1461 301C1460 299 1457 294 1455 290C1452 285 1448 279 1446 275C1444 271 1442 266 1440 264C1438 262 1435 256 1433 251C1429 246 1427 243 1426 243C1424 242 1413 242 1400 242L1377 242L1376 245C1376 246 1375 261 1375 277C1375 302 1375 306 1373 306C1373 307 1358 307 1342 307C1312 307 1312 307 1311 305ZM157 191C172 183 177 180 180 178C187 173 194 169 200 166C209 163 214 159 214 157C214 156 212 154 209 153C205 151 192 142 185 138C183 137 182 136 181 136C180 136 177 134 174 132C171 130 167 128 167 128C166 128 163 127 161 126C157 124 155 124 144 124C133 124 129 124 124 126C115 129 104 133 102 134C102 134 97 136 92 138C82 142 68 147 63 150C61 151 58 152 56 152C52 153 50 156 53 158C54 159 56 160 56 160C57 160 59 161 60 162C62 162 66 164 70 166C79 169 82 171 92 175C104 181 111 184 112 184C113 184 120 187 126 190C127 191 130 192 132 192C138 193 154 192 157 191ZM564 177C587 173 600 163 610 141C612 135 612 134 612 124C612 112 612 109 605 96C601 89 591 80 580 74L572 70L543 70L514 70L514 123C514 174 514 176 516 178C519 180 550 179 564 177ZM1430 177C1442 174 1456 166 1460 159C1462 157 1464 154 1465 153C1467 151 1468 149 1468 149C1468 148 1469 147 1470 146C1470 145 1472 141 1473 137C1475 129 1475 120 1473 109C1471 102 1461 87 1454 82C1438 69 1436 69 1403 69C1385 69 1377 69 1376 70C1374 72 1375 177 1377 178C1379 180 1421 179 1430 177Z"/></svg><span class="eyebrow" style="color:var(--muted)">Growth report for Harlee Carter</span></div>
+      <h1>October was Cipher's best month <em>in two and a half&nbsp;years.</em></h1>
+      <p class="lede">Cipher's online store took in $45,287 in October 2026. That is 2.7 times the average month before we started, and the most since May 2024. This report puts it in the context of five years of sales, then shows everything we have built since the new site went live on May&nbsp;27.</p>
+    </div>
+    <div class="hero-row" data-anim>
+      <div class="vs" aria-label="Average month before launch versus October 2026">
+        <div class="vs-row"><span class="lbl">Avg. month before us</span><div class="bar old a-grow" style="width:37.6%">$17,019</div></div>
+        <div class="vs-row"><span class="lbl">Oct 2026</span><div class="bar new a-grow" style="width:100%">$45,287<span class="tip"></span></div></div>
+      </div>
+      <div class="stack">
+        <div class="num" style="font-size:clamp(64px,10vw,112px);color:var(--coral)" data-count="2.7" data-dec="1" data-suffix="x">2.7x</div>
+        <p class="muted">October compared with the average month from December 2025 to May&nbsp;2026.</p>
+      </div>
+    </div>
+    <nav class="parts" aria-label="Report parts">
+      <a href="#money"><span class="n">1</span>The bottom line</a>
+      <a href="#history"><span class="n">2</span>Five years of Cipher sales</a>
+      <a href="#engine"><span class="n">3</span>What your budget runs</a>
+      <a href="#search"><span class="n">4</span>Google: before and after</a>
+      <a href="#ai"><span class="n">5</span>AI now names Cipher</a>
+      <a href="#ads"><span class="n">6</span>Ads and what's next</a>
+    </nav>
+  </div>
+</section>
+
+<!-- PART 1 -->
+<section class="band alt" id="money">
+  <div class="wrap">
+    <div class="stack">
+      <span class="eyebrow">Part 1 of 6</span>
+      <h2>The bottom line</h2>
+      <p class="lede">We measure against Cipher's own pace in the six months before we started: an average of $17,019 a month in online sales. Wholesale, distributor and bulk orders are left out, so this is everyday retail customers only.</p>
+    </div>
+    <div class="tiles" data-anim>
+      <div class="tile a-rise"><div class="num coral" data-count="45287" data-prefix="$">$45,287</div><p><b>October sales</b>, the best month since May 2024.</p></div>
+      <div class="tile a-rise" style="animation-delay:.12s"><div class="num" data-count="383">383</div><p><b>October orders</b>, vs. about 150 in an average month before we started.</p></div>
+      <div class="tile a-rise" style="animation-delay:.24s"><div class="num" data-count="28268" data-prefix="+$">+$28,268</div><p><b>Above the usual month</b> in October alone.</p></div>
+      <div class="tile a-rise" style="animation-delay:.36s"><div class="num" data-count="26582" data-prefix="+$">+$26,582</div><p><b>Above the usual pace since launch</b>, June 1 to November 4, slow summer months included.</p></div>
+    </div>
+    <div class="panel stack" data-anim>
+      <h3>Orders, one box for every 10</h3>
+      <p class="muted">An average month before we started, compared with October.</p>
+      <svg class="chart" id="boxes" viewBox="0 0 900 230" role="img" aria-label="About 150 orders in an average month before launch, 383 orders in October 2026"></svg>
+    </div>
+  </div>
+</section>
+
+<!-- PART 2 -->
+<section class="band" id="history">
+  <div class="wrap">
+    <div class="stack">
+      <span class="eyebrow">Part 2 of 6</span>
+      <h2>Five years of Cipher sales</h2>
+      <p class="lede">One month compared with one other month can mislead. Here is every month since the store opened, so the ups and downs sit in their real context.</p>
+    </div>
+    <div class="panel stack" data-anim>
+      <h3>Online retail sales, every month since 2022</h3>
+      <div class="scroll-x"><svg class="chart" id="fiveyr" viewBox="0 0 960 420" role="img" aria-label="Monthly online retail sales from January 2022 to October 2026, with a spring 2024 surge, a slide through 2025 and early 2026, and an October 2026 high" style="min-width:680px"></svg></div>
+      <p class="src">Source: Cipher WooCommerce orders. Completed retail orders only. Wholesale accounts, distributors and any single order of $2,000 or 50+ items are left out. November 2026 is not shown because only 4 days are in.</p>
+    </div>
+    <div class="grid3">
+      <div class="explain"><svg viewBox="0 0 52 52" aria-hidden="true"><path d="M6 44 L18 30 L26 36 L46 8" fill="none" stroke="var(--blue-text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg><p><b>Spring 2024 surge.</b> Sales jumped to $75,844 in April 2024, then cooled month after month for the next two years.</p></div>
+      <div class="explain"><svg viewBox="0 0 52 52" aria-hidden="true"><path d="M6 12 L20 22 L32 26 L46 40" fill="none" stroke="var(--neg)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg><p><b>The slide before us.</b> January to May 2026 averaged $15,374 a month, 28% below 2025. The drop started months before we arrived.</p></div>
+      <div class="explain"><svg viewBox="0 0 52 52" aria-hidden="true"><path d="M6 40 L18 38 L30 34 L46 8" fill="none" stroke="var(--coral)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="46" cy="8" r="4" fill="var(--coral)"/></svg><p><b>The turn.</b> September broke the slide. October more than doubled September and topped every month since May 2024.</p></div>
+    </div>
+
+    <div class="panel stack" data-anim>
+      <h3>We turned a two-year slide around</h3>
+      <p class="muted">The gray line is where Cipher's sales were heading. From June 2024 to May 2026 they fell about 3% every month. The dashed part shows where that slide would have taken October. The blue line is what actually happened.</p>
+      <div class="scroll-x"><svg class="chart" id="turn" viewBox="0 0 960 440" role="img" aria-label="Monthly sales from June 2024 to October 2026 with a falling trend line. The trend pointed to about 13,200 dollars in October 2026; actual sales were 45,287 dollars." style="min-width:680px"></svg></div>
+      <div class="callout">If the slide had continued, October would have been about <b>$13,200</b>. It was <b>$45,287</b>. From June to October, Cipher sold <b>$36,761 more</b> than the old trend pointed to.</div>
+      <p class="src">Trend line: the best fit through monthly retail sales from June 2024 to May 2026, extended forward at the same rate.</p>
+    </div>
+
+    <div class="panel stack" data-anim>
+      <h3>Is June always a slow month?</h3>
+      <p class="muted">Each square is one month. Darker blue means more sales compared with the rest of that year, so each row is judged against itself.</p>
+      <div class="scroll-x"><table class="heat cal" id="cal"></table></div>
+      <div class="legend"><span>Weaker month for that year</span><span class="ramp"></span><span>Stronger month for that year</span></div>
+      <div class="callout">No. June was the 3rd best month in 2022, 9th in 2023, 3rd in 2024 and 6th in 2025. There is no regular summer slump in Cipher's history.</div>
+    </div>
+
+    <div class="grid2">
+      <div class="panel stack" data-anim>
+        <h3>What June 2026 really was</h3>
+        <svg class="chart" id="slide" viewBox="0 0 440 280" role="img" aria-label="Average month: 2025 21,484 dollars, January to May 2026 15,374 dollars, June 2026 12,496 dollars"></svg>
+        <p>June 2026 was the lowest month since February 2024. But it was 19% below the January to May pace, not a fall off a cliff. It was the bottom of a slide that had already taken 28% off sales before launch.</p>
+      </div>
+      <div class="panel stack" data-anim>
+        <h3>The market is shrinking too</h3>
+        <svg class="chart" id="market" viewBox="0 0 440 280" role="img" aria-label="Monthly US Google searches for one hitter, from about 13,400 in January 2022 to about 9,100 in November 2026"></svg>
+        <p>Fewer people search for pipes every year. US searches for "one hitter" are down about 32% since early 2022. Cipher's October growth happened while its market got smaller.</p>
+        <p class="src">Source: Ahrefs, monthly US Google searches.</p>
+      </div>
+    </div>
+
+    <div class="panel stack" data-anim>
+      <h3>Cipher vs. its market</h3>
+      <p class="muted">Both lines start at 100, the average of the six months before we started. The gray line is how many people search Google for Cipher's product types each month. The blue line is Cipher's sales.</p>
+      <div class="scroll-x"><svg class="chart" id="vsmkt" viewBox="0 0 960 420" role="img" aria-label="Index of Cipher sales versus category search demand from January 2025 to October 2026. Before launch Cipher fell faster than the market. In October Cipher reached 266 while the market was at 91." style="min-width:680px"></svg></div>
+      <div class="grid2">
+        <div class="explain"><svg viewBox="0 0 52 52" aria-hidden="true"><path d="M6 14 L20 22 L32 30 L46 40" fill="none" stroke="var(--neg)" stroke-width="4" stroke-linecap="round"/></svg><p><b>Before us:</b> Cipher was falling faster than its market. In January to May 2026, searches for its product types held steady, while Cipher's sales fell 28%.</p></div>
+        <div class="explain"><svg viewBox="0 0 52 52" aria-hidden="true"><path d="M6 40 L20 34 L32 30 L46 8" fill="none" stroke="var(--blue-text)" stroke-width="4" stroke-linecap="round"/><circle cx="46" cy="8" r="4" fill="var(--blue-text)"/></svg><p><b>Since us:</b> the market slipped another 9%. Cipher's sales went the other way, up 166%.</p></div>
+      </div>
+      <p class="src">Market line: average of monthly US Google searches for "one hitter", "weed pipe", "dry herb vape" and "bong" (Ahrefs).</p>
+    </div>
+
+    <div class="panel stack" data-anim>
+      <h3>Every month since launch, against the usual month</h3>
+      <p class="muted">The dashed line is $17,019, Cipher's average month in the six months before we started. Bars above it are growth. Bars below it are short of the usual pace.</p>
+      <div class="scroll-x"><svg class="chart" id="vsbase" viewBox="0 0 900 380" role="img" aria-label="Monthly sales from June to October 2026 against a 17,019 dollar baseline: June to August below, September and October above" style="min-width:600px"></svg></div>
+      <p class="src">November covers the 1st to the 4th, so its baseline is 4 days' worth ($2,269).</p>
+    </div>
+
+    <div class="panel stack" data-anim>
+      <h3>Where October's extra sales came from</h3>
+      <p class="muted">October sales by how the shopper arrived, next to the average month before we started.</p>
+      <div id="chans" class="pgrid"></div>
+      <div class="legend"><svg width="16" height="16" aria-hidden="true"><rect width="16" height="16" rx="3" fill="var(--ghost)"/></svg> Average month before us <svg width="16" height="16" aria-hidden="true"><rect width="16" height="16" rx="3" fill="var(--blue)"/></svg> October 2026</div>
+      <div class="grid3">
+        <div class="explain"><svg viewBox="0 0 52 52" aria-hidden="true"><circle cx="22" cy="22" r="13" fill="none" stroke="var(--blue-text)" stroke-width="4"/><path d="M32 32 L46 46" stroke="var(--blue-text)" stroke-width="5" stroke-linecap="round"/></svg><p><b>Google search</b> means someone searched something like "electric one hitter" and clicked Cipher. It went from $8,155 to $19,262.</p></div>
+        <div class="explain"><svg viewBox="0 0 52 52" aria-hidden="true"><rect x="6" y="10" width="40" height="30" rx="4" fill="none" stroke="var(--blue-text)" stroke-width="4"/><path d="M14 22 H38" stroke="var(--blue-text)" stroke-width="4"/></svg><p><b>Direct</b> means someone typed carrycipher.com themselves, often after seeing an ad, a friend or an AI answer. It went from $6,855 to $15,849.</p></div>
+        <div class="explain"><svg viewBox="0 0 52 52" aria-hidden="true"><path d="M8 34 L20 22 L30 30 L44 12" fill="none" stroke="var(--coral)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="44" cy="12" r="4" fill="var(--coral)"/></svg><p><b>Ads and social</b> are orders tagged to an ad or social link. They went from $236 to $4,046. Many ad buyers come back later and land under Direct.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PART 3 -->
+<section class="band alt" id="engine">
+  <div class="wrap">
+    <div class="stack">
+      <span class="eyebrow">Part 3 of 6</span>
+      <h2>What your $10,000 a month runs</h2>
+      <p class="lede">Three teams, one engine. We take zero margin on the spend, and every dollar is tracked.</p>
+    </div>
+    <div class="grid2">
+      <div class="panel stack" data-anim>
+        <svg class="chart" id="donut" viewBox="0 0 420 300" role="img" aria-label="Monthly budget: Paid ads 6,000 dollars, SEO 2,000, website management 1,000, operations and tools 1,000"></svg>
+      </div>
+      <div class="panel stack">
+        <svg class="chart" viewBox="0 0 420 260" aria-hidden="true">
+          <g class="gear-a"><path fill="var(--blue)" d="M150 52l10 0 4 18a62 62 0 0 1 16 7l16-10 7 7-10 16a62 62 0 0 1 7 16l18 4 0 10-18 4a62 62 0 0 1-7 16l10 16-7 7-16-10a62 62 0 0 1-16 7l-4 18-10 0-4-18a62 62 0 0 1-16-7l-16 10-7-7 10-16a62 62 0 0 1-7-16l-18-4 0-10 18-4a62 62 0 0 1 7-16l-10-16 7-7 16 10a62 62 0 0 1 16-7z"/><circle cx="155" cy="127" r="22" fill="var(--panel)"/></g>
+          <text x="155" y="132" text-anchor="middle" class="t-lab t-fg" style="font-size:14px">ADS</text>
+          <g class="gear-b"><path fill="var(--blue-text)" d="M275 102l8 0 3 13a44 44 0 0 1 12 5l11-8 6 6-8 11a44 44 0 0 1 5 12l13 3 0 8-13 3a44 44 0 0 1-5 12l8 11-6 6-11-8a44 44 0 0 1-12 5l-3 13-8 0-3-13a44 44 0 0 1-12-5l-11 8-6-6 8-11a44 44 0 0 1-5-12l-13-3 0-8 13-3a44 44 0 0 1 5-12l-8-11 6-6 11 8a44 44 0 0 1 12-5z"/><circle cx="279" cy="157" r="17" fill="var(--panel)"/></g>
+          <text x="279" y="161" text-anchor="middle" class="t-lab t-fg" style="font-size:12px">SEO</text>
+          <g class="gear-c"><path fill="var(--coral)" d="M232 196l7 0 2 10a34 34 0 0 1 9 4l9-6 5 5-6 9a34 34 0 0 1 4 9l10 2 0 7-10 2a34 34 0 0 1-4 9l6 9-5 5-9-6a34 34 0 0 1-9 4l-2 10-7 0-2-10a34 34 0 0 1-9-4l-9 6-5-5 6-9a34 34 0 0 1-4-9l-10-2 0-7 10-2a34 34 0 0 1 4-9l-6-9 5-5 9 6a34 34 0 0 1 9-4z"/><circle cx="235" cy="238" r="13" fill="var(--panel)"/></g>
+          <text x="235" y="242" text-anchor="middle" class="t-lab t-fg" style="font-size:10px">WEB</text>
+        </svg>
+        <p class="muted">When one gear turns, the others turn faster.</p>
+      </div>
+    </div>
+    <div class="callout">In October, every $1 of budget brought back <b>$2.83</b> in sales above Cipher's usual month: $28,268 of growth on $10,000 of budget.</div>
+    <div class="grid3">
+      <div class="panel svc">
+        <h3><span class="dot" style="background:var(--blue)"></span>Paid ads</h3>
+        <p class="muted">$6,000 a month · run with our ads partner, Blackhat</p>
+        <ul><li>Two Meta ad accounts on Facebook and Instagram</li><li>20 ad designs tested this fall</li><li>Losing ads paused, winners get more budget</li><li>Daily budget raised as results held up</li></ul>
+      </div>
+      <div class="panel svc">
+        <h3><span class="dot" style="background:var(--blue-text)"></span>SEO and AI search</h3>
+        <p class="muted">$2,000 a month · Luke and our search team</p>
+        <ul><li>10 new buying guides in Sept and Oct</li><li>New links from outside sites every month</li><li>56 searches reached Google page one for the first time</li><li>Tracking how ChatGPT and Gemini answer</li></ul>
+      </div>
+      <div class="panel svc">
+        <h3><span class="dot" style="background:var(--coral)"></span>Website management</h3>
+        <p class="muted">$1,000 a month · Caron Cooper</p>
+        <ul><li>New site launched May 27</li><li>Pages for NOVA, Nautilus V3, ArcSnap and Herby</li><li>NOVA bundles and the Learn section</li><li>Ongoing updates, fixes and new pages</li></ul>
+      </div>
+    </div>
+    <p class="src">The last $1,000 covers payment fees, software and tools, and team time.</p>
+  </div>
+</section>
+
+<!-- PART 4 -->
+<section class="band" id="search">
+  <div class="wrap">
+    <div class="stack">
+      <span class="eyebrow">Part 4 of 6</span>
+      <h2>Google: before and after</h2>
+      <p class="lede">Before the rebuild, Cipher's standing with Google had been stuck for a year. Since launch it has climbed fast.</p>
+    </div>
+    <div class="grid2">
+      <div class="panel stack" data-anim>
+        <h3>Website strength score</h3>
+        <svg class="chart" id="gauge" viewBox="0 0 420 250" role="img" aria-label="Domain Rating rose from 20 in June 2025 to 31 in November 2026"></svg>
+        <div class="explain"><svg viewBox="0 0 52 52" aria-hidden="true"><path d="M8 40 A20 20 0 0 1 44 40" fill="none" stroke="var(--blue-text)" stroke-width="5"/><path d="M26 40 L36 24" stroke="var(--coral)" stroke-width="4" stroke-linecap="round"/></svg><p><b>What it means.</b> Ahrefs rates every website from 0 to 100 based on who links to it. Higher scores rank more easily. Cipher sat between 18 and 22 for all of 2025.</p></div>
+      </div>
+      <div class="panel stack" data-anim>
+        <h3>Websites that link to Cipher</h3>
+        <svg class="chart" id="refd" viewBox="0 0 440 270" role="img" aria-label="Referring domains: 334 in May 2026, 1,027 in November 2026"></svg>
+        <div class="explain"><svg viewBox="0 0 52 52" aria-hidden="true"><circle cx="14" cy="26" r="8" fill="none" stroke="var(--blue-text)" stroke-width="4"/><circle cx="38" cy="14" r="6" fill="none" stroke="var(--blue-text)" stroke-width="4"/><circle cx="38" cy="38" r="6" fill="none" stroke="var(--blue-text)" stroke-width="4"/><path d="M21 22 L32 16 M21 30 L32 36" stroke="var(--blue-text)" stroke-width="3"/></svg><p><b>What it means.</b> Each link is like a recommendation. Google counts them as votes of trust. Cipher has three times as many as it did at launch.</p></div>
+      </div>
+    </div>
+    <div class="panel stack" data-anim>
+      <h3>Sales that came from Google search</h3>
+      <p class="muted">Cipher's store records how every shopper arrived. These are the orders where the shopper's last click came from a Google search, or from Bing, DuckDuckGo and similar search engines. The dashed line is the usual month before we started, $9,162.</p>
+      <div class="scroll-x"><svg class="chart" id="seosales" viewBox="0 0 960 400" role="img" aria-label="Monthly sales from search engines, April 2024 to October 2026. About 9,162 dollars a month before launch, 20,452 dollars in October 2026." style="min-width:680px"></svg></div>
+      <div class="tiles">
+        <div class="tile"><div class="num">$20,452</div><p><b>Search sales in October</b>, the most since April 2024.</p></div>
+        <div class="tile"><div class="num">2.2x</div><p><b>The usual month.</b> Before we started, search brought in about $9,162 a month.</p></div>
+        <div class="tile"><div class="num">+$11,290</div><p><b>Extra search sales in October</b>, about 40% of October's growth.</p></div>
+      </div>
+      <p>Search sales ran a little under the usual level from June to September while the new pages earned their rankings. October is the first month with the 56 new page-one rankings in place, and search sales more than doubled.</p>
+      <p class="src">Source: Cipher WooCommerce order attribution. This counts the last click before the sale. Some shoppers who saw an ad first, then searched "Cipher NOVA" on Google, are counted here too.</p>
+    </div>
+
+    <div class="panel stack" data-anim>
+      <h3>56 searches hit page one for the first time</h3>
+      <p class="muted">These searches did not show Cipher at all before. Now Cipher shows up on the first page of Google. A sample of where they landed in October:</p>
+      <div class="ladder" id="ladder"></div>
+      <div class="legend"><span class="rank r1" style="width:auto;height:auto;padding:2px 8px;border-radius:5px;font-size:13px">#</span> Google position (1 is the top) <svg width="40" height="14" aria-hidden="true"><rect width="40" height="14" rx="3" fill="var(--blue-soft)"/></svg> page one</div>
+      <p class="src">Source: SEO team ranking report, September to October 2026.</p>
+    </div>
+    <div class="panel stack" data-anim>
+      <h3>Google clicks to product pages more than doubled</h3>
+      <p class="muted">Last 3 months vs. the 3 months before. These are shoppers looking at things they can buy.</p>
+      <div class="legend"><svg width="16" height="16" aria-hidden="true"><rect width="16" height="16" rx="3" fill="var(--ghost)"/></svg> Previous 3 months <svg width="16" height="16" aria-hidden="true"><rect width="16" height="16" rx="3" fill="var(--blue)"/></svg> Last 3 months</div><div id="pages" class="pgrid" role="img" aria-label="Google clicks to product pages, before and after"></div>
+      <p class="src">Source: Google Search Console. Product and category pages went from 1,640 clicks to 3,485.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PART 5 -->
+<section class="band alt" id="ai">
+  <div class="wrap">
+    <div class="stack">
+      <span class="eyebrow">Part 5 of 6</span>
+      <h2>AI now names Cipher</h2>
+      <p class="lede">More shoppers now ask ChatGPT or Gemini what to buy instead of searching Google. When they ask about electric pipes, Cipher is often the first brand the AI names.</p>
+    </div>
+    <div class="grid2">
+      <div class="chat" data-anim aria-label="Example of an AI answer that names Cipher">
+        <div class="bubble q a-rise">What's the best electric one hitter?</div>
+        <div class="bubble a a-rise" style="animation-delay:.5s"><b>Top pick: <mark>Cipher ArcSnap</mark>.</b> A palm-sized, rechargeable electric dugout with a built-in lighter and room to store flower...</div>
+        <p class="src">Illustration. Cipher ranked #1 for this question on both ChatGPT and Gemini in our October check.</p>
+      </div>
+      <div class="stack">
+        <div class="num" style="font-size:clamp(56px,8vw,88px);color:var(--blue-text)">#1</div>
+        <p class="lede">on ChatGPT for 4 buying questions and on Gemini for 5, including "electric one hitter" and "electric dugout".</p>
+        <p class="muted">AI tools pick brands they see described clearly and often across the web. The buying guides, product pages and outside links in Part 4 are what feed them.</p>
+      </div>
+    </div>
+    <div class="panel stack">
+      <h3>Where Cipher ranks in AI answers</h3>
+      <div class="scroll-x"><table class="ai-table" id="aitable"></table></div>
+      <div class="legend"><span class="rank r1" style="width:28px;height:28px;font-size:13px">1</span> named first <span class="rank r2" style="width:28px;height:28px;font-size:13px">2</span> named second <span class="rank r3" style="width:28px;height:28px;font-size:13px">3</span> named third <span>· not yet checked</span></div>
+      <p class="src">Source: SEO team checks of ChatGPT and Gemini, September to October 2026. AI answers change often, so we re-check every month.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PART 6 -->
+<section class="band" id="ads">
+  <div class="wrap">
+    <div class="stack">
+      <span class="eyebrow">Part 6 of 6</span>
+      <h2>Ads, and what's next</h2>
+      <p class="lede">Ads are where we test fast. We try many designs, keep the ones that sell, and move the money to them.</p>
+    </div>
+    <div class="tiles" data-anim>
+      <div class="tile a-rise"><div class="num" data-count="5.52" data-dec="2" data-suffix="x">5.52x</div><p><b>Return on ad spend</b>, main account, Oct 5 to 27. Every $1 in ads came back as $5.52 in sales.</p></div>
+      <div class="tile a-rise" style="animation-delay:.12s"><div class="num" data-count="14808" data-prefix="$">$14,808</div><p><b>Sales from ads</b> on $2,683 of ad spend in that same window.</p></div>
+      <div class="tile a-rise" style="animation-delay:.24s"><div class="num" data-count="21.63" data-dec="2" data-prefix="$">$21.63</div><p><b>Cost to win one order</b> from an ad.</p></div>
+    </div>
+    <div class="panel stack" data-anim>
+      <h3>From scroll to sale</h3>
+      <p class="muted">Main ad account, Oct 5 to 27. Each bar is the people who made it to that step.</p>
+      <div class="funnel">
+        <div class="frow"><span class="lbl">Clicked an ad</span><div class="fbar a-grow" style="width:100%">5,073</div></div>
+        <div class="frow"><span class="lbl">Saw the page</span><div class="fbar a-grow" style="width:68.6%;animation-delay:.15s">3,480</div></div>
+        <div class="frow"><span class="lbl">Added to cart</span><div class="fbar a-grow" style="width:28%;animation-delay:.3s">483</div></div>
+        <div class="frow"><span class="lbl">Bought</span><div class="fbar last a-grow" style="width:18%;animation-delay:.45s">124</div></div>
+      </div>
+      <p class="muted">About 1 in 4 people who add to cart finish buying. Reminder ads to those shoppers are the next big lever.</p>
+    </div>
+    <div class="panel stack" data-anim>
+      <h3>Which ads earn more budget</h3>
+      <p class="muted">Each circle is one ad design. Further right means more money spent on it. Higher means more sales per dollar. Bigger circles made more orders.</p>
+      <div class="scroll-x"><svg class="chart" id="quad" viewBox="0 0 900 520" role="img" aria-label="Ad designs plotted by spend and return on ad spend" style="min-width:620px"></svg></div>
+      <p class="src">Source: Meta Ads Manager. Main account Oct 5 to 27 (ads 11 to 20); second account Oct 19 to 31 (ads 1 to 10). The line at 3x is our break-even target.</p>
+    </div>
+    <div class="grid2">
+      <div class="panel stack">
+        <h3>Latest two weeks, both accounts</h3>
+        <p class="muted">Oct 21 to Nov 3</p>
+        <div class="tiles" style="grid-template-columns:repeat(2,minmax(0,1fr))">
+          <div><div class="num" style="font-size:36px;color:var(--blue-text)">$10,877</div><p class="src">in sales</p></div>
+          <div><div class="num" style="font-size:36px;color:var(--blue-text)">92</div><p class="src">orders</p></div>
+          <div><div class="num" style="font-size:36px;color:var(--blue-text)">$3,708</div><p class="src">ad spend</p></div>
+          <div><div class="num" style="font-size:36px;color:var(--blue-text)">2.93x</div><p class="src">return</p></div>
+        </div>
+        <p class="muted">The second account started Oct 19 and is still learning. Its best ad, a 4-in-1 NOVA design, gets the budget while weak ones are paused.</p>
+      </div>
+      <div class="panel stack">
+        <h3>How to read "return on ad spend"</h3>
+        <svg class="chart" viewBox="0 0 400 150" aria-hidden="true" data-anim>
+          <rect x="10" y="50" width="70" height="50" rx="6" fill="var(--ghost)"/>
+          <text x="45" y="81" text-anchor="middle" class="t-big" style="font-size:20px">$1</text>
+          <path d="M92 75 H150" stroke="var(--coral)" stroke-width="3"/><path d="M142 67 L152 75 L142 83" fill="none" stroke="var(--coral)" stroke-width="3"/>
+          <g class="a-pop"><rect x="165" y="35" width="70" height="80" rx="6" fill="var(--blue)"/><text x="200" y="82" text-anchor="middle" class="t-big" style="font-size:20px;fill:#fff">$1</text></g>
+          <g class="a-pop" style="animation-delay:.2s"><rect x="245" y="35" width="70" height="80" rx="6" fill="var(--blue)"/><text x="280" y="82" text-anchor="middle" class="t-big" style="font-size:20px;fill:#fff">$1</text></g>
+          <g class="a-pop" style="animation-delay:.4s"><rect x="325" y="35" width="70" height="80" rx="6" fill="var(--blue)"/><text x="360" y="82" text-anchor="middle" class="t-big" style="font-size:20px;fill:#fff">$1</text></g>
+          <text x="280" y="140" text-anchor="middle">3x return: $1 in, $3 back</text>
+        </svg>
+        <p>A 3x return means $1 of ads brought in $3 of sales. Meta counts a sale when the buyer clicked an ad first, so some of these orders also show up under Google or Direct in Part 2.</p>
+      </div>
+    </div>
+    <div class="stack">
+      <h3>What's next</h3>
+      <div class="next">
+        <div class="panel"><span class="num">01</span><b>Holiday push</b><p class="muted">Black Friday through December is the biggest buying window of the year. Winning ads get more budget, with gift-ready NOVA bundles up front.</p></div>
+        <div class="panel"><span class="num">02</span><b>Win back cart abandoners</b><p class="muted">483 people added to cart in three weeks. Reminder ads and emails bring a share of them back to finish.</p></div>
+        <div class="panel"><span class="num">03</span><b>More AI answers</b><p class="muted">Extend the #1 spots to more buying questions for Nautilus V3 and NOVA, and keep re-checking monthly.</p></div>
+        <div class="panel"><span class="num">04</span><b>Press and social</b><p class="muted">Articles and features about Cipher, plus TikTok, Instagram and Facebook, as planned for months 7 to 12.</p></div>
+      </div>
+    </div>
+    <footer class="stack" style="border-top:1px solid var(--line);padding-top:24px">
+      <div class="lair"><svg viewBox="0 0 64 59" aria-hidden="true"><path fill="#FF5A3C" d="M32 1L39.2 14.5H24.8Z"/><path fill="#1F4FE0" d="M24 16H40L62.5 58H42.5L32 37L21.5 58H1.5Z"/></svg>Local AI Registry</div>
+      <p>Sources: Cipher store orders (May 27 to Nov 4, 2026 vs. same dates 2025), Google Search Console, Ahrefs, Meta Ads Manager, and our SEO team's monthly ranking report. Prepared for Harlee Carter, Cipher.</p>
+    </footer>
+  </div>
+</section>
+
+<script>
+(function(){
+const NS='http://www.w3.org/2000/svg';
+function el(tag,attrs,parent,text){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(text!=null)e.textContent=text;if(parent)parent.appendChild(e);return e}
+const fmt=n=>'$'+Math.round(n).toLocaleString('en-US');
+const fmtK=n=>(n<0?'-':'+')+'$'+(Math.abs(n)>=1000?(Math.abs(n)/1000).toFixed(1)+'k':Math.round(Math.abs(n)));
+
+/* data: Cipher WooCommerce retail orders, order totals by month (wholesale and bulk excluded) */
+const G={"2022-01":326,"2022-02":1981,"2022-03":1703,"2022-04":2714,"2022-05":1858,"2022-06":4349,"2022-07":3046,"2022-08":4056,"2022-09":2630,"2022-10":2690,"2022-11":5551,"2022-12":10903,"2023-01":6244,"2023-02":10529,"2023-03":4919,"2023-04":4970,"2023-05":6662,"2023-06":6057,"2023-07":7123,"2023-08":6056,"2023-09":6161,"2023-10":6152,"2023-11":6355,"2023-12":9580,"2024-01":8050,"2024-02":6511,"2024-03":23887,"2024-04":75844,"2024-05":48381,"2024-06":37217,"2024-07":30138,"2024-08":31831,"2024-09":24517,"2024-10":21653,"2024-11":19779,"2024-12":35635,"2025-01":24223,"2025-02":21802,"2025-03":22156,"2025-04":23461,"2025-05":20798,"2025-06":20801,"2025-07":20122,"2025-08":19667,"2025-09":19835,"2025-10":19136,"2025-11":20561,"2025-12":25246,"2026-01":16636,"2026-02":14600,"2026-03":15206,"2026-04":15028,"2026-05":15398,"2026-06":12496,"2026-07":15233,"2026-08":14222,"2026-09":19723,"2026-10":45287};
+const BASE=17019;
+const MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+/* order boxes */
+(function(){const s=document.getElementById('boxes');const rows=[['Before us',15,'about 150 a month','var(--ghost)'],['Oct 2026',38,'383 orders','var(--blue)']];
+rows.forEach((r,ri)=>{const y=30+ri*110;el('text',{x:0,y:y+18,class:'t-lab t-fg'},s,r[0]);el('text',{x:0,y:y+40},s,r[2]);
+for(let i=0;i<r[1];i++){const col=i%19,row=Math.floor(i/19);const g=el('g',{class:'a-pop',style:'animation-delay:'+(i*0.03)+'s'},s);
+const x=150+col*38,yy=y-14+row*42;el('rect',{x,y:yy,width:31,height:32,rx:4,fill:r[3]},g);el('path',{d:`M${x} ${yy+11} H${x+31} M${x+15.5} ${yy} V${yy+11}`,stroke:'var(--bg)','stroke-width':2.5,fill:'none'},g);}
+});})();
+
+/* five-year bars */
+(function(){const s=document.getElementById('fiveyr');const keys=Object.keys(G);const W=960,H=420,L=64,R=16,T=56,B=46;const max=80000;
+const y=v=>T+(H-T-B)*(1-v/max);const bw=(W-L-R)/keys.length;
+[0,20000,40000,60000,80000].forEach(v=>{el('line',{x1:L,x2:W-R,y1:y(v),y2:y(v),class:'gridline'},s);el('text',{x:L-8,y:y(v)+4,'text-anchor':'end'},s,v?'$'+v/1000+'k':'$0')});
+const li=keys.indexOf('2026-06');el('rect',{x:L+bw*li-2,y:T-30,width:W-R-(L+bw*li)+2,height:H-B-T+30,fill:'var(--blue-soft)'},s);
+el('text',{x:L+bw*li+4,y:T-14,class:'t-lab t-blue',style:'font-size:12px'},s,'With LAIR');
+keys.forEach((k,i)=>{const v=G[k];const after=k>='2026-06';const hot=k==='2026-10';const pre26=k>='2026-01'&&k<'2026-06';
+el('rect',{x:L+bw*i+1,y:y(v),width:Math.max(2,bw-2),height:y(0)-y(v),rx:1.5,fill:hot?'var(--coral)':after?'var(--blue)':pre26?'var(--neg)':'var(--ghost)',class:'a-growY',style:`animation-delay:${i*.012}s`},s);
+if(k.endsWith('-01'))el('text',{x:L+bw*i+bw*6,y:H-B+22,'text-anchor':'middle',class:'t-lab t-fg'},s,k.slice(0,4));
+if(k.endsWith('-01')&&i>0)el('line',{x1:L+bw*i,x2:L+bw*i,y1:y(0),y2:y(0)+8,class:'axis0'},s);});
+const lab=(k,txt,dx,dy,anchor,cls)=>{const i=keys.indexOf(k);el('text',{x:L+bw*i+bw/2+dx,y:y(G[k])+dy,'text-anchor':anchor||'middle',class:'t-lab '+(cls||'t-fg'),style:'font-size:12px'},s,txt)};
+lab('2024-04','Apr 2024: $75,844',6,-8,'start');
+lab('2026-10','Oct 2026: $45,287',-6,-10,'end','t-coral');
+})();
+
+/* calendar heatmap: each month vs its year average */
+(function(){const t=document.getElementById('cal');const years=['2022','2023','2024','2025','2026'];
+let h='<thead><tr><th scope="col">Year</th>'+MON.map(m=>`<th scope="col">${m}</th>`).join('')+'</tr></thead><tbody>';
+years.forEach(yr=>{const vals=MON.map((m,i)=>G[yr+'-'+String(i+1).padStart(2,'0')]);const have=vals.filter(v=>v!=null);const avg=have.reduce((a,b)=>a+b,0)/have.length;
+h+=`<tr><th scope="row">${yr}</th>`;vals.forEach((v,i)=>{if(v==null){h+='<td style="background:transparent;color:var(--muted)">·</td>';return}
+const r=v/avg;const pct=Math.round(Math.max(0,Math.min(1,(r-0.5)/1.3))*88+6);const isJun=i===5;
+const fg=pct>50?'#fff':'var(--fg)';h+=`<td style="background:color-mix(in srgb, var(--blue) ${pct}%, var(--panel));color:${fg};${isJun?'outline:2px solid var(--coral);outline-offset:-2px;':''}" title="${MON[i]} ${yr}: $${v.toLocaleString()}">${v>=1000?'$'+(v/1000).toFixed(v>=10000?0:1)+'k':'$'+v}</td>`});h+='</tr>'});
+t.innerHTML=h+'</tbody>';})();
+
+/* the slide */
+(function(){const s=document.getElementById('slide');const d=[['2025 average',21484,'var(--ghost)'],['Jan to May 2026',15374,'var(--neg)'],['June 2026',12496,'var(--neg)']];
+const W=440,H=280,T=40,B=50,max=24000;const y=v=>T+(H-T-B)*(1-v/max);const bw=90,gap=(W-3*bw)/4;
+d.forEach((r,i)=>{const x=gap+i*(bw+gap);el('rect',{x,y:y(r[1]),width:bw,height:y(0)-y(r[1]),rx:4,fill:r[2],class:'a-growY',style:`animation-delay:${i*.2}s`},s);
+el('text',{x:x+bw/2,y:y(r[1])-10,'text-anchor':'middle',class:'t-big',style:'font-size:18px'},s,'$'+r[1].toLocaleString());
+el('text',{x:x+bw/2,y:H-B+22,'text-anchor':'middle',class:'t-lab t-fg',style:'font-size:13px'},s,r[0]);});
+el('line',{x1:0,x2:W,y1:y(0),y2:y(0),class:'axis0'},s);
+el('text',{x:gap*2+bw*1.5,y:H-6,'text-anchor':'middle',class:'t-lab t-coral',style:'font-size:13px'},s,'-28%');
+el('text',{x:gap*3+bw*2.5,y:H-6,'text-anchor':'middle',class:'t-lab t-coral',style:'font-size:13px'},s,'-19% more');})();
+
+/* market demand */
+(function(){const s=document.getElementById('market');const v=[13427,12050,11574,13831,12767,12736,13098,12578,11536,11324,12543,13841,12885,11777,12138,13200,11719,11875,12303,11605,10477,10582,10754,11722,10045,9321,9717,9697,10116,10196,10106,9804,9324,9554,9863,10705,9772,9412,9273,10465,9756,9832,9745,9452,8988,9209,9506,10316,9416,9068,8933,10080,9396,9469,9383,9100,8653,8864,9149];
+const W=440,H=280,L=50,R=16,T=30,B=40;const x=i=>L+(W-L-R)*i/(v.length-1);const y=n=>T+(H-T-B)*(1-(n-6000)/9000);
+[6000,9000,12000,15000].forEach(n=>{el('line',{x1:L,x2:W-R,y1:y(n),y2:y(n),class:'gridline'},s);el('text',{x:L-8,y:y(n)+4,'text-anchor':'end'},s,(n/1000)+'k')});
+let d='';v.forEach((n,i)=>d+=(i?'L':'M')+x(i).toFixed(1)+' '+y(n).toFixed(1));
+el('path',{d:d+`L${x(v.length-1)} ${y(6000)}L${x(0)} ${y(6000)}Z`,fill:'var(--blue-soft)'},s);
+const p=el('path',{d,fill:'none',stroke:'var(--blue-text)','stroke-width':3,'stroke-linejoin':'round',class:'a-draw'},s);const len=Math.ceil(p.getTotalLength?p.getTotalLength():900);p.style.setProperty('--len',len);p.setAttribute('stroke-dasharray',len);
+['2022','2023','2024','2025','2026'].forEach((t,i)=>el('text',{x:x(i*12),y:H-B+22,'text-anchor':'middle'},s,t));
+el('circle',{cx:x(0),cy:y(v[0]),r:5,fill:'var(--fg)'},s);el('text',{x:x(0)+8,y:y(v[0])-10,class:'t-lab t-fg'},s,'13.4k searches');
+el('circle',{cx:x(v.length-1),cy:y(v[v.length-1]),r:6,fill:'var(--coral)'},s);el('text',{x:x(v.length-1)-4,y:y(v[v.length-1])+26,'text-anchor':'end',class:'t-lab t-coral'},s,'9.1k, down 32%');})();
+
+/* vs baseline */
+(function(){const s=document.getElementById('vsbase');const d=[['Jun',12496,BASE],['Jul',15233,BASE],['Aug',14222,BASE],['Sep',19723,BASE],['Oct',45287,BASE],['Nov 1-4',6987,2269]];
+const W=900,H=380,L=70,R=20,T=40,B=60,max=50000;const y=v=>T+(H-T-B)*(1-v/max);const gw=(W-L-R)/d.length,bw=gw*.5;
+[0,10000,20000,30000,40000,50000].forEach(v=>{el('line',{x1:L,x2:W-R,y1:y(v),y2:y(v),class:'gridline'},s);el('text',{x:L-10,y:y(v)+4,'text-anchor':'end'},s,v?'$'+v/1000+'k':'$0')});
+d.forEach((r,i)=>{const cx=L+gw*i+gw/2;const up=r[1]>=r[2];
+el('rect',{x:cx-bw/2,y:y(r[1]),width:bw,height:y(0)-y(r[1]),rx:4,fill:r[0]==='Oct'?'var(--coral)':up?'var(--blue)':'var(--neg)',class:'a-growY',style:`animation-delay:${i*.12}s`},s);
+el('line',{x1:cx-gw/2+6,x2:cx+gw/2-6,y1:y(r[2]),y2:y(r[2]),stroke:'var(--fg)','stroke-width':2,'stroke-dasharray':'6 5'},s);
+const diff=r[1]-r[2];el('text',{x:cx,y:Math.min(y(r[1]),y(r[2]))-10,'text-anchor':'middle',class:'t-lab '+(up?'t-blue':''),style:'font-size:15px'},s,(up?'+':'-')+'$'+Math.abs(diff).toLocaleString());
+el('text',{x:cx,y:H-B+24,'text-anchor':'middle',class:'t-lab t-fg'},s,r[0]);
+el('text',{x:cx,y:H-B+44,'text-anchor':'middle',style:'font-size:13px'},s,'$'+r[1].toLocaleString());});
+el('text',{x:L+6,y:y(BASE)+16,class:'t-lab t-fg',style:'font-size:12px'},s,'Usual month $17,019');})();
+
+/* channels */
+(function(){const box=document.getElementById('chans');const d=[['Google search',8155,19262],['Direct',6855,15849],['Ads and social',236,4046],['Phone, partner and other',742,4822],['Bing, DuckDuckGo and others',1007,1190],['AI assistants',24,117]];
+d.forEach((r,i)=>{const w=v=>(v/19262*100).toFixed(1)+'%';const up=r[2]-r[1];box.insertAdjacentHTML('beforeend',`<div class="prow"><span class="pl">${r[0]}</span><div class="pb"><div class="pbar old a-grow" style="width:${w(r[1])}"></div><span class="pv muted">$${r[1].toLocaleString()}</span><div class="pbar new a-grow" style="width:${w(r[2])};animation-delay:${.1+i*.08}s"></div><span class="pv"><b>$${r[2].toLocaleString()}</b> <span class="up">+$${up.toLocaleString()}</span></span></div></div>`)});})();
+
+
+/* trend vs actual */
+(function(){const s=document.getElementById('turn');const keys=Object.keys(G).filter(k=>k>='2024-06');
+const TR=[30404,29513,28648,27808,26993,26202,25433,24688,23964,23262,22580,21918,21275,20652,20046,19459,18888,18335,17797,17276,16769,16278,15800,15337,14888,14451,14028,13616,13217];
+const W=960,H=440,L=70,R=30,T=40,B=50,max=50000;const x=i=>L+(W-L-R)*i/(keys.length-1);const y=v=>T+(H-T-B)*(1-v/max);
+[0,10000,20000,30000,40000,50000].forEach(v=>{el('line',{x1:L,x2:W-R,y1:y(v),y2:y(v),class:'gridline'},s);el('text',{x:L-10,y:y(v)+4,'text-anchor':'end'},s,v?'$'+v/1000+'k':'$0')});
+const li=keys.indexOf('2026-06');
+el('rect',{x:x(li)-((x(1)-x(0))/2),y:T-20,width:W-R-x(li)+((x(1)-x(0))/2),height:H-B-T+20,fill:'var(--blue-soft)'},s);
+el('text',{x:x(li)-((x(1)-x(0))/2)+8,y:T-4,class:'t-lab t-blue',style:'font-size:12px'},s,'With LAIR');
+/* gap area between projection and actual */
+let ga='M'+x(li-1)+' '+y(G[keys[li-1]]);for(let i=li;i<keys.length;i++)ga+='L'+x(i)+' '+y(G[keys[i]]);for(let i=keys.length-1;i>=li-1;i--)ga+='L'+x(i)+' '+y(TR[i]);
+el('path',{d:ga+'Z',fill:'var(--coral)','fill-opacity':.22,class:'a-pop'},s);
+/* trend */
+let t1='',t2='';TR.forEach((v,i)=>{if(i<=li-1)t1+=(i?'L':'M')+x(i)+' '+y(v);if(i>=li-1)t2+=(i===li-1?'M':'L')+x(i)+' '+y(v)});
+el('path',{d:t1,fill:'none',stroke:'var(--muted)','stroke-width':3},s);el('path',{d:t2,fill:'none',stroke:'var(--muted)','stroke-width':3,'stroke-dasharray':'9 7'},s);
+/* actual */
+let a='';keys.forEach((k,i)=>a+=(i?'L':'M')+x(i)+' '+y(G[k]));const p=el('path',{d:a,fill:'none',stroke:'var(--blue-text)','stroke-width':4,'stroke-linejoin':'round',class:'a-draw'},s);const len=Math.ceil(p.getTotalLength?p.getTotalLength():2000);p.style.setProperty('--len',len);p.setAttribute('stroke-dasharray',len);
+keys.forEach((k,i)=>{el('circle',{cx:x(i),cy:y(G[k]),r:k==='2026-10'?8:3.5,fill:k==='2026-10'?'var(--coral)':'var(--blue-text)'},s);
+if(k.endsWith('-01')||i===0)el('text',{x:x(i),y:H-B+24,'text-anchor':'middle',class:'t-lab t-fg'},s,(k.endsWith('-01')?'Jan ':'Jun ')+k.slice(0,4));});
+el('text',{x:x(1),y:y(9000),class:'t-lab t-fg',style:'font-size:13px'},s,'Gray line: falling about 3% a month');
+el('text',{x:x(keys.length-1)-12,y:y(TR[TR.length-1])+30,'text-anchor':'end',class:'t-lab',style:'font-size:13px'},s,'Old trend: ~$13,200');
+el('text',{x:x(keys.length-1)-14,y:y(45287)+5,'text-anchor':'end',class:'t-big',style:'font-size:18px'},s,'Actual: $45,287');
+el('text',{x:x(li+3)-6,y:y(27000),'text-anchor':'end',class:'t-lab t-coral',style:'font-size:14px'},s,'+$36,761');})();
+
+/* Cipher vs market index */
+(function(){const s=document.getElementById('vsmkt');const mk=["2025-01","2025-02","2025-03","2025-04","2025-05","2025-06","2025-07","2025-08","2025-09","2025-10","2025-11","2025-12","2026-01","2026-02","2026-03","2026-04","2026-05","2026-06","2026-07","2026-08","2026-09","2026-10"];
+const C=[142.3,128.1,130.2,137.9,122.2,122.2,118.2,115.6,116.5,112.4,120.8,148.3,97.7,85.8,89.3,88.3,90.5,73.4,89.5,83.6,115.9,266.1];
+const K=[101.3,95.8,99.7,102.7,98.8,97.8,97.8,95.1,89.9,93.8,99.2,108.8,101.4,93.8,95.7,103.8,96.5,97.2,95.5,92.0,88.5,90.9];
+const W=960,H=420,L=60,R=40,T=30,B=50,max=280,min=50;const x=i=>L+(W-L-R)*i/(mk.length-1);const y=v=>T+(H-T-B)*(1-(v-min)/(max-min));
+[50,100,150,200,250].forEach(v=>{el('line',{x1:L,x2:W-R,y1:y(v),y2:y(v),class:v===100?'axis0':'gridline'},s);el('text',{x:L-10,y:y(v)+4,'text-anchor':'end'},s,v)});
+const li=mk.indexOf('2026-06');el('rect',{x:x(li)-((x(1)-x(0))/2),y:T,width:W-R-x(li)+((x(1)-x(0))/2),height:H-B-T,fill:'var(--blue-soft)'},s);
+el('text',{x:x(li)-((x(1)-x(0))/2)+8,y:T+16,class:'t-lab t-blue',style:'font-size:12px'},s,'With LAIR');
+const line=(arr,col,w,cls)=>{let d='';arr.forEach((v,i)=>d+=(i?'L':'M')+x(i)+' '+y(v));const p=el('path',{d,fill:'none',stroke:col,'stroke-width':w,'stroke-linejoin':'round',class:cls||''},s);if(cls){const len=Math.ceil(p.getTotalLength?p.getTotalLength():2000);p.style.setProperty('--len',len);p.setAttribute('stroke-dasharray',len);}};
+line(K,'var(--muted)',3);line(C,'var(--blue-text)',4.5,'a-draw');
+mk.forEach((k,i)=>{if(k.endsWith('-01')||k.endsWith('-07'))el('text',{x:x(i),y:H-B+24,'text-anchor':'middle',class:'t-lab t-fg'},s,(k.endsWith('-01')?'Jan ':'Jul ')+k.slice(0,4))});
+el('circle',{cx:x(mk.length-1),cy:y(266.1),r:8,fill:'var(--coral)'},s);
+el('text',{x:x(mk.length-1)-14,y:y(266.1)+5,'text-anchor':'end',class:'t-big',style:'font-size:17px'},s,'Cipher: 266');
+el('text',{x:x(mk.length-1)+4,y:y(90.9)+26,'text-anchor':'end',class:'t-lab',style:'font-size:14px'},s,'Market: 91');
+el('text',{x:x(1),y:y(140)-14,class:'t-lab t-blue',style:'font-size:13px'},s,'Cipher sales');
+el('text',{x:x(1),y:y(95.8)+24,class:'t-lab',style:'font-size:13px'},s,'Market searches');
+el('text',{x:x(14),y:y(80)+30,'text-anchor':'middle',class:'t-lab t-fg',style:'font-size:13px'},s,'Falling faster than the market');})();
+
+/* search sales */
+(function(){const s=document.getElementById('seosales');const S={"2024-04":29257,"2024-05":19985,"2024-06":17272,"2024-07":13150,"2024-08":12683,"2024-09":10795,"2024-10":10413,"2024-11":9162,"2024-12":15920,"2025-01":11967,"2025-02":9508,"2025-03":11322,"2025-04":10206,"2025-05":9697,"2025-06":8912,"2025-07":9638,"2025-08":10234,"2025-09":11399,"2025-10":11455,"2025-11":11606,"2025-12":12959,"2026-01":7901,"2026-02":5906,"2026-03":10342,"2026-04":7933,"2026-05":9930,"2026-06":7875,"2026-07":7732,"2026-08":6988,"2026-09":6500,"2026-10":20452};
+const keys=Object.keys(S);const W=960,H=400,L=64,R=20,T=40,B=50,max=30000;const y=v=>T+(H-T-B)*(1-v/max);const bw=(W-L-R)/keys.length;
+[0,10000,20000,30000].forEach(v=>{el('line',{x1:L,x2:W-R,y1:y(v),y2:y(v),class:'gridline'},s);el('text',{x:L-10,y:y(v)+4,'text-anchor':'end'},s,v?'$'+v/1000+'k':'$0')});
+keys.forEach((k,i)=>{const after=k>='2026-06',hot=k==='2026-10';el('rect',{x:L+bw*i+2,y:y(S[k]),width:bw-4,height:y(0)-y(S[k]),rx:2,fill:hot?'var(--coral)':after?'var(--blue)':'var(--ghost)',class:'a-growY',style:`animation-delay:${i*.02}s`},s);
+if(k.endsWith('-01')||i===0)el('text',{x:L+bw*i+bw/2,y:H-B+24,'text-anchor':'middle',class:'t-lab t-fg'},s,(k.endsWith('-01')?'Jan ':'Apr ')+k.slice(0,4));});
+el('line',{x1:L,x2:W-R,y1:y(9162),y2:y(9162),stroke:'var(--fg)','stroke-width':2,'stroke-dasharray':'6 5'},s);
+const oi=keys.indexOf('2026-10');el('text',{x:L+bw*oi+bw/2,y:y(20452)-10,'text-anchor':'end',class:'t-big',style:'font-size:16px'},s,'Oct: $20,452');
+el('text',{x:L+bw*0+4,y:y(29257)-8,class:'t-lab t-fg',style:'font-size:12px'},s,'Apr 2024: $29,257');})();
+
+/* donut */
+(function(){const s=document.getElementById('donut');const data=[['Paid ads',6000,'var(--blue)'],['SEO and AI search',2000,'var(--blue-text)'],['Website management',1000,'var(--coral)'],['Ops, tools and fees',1000,'var(--ghost)']];
+const cx=130,cy=150,r=95,C=2*Math.PI*r;let off=0;const dg=el('g',{class:'a-pop'},s);
+data.forEach((d,i)=>{const frac=d[1]/10000;const c=el('circle',{cx,cy,r,fill:'none',stroke:d[2],'stroke-width':42,'stroke-dasharray':`${C*frac-3} ${C}`,'stroke-dashoffset':-off,transform:`rotate(-90 ${cx} ${cy})`},dg);off+=C*frac;
+const ly=70+i*52;el('rect',{x:270,y:ly-14,width:16,height:16,rx:3,fill:d[2]},s);el('text',{x:294,y:ly,class:'t-lab t-fg',style:'font-size:15px'},s,'$'+d[1].toLocaleString());el('text',{x:294,y:ly+20,style:'font-size:13px'},s,d[0]);});
+el('text',{x:cx,y:cy-4,'text-anchor':'middle',class:'t-big',style:'font-size:30px'},s,'$10k');el('text',{x:cx,y:cy+20,'text-anchor':'middle'},s,'per month');})();
+
+/* gauge DR */
+(function(){const s=document.getElementById('gauge');const cx=210,cy=200,r=150;const ang=v=>Math.PI*(1-v/60);const pt=(v,rr)=>[cx+rr*Math.cos(ang(v)),cy-rr*Math.sin(ang(v))];
+const arc=(a,b,rr)=>{const p1=pt(a,rr),p2=pt(b,rr);return `M${p1[0]} ${p1[1]} A${rr} ${rr} 0 0 1 ${p2[0]} ${p2[1]}`};
+el('path',{d:arc(0,60,r),fill:'none',stroke:'var(--ghost)','stroke-width':26},s);
+el('path',{d:arc(18,22,r),fill:'none',stroke:'var(--neg)','stroke-width':26},s);
+const g=el('path',{d:arc(0,31,r),fill:'none',stroke:'var(--blue)','stroke-width':26,class:'a-draw'},s);const L=Math.PI*r*31/60;g.style.setProperty('--len',L);g.setAttribute('stroke-dasharray',L);
+[0,20,40,60].forEach(v=>{const p=pt(v,r+30);el('text',{x:p[0],y:p[1]+4,'text-anchor':'middle'},s,v)});
+const n=pt(31,r-30);el('line',{x1:cx,y1:cy,x2:n[0],y2:n[1],stroke:'var(--coral)','stroke-width':5,'stroke-linecap':'round'},s);el('circle',{cx,cy,r:9,fill:'var(--coral)'},s);
+const o=pt(20,r-44);el('text',{x:o[0]-6,y:o[1]+4,'text-anchor':'middle',class:'t-lab',style:'font-size:12px'},s,'2025: 18 to 22');
+el('text',{x:cx,y:cy-48,'text-anchor':'middle',class:'t-big',style:'font-size:54px'},s,'31');
+el('text',{x:cx,y:cy+34,'text-anchor':'middle',class:'t-lab t-fg'},s,'Up from 20 in June 2025');})();
+
+/* refdomains line */
+(function(){const s=document.getElementById('refd');const v=[222,227,318,307,295,299,311,298,262,150,238,334,385,594,529,1086,1028,1027];const lab=['Jun 25','','','','','','','Jan 26','','','','May','','','','Sep','','Nov'];
+const W=440,H=270,L=46,R=20,T=30,B=40;const x=i=>L+(W-L-R)*i/(v.length-1);const y=n=>T+(H-T-B)*(1-n/1200);
+[0,400,800,1200].forEach(n=>{el('line',{x1:L,x2:W-R,y1:y(n),y2:y(n),class:'gridline'},s);el('text',{x:L-8,y:y(n)+4,'text-anchor':'end'},s,n.toLocaleString())});
+el('rect',{x:x(11),y:T,width:x(17)-x(11),height:H-T-B,fill:'var(--blue-soft)'},s);el('text',{x:x(11)+6,y:T+16,class:'t-lab t-blue',style:'font-size:12px'},s,'With LAIR');
+let d='';v.forEach((n,i)=>d+=(i?'L':'M')+x(i)+' '+y(n));const p=el('path',{d,fill:'none',stroke:'var(--blue-text)','stroke-width':3.5,'stroke-linejoin':'round',class:'a-draw'},s);const len=Math.ceil(p.getTotalLength?p.getTotalLength():900);p.style.setProperty('--len',len);p.setAttribute('stroke-dasharray',len);
+el('circle',{cx:x(11),cy:y(334),r:5,fill:'var(--fg)'},s);el('text',{x:x(11)-6,y:y(334)-10,'text-anchor':'end',class:'t-lab t-fg'},s,'334 at launch');
+el('circle',{cx:x(17),cy:y(1027),r:7,fill:'var(--coral)'},s);el('text',{x:x(17)-10,y:y(1027)-12,'text-anchor':'end',class:'t-big',style:'font-size:18px'},s,'1,027');
+lab.forEach((t,i)=>{if(t)el('text',{x:x(i),y:H-B+22,'text-anchor':'middle'},s,t)});})();
+
+/* keyword ladder */
+(function(){const k=[['electronic pipe',1,400],['electric pipe for weed',1,100],['dry herb vaporizer pipe',1,100],['vape pipes',1,200],['vapes that look like pipes',1,30],['electric weed bowl',1,20],['electric one hitter',2,60],['best weed dugout',3,50],['vaporizer pipe',4,100],['dugout 1 hitter',5,80],['discreet weed pipe',6,100],['dugout weed',7,800]];
+const box=document.getElementById('ladder');k.forEach((r,i)=>{const pos=r[1];const left=((pos-1)/9)*52;box.insertAdjacentHTML('beforeend',`<div class="lrow"><span>${r[0]} <span class="src">· ${r[2]} searches/mo</span></span><div class="track"><span class="p1zone"></span><span class="chip" style="left:${left}%;animation-delay:${i*.08}s">#${pos}</span></div></div>`)});})();
+
+/* product pages */
+(function(){const box=document.getElementById('pages');const d=[['Nautilus (all)',599,1378],['NOVA (all)',499,1167],['Nautilus V3 Black Wood',294,425],['ArcSnap electric dugout',123,212],['Herby (all)',72,128],['ArcSnap (all)',39,101],['NOVA Iridescent',14,74]];
+d.forEach((r,i)=>{const w=v=>(v/1378*100).toFixed(1)+'%';box.insertAdjacentHTML('beforeend',`<div class="prow"><span class="pl">${r[0]}</span><div class="pb"><div class="pbar old a-grow" style="width:${w(r[1])}"></div><span class="pv muted">${r[1].toLocaleString()}</span><div class="pbar new a-grow" style="width:${w(r[2])};animation-delay:${.1+i*.08}s"></div><span class="pv"><b>${r[2].toLocaleString()}</b> <span class="up">+${Math.round((r[2]/r[1]-1)*100)}%</span></span></div></div>`)});})();
+
+/* AI table */
+(function(){const t=document.getElementById('aitable');const rows=[['electric one hitter',1,1],['electric dugout',1,1],['electric marijuana pipe',1,2],['electric smoking pipe for weed',1,2],['dry herb vape pipe',0,1],['electric smokeless pipe',0,1],['weed vaporizer pipe',0,1],['electronic smoking pipe',2,2],['all in one smoking pipe',2,3],['best electric smoking pipe',0,2],['electric pipe for weed',0,2],['dry herb vaporizer pipe',0,2],['e-pipe vape',0,2]];
+const cell=v=>v?`<span class="rank r${v}">${v}</span>`:'<span class="r0">·</span>';
+t.innerHTML='<thead><tr><th scope="col">Shopper asks AI about...</th><th scope="col">ChatGPT</th><th scope="col">Gemini</th></tr></thead><tbody>'+rows.map(r=>`<tr><td>${r[0]}</td><td>${cell(r[1])}</td><td>${cell(r[2])}</td></tr>`).join('')+'</tbody>';})();
+
+/* 2x2 quadrant */
+(function(){const s=document.getElementById('quad');const ads=[['16',733.80,4.33,25],['17',703.42,3.76,22],['19',652.01,7.45,41],['20',261.65,8.16,18],['18',142.23,3.42,5],['14',67.13,3.90,2],['11',59.40,16.23,7],['15',30.26,6.46,3],['12',25.62,0,0],['13',7.01,12.35,1],['7',17.61,2.25,1],['6',122.02,2.41,4],['8',309.05,1.27,4],['4',47.59,0,0],['9',6.49,0,0],['1',61.49,0.84,2],['5',185.54,1.67,4],['3',501.04,3.19,14]];
+const W=900,H=520,L=70,R=30,T=30,B=60;const lx=v=>Math.log10(Math.max(v,5));const x=v=>L+(W-L-R)*(lx(v)-lx(5))/(lx(1000)-lx(5));const y=r=>T+(H-T-B)*(1-Math.min(r,17)/17);
+el('rect',{x:x(150),y:T,width:W-R-x(150),height:y(3)-T,fill:'var(--blue-soft)'},s);
+el('line',{x1:L,x2:W-R,y1:y(3),y2:y(3),stroke:'var(--coral)','stroke-width':2,'stroke-dasharray':'6 5'},s);
+el('line',{x1:x(150),x2:x(150),y1:T,y2:H-B,stroke:'var(--muted)','stroke-width':1,'stroke-dasharray':'4 5'},s);
+[[x(150)+14,T+24,'SCALE IT','start','t-blue'],[L+12,T+24,'PROMISING: FEED IT','start','t-blue'],[W-R-12,H-B-14,'FIX OR CUT','end',''],[L+12,H-B-14,'TOO EARLY TO TELL','start','']].forEach(q=>el('text',{x:q[0],y:q[1],'text-anchor':q[3],class:'t-lab '+q[4],style:'font-size:14px;letter-spacing:.06em'},s,q[2]));
+el('text',{x:L+12,y:y(3)-8,class:'t-lab t-coral',style:'font-size:13px'},s,'3x target');
+[0,3,6,9,12,15].forEach(r=>el('text',{x:L-10,y:y(r)+4,'text-anchor':'end'},s,r+'x'));
+[10,50,100,250,500,1000].forEach(v=>el('text',{x:x(v),y:H-B+22,'text-anchor':'middle'},s,'$'+v));
+el('text',{x:(L+W-R)/2,y:H-12,'text-anchor':'middle',class:'t-lab'},s,'Ad spend (each step is a bigger jump)');
+ads.sort((a,b)=>b[3]-a[3]).forEach((a,i)=>{const rr=6+Math.sqrt(a[3])*4.2;const win=a[2]>=3&&a[1]>=150;const g=el('g',{class:'a-pop',style:`animation-delay:${i*.05}s`},s);
+el('circle',{cx:x(a[1]),cy:y(a[2]),r:rr,fill:a[2]>=3?'var(--blue)':'var(--neg)','fill-opacity':.85,stroke:win?'var(--coral)':'var(--panel)','stroke-width':win?3:1.5},g);
+el('text',{x:x(a[1]),y:y(a[2])+4,'text-anchor':'middle',class:'t-lab',style:'font-size:11px;fill:#fff'},g,a[0]);
+el('title',{},g,`Ad ${a[0]}: $${a[1].toFixed(2)} spent, ${a[2]}x return, ${a[3]} orders`);});
+el('text',{x:x(150)+14,y:T+46,class:'t-lab t-fg',style:'font-size:13px'},s,'Best so far: Ad 19, 41 orders at 7.45x');})();
+
+/* count-up + play on view */
+function countUp(n){const target=parseFloat(n.dataset.count),dec=+(n.dataset.dec||0),pre=n.dataset.prefix||'',suf=n.dataset.suffix||'';const t0=performance.now(),dur=1400;
+function step(t){const k=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-k,3);n.textContent=pre+(target*e).toLocaleString('en-US',{minimumFractionDigits:dec,maximumFractionDigits:dec})+suf;if(k<1)requestAnimationFrame(step)}requestAnimationFrame(step)}
+const reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(!reduce&&'IntersectionObserver' in window){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const t=e.target;t.classList.add('play');t.querySelectorAll('[data-count]').forEach(countUp);io.unobserve(t)}}),{threshold:.25});
+document.querySelectorAll('[data-anim]').forEach(n=>io.observe(n));}
+})();
+</script>
+
+</body>
+</html>
