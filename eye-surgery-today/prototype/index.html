@@ -486,6 +486,18 @@ a.person:hover,a.person:focus-visible{border-color:var(--teal)}
   .srow b{font-size:44px}.srow span{font-size:16px}
   .panel{min-height:62vh}.p-cap{font-size:19px}.p-ic svg{width:60px;height:60px}
 }
+.bench{gap:16px}
+.bm{display:flex;flex-direction:column;gap:14px;margin:6px 0}
+.bm-row{display:grid;grid-template-columns:minmax(0,180px) minmax(0,1fr) 72px;align-items:center;gap:14px}
+.bm-n{font-size:15px;font-weight:600;color:var(--muted)}
+.bm-row.us .bm-n{color:var(--ink);font-weight:800}
+.bm-t{height:28px;background:#f3f4f4;border-radius:8px;overflow:hidden;display:block}
+.bm-t i{display:block;height:100%;width:var(--w);background:#b9c2c0;border-radius:8px;transition:width 1.4s cubic-bezier(.2,.7,.2,1) .2s}
+.bm-row.us .bm-t i{background:var(--teal)}
+.js-rv .bench:not(.on) .bm-t i{width:0}
+.bm-v{font-size:18px;font-weight:800;color:#8a8a8a;text-align:right;font-variant-numeric:tabular-nums}
+.bm-row.us .bm-v{color:var(--teal-deep);font-size:24px}
+@container (max-width:600px){.bm-row{grid-template-columns:1fr auto;row-gap:6px}.bm-t{grid-column:1/-1;grid-row:2}.bm-n{grid-row:1}.bm-v{grid-row:1}}
 </style>
 <div class="shell">
 
@@ -723,7 +735,9 @@ a.person:hover,a.person:focus-visible{border-color:var(--teal)}
 
       <section class="band ch">
         <div class="in">
-          <h2 class="rv">Every chart goes up and to the&nbsp;right.</h2>
+          <h2 class="rv"><span class="ph">The biggest eye&nbsp;sites are&nbsp;shrinking.</span> <span class="ph">We&rsquo;re growing&nbsp;13&times;.</span></h2>
+          <figure class="card bench rv"><figcaption class="cap-top">Google searches each site shows up for, October vs&nbsp;April</figcaption><div class="bm"><div class="bm-row us"><span class="bm-n">Eye Surgery Today</span><span class="bm-t"><i style="--w:100.0%"></i></span><b class="bm-v">13.4&times;</b></div><div class="bm-row"><span class="bm-n">All About Vision</span><span class="bm-t"><i style="--w:5.4%"></i></span><b class="bm-v">&minus;27%</b></div><div class="bm-row"><span class="bm-n">AAO.org</span><span class="bm-t"><i style="--w:5.2%"></i></span><b class="bm-v">&minus;30%</b></div><div class="bm-row"><span class="bm-n">NVISION Eye Centers</span><span class="bm-t"><i style="--w:5.1%"></i></span><b class="bm-v">&minus;31%</b></div></div><figcaption>Eye Surgery Today: 65 searches in April, 874 in October. The three largest eye-health sites each lost about 30% as AI answers took more searches. Source: Semrush, US, April to October&nbsp;2026.</figcaption></figure>
+          <h3 class="sub-h rv">And every chart goes up and to the&nbsp;right.</h3>
           <div class="proof-grid six">
             <figure style="--d:0ms" class="rv card chart">
               <figcaption class="cap-top">Website visits per month</figcaption><span class="big-n">18,351<small>&uarr; 3.4&times; since summer</small></span>
