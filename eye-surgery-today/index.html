@@ -399,7 +399,7 @@ a.person:hover,a.person:focus-visible{border-color:var(--teal)}
 .ed-hero{min-height:88vh;display:flex;align-items:center}
 .ed-hero .in{display:flex !important;flex-direction:column;align-items:flex-start !important;gap:26px;max-width:860px !important}
 .ed-hero .beat{margin:0}
-.ed-hero h1{font-size:56px;line-height:1.1;letter-spacing:-.02em}
+.ed-hero h1{overflow-wrap:break-word;font-size:56px;line-height:1.1;letter-spacing:-.02em}
 .ed-hero .h1b{color:#fff}
 .readon{align-self:flex-start;background:none;border:1px solid #3a3a3a;color:#e6e6e6;font:inherit;font-size:15px;font-weight:600;border-radius:999px;padding:12px 20px;cursor:pointer}
 .readon:hover{border-color:var(--teal);color:#fff}
@@ -511,7 +511,7 @@ body{background:var(--white)}
             <figcaption class="cal-leg"><span><i style="background:#eef1f0"></i>No video</span><span><i style="background:rgba(32,183,150,.38)"></i>1</span><span><i style="background:rgba(32,183,150,.68)"></i>2</span><span><i style="background:#20b796"></i>3 or more</span><span class="src">Source: Eye Surgery Today YouTube channel, November&nbsp;2026.</span></figcaption>
           </figure>
           <dl class="giant light">
-            <div class="rv"><dt>239</dt><dd>videos since February</dd></div>
+            <div class="rv"><dt>239</dt><dd>videos since&nbsp;February</dd></div>
             <div class="rv" style="--d:120ms"><dt>39</dt><dd>weeks in a row, never&nbsp;missed</dd></div>
             <div class="rv" style="--d:240ms"><dt>393</dt><dd>patient articles on the&nbsp;site</dd></div>
           </dl>
@@ -761,6 +761,10 @@ body{background:var(--white)}
         root.classList.add("js-rv");
         var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("on");io.unobserve(e.target)}})},{rootMargin:"0px 0px -8% 0px",threshold:.12});
         root.querySelectorAll(".rv").forEach(function(el){io.observe(el)});
+        // no orphans: glue the last two words of short text blocks
+        var SEL="h1,h2,h3,p,dd,figcaption,.sp,.pr,.feed .c,.cc-note,.lu-cap,.gets span,.flow3 span,.hold-l,.cap-top,.lock,.cc-price span,.giant dd,.face span";
+        function glue(){root.querySelectorAll(SEL).forEach(function(el){var tw=document.createTreeWalker(el,NodeFilter.SHOW_TEXT),n,last=null;while(n=tw.nextNode()){if(/\S/.test(n.data))last=n}if(!last)return;var t=last.data,i=t.replace(/\s+$/,"").lastIndexOf(" ");if(i>0&&t.slice(i+1).replace(/\s+$/,"").length<=14){last.data=t.slice(0,i)+" "+t.slice(i+1)}})}
+        glue();setTimeout(glue,50);setTimeout(glue,600);document.addEventListener("input",function(){setTimeout(glue,30)});
         setTimeout(function(){root.querySelectorAll(".ed-hero .rv").forEach(function(el){el.classList.add("on")})},60);
       })();
       </script>
@@ -831,7 +835,7 @@ body{background:var(--white)}
   set("[data-city]",city.replace(/, /,","+NB));
   var cp=city.split(",");set("[data-cityonly]",name||p[1]?cp[0].trim():"Your city");set("[data-state]",(cp[1]||"").trim()); placeYou(p[1]?cp[0]:"");
   set("[data-citycap]",city.toUpperCase());
-  set("[data-sender]",nb("Dr. "+sender));
+  set("[data-sender]","Dr.\u00a0"+sender);
   if(!name){document.querySelectorAll("[data-anon]").forEach(function(e){e.textContent=e.getAttribute("data-anon")});document.querySelectorAll("[data-anon-hide]").forEach(function(e){e.hidden=true});document.querySelectorAll("[data-anon-show]").forEach(function(e){e.hidden=false});set("[data-initials]","\u2605")}
   fit();
   if(name)document.title="Proposal for "+dr.replace(NB," ");
