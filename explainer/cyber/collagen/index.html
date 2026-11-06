@@ -113,6 +113,17 @@ footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padd
 
 @media (prefers-reduced-motion: reduce){.pulse,.sitebox,.fill,.sweep,.hit,.bot,.ring,.catch{animation:none}.pulse,.bot{opacity:1}}
 </style>
+<style>
+.chip.ask{background:var(--warn-soft);color:var(--warn)}
+.tl{list-style:none;margin:0;padding:0;display:grid}
+.tl li{display:grid;grid-template-columns:72px 14px 1fr;gap:12px;padding-bottom:20px;position:relative}
+.tl li:not(:last-child)::before{content:"";position:absolute;left:90px;top:20px;bottom:0;width:2px;background:var(--line)}
+.tl .d{font-family:var(--mono);font-size:.8rem;color:var(--muted);padding-top:3px;white-space:nowrap}
+.tl .m{width:14px;height:14px;border-radius:50%;margin-top:6px;position:relative;z-index:1}
+.tl b{display:block}
+.tl p{font-size:.93rem;color:var(--muted)}
+.panel p{font-size:.95rem;color:var(--muted)}
+</style>
 </head>
 <body>
 
@@ -122,8 +133,8 @@ footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padd
 <header style="display:flex;flex-direction:column;gap:16px">
   <span class="eyebrow">Incident brief · collagenpin.com</span>
   <h1>What happened to the website in early November</h1>
-  <p class="lede">A spam attack on the website was caught within days by our own marketing team's review of Google data. Here is what happened, what it affected, and what is being done.</p>
-  <div class="meta"><span>Prepared for Induction Therapies leadership</span><span>Updated Nov 6, 2026</span></div>
+  <p class="lede">Spam pages were placed on the website for about a day. The site is clean, now runs on new hardened hosting, and there is no evidence any customer data was taken. Here is what happened, what it touched, and what has been done.</p>
+  <div class="meta"><span>Prepared for Induction Therapies leadership</span><span>Updated Nov&nbsp;6, 2026</span></div>
 </header>
 
 <section aria-labelledby="three">
@@ -132,18 +143,18 @@ footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padd
   <div class="takeaways">
     <div class="take">
       <svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="20" fill="var(--accent-soft)"/><g fill="none" stroke="var(--accent)" stroke-width="2.2"><rect x="11" y="13" width="9" height="7" rx="1.5"/><rect x="24" y="13" width="9" height="7" rx="1.5"/><rect x="11" y="24" width="9" height="7" rx="1.5"/><rect x="24" y="24" width="9" height="7" rx="1.5" stroke="var(--bad)"/></g></svg>
-      <h3>This happens all the time</h3>
-      <p>Automated spam bots probe WordPress sites around the clock. It was not aimed at our company.</p>
-    </div>
-    <div class="take">
-      <svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="20" fill="var(--accent-soft)"/><circle cx="20" cy="20" r="7.5" fill="none" stroke="var(--accent)" stroke-width="2.4"/><line x1="25.5" y1="25.5" x2="32" y2="32" stroke="var(--accent)" stroke-width="2.8" stroke-linecap="round"/></svg>
-      <h3>Our team caught it fast</h3>
-      <p>This hack is built to stay hidden, and most companies miss it for weeks or months. We found it within days.</p>
+      <h3>It was automated, not targeted</h3>
+      <p>Bots mass-scanned the web for a newly announced flaw in the site's page-builder theme. Our site was one of many hit.</p>
     </div>
     <div class="take">
       <svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="20" fill="var(--accent-soft)"/><path d="M22 10 l10 4 v7 c0 7 -4.5 11 -10 13 c-5.5 -2 -10 -6 -10 -13 v-7 z" fill="none" stroke="var(--accent)" stroke-width="2.2"/><path d="M17.5 22 l3.2 3.2 l6 -6.4" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <h3>We are locking it down</h3>
-      <p>Four new layers of protection go on top of ongoing site care, aimed at this exact threat.</p>
+      <h3>The site is clean and rebuilt</h3>
+      <p>The spam was removed after about a day, verified clean, and the site moved to a new managed host with new credentials.</p>
+    </div>
+    <div class="take">
+      <svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="20" fill="var(--accent-soft)"/><circle cx="20" cy="20" r="7.5" fill="none" stroke="var(--accent)" stroke-width="2.4"/><line x1="25.5" y1="25.5" x2="32" y2="32" stroke="var(--accent)" stroke-width="2.8" stroke-linecap="round"/></svg>
+      <h3>No sign of data theft</h3>
+      <p>Everything left behind was search-spam tooling. A precautionary portal password reset is recommended.</p>
     </div>
   </div>
 </section>
@@ -153,82 +164,58 @@ footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padd
   <h2 id="bl">The bottom line</h2>
   <div class="bottom">
     <ul>
-      <li><span class="dot" style="background:var(--accent)"></span><span>The site was hit by a <b>search spam hack</b>, a very common automated attack on WordPress websites. It is not aimed at our company or our products.</span></li>
-      <li><span class="dot" style="background:var(--accent)"></span><span>Its goal was to borrow our site's good standing on Google to promote <b>Indonesian online gambling</b>. It was not built to steal money or customer files.</span></li>
-      <li><span class="dot" style="background:var(--accent)"></span><span>Customers and providers visiting normally saw <b>our regular pages</b>.</span></li>
-      <li><span class="dot" style="background:var(--warn)"></span><span>Our web team is confirming the entry point, the cleanup, and whether any form or portal data was touched. Those answers are marked <b>"Confirming"</b> below.</span></li>
+      <li><span class="dot" style="background:var(--accent)"></span><span>Attackers got in through a <b>flaw in the YOOtheme Pro theme</b> that let anyone drop a file onto a site without logging in. No passwords were stolen or guessed.</span></li>
+      <li><span class="dot" style="background:var(--accent)"></span><span>They used it to hijack <b>12 of our page addresses</b> and show Indonesian gambling spam there, to borrow our site's standing on Google.</span></li>
+      <li><span class="dot" style="background:var(--accent)"></span><span>The spam was live for <b>roughly one day</b> and was removed on Nov&nbsp;2. The site is verified clean today.</span></li>
+      <li><span class="dot" style="background:var(--accent)"></span><span>There is <b>no evidence</b> customer, lead or portal data was accessed. As a precaution, every login was reset and the site was moved to a new server.</span></li>
+      <li><span class="dot" style="background:var(--warn)"></span><span><b>Two decisions sit with leadership:</b> a precautionary portal password reset, and cleaning up the Google Ads conversion that counts page views.</span></li>
     </ul>
   </div>
 </section>
 
-<section aria-labelledby="caught">
-  <span class="eyebrow">How it was caught</span>
-  <h2 id="caught">Spotted by our team, not by a customer</h2>
-  <p>This type of hack is built to hide from the people who run a website. The hidden code shows site managers, logged-in staff and regular visitors the normal page, and only shows the spam to Google. That is why it does not appear during routine site checks, and why most companies only find out weeks or months later, often after their search rankings drop.</p>
-  <p>Our team caught it within days through Google Search Console, the report Google provides on how it sees the site. Unfamiliar foreign-language searches showed up sending traffic to our pages, and the marketing and web teams moved straight into investigation and cleanup.</p>
-
-  <figure class="fig" style="margin:0">
-    <svg viewBox="0 0 560 250" role="img" aria-labelledby="tlt">
-      <title id="tlt">Timeline: on a typical site this hack runs unnoticed for weeks or months; on our site it was caught within days of the first spam traffic.</title>
-      <!-- Typical -->
-      <text x="20" y="30" class="lbl">A typical site</text>
-      <line x1="20" y1="62" x2="540" y2="62" stroke="var(--line)" stroke-width="10" stroke-linecap="round"/>
-      <line x1="40" y1="62" x2="500" y2="62" stroke="var(--bad)" stroke-width="10" stroke-linecap="round" stroke-opacity=".35"/>
-      <circle cx="40" cy="62" r="9" fill="var(--bad)"/>
-      <text x="40" y="92" text-anchor="middle" class="sub">Hacked</text>
-      <text x="270" y="92" text-anchor="middle" class="sub">Spam runs unnoticed for weeks or months</text>
-      <circle cx="500" cy="62" r="9" fill="var(--surface)" stroke="var(--muted)" stroke-width="2.5"/>
-      <text x="500" y="92" text-anchor="end" class="sub">Rankings drop, then found</text>
-
-      <!-- Ours -->
-      <text x="20" y="150" class="lbl">collagenpin.com</text>
-      <line x1="20" y1="182" x2="540" y2="182" stroke="var(--line)" stroke-width="10" stroke-linecap="round"/>
-      <line x1="40" y1="182" x2="110" y2="182" stroke="var(--bad)" stroke-width="10" stroke-linecap="round" stroke-opacity=".35"/>
-      <circle cx="40" cy="182" r="9" fill="var(--bad)"/>
-      <text x="40" y="212" text-anchor="middle" class="sub">Spam spike</text>
-      <text x="40" y="227" text-anchor="middle" class="sub">Nov 2 to 3</text>
-      <circle class="catch" cx="110" cy="182" r="11" fill="var(--accent)"/>
-      <path d="M104.5 182 l4 4 l7 -7.5" fill="none" stroke="var(--surface)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-      <text x="130" y="212" class="lbl" style="fill:var(--accent)">Caught by our team</text>
-      <text x="130" y="227" class="sub">within days</text>
-      <line x1="110" y1="182" x2="540" y2="182" stroke="var(--accent)" stroke-width="3" stroke-dasharray="2 6" stroke-linecap="round"/>
-      <text x="540" y="167" text-anchor="end" class="sub">Cleanup and lockdown</text>
-    </svg>
-    <figcaption>Illustration, not to scale. The earlier a cloaking hack is found, the less time it has to damage search rankings.</figcaption>
-  </figure>
+<section aria-labelledby="when">
+  <span class="eyebrow">When and how</span>
+  <h2 id="when">From public flaw to cleanup</h2>
+  <p>On Oct&nbsp;22, the company behind YOOtheme Pro, the page-builder theme the site runs on, announced a critical security flaw (<span class="mono" style="white-space:nowrap">CVE-2026-102785</span>). Attackers began scanning for it almost immediately, and our site was reached before the fix was applied.</p>
+  <ol class="tl">
+    <li><span class="d">Oct&nbsp;22</span><span class="m" style="background:var(--warn)"></span><div><b>Theme flaw made public</b><p>Anyone could upload a file to an affected site without logging in.</p></div></li>
+    <li><span class="d">Oct&nbsp;26</span><span class="m" style="background:var(--bad)"></span><div><b>Automated break-in</b><p>The site was hit at 11:24 UTC, before the theme patch reached it.</p></div></li>
+    <li><span class="d">Oct&nbsp;28</span><span class="m" style="background:var(--bad)"></span><div><b>Tools staged</b><p>The attacker used that foothold to stage files for later use.</p></div></li>
+    <li><span class="d">Nov&nbsp;2</span><span class="m" style="background:var(--bad)"></span><div><b>Spam pages go live</b><p>A rogue plugin hijacked 12 pages, and the attacker added themselves as a Search Console owner.</p></div></li>
+    <li><span class="d">Nov&nbsp;2</span><span class="m" style="background:var(--accent)"></span><div><b>Caught and removed</b><p>Every planted file was removed after roughly a day, the theme was moved to the patched release, and the attacker's Search Console access was revoked.</p></div></li>
+    <li><span class="d">Nov&nbsp;6</span><span class="m" style="background:var(--ok)"></span><div><b>Verified clean, reindexing requested</b><p>Google's live test returns the real pages. Reindexing of the affected pages is underway.</p></div></li>
+  </ol>
+  <p class="note">Every other site our team manages has also been checked for the same flaw.</p>
 </section>
 
 <section aria-labelledby="how">
   <span class="eyebrow">How the trick works</span>
-  <h2 id="how">One website, three different stories</h2>
-  <p>This is called <b>cloaking</b>. Hidden code checks who is asking for the page, then shows each visitor something different. That is why the pages looked normal to us while Google saw something else.</p>
+  <h2 id="how">A hidden plugin swapped 12 pages</h2>
+  <p>It was not a redirect or a classic cloaking hack. A small rogue plugin intercepted twelve real page addresses, including <span class="mono">/press/</span>, <span class="mono">/collagen-pin-treatment/</span> and <span class="mono">/collagen-pin-about/</span>, and served static gambling pages in their place. The rest of the site worked as normal.</p>
 
   <figure class="fig" style="margin:0">
     <svg viewBox="0 0 560 330" role="img" aria-labelledby="dgt">
-      <title id="dgt">Diagram: Google's robot is shown spam, gambling searchers are redirected away, and real customers see the normal page.</title>
-      <!-- site box -->
+      <title id="dgt">Diagram: on the 12 hijacked addresses, Google and gambling searchers were both shown a static gambling page with no analytics tag, while visitors to the rest of the site saw normal, tracked pages.</title>
       <rect class="sitebox" x="210" y="20" width="140" height="290" rx="14" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/>
       <text x="280" y="148" text-anchor="middle" class="lbl">collagenpin.com</text>
-      <text x="280" y="166" text-anchor="middle" class="sub">with hidden code</text>
-      <text x="280" y="184" text-anchor="middle" class="sub">sorting visitors</text>
+      <text x="280" y="166" text-anchor="middle" class="sub">rogue plugin</text>
+      <text x="280" y="184" text-anchor="middle" class="sub">swapping 12 pages</text>
 
-      <!-- Row 1: Google robot -->
       <g>
         <rect x="10" y="38" width="44" height="44" rx="10" fill="var(--surface)" stroke="var(--line)"/>
         <rect x="21" y="50" width="22" height="18" rx="4" fill="none" stroke="var(--ink)" stroke-width="2"/>
         <circle cx="28" cy="59" r="2.4" fill="var(--ink)"/><circle cx="36" cy="59" r="2.4" fill="var(--ink)"/>
         <line x1="32" y1="44" x2="32" y2="50" stroke="var(--ink)" stroke-width="2"/>
         <text x="62" y="56" class="lbl">Google's robot</text>
-        <text x="62" y="72" class="sub">reading the page</text>
+        <text x="62" y="72" class="sub">reads a hijacked page</text>
         <path class="trail" d="M150 60 H210"/>
         <path class="trail" d="M350 60 H400"/>
         <circle class="pulse" cx="150" cy="60" r="5" fill="var(--bad)" style="--d:250px"/>
         <rect x="400" y="38" width="150" height="44" rx="10" fill="var(--bad-soft)" stroke="var(--bad)"/>
-        <text x="475" y="57" text-anchor="middle" class="lbl" style="fill:var(--bad)">Shown gambling</text>
-        <text x="475" y="73" text-anchor="middle" class="sub">spam keywords</text>
+        <text x="475" y="57" text-anchor="middle" class="lbl" style="fill:var(--bad)">Gambling page</text>
+        <text x="475" y="73" text-anchor="middle" class="sub">ranks for spam terms</text>
       </g>
 
-      <!-- Row 2: gambling searcher -->
       <g>
         <rect x="10" y="143" width="44" height="44" rx="10" fill="var(--surface)" stroke="var(--line)"/>
         <circle cx="32" cy="158" r="6" fill="none" stroke="var(--ink)" stroke-width="2"/>
@@ -239,33 +226,32 @@ footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padd
         <path class="trail" d="M350 165 H400"/>
         <circle class="pulse p2" cx="150" cy="165" r="5" fill="var(--warn)" style="--d:250px"/>
         <rect x="400" y="143" width="150" height="44" rx="10" fill="var(--warn-soft)" stroke="var(--warn)"/>
-        <text x="475" y="162" text-anchor="middle" class="lbl" style="fill:var(--warn)">Sent away instantly</text>
-        <text x="475" y="178" text-anchor="middle" class="sub">to a gambling site</text>
+        <text x="475" y="162" text-anchor="middle" class="lbl" style="fill:var(--warn)">Gambling page</text>
+        <text x="475" y="178" text-anchor="middle" class="sub">no analytics tag</text>
       </g>
 
-      <!-- Row 3: real customer -->
       <g>
         <rect x="10" y="248" width="44" height="44" rx="10" fill="var(--surface)" stroke="var(--line)"/>
         <circle cx="32" cy="263" r="6" fill="none" stroke="var(--ink)" stroke-width="2"/>
         <path d="M21 285 q11 -14 22 0" fill="none" stroke="var(--ink)" stroke-width="2"/>
-        <text x="62" y="265" class="lbl">Your customer</text>
-        <text x="62" y="281" class="sub">or provider</text>
+        <text x="62" y="265" class="lbl">Visitor</text>
+        <text x="62" y="281" class="sub">to any other page</text>
         <path class="trail" d="M150 270 H210"/>
         <path class="trail" d="M350 270 H400"/>
         <circle class="pulse p3" cx="150" cy="270" r="5" fill="var(--ok)" style="--d:250px"/>
         <rect x="400" y="248" width="150" height="44" rx="10" fill="var(--ok-soft)" stroke="var(--ok)"/>
         <text x="475" y="267" text-anchor="middle" class="lbl" style="fill:var(--ok)">Normal page</text>
-        <text x="475" y="283" text-anchor="middle" class="sub">nothing looks wrong</text>
+        <text x="475" y="283" text-anchor="middle" class="sub">tracked as usual</text>
       </g>
     </svg>
-    <figcaption>Because real visitors see a normal page, this kind of hack usually goes unnoticed until someone checks Google's own reports.</figcaption>
+    <figcaption>For about a day, anyone who opened one of the 12 hijacked addresses saw the spam page. Every other page on the site was unaffected.</figcaption>
   </figure>
 </section>
 
 <section aria-labelledby="common">
   <span class="eyebrow">Why this site was chosen</span>
   <h2 id="common">This is common, and it is automated</h2>
-  <p>Gambling spam networks run bots around the clock that probe millions of WordPress websites, which power a large share of the web. When a bot gets in, it plants hidden code and moves on. Sites with a strong Google reputation are the most valuable to them, because spam on a trusted site ranks fast.</p>
+  <p>When a serious WordPress flaw is announced, spam networks start running bots that sweep the web for every site still running the vulnerable version. When a bot gets in, it plants spam and moves on. Sites with a strong Google reputation are the most valuable to them, because spam on a trusted site ranks fast.</p>
   <figure class="fig" style="margin:0">
     <svg viewBox="0 0 560 270" role="img" aria-labelledby="bst">
       <title id="bst">Illustration: an automated bot sweeps across many websites at once, testing each one, and plants spam wherever it gets in.</title>
@@ -275,7 +261,6 @@ footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padd
           <stop offset="1" stop-color="var(--bad)" stop-opacity=".22"/>
         </linearGradient>
       </defs>
-      <!-- grid of websites -->
       <g stroke="var(--line)" stroke-width="1.5">
         <rect x="30" y="30" width="80" height="54" rx="7" fill="var(--surface)"/>
         <rect class="hit" x="130" y="30" width="80" height="54" rx="7" fill="var(--surface)"/>
@@ -290,7 +275,6 @@ footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padd
         <rect x="350" y="186" width="80" height="54" rx="7" fill="var(--surface)"/>
         <rect class="hit h3" x="450" y="186" width="80" height="54" rx="7" fill="var(--surface)"/>
       </g>
-      <!-- browser dots and lines on each site -->
       <g fill="var(--line)">
         <circle cx="40" cy="40" r="2.5"/><circle cx="140" cy="40" r="2.5"/><circle cx="360" cy="40" r="2.5"/><circle cx="460" cy="40" r="2.5"/>
         <circle cx="40" cy="118" r="2.5"/><circle cx="140" cy="118" r="2.5"/><circle cx="360" cy="118" r="2.5"/><circle cx="460" cy="118" r="2.5"/>
@@ -310,20 +294,18 @@ footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padd
         <line x1="362" y1="218" x2="416" y2="218"/><line x1="362" y1="228" x2="400" y2="228"/>
         <line x1="462" y1="218" x2="516" y2="218"/><line x1="462" y1="228" x2="500" y2="228"/>
       </g>
-      <!-- scanning beam -->
       <g class="sweep"><path d="M280 130 L560 70 L560 190 Z" fill="url(#beam)"/></g>
-      <!-- bot in center -->
       <circle cx="280" cy="130" r="40" fill="var(--bad-soft)" stroke="var(--bad)" stroke-width="2"/>
       <rect x="262" y="116" width="36" height="28" rx="7" fill="none" stroke="var(--bad)" stroke-width="2.5"/>
       <circle cx="273" cy="130" r="3.5" fill="var(--bad)"/><circle cx="287" cy="130" r="3.5" fill="var(--bad)"/>
       <line x1="280" y1="108" x2="280" y2="116" stroke="var(--bad)" stroke-width="2.5"/>
       <circle cx="280" cy="106" r="3" fill="var(--bad)"/>
       <text x="280" y="190" text-anchor="middle" class="lbl" style="fill:var(--bad)">Spam bot</text>
-      <text x="280" y="206" text-anchor="middle" class="sub">tests sites nonstop</text>
+      <text x="280" y="206" text-anchor="middle" class="sub">scans for the theme flaw</text>
     </svg>
-    <figcaption>Bots work through huge lists of websites automatically. Sites that briefly flash red are the ones a bot got into.</figcaption>
+    <figcaption>Bots work through huge lists of websites automatically. Sites that briefly flash red are the ones still running the unpatched theme.</figcaption>
   </figure>
-  <p>In other words, the site was picked because Google trusts it, not because anyone targeted Induction Therapies.</p>
+  <p>In other words, the site was hit because it ran the affected theme and Google trusts it, not because anyone targeted Induction Therapies.</p>
   <div class="terms" aria-label="Spam search terms that pointed to our pages">
     <span>rk5 apk</span><span>88rp</span><span>situs slot rk5</span>
   </div>
@@ -332,18 +314,18 @@ footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padd
 
 <section aria-labelledby="nums">
   <span class="eyebrow">What the data shows</span>
-  <h2 id="nums">A two-day spike, now winding down</h2>
-  <p>On Nov 2 and 3, three pages briefly ranked at the top of Google for the gambling terms above: <span class="mono">/press/</span>, <span class="mono">/collagen-pin-treatment/</span> and <span class="mono">/collagen-pin-about/</span>.</p>
+  <h2 id="nums">A short spike, now winding down</h2>
+  <p>On Nov&nbsp;2 and 3, the hijacked pages briefly ranked at the top of Google for the gambling terms above.</p>
   <div class="bottom compare">
     <div class="bar-row">
-      <div class="bar-head"><span>Gambling clicks from Google, Nov 2 to 3</span><b>~5,400</b></div>
+      <div class="bar-head"><span>Gambling clicks from Google, Nov&nbsp;2 to 3</span><b>~5,400</b></div>
       <div class="track"><div class="fill" style="width:100%;background:var(--bad)"></div></div>
     </div>
     <div class="bar-row">
-      <div class="bar-head"><span>Of those, visits that reached our page</span><b>156</b></div>
+      <div class="bar-head"><span>Indonesian visits our analytics recorded</span><b>156</b></div>
       <div class="track"><div class="fill" style="width:2.9%;background:var(--accent)"></div></div>
     </div>
-    <p class="note">The gap means most gambling searchers were bounced to a gambling site before our page loaded. They were never our audience and did not interact with our content or forms.</p>
+    <p class="note">The gap is not a redirect. The spam pages carried no Google Analytics tag, so those visitors landed on pages our analytics could not see. They were never our audience and did not reach our real content or forms.</p>
   </div>
   <div class="bottom compare">
     <div class="bar-row">
@@ -351,31 +333,32 @@ footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padd
       <div class="track"><div class="fill" style="width:19%;background:var(--muted)"></div></div>
     </div>
     <div class="bar-row">
-      <div class="bar-head"><span>Indonesian visits per day, Nov 4 to 5</span><b>16 to 21</b></div>
+      <div class="bar-head"><span>Indonesian visits per day, Nov&nbsp;4 to 5</span><b>16 to 21</b></div>
       <div class="track"><div class="fill" style="width:100%;background:var(--warn)"></div></div>
     </div>
-    <p class="note">Leftover traffic is still trickling in. It should fade as Google re-reads the cleaned pages. The team is confirming it is old listings and not active hidden code.</p>
+    <p class="note">This is leftover traffic, not active spam. Google still shows the old spam titles until it re-reads the pages, and those visitors now land on our real pages, which are tracked. Reindexing has been requested. Google limits these requests to about ten a day, so the full set takes two days.</p>
   </div>
 </section>
 
 <section aria-labelledby="touch">
-  <span class="eyebrow">Impact</span>
-  <h2 id="touch">What it touched, and what we are confirming</h2>
+  <span class="eyebrow">Data exposure</span>
+  <h2 id="touch">No evidence of data theft, and precautions taken anyway</h2>
+  <p>The attacker had file-level access to the old server, which means they could have read the database. That database holds contact form entries, store customer records and the provider portal user list. There is no evidence they did. Everything they left behind was search-spam tooling, and this group's pattern is ranking hijacks, not data theft. "No evidence" is a reason for caution, not comfort, so these steps were taken regardless.</p>
   <div class="two">
     <div class="panel">
-      <span class="tag" style="background:var(--ok-soft);color:var(--ok)">What we know</span>
+      <span class="tag" style="background:var(--ok-soft);color:var(--ok)">Already done</span>
       <ul>
-        <li>The pages customers saw looked normal.</li>
-        <li>The goal was search ranking for gambling, a common spam pattern.</li>
-        <li>The spike was short, focused on Nov 2 and 3.</li>
+        <li>All admin passwords force-reset, with two-step login required for every admin.</li>
+        <li>Site moved off the old server onto Liquid Web's managed WordPress platform, with a new hosting account, new file-transfer access and a new database with new credentials.</li>
+        <li>Old server decommissioned.</li>
+        <li>Three old agency admin accounts removed. The eight remaining admins are all Collagen P.I.N. staff or our team.</li>
       </ul>
     </div>
     <div class="panel">
-      <span class="tag" style="background:var(--warn-soft);color:var(--warn)">Confirming now</span>
+      <span class="tag" style="background:var(--warn-soft);color:var(--warn)">Recommended for leadership</span>
       <ul>
-        <li>When the code was planted and how it got in.</li>
-        <li>Whether contact form entries (names, emails, phone numbers) were accessed.</li>
-        <li>Whether provider portal accounts need a password reset.</li>
+        <li><b>Precautionary portal password reset.</b> Portal passwords are stored scrambled (hashed), so readable passwords were never exposed, but a reset costs little and closes the question.</li>
+        <li><b>Any further notification</b> is a leadership decision under your own policies.</li>
       </ul>
     </div>
   </div>
@@ -383,24 +366,35 @@ footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padd
 
 <section aria-labelledby="fix">
   <span class="eyebrow">Response</span>
-  <h2 id="fix">What is being done</h2>
+  <h2 id="fix">Every action item is complete</h2>
   <ol class="steps">
-    <li><h3>Check what Google sees on the three pages</h3><span class="chip confirm">Confirming</span><p>Use Google's live page test to view the exact page Google receives, not just what we see.</p></li>
-    <li><h3>Review Google's security and penalty reports</h3><span class="chip confirm">Confirming</span><p>Check Search Console for security warnings or manual penalties on the site.</p></li>
-    <li><h3>Full malware scan and file review</h3><span class="chip confirm">Confirming</span><p>Scan site files, plugins, admin accounts and the database for the spam code.</p></li>
-    <li><h3>Close the entry point and change every password</h3><span class="chip confirm">Confirming</span><p>Patch how they got in, then rotate admin, hosting, file-transfer and database credentials and clear all caches.</p></li>
-    <li><h3>Ask Google to re-read the clean pages</h3><span class="chip confirm">Confirming</span><p>Request reindexing so the gambling listings drop out of search results.</p></li>
+    <li><h3>Check what Google sees on the three pages</h3><span class="chip done">Done</span><p>Google's live test returns the real page. Google's stored copy was still from Nov&nbsp;2, so reindexing was requested.</p></li>
+    <li><h3>Review Google's security and penalty reports</h3><span class="chip done">Done</span><p>Search Console shows no security issues and no manual actions. The attacker's owner account is gone, and only our three agency owners remain.</p></li>
+    <li><h3>Full malware scan and file review</h3><span class="chip done">Done</span><p>Every WordPress core file was compared against a clean copy, and a high-sensitivity Wordfence scan of 46,088 files and 72,115 URLs found nothing. Database searches for the spam terms are empty, as expected, since the spam lived in static files.</p></li>
+    <li><h3>Close the entry point and change every password</h3><span class="chip done">Done</span><p>The theme is on the patched release, all credentials are new, and caches were flushed.</p></li>
+    <li><h3>Explain the "redi-version" tag</h3><span class="chip done">Done</span><p>It comes from the Redirect Redirection plugin, version 1.4.0. It is legitimate and unrelated to the hack.</p></li>
+    <li><h3>Ask Google to reindex the pages</h3><span class="chip done">Requested</span><p>Requests are in for the affected pages. The full set clears in about two days.</p></li>
   </ol>
+</section>
+
+<section aria-labelledby="track">
+  <span class="eyebrow">Unrelated to the hack</span>
+  <h2 id="track">Two tracking issues, both diagnosed</h2>
+  <ol class="steps">
+    <li><h3>Lead tracking stopped around Sep&nbsp;21</h3><span class="chip done">Fixed</span><p>The contact form itself never stopped working. It received about two submissions a day the whole time, including 40 from Oct&nbsp;19 to Nov&nbsp;5, all saved in Gravity Forms, so <b>no leads were lost</b>. Only the analytics event broke: a September Popup Maker update changed how it reported form submissions. The event now fires straight from Gravity Forms, and a test submission today appeared in Google Analytics as <span class="mono">submit_lead_form</span> within seconds.</p></li>
+    <li><h3>A "conversion" that counts page views</h3><span class="chip ask">Needs your OK</span><p><span class="mono">ads_conversion_Submit_lead_form_1</span> is a Google Ads conversion set up on the Ads side to fire whenever someone loads the contact page. Because the form has three steps and each step reloads the page, one real submission today counted as seven conversions. Recommended: make <span class="mono">submit_lead_form</span> the key event, retire this one, and point the Ads conversion at the real event. This needs Editor access in Google Analytics, so either your team can mark it under Admin, Events, Key events, or grant our account Editor access and we will handle it.</p></li>
+  </ol>
+  <p class="note">A few test entries from "Test" with an seoaesthetic.com address came through today. Those were ours and have been deleted.</p>
 </section>
 
 <section aria-labelledby="prev">
   <span class="eyebrow">Going forward</span>
-  <h2 id="prev">Locking it down with four new layers</h2>
-  <p>The site already receives ongoing maintenance. Because this attack is designed to slip past normal checks, we are adding four layers aimed at this specific type of threat. An attacker would have to get through every one.</p>
+  <h2 id="prev">What now protects the site</h2>
+  <p>The site now runs on hardened hosting, and several layers watch for this exact kind of attack, so a problem reaches a person the same day.</p>
 
   <figure class="fig" style="margin:0">
     <svg viewBox="0 0 560 330" role="img" aria-labelledby="lkt">
-      <title id="lkt">Illustration: the website sits inside four rings of protection. Firewall, hardened logins, file change alerts and Google-side monitoring. Bots bounce off the outer ring.</title>
+      <title id="lkt">Illustration: the website sits inside four rings of protection. Hardened hosting, two-step logins, file change alerts and Google alerts. Bots bounce off the outer ring.</title>
       <g fill="none">
         <circle class="ring" cx="280" cy="165" r="148" stroke="var(--accent)" stroke-width="3"/>
         <circle cx="280" cy="165" r="116" stroke="var(--accent)" stroke-width="2.5" stroke-opacity=".75"/>
@@ -408,22 +402,19 @@ footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padd
         <circle cx="280" cy="165" r="52" stroke="var(--accent)" stroke-width="2.5" stroke-opacity=".45"/>
       </g>
       <circle cx="280" cy="165" r="148" fill="var(--accent)" fill-opacity=".05"/>
-      <!-- site in middle -->
       <rect x="252" y="145" width="56" height="40" rx="7" fill="var(--surface)" stroke="var(--accent)" stroke-width="2"/>
       <line x1="252" y1="156" x2="308" y2="156" stroke="var(--accent)" stroke-width="2"/>
       <path d="M271 170 l6 6 l12 -12" fill="none" stroke="var(--ok)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-      <!-- ring labels on top arc -->
       <g text-anchor="middle">
-        <rect x="222" y="7" width="116" height="22" rx="11" fill="var(--surface)" stroke="var(--accent)"/>
-        <text x="280" y="22" class="sub" style="fill:var(--ink);font-weight:600">1 · Firewall</text>
+        <rect x="216" y="7" width="128" height="22" rx="11" fill="var(--surface)" stroke="var(--accent)"/>
+        <text x="280" y="22" class="sub" style="fill:var(--ink);font-weight:600">1 · Hardened hosting</text>
         <rect x="216" y="39" width="128" height="22" rx="11" fill="var(--surface)" stroke="var(--accent)"/>
-        <text x="280" y="54" class="sub" style="fill:var(--ink);font-weight:600">2 · Hardened logins</text>
+        <text x="280" y="54" class="sub" style="fill:var(--ink);font-weight:600">2 · Two-step logins</text>
         <rect x="216" y="71" width="128" height="22" rx="11" fill="var(--surface)" stroke="var(--accent)"/>
         <text x="280" y="86" class="sub" style="fill:var(--ink);font-weight:600">3 · File change alerts</text>
         <rect x="222" y="103" width="116" height="22" rx="11" fill="var(--surface)" stroke="var(--accent)"/>
-        <text x="280" y="118" class="sub" style="fill:var(--ink);font-weight:600">4 · Google watch</text>
+        <text x="280" y="118" class="sub" style="fill:var(--ink);font-weight:600">4 · Google alerts</text>
       </g>
-      <!-- bots bouncing off -->
       <g class="bot" style="--bx:38px;--by:0px">
         <rect x="64" y="153" width="26" height="22" rx="5" fill="var(--bad-soft)" stroke="var(--bad)" stroke-width="2"/>
         <circle cx="72" cy="164" r="2.5" fill="var(--bad)"/><circle cx="82" cy="164" r="2.5" fill="var(--bad)"/>
@@ -438,17 +429,19 @@ footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padd
       </g>
       <text x="280" y="215" text-anchor="middle" class="lbl">collagenpin.com</text>
     </svg>
-    <figcaption>Each layer catches what the one before it might miss. Bots are blocked at the outer edge, and anything unusual inside triggers an alert.</figcaption>
+    <figcaption>Each layer catches what the one before it might miss, and anything unusual triggers an alert to a person.</figcaption>
   </figure>
   <div class="two">
-    <div class="panel"><h3>File change alerts</h3><p>Instant alerts if any site file changes outside of planned work, so hidden code is flagged the moment it appears.</p></div>
-    <div class="panel"><h3>Google-side monitoring</h3><p>Alerts when the site starts ranking for unrelated or foreign-language searches, the earliest sign of this hack.</p></div>
-    <div class="panel"><h3>Hardened logins</h3><p>Two-step login for every admin account and fresh credentials across hosting, file transfer and the database.</p></div>
-    <div class="panel"><h3>Firewall protection</h3><p>A security firewall that blocks known attack bots before they reach the site.</p></div>
+    <div class="panel"><h3>Hardened hosting</h3><p>Liquid Web's managed WordPress platform, with a new account, new file-transfer access and a new database.</p></div>
+    <div class="panel"><h3>Two-step logins</h3><p>Required on every admin account, on top of fresh credentials everywhere.</p></div>
+    <div class="panel"><h3>File change alerts</h3><p>Wordfence alerts, including file changes and scan results, go to a monitored team inbox.</p></div>
+    <div class="panel"><h3>Google alerts</h3><p>Search Console ownership and security alerts go to the same inbox, so a new-owner notice reaches a person the same day.</p></div>
+    <div class="panel"><h3>Weekly updates</h3><p>Plugin and theme updates on a weekly, logged schedule, with critical security fixes applied right away.</p></div>
+    <div class="panel"><h3>Uptime monitoring</h3><p>The site is watched around the clock so an outage is flagged immediately.</p></div>
   </div>
 </section>
 
-<footer>Prepared by the SEO Aesthetic web team for Induction Therapies. Items marked "Confirming" will be updated as the investigation finishes.</footer>
+<footer>Prepared by the SEO Aesthetic web team for Induction Therapies. All action items are complete. Two items await a leadership decision: the provider portal password reset and the Google Ads conversion cleanup.</footer>
 </div>
 
 </body>
