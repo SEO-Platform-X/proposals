@@ -2088,9 +2088,8 @@ a.vcard:hover .vplay{transform:scale(1.1)}
     tabs.forEach(function(b){ b.addEventListener('click',function(){ auto=false; clearInterval(timer); set(b.dataset.v); }); });
     set('all');
     /* reserve the tallest card list so switching verticals never moves the page */
-    var box=t.querySelector('.tcards');
-    function lock(){ if(!box) return; var cur=t.dataset.on; box.style.minHeight=''; set('all'); box.style.minHeight=box.offsetHeight+'px'; set(cur); }
-    lock(); addEventListener('resize',function(){ clearTimeout(lock.t); lock.t=setTimeout(lock,150); });
+    /* keep the reader's place: if the list changes height above where they are reading, scroll by the difference */
+    var set0=set; set=function(v){ var r0=t.getBoundingClientRect(); set0(v); var r1=t.getBoundingClientRect(); var d=r1.height-r0.height; if(d && r0.bottom<innerHeight*.5) scrollBy(0,d); };
     if(!reduce && 'IntersectionObserver' in window){ new IntersectionObserver(function(es){
         if(es[0].isIntersecting){ if(auto && !timer) timer=setInterval(function(){ if(!auto) return; set(tabs[i].dataset.v); i=i%(tabs.length-1)+1; },2800); }
         else if(timer){ clearInterval(timer); timer=null; } },{threshold:.4}).observe(t.querySelector('.tmap')); }
