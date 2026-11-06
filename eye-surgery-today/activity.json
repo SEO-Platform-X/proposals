@@ -1,0 +1,25 @@
+{
+  "_how_to_edit": "Add a line when an invitation goes out or a region is claimed. status: invited or claimed. date: YYYY-MM-DD. Entries with a date appear in the Region activity list; every entry with a known city appears on the map.",
+  "items": [
+    {"city": "Lexington, KY", "status": "claimed", "founder": true, "date": "2026-02-23"},
+    {"city": "Los Angeles, CA", "status": "claimed", "founder": true, "date": "2026-02-23"},
+    {"city": "Baton Rouge, LA", "status": "claimed", "founder": true, "date": "2026-02-23"},
+    {"city": "Honolulu, HI", "status": "claimed", "founder": true, "date": "2026-02-23"},
+    {"city": "New York, NY", "status": "invited"},
+    {"city": "Chicago, IL", "status": "invited"},
+    {"city": "Houston, TX", "status": "invited"},
+    {"city": "Phoenix, AZ", "status": "invited"},
+    {"city": "Dallas, TX", "status": "invited"},
+    {"city": "Seattle, WA", "status": "invited"},
+    {"city": "Denver, CO", "status": "invited"},
+    {"city": "Atlanta, GA", "status": "invited"},
+    {"city": "Miami, FL", "status": "invited"},
+    {"city": "Boston, MA", "status": "invited"},
+    {"city": "Minneapolis, MN", "status": "invited"},
+    {"city": "Charlotte, NC", "status": "invited"},
+    {"city": "San Francisco, CA", "status": "invited"},
+    {"city": "Tampa, FL", "status": "invited"},
+    {"city": "Nashville, TN", "status": "invited"},
+    {"city": "Las Vegas, NV", "status": "invited"}
+  ]
+}
