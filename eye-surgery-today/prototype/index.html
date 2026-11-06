@@ -305,12 +305,15 @@ td.r{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
 @media (max-width:360px){.journey{grid-template-columns:1fr}.stats{grid-template-columns:1fr}}
 
 /* text left, drawing right on wide screens */
-@media (min-width:1000px){
+.site{container-type:inline-size}
+@container (min-width:1000px){
   .side .in{display:grid !important;grid-template-columns:minmax(0,380px) minmax(0,1fr);column-gap:48px;row-gap:14px;align-content:start}
   .side .in > *{grid-column:1}
   .side .in > figure{grid-column:2;grid-row:1 / span 8;align-self:center}
   .side .in > p,.side .in > .callout{max-width:none}
 }
+.side .figwrap svg{min-width:0}
+@media (min-width:601px){.figwrap svg{min-width:0}}
 .hf-who b{overflow-wrap:break-word}
 @media (max-width:600px){.hf-who b{font-size:17px}}
 
