@@ -2089,7 +2089,13 @@ a.vcard:hover .vplay{transform:scale(1.1)}
       cnt.textContent = n+' consultant'+(n===1?'':'s')+' · '+cities+' cities'; }
     tabs.forEach(function(b){ b.addEventListener('click',function(){ auto=false; clearInterval(timer); set(b.dataset.v); }); });
     set('all');
-    if(!reduce && 'IntersectionObserver' in window){ new IntersectionObserver(function(es){ if(es[0].isIntersecting && auto && !timer){ timer=setInterval(function(){ if(!auto) return; set(tabs[i].dataset.v); i=i%(tabs.length-1)+1; },2800); } },{threshold:.4}).observe(t.querySelector('.tmap')); }
+    /* reserve the tallest card list so switching verticals never moves the page */
+    var box=t.querySelector('.tcards');
+    function lock(){ if(!box) return; var cur=t.dataset.on; box.style.minHeight=''; set('all'); box.style.minHeight=box.offsetHeight+'px'; set(cur); }
+    lock(); addEventListener('resize',function(){ clearTimeout(lock.t); lock.t=setTimeout(lock,150); });
+    if(!reduce && 'IntersectionObserver' in window){ new IntersectionObserver(function(es){
+        if(es[0].isIntersecting){ if(auto && !timer) timer=setInterval(function(){ if(!auto) return; set(tabs[i].dataset.v); i=i%(tabs.length-1)+1; },2800); }
+        else if(timer){ clearInterval(timer); timer=null; } },{threshold:.4}).observe(t.querySelector('.tmap')); }
   })();
 
   /* directory filters */
